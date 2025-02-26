@@ -1,0 +1,95 @@
+.container {
+    max-width: 1222px;
+    margin: 0 auto;
+    padding: 0 20px; /* اضافه کردن padding برای فاصله از لبه‌ها در موبایل */
+  }
+  
+  .title {
+    color: #FFD700;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    text-align: center;
+    font-family: shabnam;
+    margin-top: 1.7rem;
+    align-items: center;
+  }
+  
+  .title p {
+    color: #FFD700;
+    font-size: 36px;
+  }
+  
+  .title span {
+    color: #FFD700;
+  }
+  
+  .link_btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+    padding: 15px;
+    background-color: #CC5500;
+    color: #FFF;
+    transition: all 0.5s ease;
+  }
+  
+  .link_btn:hover {
+    background-color: #FFD700;
+  }
+  
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 ستون در دسکتاپ */
+    gap: 30px;
+    padding: 20px 0px;
+    justify-content: space-between;
+  }
+  
+  /* رسپانسیو برای تبلت (صفحه‌های با عرض کمتر از 1024px) */
+  @media (max-width: 1024px) {
+    .products {
+      grid-template-columns: repeat(3, 1fr); /* 3 ستون در تبلت */
+    }
+  }
+  
+  /* رسپانسیو برای موبایل (صفحه‌های با عرض کمتر از 768px) */
+  @media (max-width: 768px) {
+    .products {
+      grid-template-columns: repeat(2, 1fr); /* 2 ستون در موبایل */
+      gap: 20px;
+    }
+  
+    .title p {
+      font-size: 28px; /* کاهش اندازه فونت برای موبایل */
+    }
+  
+    .link_btn {
+      padding: 10px; /* کاهش padding برای موبایل */
+      font-size: 14px;
+    }
+  }
+  
+  /* رسپانسیو برای موبایل‌های کوچک (صفحه‌های با عرض کمتر از 480px) */
+  @media (max-width: 480px) {
+    .products {
+      grid-template-columns: 1fr; /* 1 ستون در موبایل‌های کوچک */
+      gap: 15px;
+    }
+  
+    .title {
+      flex-direction: column; /* تغییر جهت به عمودی در موبایل‌های کوچک */
+      gap: 10px;
+    }
+  
+    .title p {
+      font-size: 24px; /* کاهش بیشتر اندازه فونت */
+    }
+  
+    .link_btn {
+      width: 100%; /* دکمه تمام عرض در موبایل‌های کوچک */
+      justify-content: center;
+    }
+  }
