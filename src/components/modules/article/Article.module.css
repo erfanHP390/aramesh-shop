@@ -1,0 +1,194 @@
+/* Article.module.css */
+
+.card {
+    position: relative;
+    overflow: hidden;
+    background-color: #FFFFFF; /* پس‌زمینه کارت */
+    border: 1px solid #A68A64; /* حاشیه کارت (قهوه‌ای روشن) */
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.2); /* سایه با رنگ قهوه‌ای تیره */
+  }
+  
+  .date span:nth-child(1) {
+    font-size: 20px;
+  }
+  
+  .date {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0.3rem 0.5rem;
+    background: #FFFFFF; /* پس‌زمینه تاریخ (سفید) */
+    display: grid;
+    border-radius: 4px;
+    color: #5A3E36; /* رنگ متن تاریخ (قهوه‌ای تیره) */
+    z-index: 2;
+  }
+  
+  .details div img {
+    width: 20px;
+    border-radius: 20px;
+  }
+  
+  .details div div span {
+    position: absolute;
+    font-size: 7px;
+    top: -5px;
+    left: -4px;
+    border-radius: 100%;
+    padding: 0.1rem 0.2rem 0;
+    background-color: #CC5500; /* پس‌زمینه تعداد کامنت‌ها (نارنجی گرم) */
+    color: #FFFFFF; /* متن تعداد کامنت‌ها (سفید) */
+  }
+  
+  .details div div {
+    position: relative;
+  }
+  
+  .details div svg {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #FFD700; /* رنگ آیکون‌ها (قهوه‌ای تیره) */
+    transition: color 0.3s ease;
+  }
+  
+  .details div svg:hover {
+    color: #CC5500; /* هاور آیکون‌ها (نارنجی گرم) */
+  }
+  
+  .details div {
+    font-size: 14px;
+    color: #FFD700; /* رنگ متن نویسنده (قهوه‌ای تیره) */
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+  
+  .details {
+    width: 100%;
+    text-align: center;
+    transition: box-shadow 0.6s ease;
+    padding: 25px;
+    position: absolute;
+    background: linear-gradient(
+      to bottom,
+      transparent 5%,
+      rgba(90, 62, 54, 0.35) 50%, /* گرادینت با رنگ قهوه‌ای تیره */
+      rgba(90, 62, 54, 0.8) 100%
+    );
+    bottom: 0px;
+  }
+  
+  .tag {
+    font-size: 13px;
+    background-color: #CC5500; /* پس‌زمینه تگ (نارنجی گرم) */
+    padding: 0.5rem;
+    border-radius: 3px;
+    color: #FFFFFF; /* متن تگ (سفید) */
+  }
+  
+  .title {
+    word-wrap: break-word;
+    margin: 10px 0;
+    line-height: 1.4;
+    display: block;
+    font-size: 23px;
+    color: #FFFFFF; /* رنگ عنوان مقاله (سفید) */
+  }
+  
+  .card:hover .img_container:nth-child(1)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    left: 0;
+    background-color: rgba(90, 62, 54, 0.5); /* لایه نیمه‌شفاف (قهوه‌ای تیره) */
+    transition: opacity 0.7s ease;
+  }
+  
+  .card:hover .img_container:nth-child(1) {
+    transform: scale(1.03);
+  }
+  
+  .card .img_container:nth-child(1) {
+    position: relative;
+    display: block;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+    overflow: hidden;
+  }
+  
+  .share {
+    position: relative;
+    bottom: 2px;
+  }
+  
+  .share:hover .tooltip {
+    opacity: 1;
+  }
+  
+  .tooltip svg {
+    font-size: 1rem !important;
+    color: #FFFFFF; /* رنگ آیکون‌های اشتراک‌گذاری (سفید) */
+  }
+  
+  .tooltip {
+    position: absolute !important;
+    top: -35px;
+    background-color: #5A3E36; /* پس‌زمینه تولتیپ (قهوه‌ای تیره) */
+    padding: 0.3rem 0.3rem 0;
+    border-radius: 4px;
+    z-index: 999;
+    opacity: 0;
+    color: #FFFFFF !important; /* متن تولتیپ (سفید) */
+    display: flex;
+    gap: 5px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .tooltip::before {
+    left: 50%;
+    content: "";
+    top: 100%;
+    margin-left: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #5A3E36 !important; /* رنگ پیکان تولتیپ (قهوه‌ای تیره) */
+  }
+  
+  .tooltip::before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 20px;
+    }
+  
+    .details {
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 18px;
+    }
+  
+    .tag {
+      font-size: 12px;
+    }
+  
+    .details div {
+      font-size: 12px;
+    }
+  }
