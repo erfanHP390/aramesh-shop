@@ -19,7 +19,7 @@ export default function Articles() {
           slidesPerView={3}
           spaceBetween={30}
           dir="rtl"
-          // autoplay={{ delay: 1500, disableOnInteraction: false }}
+          autoplay={{ delay: 1500, disableOnInteraction: false }}
           loop={true}
           navigation={true}
           modules={[Navigation, Autoplay]}
