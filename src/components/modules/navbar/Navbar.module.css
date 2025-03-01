@@ -78,8 +78,6 @@
 .dropdown_content {
   display: none;
   position: absolute;
-  top: 45px;
-  right: -3px;
   background-color: #A68A64;
   min-width: 220px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
