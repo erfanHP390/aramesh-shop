@@ -1,0 +1,55 @@
+/* ArticleFooter.module.css */
+
+.article {
+  font-family: shabnam;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin: 20px 0px;
+  color: #FFFFFF;
+}
+
+.article img {
+  border-radius: 8px;
+}
+
+.article div div {
+  display: flex;
+  justify-content: right;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 0.5rem;
+}
+
+.title {
+  font-family: shabnam-Bold;
+  color: #FFD700;
+}
+
+.article a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.article:hover {
+  opacity: 0.8;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .article {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .article img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+  }
+
+  .article div div {
+    justify-content: center;
+  }
+}
