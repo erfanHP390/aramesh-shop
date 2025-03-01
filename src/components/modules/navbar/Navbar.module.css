@@ -9,6 +9,7 @@
   height: 90px;
   position: relative;
   z-index: 1000;
+  direction: rtl;
 }
 
 /* لوگو (در همه سایزها نمایش داده می‌شود) */

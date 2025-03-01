@@ -2,6 +2,7 @@
     max-width: 1222px;
     margin: 0 auto;
     padding: 0 20px; /* اضافه کردن padding برای فاصله از لبه‌ها در موبایل */
+    direction: rtl;
   }
   
   .title {
