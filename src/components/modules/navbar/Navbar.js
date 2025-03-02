@@ -51,7 +51,14 @@ export default function Navbar() {
               کافی شاپ ما
             </Link>
           </li>
-          <div className={styles.dropdown}>
+          <li>
+            <Link
+              href="/login&register"
+            >
+              ورود/عضویت
+            </Link>
+          </li>
+          {/* <div className={styles.dropdown}>
             <div className={styles.dropdown_header}>
               حساب کاربری
               <IoIosArrowDown className={styles.dropdown_icons} />
@@ -63,7 +70,7 @@ export default function Navbar() {
               <Link href="/p-user/wishlist">علاقه‌مندی‌ها</Link>
               <Link href="/p-user/account-details">جزئیات اکانت</Link>
             </div>
-          </div>
+          </div> */}
         </ul>
 
         {/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */}
@@ -90,7 +97,6 @@ export default function Navbar() {
           <div className={styles.close_icon} onClick={toggleMenu}>
             <FaTimes />
           </div>
-
           {/* لینک‌ها در سایدبار */}
           <div className={styles.sidebar_content}>
             <ul className={styles.mobile_links}>
@@ -120,6 +126,13 @@ export default function Navbar() {
                   کافی شاپ ما
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/login&register"
+                >
+                  ورود/عضویت
+                </Link>
+              </li>
               {/* بخش dropdown در موبایل */}
               <li className={styles.mobile_dropdown}>
                 <div className={styles.dropdown_header_mobile}>
@@ -140,11 +153,36 @@ export default function Navbar() {
                   className={styles.dropdown_content_mobile}
                   style={{ display: `${isShowDropMobile ? "block" : "none"}` }}
                 >
-                  <Link  className={styles.dropdown_content_mobile_link}   href="/p-user/orders">سفارشات</Link>
-                  <Link  className={styles.dropdown_content_mobile_link}  href="/p-user/tickets">تیکت های پشتیبانی</Link>
-                  <Link  className={styles.dropdown_content_mobile_link}  href="/p-user/comments">کامنت‌ها</Link>
-                  <Link  className={styles.dropdown_content_mobile_link}  href="/p-user/wishlist">علاقه‌مندی‌ها</Link>
-                  <Link  className={styles.dropdown_content_mobile_link}  href="/p-user/account-details">جزئیات اکانت</Link>
+                  <Link
+                    className={styles.dropdown_content_mobile_link}
+                    href="/p-user/orders"
+                  >
+                    سفارشات
+                  </Link>
+                  <Link
+                    className={styles.dropdown_content_mobile_link}
+                    href="/p-user/tickets"
+                  >
+                    تیکت های پشتیبانی
+                  </Link>
+                  <Link
+                    className={styles.dropdown_content_mobile_link}
+                    href="/p-user/comments"
+                  >
+                    کامنت‌ها
+                  </Link>
+                  <Link
+                    className={styles.dropdown_content_mobile_link}
+                    href="/p-user/wishlist"
+                  >
+                    علاقه‌مندی‌ها
+                  </Link>
+                  <Link
+                    className={styles.dropdown_content_mobile_link}
+                    href="/p-user/account-details"
+                  >
+                    جزئیات اکانت
+                  </Link>
                 </div>
               </li>
             </ul>
