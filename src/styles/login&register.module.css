@@ -1,0 +1,31 @@
+/* login&register.module.css */
+
+.login_register {
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  background: linear-gradient(#6F4E37, #5A3E36); /* پس‌زمینه قهوه‌ای گرم */
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+}
+
+.form_bg {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  flex-direction: column;
+
+}
+
+.login_register section {
+  width: 50%;
+  height: 100%;
+  background-color: #A68A64; /* پس‌زمینه قهوه‌ای روشن */
+}
+
+.login_register section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
