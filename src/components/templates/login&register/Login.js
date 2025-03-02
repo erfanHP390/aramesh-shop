@@ -33,7 +33,7 @@ const Login = ({ showRegisterForm }) => {
               <p>مرا به یاد داشته باش</p>
             </div>
             <button className={styles.btn}>ورود</button>
-            <Link href={"/forget-password"} className={styles.forgot_pass}>
+            <Link href={"/forgetPassword"} className={styles.forgot_pass}>
               رمز عبور را فراموش کرده اید؟
             </Link>
             <button onClick={() => setIsLoginWithOtp(true)} className={styles.btn}>ورود با کد یکبار مصرف</button>
