@@ -84,10 +84,14 @@
   cursor: pointer;
   font-family: shabnam;
   font-size: 13px;
-  color: #CC5500; /* متن نارنجی گرم */
-  transition: color 0.3s ease;
+  margin-top: 0.75rem;
+  padding: 10px  25px;
+  border-radius: 10%;
+  color: #FFF; /* متن نارنجی گرم */
+  background-color: #CC5500;
+  transition: all 0.3s ease;
 }
 
 .redirect_to_home:hover {
-  color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #FFD700; /* هاور با رنگ طلایی */
 }
