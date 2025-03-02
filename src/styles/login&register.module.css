@@ -29,3 +29,13 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media (max-width: 800px) {
+  .login_img {
+    display: none !important;
+  }
+  .form_bg {
+    width: 100%;
+  }
+}
+

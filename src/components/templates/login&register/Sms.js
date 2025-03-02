@@ -1,4 +1,4 @@
-import styles from "./sms.module.css";
+import styles from "./Sms.module.css";
 
 const Sms = ({hideOtpForm}) => {
   return (

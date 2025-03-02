@@ -82,3 +82,23 @@
 .redirect_to_home:hover {
   background-color: #FFD700; /* هاور با رنگ طلایی */
 }
+
+
+@media (max-width: 400px) {
+
+  .form {
+    width: 390px !important;
+  }
+}
+
+@media (max-width: 378px) {
+
+  .form {
+    width: 316px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center;
+  }
+}

@@ -21,7 +21,7 @@ const login_register = () => {
           <Register showLoginForm={showLoginForm} />
         )}
       </div>
-      <section>
+      <section className={styles.login_img}>
         <img
           src="https://neurosciencenews.com/files/2023/06/coffee-brain-caffeine-neuroscincces.jpg"
           alt=""

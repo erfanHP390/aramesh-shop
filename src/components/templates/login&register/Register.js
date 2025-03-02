@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./register.module.css";
+import styles from "./Register.module.css";
 import Link from "next/link";
 import Sms from "./Sms";
 
