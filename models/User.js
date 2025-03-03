@@ -23,10 +23,10 @@ const schema = mongoose.Schema({
         default: "USER"
     },
 
-    // refreshToken: String
+    refreshToken: String
 
 } , {timestamps: true}) 
 
 
 const model = mongoose.models.USER || mongoose.model("USER" , schema)
-export default model
+module.exports = model
