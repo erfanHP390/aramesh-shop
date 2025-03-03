@@ -2,6 +2,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import AOSInit from "@/utils/aos";
 import ScrollTopBtn from "@/components/modules/ScrollTopBtn/ScrollTopBtn";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AOSInit />
         {children}
+        <ToastContainer />
         <ScrollTopBtn />
       </body>
     </html>
