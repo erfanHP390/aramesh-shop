@@ -4,11 +4,15 @@ import Latest from "@/components/templates/index/latest/Latest";
 import About from "@/components/templates/index/about/About";
 import Articles from "@/components/templates/index/articles/Articles";
 import Footer from "@/components/modules/Footer/Footer";
+import { authUser } from "@/utils/auth";
 
-export default function Home() {
+export default async function Home() {
+
+  const user = await authUser()
+
   return (
     <>
-      <Navbar />
+      <Navbar  isLogin={user} />
       <Banner />
       <Latest />
       <About />

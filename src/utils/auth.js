@@ -1,5 +1,8 @@
 import { hash, compare } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
+import { cookies } from "next/headers";
+import UserModel from "@/models/User"
+
 
 const hashPassword = async (password) => {
   const hashedPassword = hash(password, 12);
@@ -13,7 +16,7 @@ const verifyPassword = async (password, hashedPassword) => {
 
 const generateAccessToken = (data) => {
   const token = sign({ ...data }, process.env.PRIVATEKEY , {
-    expiresIn: "60s"
+    expiresIn: "60d"
   });
   return token;
 };
@@ -50,6 +53,22 @@ const validatePassword = (password) => {
   return regexPass.test(password)
 }
 
+const authUser = async () => {
+  const token = cookies().get("token")
+  let user = null
+
+  if(token) {
+    const tokenPayLoad = verifyToken(token.value)
+
+    if(tokenPayLoad) {
+       user = await UserModel.findOne({email: tokenPayLoad.email})
+    }
+
+    return user
+  }
+
+}
+
 export {
   hashPassword,
   verifyPassword,
@@ -58,5 +77,6 @@ export {
   generateRefreshToken,
   validatePhone,
   validateEmail,
-  validatePassword
+  validatePassword,
+  authUser
 };

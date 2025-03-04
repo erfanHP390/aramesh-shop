@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
 
-export default function Navbar() {
+export default function Navbar({ isLogin }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
 
@@ -51,26 +51,30 @@ export default function Navbar() {
               کافی شاپ ما
             </Link>
           </li>
-          <li>
-            <Link
-              href="/login&register"
-            >
-              ورود/عضویت
-            </Link>
-          </li>
-          {/* <div className={styles.dropdown}>
-            <div className={styles.dropdown_header}>
-              حساب کاربری
-              <IoIosArrowDown className={styles.dropdown_icons} />
-            </div>
-            <div className={styles.dropdown_content}>
-              <Link href="/p-user/orders">سفارشات</Link>
-              <Link href="/p-user/tickets">تیکت های پشتیبانی</Link>
-              <Link href="/p-user/comments">کامنت‌ها</Link>
-              <Link href="/p-user/wishlist">علاقه‌مندی‌ها</Link>
-              <Link href="/p-user/account-details">جزئیات اکانت</Link>
-            </div>
-          </div> */}
+          {isLogin ? (
+            <>
+              {" "}
+              <div className={styles.dropdown}>
+                <div className={styles.dropdown_header}>
+                  حساب کاربری
+                  <IoIosArrowDown className={styles.dropdown_icons} />
+                </div>
+                <div className={styles.dropdown_content}>
+                  <Link href="/p-user/orders">سفارشات</Link>
+                  <Link href="/p-user/tickets">تیکت های پشتیبانی</Link>
+                  <Link href="/p-user/comments">کامنت‌ها</Link>
+                  <Link href="/p-user/wishlist">علاقه‌مندی‌ها</Link>
+                  <Link href="/p-user/account-details">جزئیات اکانت</Link>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link href="/login&register">ورود/عضویت</Link>
+              </li>
+            </>
+          )}
         </ul>
 
         {/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */}
@@ -127,11 +131,7 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/login&register"
-                >
-                  ورود/عضویت
-                </Link>
+                <Link href="/login&register">ورود/عضویت</Link>
               </li>
               {/* بخش dropdown در موبایل */}
               <li className={styles.mobile_dropdown}>
