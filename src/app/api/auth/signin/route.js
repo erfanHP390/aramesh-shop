@@ -37,6 +37,12 @@ export async function POST(req) {
     
         const accessToken = generateAccessToken({email})
         const refreshToken = generateRefreshToken({email})
+
+        await UserModel.findOneAndUpdate({email} , {
+            $set: {
+                refreshToken
+            }
+        })
     
         return Response.json({message: "user logged in successfully"} , {
             status: 200,
