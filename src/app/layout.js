@@ -2,8 +2,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import AOSInit from "@/utils/aos";
 import ScrollTopBtn from "@/components/modules/ScrollTopBtn/ScrollTopBtn";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,18 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AOSInit />
         {children}
-        <ToastContainer />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />{" "}
         <ScrollTopBtn />
       </body>
     </html>
