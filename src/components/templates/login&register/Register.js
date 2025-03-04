@@ -177,7 +177,7 @@ const Register = ({ showLoginForm }) => {
               style={{ marginTop: ".7rem" }}
               className={styles.btn}
             >
-              {isLoading ? "لطفا صبر کنید..." : "ثبت نام با رمز عبور"}
+              {isLoading ? "لطفا صبر کنید" : "ثبت نام با رمز عبور"}
             </button>
             <p onClick={showLoginForm} className={styles.back_to_login}>
               برگشت به ورود
