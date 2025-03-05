@@ -12,7 +12,7 @@ export default function page() {
       </div>
       <div className={styles.texts}>
         <p>صفحه مورد نظر یافت نشد :((</p>
-        <a href="/">برگشت به خانه</a>
+        <Link href="/">برگشت به خانه</Link>
       </div>
     </div>
   )
