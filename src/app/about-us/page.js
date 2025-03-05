@@ -1,24 +1,16 @@
 import Footer from "@/components/modules/Footer/Footer";
 import Navbar from "@/components/modules/navbar/Navbar";
 import React from "react";
-import { cookies } from "next/headers";
-import UserModel from "@/models/User";
 import connectToDB from "@/configs/db";
-import { verifyToken } from "@/utils/auth";
 import styles from "@/styles/AboutUs.module.css"; // ایمپورت فایل CSS
+import { authUser } from "@/utils/authUserLink";
 
 async function page() {
-  connectToDB();
+  connectToDB()
 
-  const token = cookies().get("token");
-  let user = null;
+  const user = await authUser()
 
-  if (token) {
-    const tokenPayload = verifyToken(token.value);
-    if (tokenPayload) {
-      user = await UserModel.findOne({ email: tokenPayload.email });
-    }
-  }
+
 
   return (
     <>

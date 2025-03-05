@@ -4,24 +4,14 @@ import Latest from "@/components/templates/index/latest/Latest";
 import About from "@/components/templates/index/about/About";
 import Articles from "@/components/templates/index/articles/Articles";
 import Footer from "@/components/modules/Footer/Footer";
-import { cookies } from "next/headers";
-import UserModel from "@/models/User"
 import connectToDB from "@/configs/db";
-import { verifyToken } from "@/utils/auth";
+import { authUser } from "@/utils/authUserLink";
 
 export default async function Home() {
-
   connectToDB()
 
-  const token = cookies().get("token")
-  let user = null
+  const user = await authUser()
 
-  if (token) {
-    const tokenPayload = verifyToken(token.value);
-    if (tokenPayload) {
-      user = await UserModel.findOne({ email: tokenPayload.email });
-    }
-  }
 
 return (
 <>
