@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
 
-export default function Navbar({ isLogin }) {
+export default function Navbar({isLogin}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
 
@@ -52,7 +52,7 @@ export default function Navbar({ isLogin }) {
             </Link>
           </li>
           {isLogin ? (
-            <>
+             <>
               {" "}
               <div className={styles.dropdown}>
                 <div className={styles.dropdown_header}>
@@ -67,14 +67,14 @@ export default function Navbar({ isLogin }) {
                   <Link href="/p-user/account-details">جزئیات اکانت</Link>
                 </div>
               </div>
-            </>
-          ) : (
+            </> 
+           ) : ( 
             <>
               <li>
                 <Link href="/login&register">ورود/عضویت</Link>
               </li>
             </>
-          )}
+           )} 
         </ul>
 
         {/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */}
