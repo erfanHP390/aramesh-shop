@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import Sms from "./Sms";
 import Link from "next/link";
-import { swalAlert, toastSuccess } from "@/utils/helpers";
+import { swalAlert, toastSuccess , toastError } from "@/utils/helpers";
 import { validateEmail, validatePassword } from "@/utils/auth";
 
 const Login = ({ showRegisterForm }) => {
