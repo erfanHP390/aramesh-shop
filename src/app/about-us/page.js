@@ -4,6 +4,7 @@ import React from "react";
 import connectToDB from "@/configs/db";
 import styles from "@/styles/AboutUs.module.css"; // ایمپورت فایل CSS
 import { authUser } from "@/utils/authUserLink";
+import BreadCrumb from "@/components/modules/breadcrumb/BreadCrumb";
 
 async function page() {
   connectToDB()
@@ -14,12 +15,13 @@ async function page() {
 
   return (
     <>
-      <Navbar isLogin={user} />
+      <Navbar isLogin={user ? true : false} />
+      <BreadCrumb  route={"درباره ما"} />
       <div className={styles.container}>
-        <section className={styles.section}>
+        {/* <section className={styles.section}>
           <h1>درباره ما</h1>
           <p>فنجان داغ خوارزمی قهوه ست</p>
-        </section>
+        </section> */}
 
         <section>
           <p className={styles.content}>
