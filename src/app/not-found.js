@@ -1,8 +1,7 @@
-import styles from "@/styles/404.module.css"
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import styles from '@/styles/404.module.css'; // فرض کنید فایل استایل‌ها اینجاست
 
-export default function page() {
+export default function NotFound() {
   return (
     <div>
       <div className={styles.contents}>
@@ -12,8 +11,8 @@ export default function page() {
       </div>
       <div className={styles.texts}>
         <p>صفحه مورد نظر یافت نشد :((</p>
-        <Link href="/">برگشت به خانه</Link>
+        <Link href="/"  target='_blank'>برگشت به خانه</Link>
       </div>
     </div>
-  )
+  );
 }
