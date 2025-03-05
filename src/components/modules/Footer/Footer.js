@@ -1,14 +1,27 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Footer.module.css";
 import ArticleFooter from './ArticleFooter';
 import { FaPhoneAlt, FaMap, FaEnvelopeOpen } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Footer() {
-  // State برای مدیریت باز و بسته شدن لینک‌ها
   const [showMoreLinks, setShowMoreLinks] = useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 986);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -59,12 +72,12 @@ export default function Footer() {
         <ul className={styles.links}>
           <div>
             <h4
-              onClick={() => window.innerWidth <= 986 && setShowMoreLinks(!showMoreLinks)}
-              style={{ cursor: window.innerWidth <= 986 ? "pointer" : "default" }}
+              onClick={() => isMobile && setShowMoreLinks(!showMoreLinks)}
+              style={{ cursor: isMobile ? "pointer" : "default" }}
             >
-              بیشتر {window.innerWidth <= 986 && (showMoreLinks ? "▲" : "▼")}
+              بیشتر {isMobile && (showMoreLinks ? "▲" : "▼")}
             </h4>
-            {(window.innerWidth > 986 || showMoreLinks) && (
+            {(!isMobile || showMoreLinks) && (
               <>
                 <li>
                   <Link href={"/contact-us"}>تماس با ما</Link>
@@ -80,12 +93,12 @@ export default function Footer() {
           </div>
           <div>
             <h4
-              onClick={() => window.innerWidth <= 986 && setShowQuickLinks(!showQuickLinks)}
-              style={{ cursor: window.innerWidth <= 986 ? "pointer" : "default" }}
+              onClick={() => isMobile && setShowQuickLinks(!showQuickLinks)}
+              style={{ cursor: isMobile ? "pointer" : "default" }}
             >
-              دسترسی سریع {window.innerWidth <= 986 && (showQuickLinks ? "▲" : "▼")}
+              دسترسی سریع {isMobile && (showQuickLinks ? "▲" : "▼")}
             </h4>
-            {(window.innerWidth > 986 || showQuickLinks) && (
+            {(!isMobile || showQuickLinks) && (
               <>
                 <li>
                   <Link href={"/category"}> فروشگاه </Link>
