@@ -1,0 +1,29 @@
+/* Comments.module.css */
+
+.comments {
+  display: flex;
+  gap: 50px;
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  line-height: 2;
+}
+
+.user_comments {
+  width: 50%;
+}
+
+.form_bg {
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+  .comments {
+      flex-direction: column;
+  }
+
+  .user_comments, .form_bg {
+      width: 100%;
+  }
+}
