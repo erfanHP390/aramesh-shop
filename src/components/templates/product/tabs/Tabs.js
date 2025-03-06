@@ -53,7 +53,7 @@ const Tabs = ({product}) => {
                     <Description />
                 </section>
                 <section className={styles.tabs_content}>
-                    <MoreInfoes />
+                    <MoreInfoes  product={JSON.parse(JSON.stringify(product))} />
                 </section>
                 <section className={styles.tabs_content}>
                     <Comments  comments={JSON.parse(JSON.stringify(product.comments))} />
