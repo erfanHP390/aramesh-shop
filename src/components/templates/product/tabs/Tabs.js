@@ -5,7 +5,7 @@ import Description from "../description/Description";
 import MoreInfoes from "../moreInfos/MoreInfos";
 import Comments from "../comments/Comments";
 
-const Tabs = () => {
+const Tabs = ({product}) => {
     const [tab, setTab] = useState("description");
 
     return (
@@ -44,7 +44,7 @@ const Tabs = () => {
                 </li>
                 <li title="Shipping">
                     <label htmlFor="comments" role="button">
-                        نظرات (7)
+                        نظرات ({product.comments.length})
                     </label>
                 </li>
             </ul>
@@ -56,7 +56,7 @@ const Tabs = () => {
                     <MoreInfoes />
                 </section>
                 <section className={styles.tabs_content}>
-                    <Comments />
+                    <Comments  comments={JSON.parse(JSON.stringify(product.comments))} />
                 </section>
             </div>
         </div>
