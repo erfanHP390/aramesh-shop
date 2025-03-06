@@ -1,0 +1,103 @@
+/* CommentForm.module.css */
+
+.form {
+  width: 100%;
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+}
+
+.title {
+  font-size: 14px;
+  font-family: shabnam-Bold;
+  height: 30px;
+  color: #5A3E36; /* متن قهوه‌ای تیره */
+}
+
+.rate {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.rate div {
+  display: flex;
+  gap: 2px;
+  padding-top: 0.2rem;
+  direction: ltr;
+  font-size: 1.1rem;
+  color: #FFD700; /* ستاره‌ها با رنگ طلایی */
+}
+
+.group {
+  margin-top: 2rem;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.group input, .group textarea {
+  background: #FFFFFF; /* پس‌زمینه سفید */
+  color: #5A3E36; /* متن قهوه‌ای تیره */
+  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  width: 100%;
+  font-family: shabnam;
+  border-radius: 5px;
+  padding: 0.8rem;
+}
+
+.group textarea {
+  resize: none;
+}
+
+.groups {
+  display: flex;
+  gap: 30px;
+}
+
+.checkbox {
+  display: flex;
+  margin: 20px 0 10px;
+  justify-content: right;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.checkbox input {
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border-radius: 1px;
+  vertical-align: sub;
+  transform: translateY(25%);
+  outline: none;
+}
+
+.checkbox input:checked {
+  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
+  border-color: #CC5500;
+}
+
+.form button {
+  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
+  padding: 0.75rem 1.2rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  border: 0;
+  transition: all 0.2s;
+  font-family: shabnam;
+  color: #FFFFFF; /* متن سفید */
+}
+
+.form button:hover {
+  background-color: #FFD700; /* هاور با رنگ طلایی */
+}
+
+@media (max-width: 768px) {
+  .groups {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
