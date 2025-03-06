@@ -6,7 +6,7 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    price: {
         type: Number,
         required: true
     },
@@ -32,7 +32,7 @@ const schema = mongoose.Schema({
     },
     score: {
         type: Number,
-        required: true
+        default: 5
     },
     tags: {
         type: [String],
