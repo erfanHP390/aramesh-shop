@@ -1,0 +1,51 @@
+const mongoose = require("mongoose")
+require("./Comment")
+
+const schema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: Number,
+        required: true
+    },
+    shortDesc: {
+        type: String,
+        required: true
+    },
+    longDesc: {
+        type: String,
+        required: true
+    },
+    weight: {
+        type: Number,
+        required: true
+    },
+    suitableFor: {
+        type: String,
+        required: true
+    },
+    smell: {
+        type: String,
+        required: true
+    },
+    score: {
+        type: Number,
+        required: true
+    },
+    tags: {
+        type: [String],
+        required: true
+    },
+    comments: {
+        type: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Comment"
+        }],
+    },
+})
+
+const model = mongoose.models.Product || mongoose.model("Product" , schema)
+
+export default model
