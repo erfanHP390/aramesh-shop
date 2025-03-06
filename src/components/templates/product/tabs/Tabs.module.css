@@ -1,0 +1,88 @@
+/* Tabs.module.css */
+
+.tabs {
+  position: relative;
+  padding: 50px;
+  padding-bottom: 80px;
+  width: 100%;
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  margin-top: 2.5rem;
+}
+
+.tabs input[name="tab-control"] {
+  display: none;
+}
+
+.tabs ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  width: 390px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.tabs ul li label {
+  transition: all 0.3s ease-in-out;
+  color: #5A3E36; /* متن قهوه‌ای تیره */
+  font-size: 16px;
+  position: relative;
+  padding-top: 20px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: shabnam;
+}
+
+.tabs ul li label:hover {
+  color: #CC5500; /* هاور با رنگ نارنجی گرم */
+}
+
+.contents {
+  margin-top: 30px;
+}
+
+.tabs_content {
+  display: none;
+}
+
+.tabs input[name="tab-control"]:nth-of-type(1):checked ~ .contents > section:nth-child(1),
+.tabs input[name="tab-control"]:nth-of-type(2):checked ~ .contents > section:nth-child(2),
+.tabs input[name="tab-control"]:nth-of-type(3):checked ~ .contents > section:nth-child(3) {
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .tabs {
+      padding: 20px;
+  }
+
+  .tabs ul {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .tabs ul li {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .tabs {
+      padding: 10px;
+  }
+
+  .tabs ul li label {
+      font-size: 14px;
+  }
+}
