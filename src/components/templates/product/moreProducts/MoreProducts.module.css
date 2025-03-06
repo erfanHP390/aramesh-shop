@@ -1,0 +1,38 @@
+/* MoreProducts.module.css */
+
+.moreProducts {
+    margin-top: 50px;
+    background-color: #FFFFFF; /* پس‌زمینه سفید */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+}
+
+.moreProducts h2 {
+    font-size: 1.5rem;
+    font-family: shabnam-Bold;
+    color: #5A3E36; /* متن قهوه‌ای تیره */
+}
+
+.divider {
+    height: 2px;
+    width: 70px;
+    background: #CC5500; /* خط جداکننده با رنگ نارنجی گرم */
+    margin-top: 10px;
+}
+
+.mySwiper {
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .mySwiper .swiper-slide {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .mySwiper .swiper-slide {
+        width: 100% !important;
+    }
+}
