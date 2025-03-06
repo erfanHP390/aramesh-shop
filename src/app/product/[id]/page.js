@@ -7,9 +7,14 @@ import Tabs from '@/components/templates/product/tabs/Tabs';
 import MoreProducts from '@/components/templates/product/moreProducts/MoreProducts';
 import Navbar from '@/components/modules/navbar/Navbar';
 import Footer from '@/components/modules/Footer/Footer';
+import ProductModel from "@/models/Product"
+import connectToDB from '@/configs/db';
 
-export default async function page() {
+export default async function page({params}) {
+    connectToDB()
     const user = await authUser();
+    const productID = params.id
+    const  product = await ProductModel.findOne({_id: productID}).populate("comments")
 
     return (
         <div className={styles.container}>
@@ -17,9 +22,9 @@ export default async function page() {
             <div data-aos="fade-up" className={styles.contents}>
                 <div className={styles.main}>
                     <Gallery />
-                    <Details />
+                    <Details product={JSON.parse(JSON.stringify(product))} />
                 </div>
-                <Tabs />
+                <Tabs  product={JSON.parse(JSON.stringify(product))} />
                 <MoreProducts />
             </div>
             <Footer />
