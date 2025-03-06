@@ -1,34 +1,71 @@
+.comment {
+  font-family: shabnam;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.218);
+  margin-top: 1rem;
+  gap: 25px;
+  align-items: flex-start; /* تغییر به flex-start برای تراز بهتر */
+  padding-bottom: 25px;
+}
+
 .avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-  }
-  .stars {
-    display: flex;
-    gap: 4px;
-    color: orange;
-  }
-  .user_info {
-    display: flex;
-    gap: 5px;
-    align-items: baseline;
-  }
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+.main_details {
+  display: flex;
+  flex-direction: column; /* تغییر جهت به عمودی */
+  gap: 10px; /* فاصله بین بخش‌ها */
+}
+
+.user_info {
+  display: flex;
+  flex-direction: column; /* تغییر جهت به عمودی */
+  gap: 5px; /* فاصله بین اسم و تاریخ */
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  color: orange;
+}
+
+.comment p {
+  margin-bottom: 2px;
+  margin-top: 10px !important;
+}
+
+/* Media Queries برای سایز ۵۰۰ پیکسل به پایین */
+@media (max-width: 500px) {
   .comment {
-    font-family: shabnam;
-    display: flex;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.218);
-    margin-top: 1rem;
-    gap: 25px;
-    align-items: center;
-    padding-bottom: 25px;
+      flex-direction: row; /* جهت چیدمان افقی */
+      gap: 15px; /* کاهش فاصله بین عناصر */
+      align-items: flex-start; /* تراز عناصر به سمت چپ */
+      padding-bottom: 15px; /* کاهش padding پایین */
   }
+
+  .avatar {
+      width: 50px; /* کاهش اندازه تصویر */
+      height: 50px;
+  }
+
   .main_details {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+      flex-direction: column; /* جهت چیدمان عمودی برای اسم و تاریخ */
+      gap: 5px; /* فاصله بین اسم و تاریخ */
   }
+
+  .user_info {
+      flex-direction: column; /* اسم و تاریخ زیر هم */
+      gap: 3px; /* فاصله کمتر بین اسم و تاریخ */
+  }
+
+  .stars {
+      margin-top: 5px; /* فاصله از بخش اسم و تاریخ */
+  }
+
   .comment p {
-    margin-bottom: 2px;
-    margin-top: 10px !important;
+      font-size: 14px; /* کاهش اندازه فونت متن کامنت */
   }
-  
+}

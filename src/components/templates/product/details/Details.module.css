@@ -56,10 +56,38 @@
   transition: all 0.2s;
   font-family: shabnam;
   color: #FFFFFF; /* متن سفید */
+  border-radius: 4px;
 }
 
 .cart button:hover {
   background-color: #FFD700; /* هاور با رنگ طلایی */
+}
+
+.cart div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.cart div span {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #5A3E36; /* متن قهوه‌ای تیره */
+  transition: color 0.3s ease;
+}
+
+.cart div span:hover {
+  color: #CC5500; /* هاور با رنگ نارنجی گرم */
+}
+
+.cart div span:nth-child(2) {
+  font-size: 1rem;
+  color: #5A3E36; /* متن قهوه‌ای تیره */
+  cursor: default;
 }
 
 .wishlist {
