@@ -9,6 +9,12 @@ export async function POST(req) {
     const body = await req.json();
     const { name, price, shortDesc, longDesc, weight, suitableFor, smell, tags } = body;
 
+    if(!name || !price || !shortDesc || !longDesc || !weight || !smell || !tags) {
+      return Response.json({message: "all fields must have something expect score"} , {
+        status: 400
+      } )
+    }
+
      await ProductModel.create({ name, price, shortDesc, longDesc, weight, suitableFor, smell, tags })
 
     return Response.json({message: "product is created successfully"} , {
@@ -16,7 +22,9 @@ export async function POST(req) {
     })
 
   } catch (err) {
-    return Response.json({message: `interval error server for create product => ${err}`})
+    return Response.json({message: `interval error server for create product => ${err}`} , {
+      status: 500
+    })
   }
 
 }
@@ -28,7 +36,9 @@ export async function GET(req) {
 
         return Response.json(product)
     } catch (err) {
-        return Response.json({message: `interval error server for receive product => ${err}`})
+        return Response.json({message: `interval error server for receive product => ${err}`} , {
+          status: 500
+        })
 
     }
 

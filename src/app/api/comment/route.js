@@ -1,6 +1,7 @@
 import connectToDB from "@/configs/db";
 import CommentModel from "@/models/Comment"
 import ProductModel from "@/models/Product"
+import { validateEmail } from "@/utils/auth";
 
 
 export async function POST(req) {
@@ -12,7 +13,18 @@ export async function POST(req) {
         const reqBody = await req.json()
         const {username, body,email, score , productID} = reqBody
 
-        
+        if(!username || !body || !email || !productID) {
+            return Response.json({message: "all fields must have something expect score"} , {
+              status: 400
+            } )
+          }
+
+          const isValidEmail = validateEmail(email)
+          if(!isValidEmail) {
+            return Response.json({message: "email is not valid"} , {
+                status: 422
+             })
+          }
 
         const comment = await CommentModel.create({username, body,email, score , productID})
 
