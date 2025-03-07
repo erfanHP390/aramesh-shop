@@ -23,6 +23,10 @@ const schema = mongoose.Schema({
         default: () => Date.now(),
         immutable: false
     },
+    isAccept: {
+        type: Boolean,
+        default: false
+    },
     productID: {
         type: mongoose.Types.ObjectId,
         ref: "Product"
