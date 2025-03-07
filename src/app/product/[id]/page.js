@@ -16,6 +16,8 @@ export default async function page({params}) {
     const productID = params.id
     const  product = await ProductModel.findOne({_id: productID}).populate("comments")
 
+    const relatedProducts = await ProductModel.find({smell: product.smell})
+
     return (
         <div className={styles.container}>
             <Navbar isLogin={user ? true : false} />
@@ -25,7 +27,7 @@ export default async function page({params}) {
                     <Details product={JSON.parse(JSON.stringify(product))} />
                 </div>
                 <Tabs  product={JSON.parse(JSON.stringify(product))} />
-                <MoreProducts />
+                <MoreProducts  relatedProducts={relatedProducts} />
             </div>
             <Footer />
         </div>
