@@ -16,7 +16,7 @@ const schema = mongoose.Schema({
     } , 
     score: {
         type: Number,
-        required: true
+        default: 5
     },
     date: {
         type: Date,
