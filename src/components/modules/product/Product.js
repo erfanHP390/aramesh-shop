@@ -4,7 +4,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { CiSearch, CiHeart } from "react-icons/ci";
 import styles from "./Product.module.css"
 
-export default function Product() {
+export default function Product({name , price}) {
   return (
     <div className={styles.card}>
       <div className={styles.details_container}>
@@ -27,8 +27,7 @@ export default function Product() {
 
       <div className={styles.details}>
         <Link href={"/"}>
-          کپسول قهوه SETpresso سازگار با دستگاه نسپرسو ( RED ) 10 عددی LIMITED
-          EDITION
+        {name}
         </Link>
         <div>
           <FaStar />
@@ -37,7 +36,7 @@ export default function Product() {
           <FaRegStar />
           <FaRegStar />
         </div>
-        <span>825,000 تومان</span>
+        <span>{price.toLocaleString()} تومان</span>
       </div>
     </div>
   )
