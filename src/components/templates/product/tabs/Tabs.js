@@ -44,7 +44,7 @@ const Tabs = ({product}) => {
                 </li>
                 <li title="Shipping">
                     <label htmlFor="comments" role="button">
-                        نظرات ({product.comments.length})
+                        نظرات ({product.comments.filter(comment => comment.isAccept).length})
                     </label>
                 </li>
             </ul>
