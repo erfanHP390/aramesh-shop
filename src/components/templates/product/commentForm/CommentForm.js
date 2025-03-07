@@ -27,13 +27,15 @@ const CommentForm = ({ productID }) => {
   const sendComment = async () => {
   
 
-    if(!username || !!body || !email) {
-      swalAlert("لطفا تمامی موارد * را پر کنید" , "error" , "فهمیدم")
+    if(!username || !body || !email) {
+      setIsLoading(false)
+      return swalAlert("لطفا تمامی موارد * را پر کنید" , "error" , "فهمیدم")
     }
 
     const isValidEmail = validateEmail(email)
     if(!isValidEmail) {
-      swalAlert("ایمیل نا معتبر است لطفا یک ایمیل معتبر وارد نمایید"  , "error" , "فهمیدم")
+      setIsLoading(false)
+     return  swalAlert("ایمیل نا معتبر است لطفا یک ایمیل معتبر وارد نمایید"  , "error" , "فهمیدم")
     }
 
     const newComment = {
@@ -59,7 +61,7 @@ const CommentForm = ({ productID }) => {
         setScore("")
         setIsLoading(false)
         toastSuccess(
-            "نظر شما با موفیقت ثبت شد با تشکر از اینکه مار را در خدمات رسانی بهتر یاری با نضر پرمهرتان یاری می کنید😍",
+            "نظر شما با موفقیت ثبت شد با تشکر از اینکه مار را در خدمات رسانی بهتر  با نظر پرمهرتان یاری می کنید😍",
             "top-center",
             5000,
             false,
