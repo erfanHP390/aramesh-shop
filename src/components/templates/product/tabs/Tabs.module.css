@@ -2,17 +2,13 @@
 
 .tabs {
   position: relative;
-  padding: 50px;
-  padding-bottom: 80px;
+  padding: 30px;
+  padding-bottom: 60px;
   width: 100%;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
-  margin-top: 2.5rem;
-}
-
-.tabs input[name="tab-control"] {
-  display: none;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(90, 62, 54, 0.15);
+  margin-top: 2rem;
 }
 
 .tabs ul {
@@ -20,69 +16,144 @@
   padding-left: 0;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-  width: 390px;
-  margin: 0 auto;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 100%;
+  overflow-x: auto; /* امکان اسکرول افقی در صفحه‌های کوچک */
+  scrollbar-width: thin; /* اسکرول بار نازک */
+  scrollbar-color: #A68A64 #F9F5F2; /* رنگ اسکرول بار */
 }
 
-.tabs ul li label {
+.tabs ul::-webkit-scrollbar {
+  height: 6px; /* ارتفاع اسکرول بار */
+}
+
+.tabs ul::-webkit-scrollbar-thumb {
+  background-color: #A68A64; /* رنگ اسکرول بار */
+  border-radius: 4px;
+}
+
+.tabs ul::-webkit-scrollbar-track {
+  background-color: #F9F5F2; /* رنگ پس‌زمینه اسکرول بار */
+}
+
+.tabs ul li {
+  flex: 0 0 auto; /* جلوگیری از تغییر سایز تب‌ها */
+  padding: 0 10px;
+  text-align: center;
+}
+
+.tabs ul li button {
   transition: all 0.3s ease-in-out;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  font-size: 16px;
+  color: #5A3E36;
+  font-size: 14px;
   position: relative;
-  padding-top: 20px !important;
+  padding: 10px 15px; /* افزایش فاصله داخلی */
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  font-family: shabnam;
+  background: none;
+  border: none;
+  font-family: 'Shabnam', sans-serif;
+  font-weight: 500;
+  white-space: nowrap; /* جلوگیری از شکستن متن */
 }
 
-.tabs ul li label:hover {
-  color: #CC5500; /* هاور با رنگ نارنجی گرم */
+.tabs ul li button:hover {
+  color: #CC5500;
+  transform: translateY(-3px);
+}
+
+.tabs ul li button::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #5A3E36, #A68A64);
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.tabs ul li button.active_tab::before {
+  width: 100% !important;
+}
+
+.tabs ul li button.active_tab {
+  color: #5A3E36 !important;
+  font-weight: 600;
 }
 
 .contents {
-  margin-top: 30px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #F9F5F2;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 5px rgba(90, 62, 54, 0.1);
+}
+
+.contents section h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #5A3E36;
+  margin-bottom: 15px;
+}
+
+.contents section p {
+  margin-top: 15px;
+  color: #5A3E36;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
 .tabs_content {
   display: none;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(1):checked ~ .contents > section:nth-child(1),
-.tabs input[name="tab-control"]:nth-of-type(2):checked ~ .contents > section:nth-child(2),
-.tabs input[name="tab-control"]:nth-of-type(3):checked ~ .contents > section:nth-child(3) {
-  display: block;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@media (max-width: 992px) {
+/* استایل‌های موبایل (زیر 600 پیکسل) */
+@media (max-width: 600px) {
   .tabs {
-      padding: 20px;
+    padding: 20px;
+    padding-bottom: 40px;
   }
 
   .tabs ul {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
+    flex-wrap: nowrap; /* جلوگیری از شکستن خط */
+    justify-content: flex-start; /* چیدمان از سمت چپ */
   }
 
   .tabs ul li {
-      width: 100%;
-      margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 576px) {
-  .tabs {
-      padding: 10px;
+    padding: 0 8px; /* کاهش فاصله داخلی */
   }
 
-  .tabs ul li label {
-      font-size: 14px;
+  .tabs ul li button {
+    font-size: 13px; /* کاهش سایز فونت */
+    padding: 8px 12px; /* کاهش فاصله داخلی */
+  }
+
+  .contents {
+    padding: 15px;
+  }
+
+  .contents section h2 {
+    font-size: 16px;
+  }
+
+  .contents section p {
+    font-size: 13px;
   }
 }
