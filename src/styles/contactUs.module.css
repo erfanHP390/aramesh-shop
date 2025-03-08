@@ -1,0 +1,61 @@
+.container {
+  color: #6F4E37; /* متن قهوه‌ای گرم برای خوانایی بهتر روی پس‌زمینه سفید */
+  text-align: right;
+  max-width: 1222px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  margin-left: auto;
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  padding: 20px; /* اضافه کردن padding برای فاصله بهتر */
+  border-radius: 8px; /* اضافه کردن گوشه‌های گرد */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه برای عمق بخشیدن به صفحه */
+}
+
+.contents {
+  display: flex;
+  gap: 35px;
+}
+
+.contents section,
+.contents form {
+  width: 50%;
+  margin-top: 3rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .contents {
+      flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
+      gap: 20px;
+  }
+
+  .contents section,
+  .contents form {
+      width: 100%; /* عرض کامل برای فرم و اطلاعات */
+      margin-top: 1.5rem;
+  }
+
+  .container {
+      padding-right: 20px;
+      padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+      padding-right: 10px;
+      padding-left: 10px;
+  }
+
+  .contents {
+      gap: 15px;
+  }
+
+  .contents section,
+  .contents form {
+      margin-top: 1rem;
+  }
+}
