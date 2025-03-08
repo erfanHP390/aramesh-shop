@@ -27,7 +27,7 @@ export default async function page({params}) {
                     <Details product={JSON.parse(JSON.stringify(product))} />
                 </div>
                 <Tabs  product={JSON.parse(JSON.stringify(product))} />
-                <MoreProducts  relatedProducts={relatedProducts} />
+                <MoreProducts  relatedProducts={JSON.parse(JSON.stringify(relatedProducts))} />
             </div>
             <Footer />
         </div>
