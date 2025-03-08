@@ -14,6 +14,38 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه برای عمق بخشیدن به صفحه */
 }
 
+.maps {
+  display: flex;
+  gap: 20px; /* فاصله بین مپ‌ها */
+  margin-bottom: 2rem; /* فاصله از بخش‌های دیگر */
+}
+
+.maps section {
+  flex: 1; /* تقسیم مساوی فضای بین مپ‌ها */
+  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  padding: 20px; /* اضافه کردن padding */
+  border-radius: 10px; /* اضافه کردن گوشه‌های گرد */
+  box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.1); /* سایه با رنگ قهوه‌ای گرم */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .maps {
+      flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
+      gap: 15px;
+  }
+
+  .maps section {
+      padding: 15px; /* کاهش padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .maps section {
+      padding: 10px; /* کاهش بیشتر padding */
+  }
+}
+
 .contents {
   display: flex;
   gap: 35px;
@@ -27,14 +59,23 @@
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .contents {
+  .maps {
       flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
+      gap: 20px;
+  }
+
+  .maps section {
+      width: 100%; /* عرض کامل برای نقشه‌ها */
+  }
+
+  .contents {
+      flex-direction: column;
       gap: 20px;
   }
 
   .contents section,
   .contents form {
-      width: 100%; /* عرض کامل برای فرم و اطلاعات */
+      width: 100%;
       margin-top: 1.5rem;
   }
 
@@ -48,6 +89,10 @@
   .container {
       padding-right: 10px;
       padding-left: 10px;
+  }
+
+  .maps {
+      gap: 15px;
   }
 
   .contents {
