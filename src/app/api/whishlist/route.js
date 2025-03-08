@@ -47,7 +47,13 @@ export async function POST(req) {
             });
         }
 
-        await WishlistModel.create({ user: userId, product: productId });
+
+        const wish = await WishlistModel.findOne({user , product})
+
+        if(!wish) {
+            await WishlistModel.create({ user: userId, product: productId }); 
+        }
+
 
         return Response.json({ message: "product added wishlist successfully" }, {
             status: 201
