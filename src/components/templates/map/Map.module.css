@@ -1,0 +1,95 @@
+.map {
+    border-radius: 10px;
+    height: 300px;
+    width: 100%;
+    border: 2px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+}
+
+.details {
+    margin: -73px 50px 0px 50px;
+    padding: 15px 20px; /* افزایش padding برای فاصله بهتر */
+    background-color: #FFFFFF; /* پس‌زمینه سفید */
+    box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.2); /* سایه با رنگ قهوه‌ای گرم */
+    z-index: 9999;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid #D2B48C; /* حاشیه بژ روشن */
+}
+
+.details h3 {
+    margin-top: 0.5rem;
+    color: #6F4E37; /* متن قهوه‌ای گرم */
+    font-size: 20px; /* افزایش سایز فونت برای تیتر */
+}
+
+.details span {
+    color: #A68A64; /* قهوه‌ای روشن برای متن کوچک */
+    font-size: 14px;
+}
+
+.details p {
+    margin-top: 0.7rem;
+    margin-bottom: 0.3rem;
+    color: #6F4E37; /* متن قهوه‌ای گرم */
+    line-height: 1.6; /* افزایش فاصله خطوط برای خوانایی بهتر */
+}
+
+.details a {
+    text-decoration: none; /* حذف underline پیش‌فرض */
+    margin-top: 0.5rem;
+    font-size: 15px;
+    color: #CC5500; /* نارنجی گرم برای لینک‌ها */
+    font-weight: 600; /* افزایش وزن فونت */
+    transition: color 0.3s ease; /* انیمیشن hover */
+}
+
+.details a:hover {
+    color: #FFD700; /* تغییر رنگ به قهوه‌ای روشن هنگام hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .map {
+        height: 250px; /* کاهش ارتفاع نقشه در دستگاه‌های کوچک‌تر */
+    }
+
+    .details {
+        margin: -73px 20px 0px 20px; /* کاهش فاصله از دیواره‌ها */
+        padding: 10px 15px; /* کاهش padding */
+    }
+
+    .details h3 {
+        font-size: 18px; /* کاهش سایز فونت */
+    }
+
+    .details p {
+        font-size: 14px;
+    }
+
+    .details a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map {
+        height: 200px; /* کاهش بیشتر ارتفاع نقشه */
+    }
+
+    .details {
+        margin: -73px 10px 0px 10px;
+        padding: 10px; /* کاهش بیشتر padding */
+    }
+
+    .details h3 {
+        font-size: 16px;
+    }
+
+    .details p {
+        font-size: 12px;
+    }
+
+    .details a {
+        font-size: 12px;
+    }
+}
