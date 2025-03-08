@@ -1,0 +1,67 @@
+.container {
+  color: #5A3E36; /* متن سفید برای خوانایی بهتر روی پس‌زمینه قهوه‌ای */
+  text-align: right;
+  max-width: 1222px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  direction: rtl;
+  margin-left: auto;
+  background-color: #FFF; /* پس‌زمینه قهوه‌ای گرم */
+  padding: 20px; /* اضافه کردن padding برای فاصله بهتر */
+  border-radius: 8px; /* اضافه کردن گوشه‌های گرد */
+}
+
+.container p,
+.container span {
+  margin-bottom: 20px;
+  text-align: justify;
+  color: #5A3E36; /* متن بژ روشن برای خوانایی بهتر */
+  line-height: 1.8; /* افزایش فاصله خطوط برای خوانایی بهتر */
+}
+
+.container p:nth-child(2) {
+  margin-bottom: 0px;
+}
+
+.container strong {
+  color: #CC5500; /* نارنجی گرم برای تأکید */
+}
+
+.container a {
+  color: #FFD700; /* طلایی برای لینک‌ها */
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+      padding-right: 20px; /* افزایش فاصله از دیواره‌ها */
+      padding-left: 20px;
+  }
+
+  .container p,
+  .container span {
+      font-size: 16px; /* افزایش سایز فونت */
+      line-height: 2; /* افزایش فاصله خطوط */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+      padding-right: 15px; /* افزایش فاصله از دیواره‌ها */
+      padding-left: 15px;
+  }
+
+  .container p,
+  .container span {
+      font-size: 18px; /* افزایش بیشتر سایز فونت */
+      line-height: 2.2; /* افزایش بیشتر فاصله خطوط */
+  }
+}
