@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
 
-export default function Navbar({isLogin}) {
+export default function Navbar({ isLogin }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
 
@@ -52,7 +52,7 @@ export default function Navbar({isLogin}) {
             </Link>
           </li>
           {isLogin ? (
-             <>
+            <>
               {" "}
               <div className={styles.dropdown}>
                 <div className={styles.dropdown_header}>
@@ -67,14 +67,14 @@ export default function Navbar({isLogin}) {
                   <Link href="/p-user/account-details">جزئیات اکانت</Link>
                 </div>
               </div>
-            </> 
-           ) : ( 
+            </>
+          ) : (
             <>
               <li>
                 <Link href="/login&register">ورود/عضویت</Link>
               </li>
             </>
-           )} 
+          )}
         </ul>
 
         {/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */}
@@ -130,61 +130,75 @@ export default function Navbar({isLogin}) {
                   کافی شاپ ما
                 </Link>
               </li>
-              <li>
-                <Link href="/login&register">ورود/عضویت</Link>
-              </li>
-              {/* بخش dropdown در موبایل */}
-              <li className={styles.mobile_dropdown}>
-                <div className={styles.dropdown_header_mobile}>
-                  <p
-                    onClick={() => {
-                      setIsShowDropMobile(true);
+              {isLogin ? (
+                <li className={styles.mobile_dropdown}>
+                  <div className={styles.dropdown_header_mobile}>
+                    <p
+                      onClick={() => {
+                        if(isShowDropMobile) {
+                          setIsShowDropMobile(false);
+                        } else {
+                          setIsShowDropMobile(true);
+                        }
+                      }}
+                    >
+                      حساب کاربری
+                    </p>
+                    {isShowDropMobile ? (
+                      <IoIosArrowUp
+                        onClick={() => setIsShowDropMobile(false)}
+                      />
+                    ) : (
+                      <IoIosArrowDown
+                        onClick={() => setIsShowDropMobile(true)}
+                      />
+                    )}
+                  </div>
+                  <div
+                    className={styles.dropdown_content_mobile}
+                    style={{
+                      display: `${isShowDropMobile ? "block" : "none"}`,
                     }}
                   >
-                    حساب کاربری
-                  </p>
-                  {isShowDropMobile ? (
-                    <IoIosArrowUp onClick={() => setIsShowDropMobile(false)} />
-                  ) : (
-                    <IoIosArrowDown onClick={() => setIsShowDropMobile(true)} />
-                  )}
-                </div>
-                <div
-                  className={styles.dropdown_content_mobile}
-                  style={{ display: `${isShowDropMobile ? "block" : "none"}` }}
-                >
-                  <Link
-                    className={styles.dropdown_content_mobile_link}
-                    href="/p-user/orders"
-                  >
-                    سفارشات
-                  </Link>
-                  <Link
-                    className={styles.dropdown_content_mobile_link}
-                    href="/p-user/tickets"
-                  >
-                    تیکت های پشتیبانی
-                  </Link>
-                  <Link
-                    className={styles.dropdown_content_mobile_link}
-                    href="/p-user/comments"
-                  >
-                    کامنت‌ها
-                  </Link>
-                  <Link
-                    className={styles.dropdown_content_mobile_link}
-                    href="/p-user/wishlist"
-                  >
-                    علاقه‌مندی‌ها
-                  </Link>
-                  <Link
-                    className={styles.dropdown_content_mobile_link}
-                    href="/p-user/account-details"
-                  >
-                    جزئیات اکانت
-                  </Link>
-                </div>
-              </li>
+                    <Link
+                      className={styles.dropdown_content_mobile_link}
+                      href="/p-user/orders"
+                    >
+                      سفارشات
+                    </Link>
+                    <Link
+                      className={styles.dropdown_content_mobile_link}
+                      href="/p-user/tickets"
+                    >
+                      تیکت های پشتیبانی
+                    </Link>
+                    <Link
+                      className={styles.dropdown_content_mobile_link}
+                      href="/p-user/comments"
+                    >
+                      کامنت‌ها
+                    </Link>
+                    <Link
+                      className={styles.dropdown_content_mobile_link}
+                      href="/p-user/wishlist"
+                    >
+                      علاقه‌مندی‌ها
+                    </Link>
+                    <Link
+                      className={styles.dropdown_content_mobile_link}
+                      href="/p-user/account-details"
+                    >
+                      جزئیات اکانت
+                    </Link>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <Link href="/login&register">ورود/عضویت</Link>
+                </li>
+              )}
+
+              {/* بخش dropdown در موبایل */}
             </ul>
           </div>
         </div>
