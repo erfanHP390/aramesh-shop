@@ -1,0 +1,24 @@
+.boxes {
+  gap: 5px;
+  margin-top: 3rem;
+  padding: 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contents {
+  display: flex;
+  padding: 40px;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .boxes {
+      padding: 0 20px;
+  }
+
+  .contents {
+      flex-direction: column;
+      padding: 20px;
+  }
+}
