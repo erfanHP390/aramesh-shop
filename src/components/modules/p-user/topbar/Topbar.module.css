@@ -1,0 +1,147 @@
+.topbar {
+  width: 100%;
+  background-color: #5A3E36; /* قهوه‌ای تیره */
+  height: 70px;
+  padding: 5px 20px;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  border-bottom: 4px solid #CC5500; /* نارنجی گرم */
+}
+
+.topbar section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.profile img {
+  width: 50px;
+  border-radius: 100%;
+}
+
+.profile span {
+  font-size: 14px;
+  color: rgb(144, 131, 131);
+}
+
+.searchBox {
+  position: relative;
+}
+
+.searchBox input {
+  background: white;
+  padding: 10px 10px;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.searchBox div {
+  background-color: #CC5500; /* نارنجی گرم */
+  color: white;
+  position: absolute;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  font-size: 1.5rem;
+  top: 4px;
+  border-radius: 100%;
+  padding: 0px 5px;
+}
+
+.searchBox svg,
+.notification svg {
+  position: relative;
+  bottom: 1px;
+  cursor: pointer;
+}
+
+.notification {
+  background-color: #CC5500; /* نارنجی گرم */
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 34px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 20%;
+  padding: 0px 5px;
+}
+
+.notification span {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: white;
+  color: #CC5500; /* نارنجی گرم */
+  font-size: 9px;
+  padding: 1px 3px 0 3.5px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.menuIcon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 875px) {
+  .menuIcon {
+      display: block;
+  }
+}
+
+
+@media (max-width: 650px) {
+  .searchBox >  input {
+    width: 150px !important;
+  }
+
+}
+
+@media (max-width: 950px) {
+  .img_profile {
+    width: 0% !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile {
+    display: none !important;
+  }
+  .searchBox >  input {
+    width: 285px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .searchBox >  input {
+    width: 250px !important;
+  }
+}
+
+@media (max-width: 385px) {
+  .searchBox >  input {
+    width: 210px !important;
+  }
+}
+
+@media (max-width: 348px) {
+  .searchBox >  input {
+    width: 180px !important;
+  }
+}
+
+
