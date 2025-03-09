@@ -6,6 +6,7 @@ import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toastSuccess, toastError ,  swalAlert} from "@/utils/helpers";
 import { validatePhone , validateEmail ,validatePassword } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 
 const Register = ({ showLoginForm }) => {
   const [registerWithPass, setRegisterWithPass] = useState(false);
@@ -15,6 +16,7 @@ const Register = ({ showLoginForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
   const hideOtpForm = () => setIsRegisterWithOtp(false);
 
@@ -81,6 +83,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
+      router.replace("/p-user")
     } else if (res.status === 422) {
       setName("");
       setPhone("");
