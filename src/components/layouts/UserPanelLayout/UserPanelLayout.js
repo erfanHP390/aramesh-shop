@@ -1,30 +1,20 @@
-"use client"
-import React, { useState } from "react";
+import React from "react";
 import styles from "./UserPanelLayout.module.css";
-import Sidebar from "@/components/modules/p-user/sidebar/Sidebar";
-import Topbar from "@/components/modules/p-user/topbar/Topbar";
 import { FaTimes, FaBars } from "react-icons/fa";
+import { authUser } from "@/utils/authUserLink";
+import { redirect } from "next/navigation";
+import SidebarWrapper from "@/components/templates/p-user/sidebarWrapper/SidebarWrapper";
 
-const UserPanelLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+const UserPanelLayout = async ({ children }) => {
+  const user = await authUser();
+  if (!user) {
+    redirect("/login&register");
+  }
 
   return (
     <div className={styles.layout}>
       <section className={styles.section}>
-        <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ""}`}>
-          <Sidebar />
-          <button className={styles.closeSidebar} onClick={toggleSidebar}>
-            <FaTimes />
-          </button>
-        </div>
-        <div className={styles.contents}>
-          <Topbar toggleSidebar={toggleSidebar} />
-          {children}
-        </div>
+        <SidebarWrapper>{children}</SidebarWrapper>
       </section>
     </div>
   );
