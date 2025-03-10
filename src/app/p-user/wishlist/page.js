@@ -25,7 +25,7 @@ async function page() {
                 wishlist.length > 0 ? (<>
                 {
                     wishlist.map(wish => (
-                        <ProductWUser key={wish._id} name={wish.product.name}  price={wish.product.price}  score={wish.product.score} />
+                        <ProductWUser key={wish._id} name={wish.product.name}  price={wish.product.price}  score={wish.product.score}  productID={String(wish.product._id)}  />
                     ))
                 }
                 </>) : (<>
