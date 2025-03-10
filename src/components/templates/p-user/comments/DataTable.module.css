@@ -1,0 +1,227 @@
+.title {
+  margin-top: 30px;
+  text-align: right;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  font-weight: 500;
+}
+
+.title:before {
+  border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 95%;
+  z-index: -1;
+}
+
+.title span {
+  background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  padding: 0 15px;
+  margin-right: 4rem;
+  color: white; /* اضافه کردن رنگ سفید برای متن */
+}
+
+.title:before {
+  border-top: none;
+}
+
+.title:after {
+  border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
+  -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 51%;
+  left: 0;
+  right: 0;
+  width: 95%;
+  z-index: -1;
+}
+
+.table {
+  width: 100%;
+  background-color: #F5F5F5; /* تغییر به رنگ پس‌زمینه روشن */
+  border-collapse: collapse;
+}
+
+.table th {
+  border: none;
+  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  text-align: center;
+  padding: 12px 22px;
+  background-color: #D2B48C; /* تغییر به بژ روشن */
+}
+
+.table td {
+  padding: 8px 22px;
+  text-align: center;
+  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  border-bottom: 1px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+}
+
+.table tbody tr {
+  background-color: white; /* پس‌زمینه سفید برای ردیف‌ها */
+}
+
+.table tbody tr:hover {
+  background-color: #F5F5F5; /* تغییر رنگ هنگام هاور */
+}
+
+.delete_btn,
+.edit_btn,
+.btn,
+.check,
+.no_check {
+  font-size: 13px;
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  width: -webkit-fill-available;
+  transition: background-color 0.3s ease;
+}
+
+.btn {
+  background-color: #CC5500; /* تغییر به نارنجی گرم */
+}
+
+.btn:hover {
+  background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+}
+
+.no_check {
+  background-color: #711d1c; /* تغییر به رنگ قبلی */
+}
+
+.no_check:hover {
+  background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+}
+
+.table_container {
+  padding: 40px 25px;
+  overflow-x: auto; /* اضافه کردن اسکرول افقی برای جدول */
+}
+
+.empty {
+  color: white;
+  background-color: #CC5500; /* تغییر به نارنجی گرم */
+  padding: 0.7rem 2rem;
+  width: max-content;
+  margin: 15rem auto;
+  font-size: 1.7rem;
+  border-radius: 5px;
+}
+
+/* Media Queries برای ریسپانسیو کردن */
+@media (max-width: 1136px) {
+  .table th,
+  .table td {
+      padding: 8px 15px; /* کاهش پدینگ برای سایز‌های متوسط */
+  }
+
+  .table_container {
+      padding: 30px 20px; /* کاهش پدینگ برای سایز‌های متوسط */
+  }
+
+  .title {
+      font-size: 26px; /* کاهش سایز فونت برای سایز‌های متوسط */
+  }
+
+  .title span {
+      margin-right: 3rem; /* کاهش فاصله برای سایز‌های متوسط */
+  }
+}
+
+@media (max-width: 875px) {
+  .table th,
+  .table td {
+      padding: 6px 10px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+  }
+
+  .table_container {
+      padding: 20px 15px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+  }
+
+  .title {
+      font-size: 22px; /* کاهش بیشتر سایز فونت برای تبلت‌ها */
+  }
+
+  .title span {
+      margin-right: 2rem; /* کاهش بیشتر فاصله برای تبلت‌ها */
+  }
+
+  .empty {
+      font-size: 1.4rem; /* کاهش سایز فونت برای تبلت‌ها */
+      margin: 10rem auto; /* کاهش فاصله برای تبلت‌ها */
+  }
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+      font-size: 12px; /* کاهش سایز فونت برای موبایل‌ها */
+  }
+
+  .btn,
+  .no_check {
+      font-size: 12px; /* کاهش سایز فونت دکمه‌ها برای موبایل‌ها */
+  }
+
+  .table_container {
+      padding: 15px 10px; /* کاهش بیشتر پدینگ برای موبایل‌ها */
+  }
+
+  .title {
+      font-size: 20px; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
+  }
+
+  .title span {
+      margin-right: 1.5rem; /* کاهش بیشتر فاصله برای موبایل‌ها */
+  }
+
+  .empty {
+      font-size: 1.2rem; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
+      padding: 0.5rem 1rem; /* کاهش پدینگ برای موبایل‌ها */
+  }
+}
+
+@media (max-width: 425px) {
+  .table th,
+  .table td {
+      padding: 4px 8px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
+      font-size: 10px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+  }
+
+  .btn,
+  .no_check {
+      font-size: 10px; /* کاهش بیشتر سایز فونت دکمه‌ها برای موبایل‌های کوچک */
+      padding: 0.3rem 0.5rem; /* کاهش پدینگ دکمه‌ها برای موبایل‌های کوچک */
+  }
+
+  .table_container {
+      padding: 10px 5px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
+  }
+
+  .title {
+      font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+  }
+
+  .title span {
+      margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+  }
+
+  .empty {
+      font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+      padding: 0.4rem 0.8rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+  }
+}
