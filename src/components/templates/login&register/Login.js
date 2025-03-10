@@ -5,12 +5,14 @@ import Sms from "./Sms";
 import Link from "next/link";
 import { swalAlert, toastSuccess , toastError } from "@/utils/helpers";
 import { validateEmail, validatePassword } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 
 const Login = ({ showRegisterForm }) => {
   const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
   const loginWithPassword = async () => {
     if (!email) {
@@ -65,6 +67,7 @@ const Login = ({ showRegisterForm }) => {
         undefined,
         "colored"
       );
+      router.replace("/p-user")
     } else if (res.status === 419) {
       setEmail("");
       setPassword("");
