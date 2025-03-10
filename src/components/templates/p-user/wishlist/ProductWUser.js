@@ -1,21 +1,40 @@
 "use client"
-import React from 'react'
+import { swalAlert } from "@/utils/helpers";
 import styles from "./ProductWUser.module.css"
 import Link from 'next/link';
 import { FaRegStar, FaStar } from 'react-icons/fa';
+import swal from "sweetalert";
 
-function ProductWUser({ name, price, score, _id }) {
 
-    const removeProduct = (productId) => {
+function ProductWUser({ name, price, score, productID }) {
+
+    
+
+    const removeProduct = () => {
+        
         swal({
-            title: "آیا از حذف محصول اطمینان دارید؟",
-            icon: "warning",
-            buttons: ["نه", "آره"],
-        }).then((result) => {
-            //code
+          title: "آیا از حذف محصول اطمینان دارید؟",
+          icon: "warning",
+          buttons: ["نه", "آره"],
+        }).then(async (result) => {
+          if (result) {
+            const res = await fetch(`http://localhost:3000/api/whishlist/${productID}`, {
+              method: "DELETE",
+            });
+            console.log("Res ->", res);
+    
+            if (res.status === 200) {
+              swal({
+                title: "محصول با موفقیت از علاقه مندی‌ها حذف شد",
+                icon: "success",
+                buttons: "فهمیدم",
+              }).then(() => {
+                location.reload();
+              });
+            }
+          }
         });
-    };
-
+      };
     return (
         <div className={styles.card}>
             <Link href={"/"}>
@@ -38,7 +57,7 @@ function ProductWUser({ name, price, score, _id }) {
                 </div>
                 <span>{price?.toLocaleString()} تومان</span>
             </div>
-            <button onClick={() => removeProduct(_id)} className={styles.delete_btn}>
+            <button onClick={() => removeProduct()} className={styles.delete_btn}>
                 حذف محصول
             </button>
         </div>
