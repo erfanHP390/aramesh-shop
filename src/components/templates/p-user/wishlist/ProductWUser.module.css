@@ -1,26 +1,29 @@
 .card {
     text-align: center;
-    color: white; /* تغییر به سفید */
-    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    color: white;
+    background-color: #6F4E37;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* عرض کامل برای موبایل */
+    max-width: 300px; /* حداکثر عرض برای دسکتاپ */
+    margin: 0 auto; /*居中 کردن کارت */
 }
 
 .card svg {
     margin-top: 0.4rem;
     font-size: 1.3rem;
-    color: #FFD700; /* تغییر به طلایی */
+    color: #FFD700;
 }
 
 .card p {
     font-size: 0.9rem;
-    color: white; /* تغییر به سفید */
+    color: white;
 }
 
 .card span {
     font-size: 0.9rem;
-    color: white; /* تغییر به سفید */
+    color: white;
 }
 
 .card div {
@@ -30,7 +33,8 @@
 }
 
 .delete_btn:hover {
-    background-color: #FFD700; /* تغییر به قهوه‌ای روشن */
+    opacity: 0.7;
+    background-color: #A68A64;
 }
 
 .delete_btn {
@@ -41,7 +45,44 @@
     cursor: pointer;
     border-radius: 4px;
     margin-top: 1rem;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500;
     border: 0;
     outline: 0;
+}
+
+/* Media Queries برای کامپوننت ProductWUser */
+@media (max-width: 768px) {
+    .card {
+        max-width: 250px; /* کاهش عرض کارت برای تبلت */
+    }
+
+    .card p {
+        font-size: 0.8rem; /* کاهش سایز فونت برای تبلت */
+    }
+
+    .card span {
+        font-size: 0.8rem; /* کاهش سایز فونت برای تبلت */
+    }
+
+    .delete_btn {
+        font-size: 0.8rem; /* کاهش سایز فونت دکمه برای تبلت */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        max-width: 100%; /* عرض کامل برای موبایل */
+    }
+
+    .card p {
+        font-size: 0.7rem; /* کاهش بیشتر سایز فونت برای موبایل */
+    }
+
+    .card span {
+        font-size: 0.7rem; /* کاهش بیشتر سایز فونت برای موبایل */
+    }
+
+    .delete_btn {
+        font-size: 0.7rem; /* کاهش بیشتر سایز فونت دکمه برای موبایل */
+    }
 }
