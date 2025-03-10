@@ -1,0 +1,43 @@
+import UserPanelLayout from '@/components/layouts/UserPanelLayout/UserPanelLayout'
+import React from 'react'
+import styles from "@/styles/p-user/wishlist.module.css"
+import ProductWUser from '@/components/templates/p-user/wishlist/ProductWUser'
+import { authUser } from '@/utils/authUserLink'
+import connectToDB from '@/configs/db'
+import WishlistModel from "@/models/Wishlist"
+
+async function page() {
+
+    connectToDB();
+    const user = await authUser();
+    const wishlist = await WishlistModel.find({ user: user._id }).populate(
+      "product"
+    );
+
+  return (
+    <UserPanelLayout>
+      <main>
+        <h1 className={styles.title}>
+          <span>علاقه مندی ها</span>
+        </h1>
+        <div className={styles.container}>
+            {
+                wishlist.length > 0 ? (<>
+                {
+                    wishlist.map(wish => (
+                        <ProductWUser key={wish._id} name={wish.product.name}  price={wish.product.price}  score={wish.product.score} />
+                    ))
+                }
+                </>) : (<>
+                          <p className={styles.empty}>محصولی وجود ندارد</p>
+                </>)
+            }
+        </div>
+
+        
+      </main>
+    </UserPanelLayout>
+  )
+}
+
+export default page
