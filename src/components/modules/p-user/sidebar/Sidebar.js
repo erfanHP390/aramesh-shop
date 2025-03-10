@@ -2,7 +2,7 @@
 
 import styles from "./Sidebar.module.css";
 import { ImReply } from "react-icons/im";
-import { FaComments, FaHeart, FaShoppingBag, FaUsers } from "react-icons/fa";
+import { FaComments, FaHeart, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { MdSms, MdLogout } from "react-icons/md";
 import { usePathname } from "next/navigation";
@@ -53,6 +53,10 @@ const Sidebar = () => {
             <Link href={"/p-user/account-details"}>
               <TbListDetails />
               جزئیات اکانت
+            </Link>
+            <Link href={"/"}>
+              <FaHome />
+              بازگشت به صفحه اصلی
             </Link>
           </>
         ) : (
