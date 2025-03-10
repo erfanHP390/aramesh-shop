@@ -1,0 +1,47 @@
+.card {
+    text-align: center;
+    color: white; /* تغییر به سفید */
+    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card svg {
+    margin-top: 0.4rem;
+    font-size: 1.3rem;
+    color: #FFD700; /* تغییر به طلایی */
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: white; /* تغییر به سفید */
+}
+
+.card span {
+    font-size: 0.9rem;
+    color: white; /* تغییر به سفید */
+}
+
+.card div {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.delete_btn:hover {
+    background-color: #FFD700; /* تغییر به قهوه‌ای روشن */
+}
+
+.delete_btn {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    color: white;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    border: 0;
+    outline: 0;
+}
