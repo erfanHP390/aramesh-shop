@@ -1,91 +1,106 @@
-/* wishlist.module.css */
+.empty {
+  color: white;
+  background-color: #CC5500;
+  padding: 0.7rem 2rem;
+  width: max-content;
+  margin: 15rem auto;
+  font-size: 1.7rem;
+  border-radius: 5px;
+}
 
 .container {
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  text-align: right;
-  max-width: 1222px;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-bottom: 4rem;
-  margin-left: auto;
-  direction: rtl; /* جهت‌دهی راست به چپ */
-  /* background-color: #FFFFFF; */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 0 30px;
 }
 
 .title {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #FFD700; /* خط جداکننده با رنگ قهوه‌ای روشن */
-  font-size: 30px;
-  color: #FFD700; /* متن قهوه‌ای تیره */
-}
-
-.container section {
-  display: grid;
-  gap: 40px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* تنظیم عرض محصولات */
-}
-
-.wishes_product {
-  margin-top: 1.5rem;
-  /* background-color: #FFFFFF;  */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
-}
-
-.wishlist_empty {
+  margin-top: 30px;
+  text-align: right;
+  text-transform: uppercase;
   position: relative;
-  margin-top: 5vw;
-  margin-bottom: 54px;
-  text-align: center;
-  line-height: 1.2;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  direction: rtl;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  font-size: 30px;
+  z-index: 1;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
-.wishlist_empty svg {
-  font-size: 15.2em;
-  color: #F1F1F1; /* آیکون خاکستری روشن */
+.title:before {
+  border-top: 2px solid #A68A64;
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
 }
 
-.wishlist_empty p {
-  font-size: 48px;
-  margin-bottom: 1.5rem;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+.title span {
+  background: #6F4E37;
+  padding: 0 15px;
+  margin-right: 4rem;
+  color: white;
 }
 
-.wishlist_empty span {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #A68A64; /* متن قهوه‌ای روشن */
+.title:before {
+  border-top: none;
 }
 
-.wishlist_empty a {
-  padding: 14px 28px;
-  transition: 0.1s all ease-in;
-  font-size: 14px;
-  line-height: 20px;
-  margin-top: 4rem;
-  border-radius: 4px;
-  color: #FFFFFF; /* متن سفید */
-  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
-  text-decoration: none;
+.title:after {
+  border-bottom: 1px solid #CC5500;
+  -webkit-box-shadow: 0 1px 0 0 #CC5500;
+  -moz-box-shadow: 0 1px 0 0 #CC5500;
+  box-shadow: 0 1px 0 0 #CC5500;
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 51%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
 }
 
-.wishlist_empty a:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+/* Media Queries برای صفحه علاقه‌مندی‌ها */
+@media (max-width: 768px) {
+  .title {
+      font-size: 24px; /* کاهش سایز فونت برای موبایل */
+  }
+
+  .title span {
+      margin-right: 2rem; /* کاهش فاصله برای موبایل */
+  }
+
+  .container {
+      padding: 0 15px; /* کاهش پدینگ برای موبایل */
+  }
+
+  .empty {
+      font-size: 1.2rem; /* کاهش سایز فونت برای موبایل */
+      margin: 10rem auto; /* کاهش فاصله برای موبایل */
+  }
 }
 
-.wishlist_empty span:nth-child(4) {
-  margin-bottom: 2.8rem !important;
+@media (max-width: 480px) {
+  .title {
+      font-size: 20px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+  }
+
+  .title span {
+      margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+  }
+
+  .container {
+      gap: 10px; /* کاهش فاصله بین آیتم‌ها برای موبایل‌های کوچک */
+  }
+
+  .empty {
+      font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+      padding: 0.5rem 1rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+  }
 }
