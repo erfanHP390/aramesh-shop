@@ -1,0 +1,204 @@
+.container {
+    padding: 20px;
+    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    color: white; /* تغییر رنگ متن به سفید */
+}
+
+.title {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    position: relative;
+    font-size: 30px;
+    z-index: 1;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.title a {
+    background-color: #D2B48C; /* تغییر به بژ روشن */
+    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    font-size: 1rem;
+    display: flex;
+    position: relative;
+    left: 30px;
+    border-radius: 20px;
+    padding: 0 10px;
+    align-items: center;
+    border: 1px solid #6F4E37; /* تغییر به قهوه‌ای گرم */
+}
+
+.title:before {
+    border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    content: "";
+    margin: 0 auto;
+    position: absolute;
+    top: 52%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.title span {
+    background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    padding: 0 15px;
+    margin-right: 4rem;
+    color: white; /* تغییر رنگ متن به سفید */
+}
+
+.title:before {
+    border-top: none;
+}
+
+.title:after {
+    border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
+    -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+    -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+    box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+    content: "";
+    margin: 0 auto;
+    position: absolute;
+    top: 51%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.content {
+    display: grid;
+    padding: 0;
+    gap: 20px;
+    margin-bottom: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* ریسپانسیو کردن گرید */
+}
+
+.content .group {
+    background-color: white !important;
+}
+
+.group,
+.uploader {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.group select {
+    background: white;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    outline: 0;
+    border: 3px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    margin-top: 4.5px;
+}
+
+.container input,
+.container textarea {
+    padding: 10px;
+    resize: none;
+    background-color: white;
+    margin-top: 4px;
+    outline: 0;
+    color: black;
+    border-radius: 5px;
+    border: 3px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    width: 100%;
+}
+
+.container textarea {
+    margin-bottom: 1rem;
+}
+
+.uploader {
+    border-radius: 5px;
+    background-color: #A68A64; /* تغییر به قهوه‌ای روشن */
+    text-align: center;
+    padding: 20px 0;
+    color: white; /* تغییر رنگ متن به سفید */
+}
+
+.uploader input {
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    right: 30px;
+    border: 0;
+    cursor: pointer;
+    margin: 0 auto;
+    width: max-content;
+}
+
+.btn {
+    width: max-content;
+    padding: 0.5rem 0.8rem;
+    border: 0;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn svg {
+    font-size: 18px;
+}
+
+/* Media Queries برای ریسپانسیو کردن */
+@media (max-width: 1136px) {
+    .content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تنظیم گرید برای تبلت‌ها */
+    }
+
+    .title {
+        font-size: 24px; /* کاهش سایز فونت برای تبلت‌ها */
+    }
+
+    .title a {
+        font-size: 0.9rem; /* کاهش سایز فونت لینک برای تبلت‌ها */
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr; /* تغییر جهت به عمودی برای موبایل‌ها */
+    }
+
+    .title {
+        font-size: 20px; /* کاهش سایز فونت برای موبایل‌ها */
+    }
+
+    .title a {
+        font-size: 0.8rem; /* کاهش سایز فونت لینک برای موبایل‌ها */
+    }
+
+    .btn {
+        width: 100%; /* افزایش عرض دکمه برای موبایل‌ها */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+    }
+
+    .title a {
+        font-size: 0.7rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+    }
+
+    .uploader {
+        padding: 15px 0; /* کاهش پدینگ برای موبایل‌های کوچک */
+    }
+
+    .btn {
+        font-size: 0.9rem; /* کاهش سایز فونت دکمه برای موبایل‌های کوچک */
+    }
+}
