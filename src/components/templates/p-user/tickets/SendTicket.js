@@ -1,5 +1,6 @@
 "use client"
 import styles from "@/styles/p-user/sendTicket.module.css"
+import { swalAlert, toastSuccess } from "@/utils/helpers";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
@@ -40,6 +41,44 @@ function SendTicket() {
     } , [departmentID])
 
 
+    const sendTicket = async () => {
+
+      if(!title || !body || !departmentID || !subDepartmentID || !priority) {
+        swalAlert("لطفا تمامی موارد را پر کنید"  , "error" , "فهمیدم")
+      }
+
+      const ticket = {
+        title,body,department: departmentID , subDepartment: subDepartmentID , priority
+      }
+
+      const res = await fetch("/api/ticket" , {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+          },
+          body: JSON.stringify(ticket)
+      })
+
+      if(res.status === 201) {
+        toastSuccess(
+          "تیکت شما  با موفقیت انجام شد",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        setTimeout(() => {
+          location.replace("/p-user/tickets")
+        }, 3500);
+      }
+
+
+    }
+
   return (
     <main className={styles.container}>
     <h1 className={styles.title}>
@@ -61,7 +100,7 @@ function SendTicket() {
       </div>
       <div className={styles.group}>
         <label>نوع تیکت را انتخاب کنید:</label>
-        <select>
+        <select  onChange={(event) => setSubDepartmentID(event.target.value)}>
           <option  value={-1}>لطفا یک مورد را انتخاب نمایید.</option>
           
           {subDepartments.map((subDepartment) => (
@@ -71,21 +110,21 @@ function SendTicket() {
       </div>
       <div className={styles.group}>
         <label>عنوان تیکت را وارد کنید:</label>
-        <input placeholder="عنوان..." type="text" />
+        <input placeholder="عنوان..." type="text"  value={title}  onChange={(event) => setTitle(event.target.value)}  />
       </div>
       <div className={styles.group}>
         <label>سطح اولویت تیکت را انتخاب کنید:</label>
-        <select>
-          <option>لطفا یک مورد را انتخاب نمایید.</option>
-          <option value="3">کم</option>
-          <option value="2">متوسط</option>
-          <option value="1">بالا</option>
+        <select  onChange={(event) => setPriority(event.target.value)}>
+          <option  value={-1}>لطفا یک مورد را انتخاب نمایید.</option>
+          <option value={1}>کم</option>
+          <option value={2}>متوسط</option>
+          <option value={3}>بالا</option>
         </select>
       </div>
     </div>
     <div className={styles.group}>
       <label>محتوای تیکت را وارد نمایید:</label>
-      <textarea rows={10}></textarea>
+      <textarea rows={10}  value={body}  onChange={(event) => setBody(event.target.value)}></textarea>
     </div>
     <div className={styles.uploader}>
       <span>حداکثر اندازه: 6 مگابایت</span>
@@ -93,7 +132,7 @@ function SendTicket() {
       <input type="file" />
     </div>
 
-    <button className={styles.btn}>
+    <button className={styles.btn}  onClick={sendTicket}>
       <IoIosSend />
       ارسال تیکت
     </button>
