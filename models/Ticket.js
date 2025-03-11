@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 require("./Department")
 require("./SubDepartment")
+require("./User")
 
 const schema = mongoose.Schema({
     title: {
@@ -19,6 +20,11 @@ const schema = mongoose.Schema({
     subDepartment: {
         type: mongoose.Types.ObjectId,
         ref: "SubDepartment",
+        required: true
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
         required: true
     },
     priority: {
