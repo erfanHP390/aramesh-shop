@@ -31,6 +31,10 @@ const schema = mongoose.Schema({
         type: Number,
         default: 1,
         enum: [1 , 2 , 3]
+    },
+    hasAnswer: {
+        type: Boolean,
+        default: false,
     }
 } , {
     timestamps: true
