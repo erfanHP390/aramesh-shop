@@ -1,0 +1,63 @@
+.ticket {
+    width: 100%;
+    border-right: 3px solid #CC5500; /* تغییر به نارنجی گرم */
+    padding: 1rem;
+    background-color: #A68A64; /* تغییر به قهوه‌ای روشن */
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin: 1rem auto;
+    height: auto; /* تغییر ارتفاع به auto برای ریسپانسیو شدن */
+    align-items: center;
+    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
+    gap: 10px; /* اضافه کردن فاصله بین عناصر */
+}
+
+.department {
+    padding: 0.5rem;
+    width: max-content;
+    border-radius: 5px;
+    background: white;
+    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+}
+
+.ticket div {
+    text-align: center;
+}
+
+.no_answer {
+    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.answer {
+    background-color: white;
+    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.ticket div {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ticket div:nth-child(2) {
+    padding-top: 0.5rem;
+}
+
+/* Media Queries برای ریسپانسیو کردن */
+@media (max-width: 768px) {
+    .ticket {
+        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        text-align: center;
+    }
+
+    .ticket div {
+        width: 100%; /* افزایش عرض div برای موبایل‌ها */
+    }
+}
