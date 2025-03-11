@@ -14,7 +14,7 @@ const UserPanelLayout = async ({ children }) => {
   return (
     <div className={styles.layout}>
       <section className={styles.section}>
-        <SidebarWrapper>{children}</SidebarWrapper>
+        <SidebarWrapper  name={user.name}  role={user.role}>{children}</SidebarWrapper>
       </section>
     </div>
   );

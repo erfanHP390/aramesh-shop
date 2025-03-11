@@ -11,7 +11,7 @@ import Link from "next/link";
 import { toastSuccess } from "@/utils/helpers";
 
 
-const Sidebar = () => {
+const Sidebar = ({name}) => {
   const path = usePathname();
 
   const logoutHandler = () => {
@@ -49,7 +49,7 @@ const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebar_header}>
-        <p>خوش اومدی شاهین عزیز</p>
+        <p>خوش اومدی {name} عزیز</p>
       </div>
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (

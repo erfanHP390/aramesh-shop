@@ -6,7 +6,7 @@ import { IoIosSearch, IoIosNotifications } from "react-icons/io";
 import Modal from "../modal/Model";
 import { FaBars } from "react-icons/fa";
 
-const Topbar = ({ toggleSidebar }) => {
+const Topbar = ({name ,role , toggleSidebar }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -17,8 +17,8 @@ const Topbar = ({ toggleSidebar }) => {
       <div className={styles.topbar}>
         <div className={styles.profile}>
           <div>
-            <p>شاهین مشکل گشا</p>
-            <span>ادمین</span>
+            <p>{name}</p>
+            <span>{role === "ADMIN" ? "ادمین" :  "کاربر عادی"}</span>
           </div>
           <img src="/images/shahin.jpg" alt=""  className={styles.img_profile} />
         </div>
