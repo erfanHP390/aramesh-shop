@@ -4,12 +4,10 @@ import Orders from '@/components/templates/p-user/index/orders/Orders'
 import Tickets from '@/components/templates/p-user/index/tickets/Tickets'
 import React from 'react'
 import styles from "@/styles/pUser.module.css"
-import Navbar from '@/components/modules/navbar/Navbar'
 
 function Index() {
   return (
     <>
-        <Navbar isLogin={false} />
       <UserPanelLayout>
       <main>
         <section className={styles.boxes}>
