@@ -31,3 +31,13 @@ export async function POST(req) {
     }
 
 }
+
+
+export async function GET(req) {
+
+  connectToDB()
+
+  const departments = await  DepartmentModel.find({})
+
+  return Response.json(departments)
+}
