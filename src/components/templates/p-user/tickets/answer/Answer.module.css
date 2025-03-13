@@ -1,0 +1,95 @@
+.userTicket {
+    width: 50%;
+    background-color: #A68A64; /* قهوه‌ای گرم برای کاربر */
+    border-radius: 5px;
+    padding: 0px 10px 10px;
+    color: white; /* متن سفید برای خوانایی بهتر */
+    margin-bottom: 15px;
+    border: 2px solid #D2B48C; /* حاشیه بژ روشن */
+}
+
+.adminticket {
+    width: 50%;
+    background-color: #F5F5F5; /* پس‌زمینه روشن برای ادمین */
+    border-radius: 5px;
+    padding: 0px 10px 10px;
+    border: 2px solid #CC5500; /* حاشیه نارنجی گرم */
+    margin-bottom: 15px;
+    margin-right: auto;
+    color: #6F4E37; /* متن قهوه‌ای گرم برای خوانایی بهتر */
+}
+
+.userTicket img,
+.adminticket img {
+    width: 80px;
+    border-radius: 100px;
+}
+
+.ticket_main {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.ticket_main div {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.adminticket .ticket_text {
+    background-color: #CC5500; /* نارنجی گرم برای پس‌زمینه متن ادمین */
+    color: white; /* متن سفید برای خوانایی بهتر */
+}
+
+.ticket_text {
+    background-color: white;
+    color: black;
+    margin: 0.5rem 1rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.empty {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #A68A64; /* قهوه‌ای روشن برای بخش خالی */
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px 0;
+    color: white; /* متن سفید برای خوانایی بهتر */
+}
+
+.ticket_main div div span {
+    font-size: 14px;
+    width: 100%;
+    color: #000;
+}
+
+.ticket_main div div {
+    justify-content: right;
+    gap: 5px;
+    flex-direction: column;
+}
+
+/* Media Queries برای ریسپانسیو کردن */
+@media (max-width: 768px) {
+    .userTicket,
+    .adminticket {
+        width: 100%; /* افزایش عرض به 100% برای موبایل‌ها */
+    }
+
+    .ticket_main {
+        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        align-items: flex-start; /* تراز به چپ برای موبایل‌ها */
+    }
+
+    .ticket_main div {
+        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        align-items: flex-start; /* تراز به چپ برای موبایل‌ها */
+    }
+}
