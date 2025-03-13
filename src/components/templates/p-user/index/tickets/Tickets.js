@@ -3,7 +3,7 @@ import styles from "./Tickets.module.css";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 
-const Tickets = () => {
+const Tickets = ({tickets}) => {
   return (
     <div className={styles.content}>
       <div className={styles.content_details}>
@@ -13,9 +13,11 @@ const Tickets = () => {
         </Link>
       </div>
       <div className={styles.ticket_container}>
-        <Ticket />
-        <Ticket />
-        <Ticket />
+        {
+          tickets.map(ticket => (
+            <Ticket key={ticket._id}  {...ticket} />
+          ))
+        }
       </div>
     </div>
   );
