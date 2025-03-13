@@ -35,7 +35,16 @@ const schema = mongoose.Schema({
     hasAnswer: {
         type: Boolean,
         default: false,
-    }
+    },
+    isAnswer: {
+        type: Boolean,
+        default: false
+    },
+     mainTicket: {
+        type: mongoose.Types.ObjectId,
+        ref: "Ticket",
+        required: false
+     }
 } , {
     timestamps: true
 })
