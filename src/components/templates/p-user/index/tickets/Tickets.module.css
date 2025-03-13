@@ -29,9 +29,7 @@
   color: white;
 }
 
-.content:nth-child(1) a div:nth-child(1) p:nth-child(2) {
-  color: #CC5500; /* نارنجی گرم */
-}
+
 
 .empty {
   text-align: center;
