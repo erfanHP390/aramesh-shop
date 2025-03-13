@@ -12,12 +12,32 @@
   color: white;
 }
 
+.department {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: max-content;
+  border-radius: 5px;
+  background: white;
+  color: #CC5500;
+}
+
+.no_answer {
+  margin-top: 0.5rem;
+  background-color: #A68A64;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+
 @media (max-width: 875px) {
   .ticket {
       flex-direction: column;
       height: auto;
       padding: 1rem;
   }
+
 
   .ticket div {
       width: 100%;
