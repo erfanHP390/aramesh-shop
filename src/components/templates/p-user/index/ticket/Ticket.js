@@ -1,16 +1,17 @@
 import Link from "next/link";
 import styles from "./Ticket.module.css";
 
-const Ticket = () => {
+const Ticket = ({_id , title , hasAnswer , department , createdAt}) => {
+
   return (
-    <Link href={`/p-user/tickets/answer/2323`} className={styles.ticket}>
-      <div>
-        <p>حجم بسته بندی</p>
-        <p className={styles.department}>واحد پشتیبانی</p>
+    <Link href={`/p-user/tickets/answer/${_id}`} className={styles.ticket}>
+      <div className={styles.header}>
+        <p>{title}</p>
+        <p className={styles.department}>{department.title}</p>
       </div>
       <div>
-        <p>8:00 1402/10/21</p>
-        <p className={styles.no_answer}>پاسخ داده نشده</p>
+        <p>{new Date(createdAt).toLocaleString("fa-IR")}</p>
+        <p className={styles.no_answer}>{hasAnswer ? "پاسخ داده شده" : "پاسخ داده نشده"}</p>
         {/* answer */}
       </div>
     </Link>
