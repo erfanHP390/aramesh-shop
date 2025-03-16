@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import styles from "./Footer.module.css";
 import ArticleFooter from './ArticleFooter';
@@ -11,16 +11,19 @@ export default function Footer() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 986);
-    };
+    // بررسی وجود `window` قبل از استفاده
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 986);
+      };
 
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
+      handleResize(); // تنظیم مقدار اولیه
+      window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   return (
