@@ -33,8 +33,8 @@
 }
 
 .answer {
-    background-color: white;
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    background-color: #6F4E37;
+    color: white; /* تغییر به قهوه‌ای گرم */
     border-radius: 5px;
     padding: 0.5rem;
 }

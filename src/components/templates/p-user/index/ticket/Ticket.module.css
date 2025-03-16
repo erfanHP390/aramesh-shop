@@ -31,6 +31,15 @@
 }
 
 
+.answer {
+  background-color: #6F4E37;
+  color: white; /* تغییر به قهوه‌ای گرم */
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+
+
 @media (max-width: 875px) {
   .ticket {
       flex-direction: column;
