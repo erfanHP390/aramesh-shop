@@ -6,6 +6,8 @@ import TicketModel from "@/models/Ticket";
 import CommentModel from "@/models/Comment";
 import UserModel from "@/models/User";
 import ProductModel from "@/models/Product";
+import SaleChart from "@/components/templates/p-admin/index/saleChart/SaleChart";
+import GrowthChart from "@/components/templates/p-admin/index/growthChart/GrowthChart";
 
 async function page() {
 
@@ -26,9 +28,11 @@ async function page() {
         <div className={styles.dashboard_charts}>
           <section>
             <p>آمار فروش</p>
+            <SaleChart />
           </section>
           <section>
             <p>نرخ رشد</p>
+            <GrowthChart />
           </section>
         </div>
       </main>
