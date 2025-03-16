@@ -7,7 +7,13 @@ import SidebarWrapper from "@/components/templates/p-user/sidebarWrapper/Sidebar
 
 const AdminPanelLayout = async ({ children }) => {
   const user = await authUser();
-  
+  if(user) {
+    if(user.role !== "ADMIN") {
+      return redirect("/login&register")
+    }
+  } else {
+    return redirect("/login&register")
+  }
 
   return (
     <div className={styles.layout}>
