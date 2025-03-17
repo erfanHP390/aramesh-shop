@@ -97,7 +97,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 875px) {
+@media (max-width: 1120px) {
   .menuIcon {
       display: block;
   }
