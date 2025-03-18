@@ -2,15 +2,58 @@
 import React from "react";
 import styles from "./TicketTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import { useRouter } from "next/navigation";
-import { isValidObjectId } from "mongoose";
-import { validateEmail, validatePhone } from "@/utils/auth";
-import Link from "next/link";
+import swal from "sweetalert"
 
 function TicketTable({tickets , title}) {
 
     const showTicketBody = (text) => {
         swalAlert(text , undefined , "بستن")
+    }
+
+
+    const answerToTicket = async (ticket) => {
+      swal({
+        title: "لطفا پاسخ موردنظر خود را وارد کنید",
+        content: "input",
+        buttons: "ثبت پاسخ"
+      }).then(async (answer) => {
+        if(answer) {
+
+          const newAnswerTicket = {
+            ...ticket,
+            body: answer,
+            ticketID: ticket._id
+          }
+
+          const res = await fetch("/api/ticket/answer" , {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+              },
+              body: JSON.stringify(newAnswerTicket)
+          })
+
+          console.log(res);
+          
+
+                  if (res.status === 201) {
+                    toastSuccess(
+                      "پاسخ برای تیکت مورد نظر ثبت شد",
+                      "top-center",
+                      5000,
+                      false,
+                      true,
+                      true,
+                      true,
+                      undefined,
+                      "colored"
+                    );
+                    router.refresh()
+                  }
+
+        }
+      }
+      )
     }
 
   return (
@@ -30,7 +73,6 @@ function TicketTable({tickets , title}) {
               <th>دپارتمان</th>
               <th>بخش</th>
               <th>مشاهده</th>
-              <th>حذف</th>
               <th>پاسخ</th>
               <th>بن</th>
             </tr>
@@ -53,13 +95,7 @@ function TicketTable({tickets , title}) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}
-                  >
-                    حذف
-                  </button>
-                </td>
-                <td>
-                  <button type="button" className={styles.delete_btn}
+                  <button type="button"  onClick={() => answerToTicket(ticket)}  className={styles.delete_btn}
                   >
                     پاسخ
                   </button>
