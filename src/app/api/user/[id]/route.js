@@ -1,0 +1,40 @@
+import connectToDB from "@/configs/db";
+import UserModel from "@/models/User";
+import { isValidObjectId } from "mongoose";
+
+
+export async function DELETE(req , {params}) {
+
+    try {
+      connectToDB()
+      const id = params.id;
+
+      if(!id) {
+        return Response.json({message: "must send one id"} , {
+          status: 400
+        })
+      }
+
+      if(!isValidObjectId(id)) {
+        return Response.json({message: "id is not valid"} , {
+          status: 422
+        })
+      }
+
+      const user = await UserModel.findOne({_id: id})
+
+      if(!user) {
+        return Response.json({message: "user not found"} , {
+          status: 404
+        })
+      }
+      
+      await UserModel.findOneAndDelete({_id: id})
+  
+      return Response.json({message: "success" })
+    } catch (err) {
+      console.log(err);
+      
+    }
+  
+  }
