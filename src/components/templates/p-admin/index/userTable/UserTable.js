@@ -4,6 +4,7 @@ import styles from "./UserTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import { isValidObjectId } from "mongoose";
+import { validateEmail, validatePhone } from "@/utils/auth";
 
 function UserTable({ users, title }) {
 
@@ -153,6 +154,97 @@ function UserTable({ users, title }) {
     });
   };
 
+  const banUser =  (email , phone) => {
+
+    console.log(email , phone);
+
+    swal({
+      title: "آیا از حذف کاربر اطمینان دارین؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+
+        // if(!email || !phone) {
+        //   swalAlert("اطلاعات کاربر ناقص است" , "error" , "فهمیدم")
+        // }
+
+        // const isValidEmail = validateEmail(email)
+        // if(!isValidEmail) {
+        //   swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
+        // }
+        
+
+        // const isValidPhone = validatePhone(phone)
+        // if(!isValidPhone) {
+        //   swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
+        // }
+
+
+        const res = await fetch("/api/user/ban", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, phone }),
+        });
+
+        if (res.status === 200) {
+          toastSuccess(
+            "کاربر با موفقیت مسدود شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 400) {
+          toastError(
+            "اطلاعات ارسال شده ناقص است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 422) {
+          toastError(
+            "ایمیل یا شماره تلفن ثبت شده کاربر معتبر نیست",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
+
+
+      }
+    });
+  }
+
   return (
     <div>
       <div>
@@ -203,7 +295,7 @@ function UserTable({ users, title }) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}>
+                  <button type="button" className={styles.delete_btn}   onClick={() => banUser(user.email , user.phone)}>
                     بن
                   </button>
                 </td>
