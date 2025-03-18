@@ -83,7 +83,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-      router.replace("/p-user")
+      router.replace("/login&register")
     } else if (res.status === 422) {
       setName("");
       setPhone("");
