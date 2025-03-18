@@ -5,6 +5,7 @@ import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import { isValidObjectId } from "mongoose";
 import { validateEmail, validatePhone } from "@/utils/auth";
+import Link from "next/link";
 
 function UserTable({ users, title }) {
 
@@ -274,9 +275,9 @@ function UserTable({ users, title }) {
                 <td>{user.email ? user.email : "ایمیل یافت نشد"}</td>
                 <td>{user.role === "USER" ? "کاربر عادی" : "مدیر"}</td>
                 <td>
-                  <button type="button" className={styles.edit_btn}>
+                  <Link href={`/p-admin/users/${user._id}`} className={styles.edit_btn}>
                     ویرایش
-                  </button>
+                  </Link>
                 </td>
                 <td>
                   <button
