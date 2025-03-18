@@ -14,6 +14,14 @@ export async function POST(req) {
 
         const user = await authUser()
 
+        const ticketUser = await TicketModel.findOneAndUpdate({_id: ticketID} , {
+            $set: {
+                hasAnswer: true
+            }
+        })
+
+
+
         await TicketModel.create({
             title,
             body,
@@ -21,7 +29,7 @@ export async function POST(req) {
             subDepartment,
             priority,
             user: user._id,
-            hasAnswer: true,
+            hasAnswer: false,
             isAnswer: true,
             mainTicket: ticketID
         })
