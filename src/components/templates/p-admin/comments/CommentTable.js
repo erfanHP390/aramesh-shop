@@ -4,11 +4,51 @@ import styles from "./CommentTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 function CommentTable({ comments, title }) {
+
+  const router = useRouter()
+
   const showCommentBody = (text) => {
     swalAlert(text, undefined, "بستن");
   };
+
+  const acceptComment = async (commentID) => {
+
+    const res = await fetch("/api/comment/accept" , {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: commentID })
+    })
+
+
+    if(res.status === 200) {
+      swal("کامنت تایید شد" , "success" , "فهمیدم")
+      router.refresh()
+    }
+    
+
+  }
+
+  const rejectComment =async (commentID) => {
+    const res = await fetch("/api/comment/reject" , {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: commentID })
+    })
+
+    console.log(res);
+
+    if(res.status === 200) {
+      swal("کامنت رد شد" , "success" , "فهمیدم")
+      router.refresh()
+    }
+  }
 
   return (
     <div>
@@ -43,16 +83,10 @@ function CommentTable({ comments, title }) {
                 <td>
                   {" "}
                   {new Array(comment.score).fill(0).map((item, index) => (
-                    <FaStar
-                      key={index}
-                      style={{ color: "#FFD700" }}
-                    /> 
+                    <FaStar key={index} style={{ color: "#FFD700" }} />
                   ))}
                   {new Array(5 - comment.score).fill(0).map((item, index) => (
-                    <FaRegStar
-                      key={index}
-                      style={{ color: "#A68A64" }}
-                    /> 
+                    <FaRegStar key={index} style={{ color: "#A68A64" }} />
                   ))}
                 </td>
                 <td>{comment.productID.name}</td>
@@ -77,9 +111,15 @@ function CommentTable({ comments, title }) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}>
-                    تایید
-                  </button>
+                  {comment.isAccept ? (
+                    <button type="button" className={styles.delete_btn}  onClick={() => rejectComment(comment._id)}>
+                      رد
+                    </button>
+                  ) : (
+                    <button type="button" className={styles.delete_btn}  onClick={() => acceptComment(comment._id)}>
+                      تایید
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button type="button" className={styles.delete_btn}>
