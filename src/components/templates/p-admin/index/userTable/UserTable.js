@@ -3,8 +3,6 @@ import React from "react";
 import styles from "./UserTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
-import { isValidObjectId } from "mongoose";
-import { validateEmail, validatePhone } from "@/utils/auth";
 import Link from "next/link";
 
 function UserTable({ users, title }) {
