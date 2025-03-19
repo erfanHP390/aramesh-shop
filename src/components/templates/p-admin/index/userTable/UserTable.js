@@ -164,22 +164,22 @@ function UserTable({ users, title }) {
     }).then(async (result) => {
       if (result) {
 
-        // if(!email || !phone) {
-        //   swalAlert("اطلاعات کاربر ناقص است" , "error" , "فهمیدم")
-        // }
+        if(!email || !phone) {
+          swalAlert("اطلاعات کاربر ناقص است" , "error" , "فهمیدم")
+        }
 
-        // const isValidEmail = validateEmail(email)
-        // if(!isValidEmail) {
-        //   swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
-        // }
+        const isValidEmail = validateEmail(email)
+        if(!isValidEmail) {
+          swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
+        }
         
 
-        // const isValidPhone = validatePhone(phone)
-        // if(!isValidPhone) {
-        //   swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
-        // }
+        const isValidPhone = validatePhone(phone)
+        if(!isValidPhone) {
+          swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
+        }
 
-
+        
         const res = await fetch("/api/user/ban", {
           method: "POST",
           headers: {
