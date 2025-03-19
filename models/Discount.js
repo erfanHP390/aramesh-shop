@@ -7,16 +7,16 @@ const schema = mongoose.Schema({
         required: true
     },
     percent: {
-        type: String,
+        type: Number,
         required: true
     },
     maxUse: {
-        type: String,
+        type: Number,
         required: true
     },
     uses: {
-        type: String,
-        required: true
+        type: Number,
+        default: 0
     },
 
 } , {timestamps: true})
