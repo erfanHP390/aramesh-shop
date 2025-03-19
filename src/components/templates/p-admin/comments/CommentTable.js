@@ -50,6 +50,35 @@ function CommentTable({ comments, title }) {
     }
   }
 
+  
+  const removeComment = async (commentID) => {
+    swal({
+      title: "آیا از حذف کاربر اطمینان دارین؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+
+      if(result) {
+
+        const res = await fetch(`/api/comment/${commentID}` , {
+          method: "DELETE"
+        })
+
+        
+
+        if(res.status === 200) {
+          swalAlert("کامنت با موفقیت حذف شد" , "success" , "فهمیدم")
+          router.refresh()
+        }
+
+      }
+
+    })
+
+
+
+  }
+
   return (
     <div>
       <div>
@@ -106,7 +135,7 @@ function CommentTable({ comments, title }) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}>
+                  <button type="button" className={styles.delete_btn}  onClick={() => removeComment(comment._id)}>
                     حذف
                   </button>
                 </td>
