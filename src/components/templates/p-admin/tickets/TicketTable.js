@@ -32,8 +32,6 @@ function TicketTable({tickets , title}) {
               },
               body: JSON.stringify(newAnswerTicket)
           })
-
-          console.log(res);
           
 
                   if (res.status === 201) {
