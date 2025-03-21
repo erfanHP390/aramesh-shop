@@ -12,6 +12,11 @@
   color: white;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
 .department {
   margin-top: 0.5rem;
   padding: 0.5rem;
@@ -49,7 +54,6 @@
 
 
   .ticket div {
-      width: 100%;
       text-align: center;
   }
 

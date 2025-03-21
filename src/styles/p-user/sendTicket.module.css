@@ -147,6 +147,9 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    justify-content: center;
+    direction: rtl;
+    float: left;
 }
 
 .btn svg {
@@ -201,5 +204,15 @@
 
     .btn {
         font-size: 0.9rem; /* کاهش سایز فونت دکمه برای موبایل‌های کوچک */
+    }
+}
+
+@media (max-width: 360px) {
+    .title {
+        font-size: 12px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+    }
+
+    .title a {
+        font-size: 0.6rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
     }
 }
