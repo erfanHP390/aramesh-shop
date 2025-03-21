@@ -14,7 +14,7 @@ async function Index() {
 
   connectToDB()
   const user =await authUser()
-  const tickets = await TicketModel.find({user: user._id}).limit(3).populate("department" , "title").sort().lean()
+  const tickets = await TicketModel.find({user: user._id , isAnswer: false}).limit(3).populate("department" , "title").sort().lean()
 
   const comments = await CommentModel.find({username: user.name , email: user.email})
   const wishlist = await WishListModel.find({user: user._id})
