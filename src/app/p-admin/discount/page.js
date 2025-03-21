@@ -1,4 +1,5 @@
 import AdminPanelLayout from '@/components/layouts/AdminPanelLayout/AdminPanelLayout'
+import AddDiscounts from '@/components/templates/p-admin/discounts/addDiscounts/AddDiscounts'
 import DiscountTable from '@/components/templates/p-admin/discounts/DiscountTable'
 import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
 import connectToDB from '@/configs/db'
@@ -8,37 +9,12 @@ async function page() {
 
 
   connectToDB()
-  const discounts = await DiscountModel.find({}).lean()
+  const discounts = await DiscountModel.find({}).sort({_id: -1}).lean()
 
   return (
     <AdminPanelLayout>
       <main>
-        <section className={styles.discount}>
-          <p>افزودن کد تخفیف جدید</p>
-          <div className={styles.discount_main}>
-            <div>
-              <label>شناسه تخفیف</label>
-              <input placeholder="لطفا شناسه تخفیف را وارد کنید" type="text" />
-            </div>
-            <div>
-              <label>درصد تخفیف</label>
-              <input placeholder="لطفا درصد تخفیف را وارد کنید" type="text" />
-            </div>
-            <div>
-              <label>حداکثر استفاده</label>
-              <input placeholder="حداکثر استفاده از کد تخفیف" type="text" />
-            </div>
-            <div>
-              <label>محصول</label>
-              <select name="" id="">
-                <option value="">قهوه ترک</option>
-                <option value="">قهوه عربیکا</option>
-                <option value="">قهوه اسپرسو</option>
-              </select>
-            </div>
-          </div>
-          <button>افزودن</button>
-        </section>
+        <AddDiscounts />
 
         {discounts.length === 0 ? (
           <p className={styles.empty}>کد تخفیفی وجود ندارد</p>
