@@ -10,15 +10,7 @@ function AllTickets({ tickets }) {
         <Link href="/p-user/tickets/sendTicket"> ارسال تیکت جدید </Link>
       </h1>
 
-      <div className={styles.boxes}>
-        {/* <Box title={"باز"} value={0} />
-        <Box title={"بسته"} value={0} />
-        <Box title={"پاسخ داده شده"} value={0} />
-        <Box title={"پایان یافته"} value={0} />
-        <Box title={"همه"} value={0} /> */}
-      </div>
-
-      <div className={styles.filtering}>
+      {/* <div className={styles.filtering}>
         <div>
           <select>
             <option>همه</option>
@@ -38,7 +30,7 @@ function AllTickets({ tickets }) {
           </select>
         </div>
         <button type="submit">اعمال</button>
-      </div>
+      </div> */}
 
       <div>
           {
