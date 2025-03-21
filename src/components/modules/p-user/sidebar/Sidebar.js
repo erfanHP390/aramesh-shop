@@ -13,6 +13,7 @@ import { toastSuccess } from "@/utils/helpers";
 
 const Sidebar = ({name}) => {
   const path = usePathname();
+  
 
   const logoutHandler = () => {
     swal({
@@ -54,27 +55,27 @@ const Sidebar = ({name}) => {
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (
           <>
-            <Link href={"/p-user"} className={styles.sidebar_link_active}>
+            <Link href={"/p-user"} className={location.pathname === ("/p-user") && styles.sidebar_link_active}>
               <ImReply />
               پیشخوان
             </Link>
-            <Link href={"/p-user/orders"}>
+            <Link href={"/p-user/orders"}  className={path.includes("/p-user/orders") && styles.sidebar_link_active} >
               <FaShoppingBag />
               سفارش ها
             </Link>
-            <Link href={"/p-user/tickets"}>
+            <Link href={"/p-user/tickets"}  className={path.includes("/p-user/tickets") && styles.sidebar_link_active}>
               <MdSms />
               تیکت های پشتیبانی
             </Link>
-            <Link href={"/p-user/comments"}>
+            <Link href={"/p-user/comments"}  className={path.includes("/p-user/comments") && styles.sidebar_link_active}>
               <FaComments />
               کامنت ها
             </Link>
-            <Link href={"/p-user/wishlist"}>
+            <Link href={"/p-user/wishlist"}  className={path.includes("/p-user/wishlist") && styles.sidebar_link_active}>
               <FaHeart />
               علاقه مندی
             </Link>
-            <Link href={"/p-user/account-details"}>
+            <Link href={"/p-user/account-details"} className={path.includes("/p-user/account-details") && styles.sidebar_link_active}>
               <TbListDetails />
               جزئیات اکانت
             </Link>
@@ -90,24 +91,24 @@ const Sidebar = ({name}) => {
               پیشخوان
             </Link>
 
-            <Link href={"/p-admin/products"}>
+            <Link href={"/p-admin/products"}  className={path.includes("/p-admin/products") && styles.sidebar_link_active}>
               <FaShoppingBag />
               محصولات
             </Link>
-            <Link href={"/p-admin/users"}>
+            <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") && styles.sidebar_link_active} >
               <FaUsers />
               کاربران
             </Link>
-            <Link href={"/p-admin/comments"}>
+            <Link href={"/p-admin/comments"}   className={path.includes("/p-admin/comments") && styles.sidebar_link_active}>
               <FaComments />
               کامنت ها
             </Link>
 
-            <Link href={"/p-admin/tickets"}>
+            <Link href={"/p-admin/tickets"}   className={path.includes("/p-admin/tickets") && styles.sidebar_link_active}>
               <MdSms />
               تیکت ها
             </Link>
-            <Link href={"/p-admin/discount"}>
+            <Link href={"/p-admin/discount"}   className={path.includes("/p-admin/discount") && styles.sidebar_link_active}>
               <MdOutlineAttachMoney />
               تخفیفات
             </Link>
