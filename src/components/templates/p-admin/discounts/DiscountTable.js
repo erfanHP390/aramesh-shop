@@ -1,7 +1,30 @@
-import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+"use client";
+import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
+import { swalAlert } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
+function DiscountTable({ discounts }) {
+  const router = useRouter();
 
-function DiscountTable({discounts}) {
+  const removeDiscount = async (discountID) => {
+    swal({
+      title: "آیا از تغییر نقش کاربر اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+        const res = await fetch(`/api/discount/${discountID}`, {
+          method: "DELETE",
+        });
+
+        if (res.status === 200) {
+          swalAlert("کد تخفیف با موفقیت حذف شد" ,"success" , "فهمیدم")
+          router.refresh();
+        }
+      }
+    });
+  };
+
   return (
     <table className={styles.table}>
       <thead>
@@ -23,7 +46,11 @@ function DiscountTable({discounts}) {
             <td>{discount.maxUse}</td>
             <td>{discount.uses}</td>
             <td>
-              <button type="button" className={styles.delete_btn}>
+              <button
+                type="button"
+                className={styles.delete_btn}
+                onClick={() => removeDiscount(discount._id)}
+              >
                 حذف
               </button>
             </td>
@@ -31,7 +58,7 @@ function DiscountTable({discounts}) {
         ))}
       </tbody>
     </table>
-  )
+  );
 }
 
-export default DiscountTable
+export default DiscountTable;
