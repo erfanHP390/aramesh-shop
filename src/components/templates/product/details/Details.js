@@ -1,12 +1,53 @@
+"use client";
 import { FaFacebookF, FaStar, FaTwitter, FaRegStar } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
 import { TbSwitch3 } from "react-icons/tb";
 import { FaTelegram, FaLinkedinIn, FaPinterest } from "react-icons/fa";
 import styles from "./Details.module.css";
-import AddToWishList from '@/components/templates/product/addToWishlist/AddToWishList';
-
+import AddToWishList from "@/components/templates/product/addToWishlist/AddToWishList";
+import { useState } from "react";
+import { swalAlert } from "@/utils/helpers";
 
 const Details = ({ product }) => {
+  const [count, setCount] = useState(1);
+
+  const addProductHandler = (cart) => {
+    const cartItem = {
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      count,
+    };
+
+    cart.push(cartItem);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    swalAlert("محصول با موفقیت به سبد خرید اضافه شد", "success", "فهمیدم");
+  };
+
+  const addToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length) {
+      const isInCart = cart.some((item) => item.id === product._id);
+
+      if (isInCart) {
+        cart.forEach((item) => {
+          if (item.id === product._id) {
+            item.count = item.count + count;
+          }
+        });
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        swalAlert("تعداد محصول با موفقیت به روزرسانی شد", "success", "فهمیدم");
+      } else {
+        addProductHandler(cart);
+      }
+    } else {
+      addProductHandler(cart);
+    }
+  };
+
   return (
     <main className={styles.details}>
       <h2>{product.name}</h2>
@@ -29,13 +70,15 @@ const Details = ({ product }) => {
         <p>موجود در انبار</p>
       </div>
       <div className={styles.cart}>
-        <button>افزودن به سبد خرید</button>
+        <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
         <div>
-          <span>-</span>1<span>+</span>
+          <span onClick={() => setCount(count - 1)}>-</span>
+          {count === 0 ? setCount(1) : count}
+          <span onClick={() => setCount(count + 1)}>+</span>
         </div>
       </div>
       <section className={styles.wishlist}>
-        <AddToWishList  productID={product._id} />
+        <AddToWishList productID={product._id} />
         <div>
           <TbSwitch3 />
           <a href="/">مقایسه</a>
