@@ -1,0 +1,203 @@
+.tabel_container {
+  width: 100%;
+  overflow-x: auto; /* اسکرول افقی فعال شود */
+  background-color: #6F4E37; /* قهوه‌ای گرم */
+  color: #FFFFFF; /* سفید */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  min-width: 600px; /* حداقل عرض جدول برای جلوگیری از فشرده شدن بیش از حد */
+  border-spacing: 0;
+  color: black;
+  background-color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+}
+
+.table th {
+  background-color: #D2B48C; /* بژ روشن */
+  color: #000000; /* سیاه */
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.product img {
+  width: 80px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product a {
+  word-wrap: break-word;
+  line-height: 1.4;
+  display: inline-block;
+  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  text-align: center;
+  color: #000000; /* سیاه */
+  text-decoration: none;
+}
+
+.product a:hover {
+  color: #CC5500; /* نارنجی گرم */
+}
+
+.price {
+  color: #777 !important;
+  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+}
+
+.counter div {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.counter span {
+  cursor: pointer;
+  padding: 8px 10px;
+  color: #000000; /* سیاه */
+}
+
+.counter span:hover {
+  color: white;
+  background: #CC5500; /* نارنجی گرم */
+}
+
+.counter p {
+  padding: 8px 10px;
+  margin: 0;
+}
+
+.delete_icon {
+  cursor: pointer;
+   font-size: clamp(18px, 2vw, 14px); 
+ background-color: #CC5500;
+ color: #fff;
+ transition: all 0.5s ease;
+}
+
+.delete_icon:hover {
+ background-color: #FFD700;
+}
+
+.update_btn,
+.set_off_btn {
+  white-space: nowrap; /* متن دکمه‌ها همیشه در یک خط */
+  padding: 10px 20px;
+  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.update_btn {
+  background-color: #f3f3f3;
+  color: #3e3e3e;
+}
+
+.update_btn:hover {
+  background: #CC5500; /* نارنجی گرم */
+  color: white;
+}
+
+.set_off_btn {
+  background-color: #CC5500; /* نارنجی گرم */
+  color: white;
+}
+
+.set_off_btn:hover {
+  background: #A68A64; /* قهوه‌ای روشن */
+}
+
+.tabel_container section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px; /* فاصله بین عناصر */
+}
+
+.tabel_container section input {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  width: 100%; /* عرض کامل */
+  direction: rtl;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+}
+
+.discount_container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* ریسپانسیو برای سایز 768px */
+@media (max-width: 875px) {
+  .tabel_container section {
+    flex-direction: column; /* عناصر زیر هم قرار بگیرند */
+    align-items: stretch; /* عرض کامل */
+  }
+
+  .update_btn,
+  .set_off_btn {
+    width: 100%; /* عرض کامل */
+    text-align: center; /* متن وسط‌چین */
+  }
+
+  .tabel_container section input {
+    width: 100%; /* عرض کامل */
+  }
+  .discount_container {
+    display: flex;
+    flex-direction: column;
+  }
+  .discount_container > * {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 993px) {
+  .table {
+    min-width: 400px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .table {
+    min-width: 300px !important;
+  }
+  .tabel_container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-x: hidden !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .discount_container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
