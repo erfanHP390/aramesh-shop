@@ -26,6 +26,11 @@ export async function PUT(req) {
                 status: 422
             })
         } else {
+            await DiscountModel.findOneAndUpdate({code} , {
+                $inc: {
+                    uses: 1
+                }
+            })
             return Response.json(discount)
         }
 
