@@ -7,11 +7,13 @@ import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import stateData from "@/utils/stateData";
 import Link from "next/link";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 
 const stateOptions = stateData();
 
 function Table() {
   const [cart, setCart] = useState([]);
+  const [discount, setDiscount] = useState("");
   const [stateSelectedOption, setStateSelectedOption] = useState(null);
   const [changeAddress, setChangeAddress] = useState(false);
 
@@ -51,54 +53,148 @@ function Table() {
     return productPrice;
   };
 
+  const discountHandler = async () => {
+    if (!discount) {
+      return swalAlert("لطفا کد تخفیف وارد کنید", "error", "فهمیدم");
+    }
+
+    const res = await fetch("/api/discount/use", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ code: discount }),
+    });
+
+
+    if (res.status === 200) {
+      setDiscount("");
+      toastSuccess(
+        "کد تخفیف با موفقیت اعمال شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setDiscount("");
+      toastError(
+        "کد تخفیف وارد نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setDiscount("");
+      toastError(
+        "کد تخفیف منقضی شده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 404) {
+      setDiscount("");
+      toastError(
+        "کد تخفیف یافت نشد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setDiscount("");
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
   return (
     <>
       {" "}
       <div className={styles.tabel_container}>
-  <table className={styles.table}>
-    <thead>
-      <tr>
-        <th>جمع جزء</th>
-        <th>تعداد</th>
-        <th>قیمت</th>
-        <th>محصول</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {cart.map((item) => (
-        <tr key={item.id}>
-          <td>{(item.price * item.count).toLocaleString()} تومان</td>
-          <td className={styles.counter}>
-            <div>
-              <span>-</span>
-              <p>{item.count}</p>
-              <span>+</span>
-            </div>
-          </td>
-          <td className={styles.price}>{item.price.toLocaleString()} تومان</td>
-          <td className={styles.product}>
-            <img
-              src="https://set-coffee.com/wp-content/uploads/2020/12/Red-box-DG--430x430.jpg"
-              alt={item.name}
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>جمع جزء</th>
+              <th>تعداد</th>
+              <th>قیمت</th>
+              <th>محصول</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item) => (
+              <tr key={item.id}>
+                <td>{(item.price * item.count).toLocaleString()} تومان</td>
+                <td className={styles.counter}>
+                  <div>
+                    <span>-</span>
+                    <p>{item.count}</p>
+                    <span>+</span>
+                  </div>
+                </td>
+                <td className={styles.price}>
+                  {item.price.toLocaleString()} تومان
+                </td>
+                <td className={styles.product}>
+                  <img
+                    src="https://set-coffee.com/wp-content/uploads/2020/12/Red-box-DG--430x430.jpg"
+                    alt={item.name}
+                  />
+                  <Link href={`/product/${item.id}`}>{item.name}</Link>
+                </td>
+                <td>
+                  <IoMdClose className={styles.delete_icon} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <section>
+          <button className={styles.update_btn}> بروزرسانی سبد خرید</button>
+          <div className={styles.discount_container}>
+            <input
+              type="text"
+              placeholder="کد تخفیف"
+              value={discount}
+              onChange={(event) => setDiscount(event.target.value)}
             />
-            <Link href={`/product/${item.id}`}>{item.name}</Link>
-          </td>
-          <td>
-            <IoMdClose className={styles.delete_icon} />
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-  <section>
-    <button className={styles.update_btn}> بروزرسانی سبد خرید</button>
-    <div className={styles.discount_container}>
-      <input type="text" placeholder="کد تخفیف" />
-      <button className={styles.set_off_btn}>اعمال کوپن</button>
-    </div>
-  </section>
-</div>
+            <button
+              className={styles.set_off_btn}
+              onClick={() => discountHandler()}
+            >
+              اعمال کوپن
+            </button>
+          </div>
+        </section>
+      </div>
       <div className={totalStyles.totals}>
         <p className={totalStyles.totals_title}>جمع کل سبد خرید</p>
 
@@ -124,57 +220,61 @@ function Table() {
           تغییر آدرس
         </p>
         {changeAddress && (
-  <div className={totalStyles.address_details}>
-<Select
-  defaultValue={stateSelectedOption}
-  onChange={setStateSelectedOption}
-  isClearable={true}
-  placeholder={"استان"}
-  isRtl={true}
-  isSearchable={true}
-  options={stateOptions}
-  styles={{
-    control: (base) => ({
-      ...base,
-      border: "1px solid rgba(0, 0, 0, 0.1)",
-      borderRadius: "5px",
-      padding: "0.5rem",
-      direction: "rtl",
-      textAlign: "right",
-      backgroundColor: "#D2B48C", // بژ روشن
-      color: "#000000", // سیاه
-      fontSize: "14px", // فونت کوچک‌تر
-      minWidth: "200px", // حداقل عرض
-      width: "100%", // عرض کامل
-    }),
-    menu: (base) => ({
-      ...base,
-      direction: "rtl",
-      textAlign: "right",
-      backgroundColor: "#D2B48C", // بژ روشن
-      color: "#000000", // سیاه
-    }),
-    option: (base, { isFocused, isSelected }) => ({
-      ...base,
-      backgroundColor: isFocused ? "#CC5500" : isSelected ? "#A68A64" : "#D2B48C", // نارنجی گرم یا قهوه‌ای روشن
-      color: isFocused || isSelected ? "#FFFFFF" : "#000000", // سفید یا سیاه
-      fontSize: "14px", // فونت کوچک‌تر
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: "#000000", // سیاه
-    }),
-    placeholder: (base) => ({
-      ...base,
-      color: "#777", // خاکستری
-    }),
-  }}
-/>
-    <input type="text" placeholder="شهر" />
-    <input type="text" placeholder="کد پستی" />
-    <button onClick={() => setChangeAddress(false)}>بروزرسانی</button>
-  </div>
-)}
+          <div className={totalStyles.address_details}>
+            <Select
+              defaultValue={stateSelectedOption}
+              onChange={setStateSelectedOption}
+              isClearable={true}
+              placeholder={"استان"}
+              isRtl={true}
+              isSearchable={true}
+              options={stateOptions}
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  border: "1px solid rgba(0, 0, 0, 0.1)",
+                  borderRadius: "5px",
+                  padding: "0.5rem",
+                  direction: "rtl",
+                  textAlign: "right",
+                  backgroundColor: "#D2B48C", // بژ روشن
+                  color: "#000000", // سیاه
+                  fontSize: "14px", // فونت کوچک‌تر
+                  minWidth: "200px", // حداقل عرض
+                  width: "100%", // عرض کامل
+                }),
+                menu: (base) => ({
+                  ...base,
+                  direction: "rtl",
+                  textAlign: "right",
+                  backgroundColor: "#D2B48C", // بژ روشن
+                  color: "#000000", // سیاه
+                }),
+                option: (base, { isFocused, isSelected }) => ({
+                  ...base,
+                  backgroundColor: isFocused
+                    ? "#CC5500"
+                    : isSelected
+                    ? "#A68A64"
+                    : "#D2B48C", // نارنجی گرم یا قهوه‌ای روشن
+                  color: isFocused || isSelected ? "#FFFFFF" : "#000000", // سفید یا سیاه
+                  fontSize: "14px", // فونت کوچک‌تر
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: "#000000", // سیاه
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  color: "#777", // خاکستری
+                }),
+              }}
+            />
+            <input type="text" placeholder="شهر" />
+            <input type="text" placeholder="کد پستی" />
+            <button onClick={() => setChangeAddress(false)}>بروزرسانی</button>
+          </div>
+        )}
 
         <div className={totalStyles.total}>
           <p>مجموع</p>
