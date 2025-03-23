@@ -1,11 +1,10 @@
 import { IoMdStar } from "react-icons/io";
 import styles from "./CommentForm.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
 
 const CommentForm = ({ productID }) => {
-  console.log(productID);
   
 
   const [username, setUserName] = useState("");
@@ -13,8 +12,9 @@ const CommentForm = ({ productID }) => {
   const [email, setEmail] = useState("");
   const [score, setScore] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaveUserInfo , setIsSaveUserInfo] = useState(false)
 
-  console.log(score);
+  console.log(isSaveUserInfo);
   
 
   const setCommentScore =  (score) => {
@@ -22,6 +22,17 @@ const CommentForm = ({ productID }) => {
     swalAlert("امتیاز شما با موفقیتا ثبت شد" , "success" , "ادامه ثبت نظر")
   }
 
+
+  useEffect(() => {
+
+    const getUserInfoComment = JSON.parse(localStorage.getItem("user"))
+
+    if(getUserInfoComment) {
+      setUserName(getUserInfoComment.username)
+      setEmail(getUserInfoComment.email)
+    }
+
+  } , [])
   
 
   const sendComment = async () => {
@@ -36,6 +47,15 @@ const CommentForm = ({ productID }) => {
     if(!isValidEmail) {
       setIsLoading(false)
      return  swalAlert("ایمیل نا معتبر است لطفا یک ایمیل معتبر وارد نمایید"  , "error" , "فهمیدم")
+    }
+
+    if(isSaveUserInfo) {
+      const userInfoComment = {
+        username,
+        email
+      }
+
+      localStorage.setItem("user" , JSON.stringify(userInfoComment))
     }
 
     const newComment = {
@@ -189,7 +209,7 @@ const CommentForm = ({ productID }) => {
         ></textarea>
       </div>
       <div className={styles.checkbox}>
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id=""  value={isSaveUserInfo}   onChange={(event) => setIsSaveUserInfo((prevValue) => !prevValue)} />
         <p>
           {" "}
           ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که دوباره دیدگاهی
