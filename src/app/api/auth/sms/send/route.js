@@ -30,7 +30,7 @@ export async function POST(req) {
     }
 
     const now = new Date();
-    const expTime = now.getTime() + 120_000;
+    const expTime = now.getTime() + 180_000;
 
     const code = Math.floor(Math.random() * 99999);
 
