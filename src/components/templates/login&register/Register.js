@@ -4,8 +4,8 @@ import Link from "next/link";
 import Sms from "./Sms";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toastSuccess, toastError ,  swalAlert} from "@/utils/helpers";
-import { validatePhone , validateEmail ,validatePassword } from "@/utils/auth";
+import { toastSuccess, toastError, swalAlert } from "@/utils/helpers";
+import { validatePhone, validateEmail, validatePassword } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 
 const Register = ({ showLoginForm }) => {
@@ -17,38 +17,41 @@ const Register = ({ showLoginForm }) => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingOtp, setIsLoadingOtp] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const hideOtpForm = () => setIsRegisterWithOtp(false);
 
   const signup = async () => {
-
-    if(!name.trim()) {
-      setIsLoading(false)
-      return swalAlert("نام نمی تواند خالی باشد" , "error" , "تلاش مجدد")
+    if (!name.trim()) {
+      setIsLoading(false);
+      return swalAlert("نام نمی تواند خالی باشد", "error", "تلاش مجدد");
     }
 
-    const isValidPhone = validatePhone(phone)
-    if(!isValidPhone) {
-      setIsLoading(false)
-    return  swalAlert("شماره تماس  معتبر است" , "error" , "تلاش مجدد")
+    const isValidPhone = validatePhone(phone);
+    if (!isValidPhone) {
+      setIsLoading(false);
+      return swalAlert("شماره تماس  معتبر است", "error", "تلاش مجدد");
     }
 
-    if(email) {
-      const isValidEmail = validateEmail(email)
+    if (email) {
+      const isValidEmail = validateEmail(email);
 
-      if(!isValidEmail) {
-        setIsLoading(false)
-       return swalAlert("ایمیل نامعتبر است" , "error" , "تلاش مجدد")
+      if (!isValidEmail) {
+        setIsLoading(false);
+        return swalAlert("ایمیل نامعتبر است", "error", "تلاش مجدد");
       }
     }
 
-    if(password) {
-      const isValidPassword = validatePassword(password)
-    
-      if(!isValidPassword) {
-        setIsLoading(false)
-       return swalAlert("رمز عبور نا معتبر است.رمز عبور باید شامل حداقل یک کاراکتر،یک حرف بزرگ و حرف کوچک و عدد باشد" , "error" , "تلاش مجدد")
+    if (password) {
+      const isValidPassword = validatePassword(password);
+
+      if (!isValidPassword) {
+        setIsLoading(false);
+        return swalAlert(
+          "رمز عبور نا معتبر است.رمز عبور باید شامل حداقل یک کاراکتر،یک حرف بزرگ و حرف کوچک و عدد باشد",
+          "error",
+          "تلاش مجدد"
+        );
       }
     }
 
@@ -84,7 +87,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-      router.replace("/login&register")
+      router.replace("/login&register");
     } else if (res.status === 422) {
       setName("");
       setPhone("");
@@ -123,32 +126,33 @@ const Register = ({ showLoginForm }) => {
   };
 
   const sendCode = async () => {
-
-    if(!phone || !name) {
-      setIsLoadingOtp(false)
-      return swalAlert("نام و شماره تلفن خود را وارد کنید" , "error" , "فهمیدم")
-    }
-
-    const isValidPhone = validatePhone(phone)
-    if(!isValidPhone) {
-      setIsLoadingOtp(false)
-      return swalAlert("لطفا یک شماره تلفن معتبر وارد نمایید" , "error" , "فهمیدم")
-    }
-
-    const res = await fetch("/api/auth/sms/send" , {
-      method : "POST" ,
-      headers : {
-        "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({phone})
-    })
-
-    if(res.status === 201) {
+    if (!phone || !name) {
       setIsLoadingOtp(false);
-      setName("")
-      setPhone("")
+      return swalAlert("نام و شماره تلفن خود را وارد کنید", "error", "فهمیدم");
+    }
+
+    const isValidPhone = validatePhone(phone);
+    if (!isValidPhone) {
+      setIsLoadingOtp(false);
+      return swalAlert(
+        "لطفا یک شماره تلفن معتبر وارد نمایید",
+        "error",
+        "فهمیدم"
+      );
+    }
+
+    const res = await fetch("/api/auth/sms/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phone }),
+    });
+
+    if (res.status === 201) {
+      setIsLoadingOtp(false);
       toastSuccess(
-        "ثبت نام با موفقیت انجام شد",
+        "کد یکبارمصرف با موفقیت ارسال شد",
         "top-center",
         5000,
         false,
@@ -161,8 +165,8 @@ const Register = ({ showLoginForm }) => {
       setIsRegisterWithOtp(true);
     } else if (res.status === 400) {
       setIsLoadingOtp(false);
-      setName("")
-      setPhone("")
+      setName("");
+      setPhone("");
       toastError(
         "شماره تلفن و نام خود را وارد نمایید سپس برای دریافت کد کلیک کنید",
         "top-center",
@@ -176,8 +180,8 @@ const Register = ({ showLoginForm }) => {
       );
     } else if (res.status === 422) {
       setIsLoadingOtp(false);
-      setName("")
-      setPhone("")
+      setName("");
+      setPhone("");
       toastError(
         "لطفا شماره تلفن معتبر وارد نمایید",
         "top-center",
@@ -189,7 +193,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    }  else if (res.status === 500) {
+    } else if (res.status === 500) {
       setName("");
       setPhone("");
       setIsLoadingOtp(false);
@@ -205,16 +209,11 @@ const Register = ({ showLoginForm }) => {
         "colored"
       );
     }
-
-  }
+  };
 
   return (
     <>
-      {isRegisterWithOtp ? (
-        <>
-          <Sms hideOtpForm={hideOtpForm} />
-        </>
-      ) : (
+      {!isRegisterWithOtp ? (
         <>
           <div className={styles.form}>
             <input
@@ -249,15 +248,13 @@ const Register = ({ showLoginForm }) => {
             )}
             <p
               onClick={() => {
-                setIsLoadingOtp(true)
-                sendCode()
+                setIsLoadingOtp(true);
+                sendCode();
               }}
               style={{ marginTop: "1rem" }}
               className={styles.btn}
             >
-             {
-              isLoadingOtp ? ("لطفا منتظر بمانید..") : "ثبت نام با کد تایید"
-             } 
+              {isLoadingOtp ? "لطفا منتظر بمانید.." : "ثبت نام با کد تایید"}
             </p>
 
             <button
@@ -281,6 +278,10 @@ const Register = ({ showLoginForm }) => {
           <Link href={"/"} className={styles.redirect_to_home}>
             لغو
           </Link>
+        </>
+      ) : (
+        <>
+          <Sms hideOtpForm={hideOtpForm} phone={phone} />
         </>
       )}
     </>
