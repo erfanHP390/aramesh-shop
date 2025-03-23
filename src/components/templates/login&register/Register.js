@@ -16,6 +16,7 @@ const Register = ({ showLoginForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingOtp, setIsLoadingOtp] = useState(false);
   const router = useRouter()
 
   const hideOtpForm = () => setIsRegisterWithOtp(false);
@@ -121,6 +122,92 @@ const Register = ({ showLoginForm }) => {
     }
   };
 
+  const sendCode = async () => {
+
+    if(!phone || !name) {
+      setIsLoadingOtp(false)
+      return swalAlert("نام و شماره تلفن خود را وارد کنید" , "error" , "فهمیدم")
+    }
+
+    const isValidPhone = validatePhone(phone)
+    if(!isValidPhone) {
+      setIsLoadingOtp(false)
+      return swalAlert("لطفا یک شماره تلفن معتبر وارد نمایید" , "error" , "فهمیدم")
+    }
+
+    const res = await fetch("/api/auth/sms/send" , {
+      method : "POST" ,
+      headers : {
+        "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({phone})
+    })
+
+    if(res.status === 201) {
+      setIsLoadingOtp(false);
+      setName("")
+      setPhone("")
+      toastSuccess(
+        "ثبت نام با موفقیت انجام شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      setIsRegisterWithOtp(true);
+    } else if (res.status === 400) {
+      setIsLoadingOtp(false);
+      setName("")
+      setPhone("")
+      toastError(
+        "شماره تلفن و نام خود را وارد نمایید سپس برای دریافت کد کلیک کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoadingOtp(false);
+      setName("")
+      setPhone("")
+      toastError(
+        "لطفا شماره تلفن معتبر وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }  else if (res.status === 500) {
+      setName("");
+      setPhone("");
+      setIsLoadingOtp(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+
+  }
+
   return (
     <>
       {isRegisterWithOtp ? (
@@ -161,11 +248,16 @@ const Register = ({ showLoginForm }) => {
               />
             )}
             <p
-              onClick={() => setIsRegisterWithOtp(true)}
+              onClick={() => {
+                setIsLoadingOtp(true)
+                sendCode()
+              }}
               style={{ marginTop: "1rem" }}
               className={styles.btn}
             >
-              ثبت نام با کد تایید
+             {
+              isLoadingOtp ? ("لطفا منتظر بمانید..") : "ثبت نام با کد تایید"
+             } 
             </p>
 
             <button
