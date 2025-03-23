@@ -15,7 +15,7 @@ const schema =new mongoose.Schema({
     },
     times: {
         type: Number,
-        default: 4
+        default: 0
     }
 })
 
