@@ -14,44 +14,55 @@ const stateOptions = stateData();
 function Table() {
   const [cart, setCart] = useState([]);
   const [discount, setDiscount] = useState("");
+  const [totalPrice , setTotalPrice] = useState(0)
+  const [productPrice , setProductPrice] = useState(0)
+  
   const [stateSelectedOption, setStateSelectedOption] = useState(null);
   const [changeAddress, setChangeAddress] = useState(false);
+  
 
   useEffect(() => {
     const getCart = JSON.parse(localStorage.getItem("cart")) || [];
 
     setCart(getCart);
   }, []);
-
+  
   const calcTotalPrice = () => {
-    let totalPrice = 0;
+    let price = 0;
 
     if (cart.length) {
-      totalPrice = cart.reduce(
+      price = cart.reduce(
         (prev, current) => prev + current.price * current.count,
         0
       );
     }
 
     if (stateSelectedOption) {
-      totalPrice = totalPrice + stateSelectedOption.price;
+      price = price + stateSelectedOption.price;
+      setTotalPrice(price)
     }
 
-    return totalPrice;
-  };
 
+    setTotalPrice(price)
+  };
   const calcProductPrice = () => {
-    let productPrice = 0;
+    let productsPrices = 0;
 
     if (cart.length) {
-      productPrice = cart.reduce(
+      productsPrices = cart.reduce(
         (prev, current) => prev + current.price * current.count,
         0
       );
+
+      setProductPrice(productsPrices)
     }
 
-    return productPrice;
+    setProductPrice(productsPrices)
   };
+
+  useEffect(calcTotalPrice , [cart , stateSelectedOption])
+  useEffect(calcProductPrice , [cart , stateSelectedOption])
+
 
   const discountHandler = async () => {
     if (!discount) {
@@ -68,7 +79,15 @@ function Table() {
 
 
     if (res.status === 200) {
-      setDiscount("");
+      const discountCode = await res.json();
+      if(stateOptions && stateSelectedOption) {
+        const newPrice = (productPrice - (productPrice * discountCode.percent) / 100) + stateSelectedOption.price;
+        setTotalPrice(newPrice)
+      } else {
+        const newPrice = (productPrice - (productPrice * discountCode.percent) / 100);
+        setTotalPrice(newPrice);
+      }
+
       toastSuccess(
         "کد تخفیف با موفقیت اعمال شد",
         "top-center",
@@ -135,6 +154,7 @@ function Table() {
     }
   };
 
+
   return (
     <>
       {" "}
@@ -200,7 +220,7 @@ function Table() {
 
         <div className={totalStyles.subtotal}>
           <p>جمع کالاهای خریداری شده </p>
-          <p>{calcProductPrice().toLocaleString()} تومان</p>
+          <p>{productPrice.toLocaleString()} تومان</p>
         </div>
 
         {stateSelectedOption && (
@@ -272,13 +292,16 @@ function Table() {
             />
             <input type="text" placeholder="شهر" />
             <input type="text" placeholder="کد پستی" />
-            <button onClick={() => setChangeAddress(false)}>بروزرسانی</button>
+            <button onClick={() => {
+              setChangeAddress(false)
+              discountHandler()
+            }}>بروزرسانی</button>
           </div>
         )}
 
         <div className={totalStyles.total}>
           <p>مجموع</p>
-          <p>{calcTotalPrice().toLocaleString()} تومان</p>
+          <p>{totalPrice.toLocaleString()} تومان</p>
         </div>
         <Link href={"/checkout"}>
           <button className={totalStyles.checkout_btn}>
