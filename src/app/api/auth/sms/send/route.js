@@ -1,7 +1,8 @@
 import connectToDB from "@/configs/db";
 import { validatePhone } from "@/utils/auth";
 const request = require("request");
-import OtpModel from "@/models/Otp"
+import OtpModel from "@/models/Otp";
+import UserModel from "@/models/User";
 
 export async function POST(req) {
   try {
@@ -29,6 +30,18 @@ export async function POST(req) {
       );
     }
 
+    const isUserExist = await UserModel.findOne({ phone });
+
+    if (isUserExist) {
+      return Response.json(
+        { message: "the username or email or phone is already exist" },
+        {
+          status: 422,
+        }
+      );
+    }
+
+
     const now = new Date();
     const expTime = now.getTime() + 180_000;
 
@@ -50,8 +63,7 @@ export async function POST(req) {
       },
       async function (error, response, body) {
         if (!error && response.statusCode === 200) {
-          
-            await OtpModel.create({phone , code , expTime})
+          await OtpModel.create({ phone, code, expTime });
 
           console.log(response.body);
         } else {
@@ -60,11 +72,12 @@ export async function POST(req) {
       }
     );
 
-    return Response.json({message: "code sent successfully"} , {
-        status: 201
-    })
-
-
+    return Response.json(
+      { message: "code sent successfully" },
+      {
+        status: 201,
+      }
+    );
   } catch (err) {
     return Response.json(
       { message: `interval error ${err}` },
