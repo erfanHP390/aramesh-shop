@@ -1,12 +1,16 @@
 import connectToDB from "@/configs/db";
 import OtpModel from "@/models/Otp";
 import { validatePhone } from "@/utils/auth";
+import UserModel from "@/models/User";
+import { generateAccessToken } from "@/utils/auth";
+import { roles } from "@/utils/constants";
 
 export async function POST(req) {
   try {
     connectToDB();
     const body = await req.json();
     const { phone, code } = body;
+    const email = `${phone}@gmail.com`;
 
     if (!phone || !code) {
       return Response.json(
@@ -44,7 +48,25 @@ export async function POST(req) {
         const now = date.getTime();
 
         if (otp.expTime > now) {
-          return Response.json({ message: "code is correct" }, { status: 200 });
+          const accessToken = generateAccessToken({ email });
+
+          const users = await UserModel.find({});
+
+          await UserModel.create({
+            phone,
+            email,
+            role: users.length > 0 ? roles.USER : roles.ADMIN,
+          });
+
+          return Response.json(
+            { message: "code is correct" },
+            {
+              status: 200,
+              headers: {
+                "Set-Cookie": `token=${accessToken};path=/;httpOnly=true`,
+              },
+            }
+          );
         } else {
           return Response.json({ message: "code is expired" }, { status: 410 });
         }
@@ -59,10 +81,9 @@ export async function POST(req) {
     } else {
       if (!otpCode) {
         if (otpPhone.times === 3) {
-
-            setTimeout(async () => {
-                await OtpModel.findOneAndDelete({phone})
-            }, 300000);
+          setTimeout(async () => {
+            await OtpModel.findOneAndDelete({ phone });
+          }, 300000);
 
           return Response.json(
             { message: "you have many try please try again later" },
@@ -81,7 +102,10 @@ export async function POST(req) {
           }
         );
       }
-      return Response.json({message: "code is not correct or is invalid"} , {status: 419});
+      return Response.json(
+        { message: "code is not correct or is invalid" },
+        { status: 419 }
+      );
     }
   } catch (err) {
     return Response.json(
