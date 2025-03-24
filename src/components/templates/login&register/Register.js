@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./Register.module.css";
 import Link from "next/link";
 import Sms from "./Sms";
-import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toastSuccess, toastError, swalAlert } from "@/utils/helpers";
 import { validatePhone, validateEmail, validatePassword } from "@/utils/auth";
@@ -163,6 +162,7 @@ const Register = ({ showLoginForm }) => {
         "colored"
       );
       setIsRegisterWithOtp(true);
+      router.replace("/p-user")
     } else if (res.status === 400) {
       setIsLoadingOtp(false);
       setName("");
@@ -183,7 +183,7 @@ const Register = ({ showLoginForm }) => {
       setName("");
       setPhone("");
       toastError(
-        "لطفا شماره تلفن معتبر وارد نمایید",
+        "شماره تلفن نامعتبر است یا از قبل ثبت شده است",
         "top-center",
         5000,
         false,
