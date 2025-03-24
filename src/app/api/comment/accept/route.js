@@ -1,11 +1,18 @@
 import connectToDB from "@/configs/db"
 import CommentModel from "@/models/Comment"
+import { authAdmin } from "@/utils/authUserLink"
 import { isValidObjectId } from "mongoose"
 
 export async function PUT(req) {
 
     try {
         connectToDB()
+
+        const isAdmin = await authAdmin()
+
+        if(!isAdmin) {
+            throw new Error("this api is protected and you can not access")
+        }
 
         const body = await req.json()
         const {id} = body
@@ -31,7 +38,7 @@ export async function PUT(req) {
         return Response.json({message: "is accepted by admin successfully"})
 
     } catch (err) {
-        return Response.json({message: `interval error server => ${err}`} , {
+        return Response.json({message: `interval error server => ${err.message}`} , {
             status: 500
         })
     }
