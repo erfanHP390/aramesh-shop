@@ -9,8 +9,24 @@ export async function POST(req) {
 
   try {
 
-    const body = await req.json();
-    const { name, price, shortDesc, longDesc, weight, suitableFor, smell, tags } = body;
+    const formData = await req.formData();
+
+      const name = formData.get("name") 
+      const price = formData.get("price") 
+      const shortDesc = formData.get("shortDesc") 
+      const longDesc = formData.get("longDesc") 
+      const weight = formData.get("weight") 
+      const suitableFor = formData.get("suitableFor") 
+      const smell = formData.get("smell") 
+      const tags = JSON.stringify(formData.get("tags"))
+      const img = formData.get("img")
+
+      const buffer = Buffer.from(await img.arrayBuffer());
+      const filename = Date.now() + img.name;
+      const imgPath = path.join(process.cwd() , "public/uploads/" + filename)
+  
+      await writeFile(imgPath , buffer)
+
 
     if(!name || !price || !shortDesc || !longDesc || !weight || !smell || !tags) {
       return Response.json({message: "all fields must have something expect score"} , {
@@ -18,7 +34,14 @@ export async function POST(req) {
       } )
     }
 
-     await ProductModel.create({ name, price, shortDesc, longDesc, weight, suitableFor, smell, tags })
+    if(!img) {
+      return Response.json({message: "product has not image"} , {
+        status: 400
+      })
+    }
+
+
+     await ProductModel.create({ name, price, shortDesc, longDesc, weight, suitableFor, smell, tags , img: `http://localhost:3000/uploads/${filename}` })
 
     return Response.json({message: "product is created successfully"} , {
         status: 201
