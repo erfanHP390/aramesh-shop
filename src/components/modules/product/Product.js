@@ -4,12 +4,12 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { CiSearch, CiHeart } from "react-icons/ci";
 import styles from "./Product.module.css"
 
-export default function Product({name , price}) {
+export default function Product({_id ,name , price , img}) {
   return (
     <div className={styles.card}>
       <div className={styles.details_container}>
         <img
-          src="https://set-coffee.com/wp-content/uploads/2021/10/041-430x430.png"
+          src={img}
           alt=""
         />
         <div className={styles.icons}>
@@ -26,7 +26,7 @@ export default function Product({name , price}) {
       </div>
 
       <div className={styles.details}>
-        <Link href={"/"}>
+        <Link href={`/product/${_id}`}>
         {name}
         </Link>
         <div>
