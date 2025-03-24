@@ -38,6 +38,10 @@ const schema = mongoose.Schema({
         type: [String],
         required: true
     },
+    img: {
+        type: String,
+        required: true
+    },
     comments: {
         type: [{
             type: mongoose.Types.ObjectId,
