@@ -43,12 +43,15 @@ export async function POST(req) {
                 refreshToken
             }
         })
+
+        const headers = new Headers()
+        headers.append("Set-Cookie", `token=${accessToken};path=/;httpOnly=true`)
+        headers.append("Set-Cookie", `refresh-token=${refreshToken};path=/;httpOnly=true`)
+
     
         return Response.json({message: "user logged in successfully"} , {
             status: 200,
-            headers: {
-                "Set-Cookie" : `token=${accessToken};path=/;httpOnly=true`
-            }
+            headers
         })
     } catch (err) {
         return Response.json({message: "interval error server for signin"} , {
