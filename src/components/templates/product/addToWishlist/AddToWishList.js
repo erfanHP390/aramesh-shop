@@ -1,7 +1,6 @@
 "use client";
 import connectToDB from "@/configs/db";
-import { swalAlert, toastSuccess } from "@/utils/helpers";
-import Link from "next/link";
+import { swalAlert } from "@/utils/helpers";
 import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 
