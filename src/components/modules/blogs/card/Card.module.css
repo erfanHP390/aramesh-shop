@@ -1,0 +1,73 @@
+.card {
+    background-color: #A68A64; /* قهوه‌ای روشن */
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.title:hover {
+    color: #CC5500; /* نارنجی گرم */
+}
+
+.title {
+    font-size: 20px;
+    transition: 0.1s all ease-in;
+    line-height: 1.5em;
+    font-weight: 700;
+    margin: 15px 0;
+    color: #FFD700; /* بژ روشن */
+    display: block;
+    text-decoration: none;
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    position: relative;
+    max-height: calc(1.6em * 3); /* ارتفاع برای 3 خط */
+    overflow: hidden;
+}
+
+.description::after {
+    content: '...';
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to right, transparent, #A68A64 50%);
+    padding-left: 10px;
+}
+
+.readMore {
+    font-size: 14px;
+    display: block;
+    margin-top: 1rem;
+    color: #FFD700; /* طلایی */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.readMore:hover {
+    color: #CC5500; /* نارنجی گرم */
+}
+
+.to_blog {
+    display: flex;
+    justify-content: flex-start;
+    transition: all 0.5s ease;
+}
+
+.to_blog:hover {
+    color: #CC5500;
+}
