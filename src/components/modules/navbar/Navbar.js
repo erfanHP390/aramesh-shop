@@ -32,7 +32,7 @@ export default function Navbar({ isLogin }) {
             <Link href="/category">فروشگاه</Link>
           </li>
           <li>
-            <Link href="/blog">وبلاگ</Link>
+            <Link href="/blogs">وبلاگ</Link>
           </li>
           <li>
             <Link href="/contact-us">تماس با ما</Link>
@@ -111,7 +111,7 @@ export default function Navbar({ isLogin }) {
                 <Link href="/category">فروشگاه</Link>
               </li>
               <li>
-                <Link href="/blog">وبلاگ</Link>
+                <Link href="/blogs">وبلاگ</Link>
               </li>
               <li>
                 <Link href="/contact-us">تماس با ما</Link>
