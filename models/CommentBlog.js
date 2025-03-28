@@ -18,6 +18,10 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
+    isAccept: {
+        type: Boolean,
+        default: false
+    },
 
 
 }, { timestamps: true });
