@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("./Blog")
 
 const schema = mongoose.Schema({
     
@@ -22,6 +23,10 @@ const schema = mongoose.Schema({
         type: Boolean,
         default: false
     },
+    blogID: {
+        type: mongoose.Types.ObjectId,
+        ref: "Blog"
+    }
 
 
 }, { timestamps: true });

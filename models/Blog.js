@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("./CommentBlog")
 
 const schema = mongoose.Schema({
     
@@ -25,7 +26,13 @@ const schema = mongoose.Schema({
     shortDesc: {
         type: String,
         required: true
-    }
+    },
+        comments: {
+            type: [{
+                type: mongoose.Types.ObjectId,
+                ref: "CommentBlog"
+            }],
+        },
 
 }, { timestamps: true });
 
