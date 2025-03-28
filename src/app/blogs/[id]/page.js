@@ -22,7 +22,7 @@ async function page({params}) {
     <BreadCrumb route={'قهوه'} />
     <div className={styles.container}>
         <DetailsArticle blog={JSON.parse(JSON.stringify(blog))} />
-        <CommentArticle  comments={JSON.parse(JSON.stringify(blog.comments))} />
+        <CommentArticle  comments={JSON.parse(JSON.stringify(blog.comments))} blogId={id} />
     </div>
 
     <Footer />
