@@ -28,7 +28,7 @@ export async function POST(req) {
       );
     }
 
-    const commentForBlog = CommentBlogModel.create({
+    const commentForBlog =await CommentBlogModel.create({
       name,
       email,
       website,
@@ -36,7 +36,7 @@ export async function POST(req) {
       blogID,
     });
 
-    await BlogModel.findOneAndUpdate(
+    const updatedComment = await BlogModel.findOneAndUpdate(
       { _id: blogID },
       {
         $push: {
