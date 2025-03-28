@@ -1,18 +1,131 @@
 "use client";
 import { useState } from "react";
 import styles from "./CommentArticle.module.css";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { validateEmail } from "@/utils/auth";
 
-function CommentArticle({ comments }) {
+function CommentArticle({ comments, blogId }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [brand, setBrand] = useState("");
+  const [description, setDescription] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const AddComment = async (event) => {
+    event.preventDefault();
+
+    if (!name || !email || !description || !blogId || !brand) {
+      setIsLoading(false);
+      return swalAlert("لطفا تمامی موارد   را پر کنید", "error", "فهمیدم");
+    }
+
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      setIsLoading(false);
+      return swalAlert("لطفا ایمیل خود را صحیح وارد کنید", "error", "فهمیدم");
+    }
+
+    const newCommentBlog = {
+      name,
+      email,
+      description,
+      blogId,
+      brand,
+      blogID: blogId,
+    };
+
+    const res = await fetch("/api/blog/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCommentBlog),
+    });
+
+    if (res.status === 201) {
+      setIsLoading(false);
+      setName("");
+      setEmail("");
+      setBrand("");
+      setDescription("");
+      toastSuccess(
+        "نظر شما با موفقیت انجام شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      setName("");
+      setEmail("");
+      setBrand("");
+      setDescription("");
+      toastError(
+        "لطفا تمامی موارد را پرکنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      setName("");
+      setEmail("");
+      setBrand("");
+      setDescription("");
+      toastError(
+        "لطفا یک ایمیل معتبر وراد کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      setName("");
+      setEmail("");
+      setBrand("");
+      setDescription("");
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
   return (
     <div className={styles.commentContainer}>
       <div className={styles.commentsWrapper}>
         <div className={styles.commentsHeader}>
-          <h3 className={styles.commentSectionTitle}>نظرات کاربران ({comments.filter(comment => comment.isAccept).length})</h3>
+          <h3 className={styles.commentSectionTitle}>
+            نظرات کاربران (
+            {comments.filter((comment) => comment.isAccept).length})
+          </h3>
         </div>
 
         <div className={styles.commentsList}>
-          {
-            comments.map((comment) =>
+          {comments.map(
+            (comment) =>
               comment.isAccept && (
                 <div key={comment._id} className={styles.commentCard}>
                   <div className={styles.commentAvatar}>
@@ -40,8 +153,8 @@ function CommentArticle({ comments }) {
                     </p>
                   </div>
                 </div>
-              ) 
-            )}
+              )
+          )}
         </div>
       </div>
 
@@ -59,8 +172,8 @@ function CommentArticle({ comments }) {
           <textarea
             className={styles.formTextarea}
             id="comment"
-            required
-            rows="6"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
           />
         </div>
 
@@ -73,6 +186,8 @@ function CommentArticle({ comments }) {
               className={styles.formInput}
               type="text"
               id="name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
               required
             />
           </div>
@@ -85,6 +200,8 @@ function CommentArticle({ comments }) {
               className={styles.formInput}
               type="email"
               id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               required
             />
           </div>
@@ -93,7 +210,13 @@ function CommentArticle({ comments }) {
             <label className={styles.formLabel} htmlFor="website">
               وب‌سایت
             </label>
-            <input className={styles.formInput} type="url" id="website" />
+            <input
+              className={styles.formInput}
+              type="text"
+              id="website"
+              value={brand}
+              onChange={(event) => setBrand(event.target.value)}
+            />
           </div>
         </div>
 
@@ -109,8 +232,14 @@ function CommentArticle({ comments }) {
           </label>
         </div>
 
-        <button type="submit" className={styles.submitBtn}>
-          ارسال دیدگاه
+        <button
+          className={styles.submitBtn}
+          onClick={(event) => {
+            setIsLoading(true);
+            AddComment(event);
+          }}
+        >
+          {isLoading ? "در حال ثبت ، لطفا منتظر بمانید" : "ارسال دیدگاه"}
         </button>
       </form>
     </div>
