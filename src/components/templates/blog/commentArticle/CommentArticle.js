@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CommentArticle.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
@@ -7,14 +7,27 @@ import { validateEmail } from "@/utils/auth";
 function CommentArticle({ comments, blogId }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [brand, setBrand] = useState("");
+  const [education, setEducation] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaveUserInfo , setIsSaveUserInfo] = useState(false)
+
+    useEffect(() => {
+  
+      const getUserInfoComment = JSON.parse(localStorage.getItem("UserReaderBlogs"))
+  
+      if(getUserInfoComment) {
+        setName(getUserInfoComment.name)
+        setEmail(getUserInfoComment.email)
+        setEducation(getUserInfoComment.education)
+      }
+  
+    } , [])
 
   const AddComment = async (event) => {
     event.preventDefault();
 
-    if (!name || !email || !description || !blogId || !brand) {
+    if (!name || !email || !description || !blogId || !education) {
       setIsLoading(false);
       return swalAlert("لطفا تمامی موارد   را پر کنید", "error", "فهمیدم");
     }
@@ -25,12 +38,21 @@ function CommentArticle({ comments, blogId }) {
       return swalAlert("لطفا ایمیل خود را صحیح وارد کنید", "error", "فهمیدم");
     }
 
+    if(isSaveUserInfo) {
+      const userReaderBlogInfo = {
+        name,
+        email,
+        education
+      }
+
+      localStorage.setItem("UserReaderBlogs" , JSON.stringify(userReaderBlogInfo))
+    }
+
     const newCommentBlog = {
       name,
       email,
       description,
-      blogId,
-      brand,
+      education,
       blogID: blogId,
     };
 
@@ -46,7 +68,7 @@ function CommentArticle({ comments, blogId }) {
       setIsLoading(false);
       setName("");
       setEmail("");
-      setBrand("");
+      setEducation("");
       setDescription("");
       toastSuccess(
         "نظر شما با موفقیت انجام شد",
@@ -63,7 +85,7 @@ function CommentArticle({ comments, blogId }) {
       setIsLoading(false);
       setName("");
       setEmail("");
-      setBrand("");
+      setEducation("");
       setDescription("");
       toastError(
         "لطفا تمامی موارد را پرکنید",
@@ -80,7 +102,7 @@ function CommentArticle({ comments, blogId }) {
       setIsLoading(false);
       setName("");
       setEmail("");
-      setBrand("");
+      setEducation("");
       setDescription("");
       toastError(
         "لطفا یک ایمیل معتبر وراد کنید",
@@ -97,7 +119,7 @@ function CommentArticle({ comments, blogId }) {
       setIsLoading(false);
       setName("");
       setEmail("");
-      setBrand("");
+      setEducation("");
       setDescription("");
       toastError(
         "خطا در سرور ، لطفا بعدا تلاش کنید",
@@ -208,14 +230,14 @@ function CommentArticle({ comments, blogId }) {
 
           <div className={styles.formField}>
             <label className={styles.formLabel} htmlFor="website">
-              وب‌سایت
+              میزان تحصیلات
             </label>
             <input
               className={styles.formInput}
               type="text"
               id="website"
-              value={brand}
-              onChange={(event) => setBrand(event.target.value)}
+              value={education}
+              onChange={(event) => setEducation(event.target.value)}
             />
           </div>
         </div>
@@ -225,6 +247,7 @@ function CommentArticle({ comments, blogId }) {
             className={styles.checkboxInput}
             type="checkbox"
             id="saveInfo"
+            value={isSaveUserInfo}   onChange={(event) => setIsSaveUserInfo((prevValue) => !prevValue)}
           />
           <label className={styles.checkboxLabel} htmlFor="saveInfo">
             ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که دوباره دیدگاهی
