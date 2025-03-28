@@ -1,91 +1,234 @@
-.title {
+.commentContainer {
+    margin: 3rem 0;
+    direction: rtl;
+    font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+  }
+  
+  /* بخش نمایش نظرات */
+  .commentsWrapper {
+    margin-bottom: 3rem;
+    background-color: rgba(90, 62, 54, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #A68A64;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .commentsHeader {
+    padding: 20px;
+    background-color: rgba(90, 62, 54, 0.5);
+    border-bottom: 1px solid #A68A64;
+  }
+  
+  .commentSectionTitle {
     font-weight: 900;
     font-size: 22px;
-    margin-top: 3rem;
-    margin-bottom: 20px;
-    color: #D2B48C; /* بژ روشن */
-}
-
-.comment p,
-.comment label {
-    direction: rtl;
-    color: #fff; /* متن سفید */
-}
-
-.comment span {
-    color: #CC5500; /* نارنجی گرم */
-}
-
-.group {
-    flex-direction: column;
-    gap: 3px;
-    margin-top: 1rem;
+    color: #D2B48C;
+    margin: 0;
     display: flex;
-}
-
-.group textarea {
+    align-items: center;
+  }
+  
+  .commentsCount {
+    color: #D2B48C;
+    font-size: 0.9em;
+    margin-right: 8px;
+    font-weight: normal;
+  }
+  
+  .commentsList {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0 20px;
+  }
+  
+  .commentCard {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(166, 138, 100, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .commentCard:hover {
+    background-color: rgba(90, 62, 54, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    margin: 15px -10px;
+  }
+  
+  .commentAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #D2B48C;
+  }
+  
+  .commentAvatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .commentBody {
+    flex-grow: 1;
+  }
+  
+  .commentHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .commentAuthor {
+    font-weight: 700;
+    color: #D2B48C;
+    font-size: 16px;
+  }
+  
+  .commentDate {
+    color: #A68A64;
+    font-size: 14px;
+  }
+  
+  .commentContent {
+    color: #fff;
+    line-height: 1.8;
+    font-size: 15px;
+    text-align: justify;
+  }
+  
+  .emptyCommentsWrapper {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: rgba(90, 62, 54, 0.2);
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+  
+  .emptyComments {
+    color: #A68A64;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  /* استایل فرم */
+  .commentForm {
+    background-color: rgba(90, 62, 54, 0.5);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #A68A64;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formTitle {
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #D2B48C;
+    margin-top: 0;
+  }
+  
+  .formDescription {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .requiredStar {
+    color: #CC5500;
+  }
+  
+  .formField {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1.5rem;
+    display: flex;
+  }
+  
+  .formLabel {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .formTextarea {
     resize: none;
     width: 100%;
-    border: 1px solid #A68A64; /* قهوه‌ای روشن */
+    border: 1px solid #A68A64;
     direction: rtl;
     border-radius: 5px;
-    background-color: #5A3E36; /* قهوه‌ای تیره */
+    background-color: #5A3E36;
     color: white;
-    padding: 10px;
-}
-
-.groups {
+    padding: 12px 15px;
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.3s;
+    min-height: 150px;
+  }
+  
+  .formTextarea:focus {
+    outline: none;
+    border-color: #D2B48C;
+  }
+  
+  .formFieldsRow {
     width: 100%;
     display: flex;
     gap: 20px;
-}
-.groups .group{
-    width: 100%;
-}
-.group input{
-    padding: .8rem 1rem;
+  }
+  
+  .formInput {
+    padding: 12px 15px;
     direction: rtl;
-    background: #5A3E36; /* قهوه‌ای تیره */
-    border: 1px solid #A68A64; /* قهوه‌ای روشن */
+    background: #5A3E36;
+    border: 1px solid #A68A64;
     border-radius: 5px;
     color: white;
-}
-.checkbox{
+    font-family: inherit;
+    width: 100%;
+    font-size: 15px;
+    transition: border-color 0.3s;
+  }
+  
+  .formInput:focus {
+    outline: none;
+    border-color: #D2B48C;
+  }
+  
+  .formCheckbox {
     display: flex;
     gap: 10px;
-    flex-direction: row-reverse;
-    margin-top: 20px;
+    flex-direction: row;
+    margin-top: 25px;
     align-items: center;
-    color: #FFFFFF; /* متن سفید */
-}
-
-
-.checkbox input {
+  }
+  
+  .checkboxInput {
     -webkit-appearance: none;
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid #D2B48C; /* بژ روشن */
-    border-radius: 1px;
-    vertical-align: sub; 
-    transform: translateY(-10%);
+    width: 18px;
+    height: 18px;
+    border: 1px solid #D2B48C;
+    border-radius: 2px;
     outline: none;
     position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
   }
-  .checkbox input:checked {
-    background-color: #CC5500; /* نارنجی گرم */
-    border-color: #CC5500; /* نارنجی گرم */
+  
+  .checkboxInput:checked {
+    background-color: #CC5500;
+    border-color: #CC5500;
   }
-  .checkbox input:checked + label {
-    text-decoration: line-through;
-    color: #b3b3b3;
-    font-weight: 600;
-    background-color: #f7f7f7;
-  }
-  .checkbox input:checked:focus, .checkbox input:checked:hover {
-    box-shadow: 0 0 0 3px #D2B48C; /* بژ روشن */
-    border-color: #CC5500; /* نارنجی گرم */
-  }
-  .checkbox input:after {
+  
+  .checkboxInput:after {
     content: "";
     width: 100%;
     height: 100%;
@@ -97,60 +240,105 @@
     background-repeat: no-repeat;
     background-position: center;
   }
-  .checkbox input:focus, .checkbox input:hover {
-    box-shadow: 0 0 0 3px #D2B48C; /* بژ روشن */
-    border-color: #A68A64; /* قهوه‌ای روشن */
+  
+  .checkboxLabel {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
   }
-
-  .comment button:hover {
-    background-color: #FFD700; /* قهوه‌ای روشن */
-  }
-  .comment button {
-    padding: 12px 20px;
-    font-size: 13px;
-    line-height: 18px;
-    background-color: #CC5500; /* نارنجی گرم */
+  
+  .submitBtn {
+    padding: 14px 25px;
+    font-size: 15px;
+    background-color: #CC5500;
     color: white;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    outline: none;
-    border: 0px solid transparent; 
-    margin-top: 20px;
+    border: none;
+    margin-top: 25px;
     border-radius: 5px;
-    box-shadow: none;
-    vertical-align: middle;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-shadow: none;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.25s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
-
-@media (max-width: 768px) {
-    .groups {
-        flex-direction: column;
-        gap: 10px;
+  
+  .submitBtn:hover {
+    background-color: #FFD700;
+  }
+  
+  /* اسکرول بار سفارشی */
+  .commentsList::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .commentsList::-webkit-scrollbar-track {
+    background: rgba(90, 62, 54, 0.2);
+  }
+  
+  .commentsList::-webkit-scrollbar-thumb {
+    background-color: #A68A64;
+    border-radius: 3px;
+  }
+  
+  /* رسپانسیو */
+  @media (max-width: 768px) {
+    .commentContainer {
+      margin: 2rem 0;
     }
-    .title {
-        font-size: 20px;
-        margin-top: 2rem;
+    
+    .commentsWrapper, .commentForm {
+      border-radius: 6px;
     }
-}
-
-@media (max-width: 480px) {
-    .comment button {
-        width: 100%;
+    
+    .formFieldsRow {
+      flex-direction: column;
+      gap: 15px;
     }
-    .title {
-        font-size: 18px;
-    }   
-    .comment button {
-        text-align: center;
-        justify-content: center;
-        align-items: center;
+    
+    .commentSectionTitle, .formTitle {
+      font-size: 20px;
     }
-}
+    
+    .commentForm {
+      padding: 20px;
+    }
+    
+    .commentCard {
+      flex-direction: column;
+      gap: 12px;
+      padding: 15px 0;
+    }
+    
+    .commentAvatar {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .commentSectionTitle, .formTitle {
+      font-size: 18px;
+    }
+    
+    .commentsHeader, .commentForm {
+      padding: 15px;
+    }
+    
+    .commentsList {
+      padding: 0 10px;
+    }
+    
+    .commentCard:hover {
+      padding: 15px 5px;
+      margin: 10px -5px;
+    }
+    
+    .submitBtn {
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+  }
