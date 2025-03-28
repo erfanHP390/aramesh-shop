@@ -1,15 +1,23 @@
 // Articles.js
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import "./articles.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import Article from '@/components/modules/article/Article';
+import Article from "@/components/modules/article/Article";
 import styles from "./articles.module.css";
 
 export default function Articles() {
+  const [allArticles, setAllArticles] = useState([]);
+
+  useEffect(async () => {
+    const res = await fetch("/api/blog")
+      .then((res) => res.json())
+      .then((data) => setAllArticles(data));
+  }, []);
+
   return (
     <div className={styles.container}>
       <p className={styles.title}>مقالات ما</p>
@@ -43,33 +51,15 @@ export default function Articles() {
             },
           }}
         >
-          <SwiperSlide>
-            <Article />
+
+{
+  allArticles.map(article => (
+
+          <SwiperSlide  key={article._id}>
+            <Article {...article} />
           </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Article />
-          </SwiperSlide>
+  ))
+}
         </Swiper>
       </main>
     </div>
