@@ -11,9 +11,9 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    website: {
+    education: {
         type: String,
-        default: "www.ir"
+        required: true
     },
     description: {
         type: String,
