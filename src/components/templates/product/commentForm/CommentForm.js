@@ -14,9 +14,6 @@ const CommentForm = ({ productID }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaveUserInfo , setIsSaveUserInfo] = useState(false)
 
-  console.log(isSaveUserInfo);
-  
-
   const setCommentScore =  (score) => {
     setScore(score)
     swalAlert("امتیاز شما با موفقیتا ثبت شد" , "success" , "ادامه ثبت نظر")
