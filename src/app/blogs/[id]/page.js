@@ -6,6 +6,7 @@ import DetailsArticle from '@/components/templates/blog/detailsArticle/DetailsAr
 import styles from "@/styles/article.module.css"
 import BlogModel from "@/models/Blog"
 import connectToDB from '@/configs/db'
+import { authUser } from '@/utils/authUserLink'
 
 
 async function page({params}) {
@@ -13,12 +14,13 @@ async function page({params}) {
   connectToDB()
 
   const id = params.id 
+  const user = await authUser()
 
   const blog = await BlogModel.findOne({_id: id}).populate("comments").lean()
 
   return (
     <>
-    <Navbar />
+    <Navbar isLogin={user ? true : false} />
     <BreadCrumb route={'قهوه'} />
     <div className={styles.container}>
         <DetailsArticle blog={JSON.parse(JSON.stringify(blog))} />
