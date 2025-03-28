@@ -5,13 +5,16 @@ import CommentArticle from '@/components/templates/blog/commentArticle/CommentAr
 import DetailsArticle from '@/components/templates/blog/detailsArticle/DetailsArticle'
 import styles from "@/styles/article.module.css"
 import BlogModel from "@/models/Blog"
+import connectToDB from '@/configs/db'
 
 
 async function page({params}) {
 
+  connectToDB()
+
   const id = params.id 
 
-  const blog = await BlogModel.findOne({_id: id} , "-__v  -updatedAt").lean()
+  const blog = await BlogModel.findOne({_id: id}).populate("comments").lean()
 
   return (
     <>
@@ -19,7 +22,7 @@ async function page({params}) {
     <BreadCrumb route={'قهوه'} />
     <div className={styles.container}>
         <DetailsArticle blog={JSON.parse(JSON.stringify(blog))} />
-        <CommentArticle />
+        <CommentArticle  comments={JSON.parse(JSON.stringify(blog.comments))} />
     </div>
 
     <Footer />
