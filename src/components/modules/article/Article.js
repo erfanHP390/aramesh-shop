@@ -11,23 +11,22 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-function Article() {
+function Article({_id , titr , title , author , img , createdAt , comments}) {
   return (
     <div className={styles.card}>
-      <Link className={styles.img_container} href={"/article/123"}>
+      <Link className={styles.img_container} href={`/article/${_id}`}>
         <img
-          src="https://set-coffee.com/wp-content/uploads/elementor/thumbs/-%D9%82%D9%87%D9%88%D9%87-%D8%A8%D8%A7-%D8%B4%DB%8C%D8%B1-qi8xuncj4ordgstrl43mbg5jfj1ezzamf6v9rnitn0.jpg"
+          src={img}
           alt=""
         />
       </Link>
       <div className={styles.date}>
-        <span>24</span>
-        <span>بهمن</span>
+        <span>{new Date(createdAt).toLocaleDateString("fa-IR")}</span>
       </div>
       <div className={styles.details}>
-        <span className={styles.tag}>قهوه</span>
-        <Link href={"/article/123"} className={styles.title}>
-          مصرف قهوه با شیر برای کاهش التهاب
+        <span className={styles.tag}>{titr}</span>
+        <Link href={`/article/${_id}`} className={styles.title}>
+          {title}
         </Link>
         <div>
           <p>نویسنده</p>
@@ -35,10 +34,10 @@ function Article() {
             src="https://secure.gravatar.com/avatar/665a1a4dc7cc052eaa938253ef413a78?s=32&d=mm&r=g"
             alt=""
           />
-          <p>Mohebi</p>
+          <p>{author}</p>
           <div>
             <MdOutlineSms />
-            <span>0</span>
+            <span>{comments.length}</span>
           </div>
           <div className={styles.share}>
             <IoShareSocialOutline />
