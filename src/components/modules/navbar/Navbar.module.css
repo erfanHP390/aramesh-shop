@@ -233,7 +233,7 @@
 }
 
 /* رسپانسیو برای اندازه‌های کوچکتر از 853px */
-@media (max-width: 853px) {
+@media (max-width: 875px) {
   .desktop_links {
     display: none;
   }
@@ -253,7 +253,7 @@
 }
 
 /* سایدبار در 853px و بزرگتر نمایش داده نشود */
-@media (min-width: 853px) {
+@media (min-width: 875px) {
   .sidebar {
     display: none;
   }
