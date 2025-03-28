@@ -64,3 +64,21 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req) {
+  try {
+
+    connectToDB()
+    const blogs = await BlogModel.find({}).populate("comments");
+
+    return Response.json(blogs)
+
+  } catch (err) {
+    return Response.json(
+      { message: `interval error server ${err}` },
+      {
+        status: 500,
+      }
+    );
+  }
+}
