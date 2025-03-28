@@ -3,33 +3,34 @@ import Card from "@/components/modules/blogs/card/Card";
 import styles from "@/styles/articles.module.css";
 import { useState } from "react";
 
-function ArticleLoad() {
+function ArticleLoad({blogs}) {
 
-    const [visibleArticles, setVisibleArticles] = useState(6); // تعداد اولیه مقالات نمایش داده شده
-    // const articlesToShow = allArticles.slice(0, visibleArticles);
+  console.log(blogs);
   
-    const loadMore = () => {
-      setVisibleArticles(prev => prev + 3); // هر بار 3 مقاله بیشتر نمایش داده می‌شود
-    };
+
+  const [visibleArticles, setVisibleArticles] = useState(6);
+  const articlesToShow = blogs.slice(0, visibleArticles);
+
+  const loadMore = () => {
+    setVisibleArticles(prev => prev + 3);
+  };
 
   return (
-    <>
-      <div className={styles.articles}>
-        {/* {articlesToShow.map((article) => ( */}
-          <Card
-            // key={article.id}
-            // title={article.title}
-            // description={article.desc}
-          />
-        {/* // ))} */}
+    <div className={styles.articlesWrapper}>
+      <div className={styles.articlesGrid}>
+        {articlesToShow.map((article) => (
+          <Card key={article._id} {...article} />
+        ))}
       </div>
-
-      {/* {visibleArticles < allArticles.length && ( */}
-        <button className={styles.loadMoreBtn} onClick={loadMore}>
-          نمایش مقالات بیشتر
-        </button>
-      {/* )} */}
-    </>
+      
+      {visibleArticles < blogs.length && (
+        <div className={styles.buttonContainer}>
+          <button className={styles.loadMoreBtn} onClick={loadMore}>
+            نمایش مقالات بیشتر
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
