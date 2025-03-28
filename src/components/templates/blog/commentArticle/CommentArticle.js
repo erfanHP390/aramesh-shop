@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import styles from "./CommentArticle.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 
 function CommentArticle({ comments, blogId }) {
+
+  const router = useRouter()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [education, setEducation] = useState("");
@@ -81,6 +84,7 @@ function CommentArticle({ comments, blogId }) {
         undefined,
         "colored"
       );
+      router.refresh()
     } else if (res.status === 400) {
       setIsLoading(false);
       setName("");
