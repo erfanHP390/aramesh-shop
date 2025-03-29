@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./login.module.css";
 import Sms from "./Sms";
 import Link from "next/link";
@@ -12,7 +12,19 @@ const Login = ({ showRegisterForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaveUserLoginInfo , setIsSaveUserLoginInfo] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+
+    const getUserInfoLogin = JSON.parse(localStorage.getItem("userLogin"))
+
+    if(getUserInfoLogin) {
+      setEmail(getUserInfoLogin.email)
+      setPassword(getUserInfoLogin.password)
+    }
+
+  } , [])
 
   const loginWithPassword = async () => {
     if (!email) {
@@ -43,6 +55,10 @@ const Login = ({ showRegisterForm }) => {
     }
 
     const user = { email, password };
+
+    if(isSaveUserLoginInfo) {
+      localStorage.setItem("userLogin" , JSON.stringify(user))
+    }
 
     const res = await fetch("/api/auth/signin", {
       method: "POST",
@@ -140,7 +156,9 @@ const Login = ({ showRegisterForm }) => {
               placeholder="رمز عبور"
             />
             <div className={styles.checkbox}>
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" name="" id="" value={isSaveUserLoginInfo} 
+              onChange={(event) => setIsSaveUserLoginInfo((prevValue) => !prevValue)}
+              />
               <p>مرا به یاد داشته باش</p>
             </div>
             <button
