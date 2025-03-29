@@ -1,6 +1,6 @@
 import connectToDB from "@/configs/db";
 import OtpModel from "@/models/Otp";
-import { validatePhone } from "@/utils/auth";
+import { generateRefreshToken, validatePhone } from "@/utils/auth";
 import UserModel from "@/models/User";
 import { generateAccessToken } from "@/utils/auth";
 import { roles } from "@/utils/constants";
@@ -48,25 +48,51 @@ export async function POST(req) {
         const now = date.getTime();
 
         if (otp.expTime > now) {
-          const accessToken = generateAccessToken({ email });
 
-          const users = await UserModel.find({});
+          const isUserExist = await UserModel.findOne({phone})
 
-          await UserModel.create({
-            phone,
-            email,
-            role: users.length > 0 ? roles.USER : roles.ADMIN,
-          });
+          if(isUserExist) {
+            const accessToken = generateAccessToken({email: isUserExist.email})
+            const refreshToken = generateRefreshToken({email: isUserExist.email})
+    
+            await UserModel.findOneAndUpdate({phone} , {
+                $set: {
+                    refreshToken
+                }
+            })
+    
+            const headers = new Headers()
+            headers.append("Set-Cookie", `token=${accessToken};path=/;httpOnly=true`)
+            headers.append("Set-Cookie", `refresh-token=${refreshToken};path=/;httpOnly=true`)
+    
+        
+            return Response.json({message: "code is corrected for login"} , {
+                status: 200,
+                headers
+            })
+          } else {
+            const accessToken = generateAccessToken({ email });
 
-          return Response.json(
-            { message: "code is correct" },
-            {
-              status: 200,
-              headers: {
-                "Set-Cookie": `token=${accessToken};path=/;httpOnly=true`,
-              },
-            }
-          );
+            const users = await UserModel.find({});
+  
+            await UserModel.create({
+              phone,
+              email,
+              role: users.length > 0 ? roles.USER : roles.ADMIN,
+            });
+  
+            return Response.json(
+              { message: "code is corrected for sign-up" },
+              {
+                status: 200,
+                headers: {
+                  "Set-Cookie": `token=${accessToken};path=/;httpOnly=true`,
+                },
+              }
+            );
+          }
+
+
         } else {
           return Response.json({ message: "code is expired" }, { status: 410 });
         }
