@@ -4,15 +4,18 @@ import styles from "./login.module.css";
 import Sms from "./Sms";
 import Link from "next/link";
 import { swalAlert, toastSuccess , toastError } from "@/utils/helpers";
-import { validateEmail, validatePassword } from "@/utils/auth";
+import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 
 const Login = ({ showRegisterForm }) => {
   const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaveUserLoginInfo , setIsSaveUserLoginInfo] = useState(false)
+  const [isLoadingOtp, setIsLoadingOtp] = useState(false);
+  const [isShowInputPhone , setIsShowInputPhone] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -134,19 +137,111 @@ const Login = ({ showRegisterForm }) => {
 
   const hideOtpForm = () => setIsLoginWithOtp(false);
 
+  const sendCode = async () => {
+    if (!phone) {
+      setIsLoadingOtp(false);
+      return swalAlert("نام و شماره تلفن خود را وارد کنید", "error", "فهمیدم");
+    }
+
+    const isValidPhone = validatePhone(phone);
+    if (!isValidPhone) {
+      setIsLoadingOtp(false);
+      return swalAlert(
+        "لطفا یک شماره تلفن معتبر وارد نمایید",
+        "error",
+        "فهمیدم"
+      );
+    }
+
+    const res = await fetch("/api/auth/sms/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phone }),
+    });
+
+    if (res.status === 201) {
+      setIsLoadingOtp(false);
+      toastSuccess(
+        "کد یکبارمصرف با موفقیت ارسال شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      setIsLoginWithOtp(true);
+    } else if (res.status === 400) {
+      setIsLoadingOtp(false);
+      setEmail("");
+      toastError(
+        "شماره تلفن و نام خود را وارد نمایید سپس برای دریافت کد کلیک کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoadingOtp(false);
+      setEmail("");
+      toastError(
+        "شماره تلفن نامعتبر است یا از قبل ثبت شده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setEmail("");
+      setIsLoadingOtp(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
   return (
     <>
       {isLoginWithOtp ? (
-        <Sms hideOtpForm={hideOtpForm} />
+        <Sms hideOtpForm={hideOtpForm}  phone={phone} />
       ) : (
         <>
           <div className={styles.form}>
+            {
+              isShowInputPhone &&           <input
+              className={styles.input}
+              type="text"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              placeholder="شماره تلفن (جهت ورود با کد تایید)"
+            />
+            }
             <input
               className={styles.input}
               type="text"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="ایمیل/شماره موبایل"
+              placeholder="ایمیل"
             />
             <input
               className={styles.input}
@@ -174,10 +269,16 @@ const Login = ({ showRegisterForm }) => {
               رمز عبور را فراموش کرده اید؟
             </Link>
             <button
-              onClick={() => setIsLoginWithOtp(true)}
+              onClick={() => {
+                setIsShowInputPhone(true)
+                if(isShowInputPhone) {
+                  setIsLoadingOtp(true)
+                  sendCode()
+                }
+              }}
               className={styles.btn}
             >
-              ورود با کد یکبار مصرف
+                            {isLoadingOtp ? "لطفا منتظر بمانید.." : "ورود با کد تایید"}
             </button>
             <span>ایا حساب کاربری ندارید؟</span>
             <button onClick={showRegisterForm} className={styles.btn_light}>
