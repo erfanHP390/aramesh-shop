@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 const Sms = ({hideOtpForm , phone}) => {
 
-  console.log(phone);
   
 
   const router = useRouter()
@@ -42,7 +41,7 @@ const Sms = ({hideOtpForm , phone}) => {
       setIsLoading(false)
       setCode("")
       toastSuccess(
-        "ثبت نام با موفقیت انجام شد ، خوش آمدید",
+        "خوش آمدید",
         "top-center",
         5000,
         false,
@@ -52,7 +51,7 @@ const Sms = ({hideOtpForm , phone}) => {
         undefined,
         "colored"
       );
-      // router.replace("/p-user")
+      router.replace("/p-user")
     } else if (res.status === 400) {
       setIsLoading(false)
       setCode("")
