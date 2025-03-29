@@ -9,6 +9,8 @@ export default function Footer() {
   const [showMoreLinks, setShowMoreLinks] = useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+    const [allArticles, setAllArticles] = useState([]);
+  
 
   useEffect(() => {
     // بررسی وجود `window` قبل از استفاده
@@ -25,6 +27,21 @@ export default function Footer() {
       };
     }
   }, []);
+
+  useEffect(() => {
+
+    const getBlogs = async () => {
+      try {
+        const res = await fetch("/api/blog");
+        const data = await res.json();
+        setAllArticles(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    }
+
+    getBlogs()
+  } , [])
 
   return (
     <footer className={styles.footer}>
@@ -53,23 +70,12 @@ export default function Footer() {
 
         <section>
           <h4>جدیدترین نوشته ها</h4>
-          <ArticleFooter
-            href={"/article/123"}
-            data="۱۷ آبان ۱۴۰۲ "
-            comments="بدون دیدگاه"
-            img="https://set-coffee.com/wp-content/uploads/elementor/thumbs/IMG_20230920_130854_091-qconsqrfwm7t626t2hckfjifv0kdd7cofsbfd1jcig.jpg"
-            title="افزایش انرژی با پودر قهوه فوری"
-          />
 
-          <hr />
-
-          <ArticleFooter
-            href={"/article/123"}
-            data="۱۷ آبان ۱۴۰۲ "
-            comments="بدون دیدگاه"
-            img="https://set-coffee.com/wp-content/uploads/elementor/thumbs/IMG_20230920_130854_091-qconsqrfwm7t626t2hckfjifv0kdd7cofsbfd1jcig.jpg"
-            title="افزایش انرژی با پودر قهوه فوری"
-          />
+          {
+            allArticles?.slice(0 , 2).map(blog => (
+              <ArticleFooter  key={blog._id}  {...blog} />
+            ))
+          }
         </section>
 
         <ul className={styles.links}>
