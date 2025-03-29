@@ -30,17 +30,6 @@ export async function POST(req) {
       );
     }
 
-    const isUserExist = await UserModel.findOne({ phone });
-
-    if (isUserExist) {
-      return Response.json(
-        { message: "the username or email or phone is already exist" },
-        {
-          status: 422,
-        }
-      );
-    }
-
 
     const now = new Date();
     const expTime = now.getTime() + 180_000;
