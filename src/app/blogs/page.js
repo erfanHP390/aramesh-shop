@@ -6,8 +6,10 @@ import ArticleLoad from "@/components/templates/blog/articleLoad/ArticleLoad";
 import styles from "@/styles/articles.module.css";
 import { authUser } from "@/utils/authUserLink";
 import BlogModel from "@/models/Blog"
+import connectToDB from "@/configs/db";
 
 async function page() {
+  connectToDB()
   const user = await authUser()
   const blogs = await BlogModel.find({} , "-__v  -updatedAt").lean()
 

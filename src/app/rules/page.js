@@ -4,9 +4,11 @@ import { authUser } from '@/utils/authUserLink'
 import Navbar from '@/components/modules/navbar/Navbar'
 import BreadCrumb from '@/components/modules/breadcrumb/BreadCrumb'
 import Footer from '@/components/modules/Footer/Footer'
+import connectToDB from '@/configs/db'
 
 export default async function page() {
 
+  connectToDB()
     const user = await authUser()
 
   return (

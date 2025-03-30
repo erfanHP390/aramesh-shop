@@ -8,9 +8,11 @@ import { authUser } from '@/utils/authUserLink'
 import Information from '@/components/templates/contact-us/information/Information'
 import Map from '@/components/templates/map/Map'
 import Link from 'next/link'
+import connectToDB from '@/configs/db'
 
 export default async function page() {
 
+  connectToDB()
     const user = await authUser()
 
   return (
