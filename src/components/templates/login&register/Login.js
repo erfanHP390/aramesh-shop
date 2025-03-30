@@ -52,10 +52,10 @@ const Login = ({ showRegisterForm }) => {
       );
     }
 
-    const isValidPassword = validatePassword(password);
-    if (!isValidPassword) {
-      return swalAlert("ایمیل یا پسورد اشتباه است", "error", "تلاش مجدد");
-    }
+    // const isValidPassword = validatePassword(password);
+    // if (!isValidPassword) {
+    //   return swalAlert("ایمیل یا پسورد اشتباه است", "error", "تلاش مجدد");
+    // }
 
     const user = { email, password };
 

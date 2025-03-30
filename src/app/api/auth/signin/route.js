@@ -12,9 +12,9 @@ export async function POST(req) {
         const {email , password} = body
     
         const isValidEmail = validateEmail(email)
-        const isValidPassword = validatePassword(password)
+        // const isValidPassword = validatePassword(password)
     
-        if(!isValidEmail || !isValidPassword) {
+        if(!isValidEmail) {
             return Response.json({message: "email or password is invalid"} , {
                 status: 419
             })
