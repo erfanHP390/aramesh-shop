@@ -16,9 +16,95 @@ function Table() {
   const [discount, setDiscount] = useState("");
   const [totalPrice , setTotalPrice] = useState(0)
   const [productPrice , setProductPrice] = useState(0)
-  
   const [stateSelectedOption, setStateSelectedOption] = useState(null);
   const [changeAddress, setChangeAddress] = useState(false);
+  const [citySelectedOption, setCitySelectedOption] = useState(null);
+  const [citySelectorDisabel, setCitySelectorDisabel] = useState(true);
+  const [cityOption, setCityOption] = useState([]);
+
+
+  useEffect(() => {
+      setCitySelectedOption(null);
+      if (stateSelectedOption?.value) {
+          const city = stateSelectedOption?.value.map(data => ({
+              value: data,
+              label: data
+          }));
+          setCityOption(city);
+          setCitySelectorDisabel(false);
+      }
+  }, [stateSelectedOption]);
+
+  const customStyles = {
+      control: (base, { isFocused }) => ({
+          ...base,
+          backgroundColor: '#A68A64',
+          borderColor: isFocused ? '#FFD700' : 'rgba(255, 255, 255, 0.3)',
+          borderWidth: '1px',
+          borderRadius: '8px',
+          minHeight: '48px',
+          boxShadow: isFocused ? '0 0 0 1px #FFD700' : 'none',
+          '&:hover': {
+              borderColor: '#FFD700'
+          },
+          cursor: 'pointer',
+          padding: '0 8px'
+      }),
+      placeholder: (base) => ({
+          ...base,
+          color: 'rgba(255, 255, 255, 0.7)',
+          fontSize: '0.95rem',
+          textAlign: 'right',
+          direction: 'rtl'
+      }),
+      singleValue: (base) => ({
+          ...base,
+          color: '#FFFFFF',
+          fontSize: '0.95rem',
+          direction: 'rtl',
+          textAlign: 'right'
+      }),
+      input: (base) => ({
+          ...base,
+          color: '#FFFFFF',
+          direction: 'rtl'
+      }),
+      menu: (base) => ({
+          ...base,
+          backgroundColor: '#6F4E37',
+          border: '1px solid rgba(255, 215, 0, 0.2)',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          marginTop: '4px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+      }),
+      option: (base, { isFocused, isSelected }) => ({
+          ...base,
+          backgroundColor: isSelected 
+              ? '#CC5500' 
+              : isFocused 
+              ? 'rgba(212, 181, 140, 0.3)' 
+              : 'transparent',
+          color: '#FFFFFF',
+          fontSize: '0.9rem',
+          padding: '12px 16px',
+          direction: 'rtl',
+          textAlign: 'right',
+          '&:active': {
+              backgroundColor: '#CC5500'
+          }
+      }),
+      indicatorSeparator: () => ({
+          display: 'none'
+      }),
+      dropdownIndicator: (base) => ({
+          ...base,
+          color: 'rgba(255, 255, 255, 0.7)',
+          '&:hover': {
+              color: '#FFD700'
+          }
+      })
+  };
   
 
   useEffect(() => {
@@ -154,6 +240,27 @@ function Table() {
     }
   };
 
+  const addPriceToLS = () => {
+
+
+    if(stateSelectedOption && citySelectedOption) {
+      const prices = {
+        postPrice : stateSelectedOption.price,
+        totalPrice,
+        province: stateSelectedOption.label,
+        city: citySelectedOption.label,
+      }
+
+      localStorage.setItem("priceCart" , JSON.stringify(prices))
+    } else {
+      const prices = {
+        totalPrice
+      }
+      localStorage.setItem("priceCart" , JSON.stringify(prices))
+    }
+
+  }
+
 
   return (
     <>
@@ -240,63 +347,46 @@ function Table() {
           تغییر آدرس
         </p>
         {changeAddress && (
-          <div className={totalStyles.address_details}>
-            <Select
-              defaultValue={stateSelectedOption}
-              onChange={setStateSelectedOption}
-              isClearable={true}
-              placeholder={"استان"}
-              isRtl={true}
-              isSearchable={true}
-              options={stateOptions}
-              styles={{
-                control: (base) => ({
-                  ...base,
-                  border: "1px solid rgba(0, 0, 0, 0.1)",
-                  borderRadius: "5px",
-                  padding: "0.5rem",
-                  direction: "rtl",
-                  textAlign: "right",
-                  backgroundColor: "#D2B48C", // بژ روشن
-                  color: "#000000", // سیاه
-                  fontSize: "14px", // فونت کوچک‌تر
-                  minWidth: "200px", // حداقل عرض
-                  width: "100%", // عرض کامل
-                }),
-                menu: (base) => ({
-                  ...base,
-                  direction: "rtl",
-                  textAlign: "right",
-                  backgroundColor: "#D2B48C", // بژ روشن
-                  color: "#000000", // سیاه
-                }),
-                option: (base, { isFocused, isSelected }) => ({
-                  ...base,
-                  backgroundColor: isFocused
-                    ? "#CC5500"
-                    : isSelected
-                    ? "#A68A64"
-                    : "#D2B48C", // نارنجی گرم یا قهوه‌ای روشن
-                  color: isFocused || isSelected ? "#FFFFFF" : "#000000", // سفید یا سیاه
-                  fontSize: "14px", // فونت کوچک‌تر
-                }),
-                singleValue: (base) => ({
-                  ...base,
-                  color: "#000000", // سیاه
-                }),
-                placeholder: (base) => ({
-                  ...base,
-                  color: "#777", // خاکستری
-                }),
-              }}
-            />
-            <input type="text" placeholder="شهر" />
-            <input type="text" placeholder="کد پستی" />
-            <button onClick={() => {
-              setChangeAddress(false)
-              discountHandler()
-            }}>بروزرسانی</button>
-          </div>
+                <div className={styles.groups}>
+                <div className={styles.group}>
+                    <label className={styles.select_label}>
+                        استان<span>*</span>
+                    </label>
+                    <Select
+                        defaultValue={stateSelectedOption}
+                        onChange={setStateSelectedOption}
+                        isClearable={true}
+                        placeholder="انتخاب استان"
+                        isRtl={true}
+                        isSearchable={true}
+                        options={stateOptions}
+                        styles={customStyles}
+                        noOptionsMessage={() => "استانی یافت نشد"}
+                        className="react-select-container"
+                        classNamePrefix="react-select"
+                    />
+                </div>
+                
+                <div className={styles.group}>
+                    <label className={styles.select_label}>
+                        شهر<span>*</span>
+                    </label>
+                    <Select
+                        defaultValue={citySelectedOption}
+                        onChange={setCitySelectedOption}
+                        isDisabled={citySelectorDisabel}
+                        isClearable={true}
+                        isRtl={true}
+                        isSearchable={true}
+                        options={cityOption}
+                        placeholder={citySelectorDisabel ? "ابتدا استان را انتخاب کنید" : "انتخاب شهر"}
+                        styles={customStyles}
+                        noOptionsMessage={() => "شهری یافت نشد"}
+                        className="react-select-container"
+                        classNamePrefix="react-select"
+                    />
+                </div>
+            </div>
         )}
 
         <div className={totalStyles.total}>
@@ -304,7 +394,7 @@ function Table() {
           <p>{totalPrice.toLocaleString()} تومان</p>
         </div>
         <Link href={"/checkout"}>
-          <button className={totalStyles.checkout_btn}>
+          <button className={totalStyles.checkout_btn} onClick={() => addPriceToLS()}>
             ادامه جهت تسویه حساب
           </button>
         </Link>
