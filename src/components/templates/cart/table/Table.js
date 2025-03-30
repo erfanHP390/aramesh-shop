@@ -247,6 +247,7 @@ function Table() {
       const prices = {
         postPrice : stateSelectedOption.price,
         totalPrice,
+        productPrice,
         province: stateSelectedOption.label,
         city: citySelectedOption.label,
       }
@@ -254,7 +255,8 @@ function Table() {
       localStorage.setItem("priceCart" , JSON.stringify(prices))
     } else {
       const prices = {
-        totalPrice
+        totalPrice,
+        productPrice
       }
       localStorage.setItem("priceCart" , JSON.stringify(prices))
     }
