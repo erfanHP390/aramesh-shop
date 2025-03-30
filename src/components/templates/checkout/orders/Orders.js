@@ -1,11 +1,22 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Orders.module.css"
 import Link from 'next/link'
 
 function Orders() {
 
     const [showZarinPallAlert, setShowZarinPallAlert] = useState(false)
+    const [cart , setCart] = useState([])
+        const [priceCart , setPriceCart] = useState([])
+
+      useEffect(() => {
+        const getCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
+    
+        setPriceCart(getPricesCart);
+    
+        setCart(getCart);
+      }, []);
 
 
   return (
@@ -16,21 +27,30 @@ function Orders() {
             <p>جمع جزء</p>
             <p>محصول</p>
         </div>
+        {
+  cart.map((item) => (
+    <div className={styles.cart_item} key={item.id}>
+      <div className={styles.price_row}>
+        <span className={styles.item_price}>{item.price.toLocaleString()}</span>
+        <span className={styles.currency}>تومان</span>
+      </div>
+      <p className={styles.product_name}>
+        {item.name} × {item.count}
+      </p>
+    </div>
+  ))
+}
         <div>
-            <p>205,000 تومان</p>
-            <p className={styles.product_name}>کپسول قهوه SETpresso سازگار با دستگاه نسپرسو ( RED ) 10 عددی LIMITED EDITION - Ethiopia Natural ( اتیوپی )  × 1</p>
+            <p> {priceCart.productPrice.toLocaleString()} تومان</p>
+            <p>جمع کل محصولات</p>
         </div>
         <div>
-            <p>205,000 تومان</p>
-            <p>جمع جزء</p>
-        </div>
-        <div>
-            <p>پیک موتوری: <strong> 30,000 تومان</strong></p>
+            <p>پیک موتوری: <strong> {priceCart.postPrice.toLocaleString()} تومان</strong></p>
             <p>حمل و نقل</p>
         </div>
         <div>
             <div>
-                <h2>235,000 تومان</h2>
+                <h2>{priceCart.totalPrice.toLocaleString()} تومان</h2>
                 <p>(شامل <strong>16,927</strong> تومان ارزش افزوده)</p>
             </div>
             <h3>مجموع</h3>
