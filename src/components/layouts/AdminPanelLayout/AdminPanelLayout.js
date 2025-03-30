@@ -4,8 +4,10 @@ import { FaTimes, FaBars } from "react-icons/fa";
 import { authUser } from "@/utils/authUserLink";
 import { redirect } from "next/navigation";
 import SidebarWrapper from "@/components/templates/p-user/sidebarWrapper/SidebarWrapper";
+import connectToDB from "@/configs/db";
 
 const AdminPanelLayout = async ({ children }) => {
+  connectToDB()
   const user = await authUser();
   if(user) {
     if(user.role !== "ADMIN") {
