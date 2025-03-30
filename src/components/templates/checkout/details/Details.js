@@ -1,100 +1,19 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import styles from "./Details.module.css"
-import Select from "react-select";
 import stateData from "@/utils/stateData";
 
-const stateOptions = stateData();
 
 function Details() {
-    const [stateSelectedOption, setStateSelectedOption] = useState(null); 
-    const [citySelectedOption, setCitySelectedOption] = useState(null);
-    const [citySelectorDisabel, setCitySelectorDisabel] = useState(true);
-    const [cityOption, setCityOption] = useState([]);
     const [createAccount, setCreateAccount] = useState(false);
+    const [priceCart , setPriceCart] = useState([])
 
-    useEffect(() => {
-        setCitySelectedOption(null);
-        if (stateSelectedOption?.value) {
-            const city = stateSelectedOption?.value.map(data => ({
-                value: data,
-                label: data
-            }));
-            setCityOption(city);
-            setCitySelectorDisabel(false);
-        }
-    }, [stateSelectedOption]);
+      useEffect(() => {
+        const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
+    
+        setPriceCart(getPricesCart);
+      }, []);
 
-    const customStyles = {
-        control: (base, { isFocused }) => ({
-            ...base,
-            backgroundColor: '#A68A64',
-            borderColor: isFocused ? '#FFD700' : 'rgba(255, 255, 255, 0.3)',
-            borderWidth: '1px',
-            borderRadius: '8px',
-            minHeight: '48px',
-            boxShadow: isFocused ? '0 0 0 1px #FFD700' : 'none',
-            '&:hover': {
-                borderColor: '#FFD700'
-            },
-            cursor: 'pointer',
-            padding: '0 8px'
-        }),
-        placeholder: (base) => ({
-            ...base,
-            color: 'rgba(255, 255, 255, 0.7)',
-            fontSize: '0.95rem',
-            textAlign: 'right',
-            direction: 'rtl'
-        }),
-        singleValue: (base) => ({
-            ...base,
-            color: '#FFFFFF',
-            fontSize: '0.95rem',
-            direction: 'rtl',
-            textAlign: 'right'
-        }),
-        input: (base) => ({
-            ...base,
-            color: '#FFFFFF',
-            direction: 'rtl'
-        }),
-        menu: (base) => ({
-            ...base,
-            backgroundColor: '#6F4E37',
-            border: '1px solid rgba(255, 215, 0, 0.2)',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            marginTop: '4px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-        }),
-        option: (base, { isFocused, isSelected }) => ({
-            ...base,
-            backgroundColor: isSelected 
-                ? '#CC5500' 
-                : isFocused 
-                ? 'rgba(212, 181, 140, 0.3)' 
-                : 'transparent',
-            color: '#FFFFFF',
-            fontSize: '0.9rem',
-            padding: '12px 16px',
-            direction: 'rtl',
-            textAlign: 'right',
-            '&:active': {
-                backgroundColor: '#CC5500'
-            }
-        }),
-        indicatorSeparator: () => ({
-            display: 'none'
-        }),
-        dropdownIndicator: (base) => ({
-            ...base,
-            color: 'rgba(255, 255, 255, 0.7)',
-            '&:hover': {
-                color: '#FFD700'
-            }
-        })
-    };
 
     return (
         <div className={styles.details}>
@@ -139,44 +58,21 @@ function Details() {
 
                 {/* گروه فیلدهای استان و شهر */}
                 <div className={styles.groups}>
+                   <div className={styles.group}>
+                        <label className={styles.select_label}>
+                            شهر<span>*</span>
+                        </label>
+                    <input  value={priceCart?.city} disabled />
+                    </div>
+
                     <div className={styles.group}>
                         <label className={styles.select_label}>
                             استان<span>*</span>
                         </label>
-                        <Select
-                            defaultValue={stateSelectedOption}
-                            onChange={setStateSelectedOption}
-                            isClearable={true}
-                            placeholder="انتخاب استان"
-                            isRtl={true}
-                            isSearchable={true}
-                            options={stateOptions}
-                            styles={customStyles}
-                            noOptionsMessage={() => "استانی یافت نشد"}
-                            className="react-select-container"
-                            classNamePrefix="react-select"
-                        />
+                        <input  value={priceCart?.province} disabled />
                     </div>
                     
-                    <div className={styles.group}>
-                        <label className={styles.select_label}>
-                            شهر<span>*</span>
-                        </label>
-                        <Select
-                            defaultValue={citySelectedOption}
-                            onChange={setCitySelectedOption}
-                            isDisabled={citySelectorDisabel}
-                            isClearable={true}
-                            isRtl={true}
-                            isSearchable={true}
-                            options={cityOption}
-                            placeholder={citySelectorDisabel ? "ابتدا استان را انتخاب کنید" : "انتخاب شهر"}
-                            styles={customStyles}
-                            noOptionsMessage={() => "شهری یافت نشد"}
-                            className="react-select-container"
-                            classNamePrefix="react-select"
-                        />
-                    </div>
+ 
                 </div>
 
                 {/* فیلد آدرس */}
