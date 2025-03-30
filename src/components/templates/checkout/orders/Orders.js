@@ -41,16 +41,16 @@ function Orders() {
   ))
 }
         <div>
-            <p> {priceCart.productPrice.toLocaleString()} تومان</p>
+            <p> {priceCart?.productPrice?.toLocaleString()} تومان</p>
             <p>جمع کل محصولات</p>
         </div>
         <div>
-            <p>پیک موتوری: <strong> {priceCart.postPrice.toLocaleString()} تومان</strong></p>
+            <p>پیک موتوری: <strong> {priceCart?.postPrice?.toLocaleString()} تومان</strong></p>
             <p>حمل و نقل</p>
         </div>
         <div>
             <div>
-                <h2>{priceCart.totalPrice.toLocaleString()} تومان</h2>
+                <h2>{priceCart?.totalPrice?.toLocaleString()} تومان</h2>
                 <p>(شامل <strong>16,927</strong> تومان ارزش افزوده)</p>
             </div>
             <h3>مجموع</h3>
