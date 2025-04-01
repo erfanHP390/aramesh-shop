@@ -22,7 +22,7 @@ export async function POST(req) {
         const isValidPhone = validatePhone(phone)
         if(!isValidPhone) {
         return  Response.json({message: "phone format is not valid"} , {
-            status: 406
+            status: 419
         })
         }
 
@@ -31,7 +31,7 @@ export async function POST(req) {
       
             if(!isValidEmail) {
              return Response.json({message: "email is not valid"} , {
-                status: 412
+                status: 419
              })
             }
           }
@@ -41,7 +41,7 @@ export async function POST(req) {
           
             if(!isValidPassword) {
              return Response.json({message: "password is not valid"} , {
-                status: 409
+                status: 419
              })
             }
           }
