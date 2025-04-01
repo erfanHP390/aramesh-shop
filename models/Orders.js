@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 require("./Product")
 
 const schema = mongoose.Schema({
-    firstname: {
+    firstName: {
         type: String,
         required: true
     },
-    lastname: {
+    lastName: {
         type: String,
         required: true
     },
@@ -40,7 +40,7 @@ const schema = mongoose.Schema({
     },
     description: {
         type: String,
-        default: "فاقد توضیحات"
+        default: "فاقدتوضیحات"
     },
     totalPrice: {
         type: Number,
@@ -50,15 +50,23 @@ const schema = mongoose.Schema({
         type: Number,
         required: true
     },
-    Basket: {
+   basket: {
         type: Array,
         required: true
     },
-    products: {
+        products: {
         type: [{
             type: mongoose.Types.ObjectId,
             ref: "Product"
         }],
+    },
+    orderCode: {
+        type: Number,
+        required: true
+    },
+       isPay : {
+        type: Boolean,
+        default: false
     },
 } , {timestamps: true})
 
