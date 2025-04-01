@@ -4,10 +4,9 @@ import React from 'react'
 import styles from "@/styles/checkout.module.css"
 import Footer from '@/components/modules/Footer/Footer'
 import Discount from '@/components/templates/checkout/discount/Discount'
-import Orders from '@/components/templates/checkout/orders/Orders'
-import Details from '@/components/templates/checkout/details/Details'
 import connectToDB from '@/configs/db'
 import { authUser } from '@/utils/authUserLink'
+import OrdersDetails from '@/components/templates/checkout/ordersDetails/OrdersDetails'
 
 async function page() {
 
@@ -23,8 +22,7 @@ async function page() {
         <Discount />
 
         <main className={styles.checkout}>
-                 <Orders />
-                <Details /> 
+                <OrdersDetails /> 
         </main>
     </div>
 
