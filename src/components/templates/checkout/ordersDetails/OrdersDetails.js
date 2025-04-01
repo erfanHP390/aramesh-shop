@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import styles from "./OrdersDetails.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import { validateEmail, validatePhone } from "@/utils/auth";
+import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 
 function OrdersDetails() {
   const [createAccount, setCreateAccount] = useState(false);
@@ -32,6 +32,7 @@ function OrdersDetails() {
   const [orderCode, setOrderCode] = useState(
     Math.floor(Math.random() * 999999)
   );
+  const [password , setPassword] = useState("")
 
   useEffect(() => {
     const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
@@ -111,7 +112,6 @@ function OrdersDetails() {
       body: JSON.stringify(newOrder),
     });
 
-    console.log(res);
     
 
     if (res.status === 201) {
@@ -210,6 +210,122 @@ function OrdersDetails() {
       );
     }
   };
+
+  const registerUser = async () => {
+
+    if(!firstname || !lastname || !mobile || !email || !password) {
+      setIsLoading(false)
+      return swalAlert("لطفا نام ، نام خانوادگی ، شماره تماس ، ایمیل یا رمزعبور خود را وراد نمایی" , "error" , "فهمیدم")
+    }
+
+    const isValidPhone = validatePhone(mobile);
+    if (!isValidPhone) {
+      setIsLoading(false)
+      return swalAlert("لطفا یک شماره تلفن معتبر وارد کنید", "error", "فهمیدم");
+    }
+
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      setIsLoading(false)
+      return swalAlert("لطفا یک ایمیل معتبر وارد کنید", "error", "فهمیم");
+    }
+
+    const isValidPassword = validatePassword(password)
+    if(!isValidPassword) {
+      setIsLoading(false)
+      return swalAlert("لطفا یک رمز عبور معتبر وارد نمایید" , "error" , "فهمیدم")
+    } 
+
+    const newUser = {
+      name: `${firstname}-${lastname}`,
+      phone: mobile,
+      email,
+      password
+    }
+
+    const res = await fetch("/api/auth/signup" , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser)
+    })
+
+    
+
+    if (res.status === 201) {
+      setIsLoading(false);
+      toastSuccess(
+        "ثبت نام با موفقیت انجام شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
+    else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "لطفا موارد زیر را جهت تشکیل حساب تکمیل فرمایید ، نام ، نام خانوادگی ، شماره تماس ، ایمیل و رمزعبور",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
+    else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "نام/شماره تلفن / ایمیل شما قبلا ثبت شده است لطفا دوباره اقدام کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
+    else if (res.status === 419) {
+      setIsLoading(false);
+      toastError(
+        "شماره تماس / ایمیل باید فرمت معتبری داشته باشد ، پسورد باید حداقل از هشت کاراکتر حرف بزرگ ،نماد و عدد تشکیل شده باشد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+    else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+    
+    
+  }
 
   return (
     <>
@@ -479,16 +595,21 @@ function OrdersDetails() {
               <section className={styles.account_section}>
                 <div className={styles.group}>
                   <label className={styles.input_label}>
-                    رمزعبور (اختیاری)
+                    رمزعبور
                   </label>
                   <input
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                     type="password"
-                    placeholder="رمز عبور دلخواه"
+                    placeholder="رمز عبور "
                     className={styles.form_input}
                   />
                 </div>
-                <button type="button" className={styles.verify_button}>
-                  شماره موبایل را تایید کنید
+                <button onClick={() => {
+                  setIsLoading(true)
+                  registerUser()
+                }} type="button" className={styles.verify_button}>
+                  ایجاد حساب کاربری
                 </button>
               </section>
             )}
