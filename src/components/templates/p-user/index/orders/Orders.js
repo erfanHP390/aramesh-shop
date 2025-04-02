@@ -3,7 +3,8 @@ import Order from "../order/Order";
 import styles from "./Orders.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
 
-const Orders = () => {
+const Orders = ({orders}) => {
+
   return (
     <div className={styles.content}>
       <div className={styles.content_details}>
@@ -12,11 +13,14 @@ const Orders = () => {
           همه سفارش ها <FaArrowLeft />
         </Link>
       </div>
-      {/* <Order />
-      <Order />
-      <Order /> */}
-
-      <p className={styles.empty}>سفارشی ثبت نشده</p>
+      {
+        orders.map(order => (
+          <Order key={order._id} {...order} />
+        ))
+      }
+      {
+        orders.length === 0 &&       <p className={styles.empty}>سفارشی ثبت نشده</p>
+      }
     </div>
   );
 };
