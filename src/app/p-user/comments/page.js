@@ -9,7 +9,7 @@ async function page() {
 
     connectToDB()
     const user = await authUser()
-    const comments = await CommentModel.find({user : String(user._id)} , "-__v").populate("productID" , "name")
+    const comments = await CommentModel.find({email: user.email , username: user.name} , "-__v").populate("productID" , "name")
 
     
 
