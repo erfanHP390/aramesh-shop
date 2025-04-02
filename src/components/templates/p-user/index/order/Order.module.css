@@ -1,31 +1,124 @@
 .card {
   width: 100%;
-  background: white;
-  color: #CC5500; /* نارنجی گرم */
-  padding: 1rem;
-  height: 110px;
-  border-radius: 5px;
+  background: #6F4E37; /* قهوه‌ای گرم */
+  color: #FFFFFF; /* سفید */
+  padding: 1.5rem;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   margin: 1rem auto;
   align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
 }
 
-.card div:nth-child(1) div {
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: #5A3E36; /* قهوه‌ای تیره برای حالت hover */
+}
+
+.orderInfo {
   display: flex;
-  gap: 5px;
-  align-items: center;
-  position: relative;
-  bottom: 5px;
-  left: 16px;
-  justify-content: right;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
 }
 
-.card img {
-  width: 50px;
+.orderHeader {
+  display: flex;
+  align-items: center;
+}
+
+.orderCode {
+  font-weight: 600;
+  color: #FFD700; /* طلایی */
+  text-align: right;
+}
+
+.completed {
+  color: #D2B48C; /* بژ روشن */
+  font-weight: 500;
+  text-align: right;
+}
+
+.pending {
+  color: #CC5500; /* نارنجی گرم */
+  font-weight: 500;
+  text-align: right;
+}
+
+.orderMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.date {
+  color: #A68A64; /* قهوه‌ای روشن */
+  font-size: 0.9rem;
+  text-align: right;
 }
 
 .price {
-  margin-top: 1rem;
+  color: #FFFFFF; /* سفید */
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+/* حالت‌های ریسپانسیو */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.2rem;
+    text-align: center;
+  }
+  
+  .orderInfo, .orderMeta {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .orderCode, .completed, .pending, .date, .price {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .orderMeta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #A68A64;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
+  
+  .orderCode {
+    font-size: 0.95rem;
+  }
+  
+  .completed, .pending {
+    font-size: 0.9rem;
+  }
+  
+  .date {
+    font-size: 0.85rem;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+  }
 }
