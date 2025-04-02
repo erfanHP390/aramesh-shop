@@ -1,22 +1,22 @@
 import Link from "next/link";
 import styles from "./Order.module.css";
 
-const Order = () => {
+const Order = ({orderCode , isPay , totalPrice , createdAt}) => {
   return (
     <Link href={`/product/123`} className={styles.card}>
       <div>
         <div>
-          <p>قهوه عربیکا 40 درصد</p>
-          <img
+          <p>کد سفارش : {orderCode}</p>
+          {/* <img
             src="https://set-coffee.com/wp-content/uploads/2022/03/ethiopia-430x430.png"
             alt=""
-          />
+          /> */}
         </div>
-        <p>تکمیل شده</p>
+        <p>{isPay ? "تکمیل شده" : "در انتظار پرداخت"}</p>
       </div>
       <div>
-        <p>8:00 1402/10/21</p>
-        <p className={styles.price}>200000 هزار تومان</p>
+        <p>{new Date(createdAt).toLocaleDateString("fa-IR")}</p>
+        <p className={styles.price}>{totalPrice.toLocaleString()} تومان</p>
       </div>
     </Link>
   );
