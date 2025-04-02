@@ -6,6 +6,7 @@
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
+  -webkit-overflow-scrolling: touch; /* اسکرول نرم در آیفون */
 }
 
 .table {
@@ -87,14 +88,14 @@
 
 .delete_icon {
   cursor: pointer;
-   font-size: clamp(18px, 2vw, 14px); 
- background-color: #CC5500;
- color: #fff;
- transition: all 0.5s ease;
+  font-size: clamp(18px, 2vw, 14px); 
+  background-color: #CC5500;
+  color: #fff;
+  transition: all 0.5s ease;
 }
 
 .delete_icon:hover {
- background-color: #FFD700;
+  background-color: #FFD700;
 }
 
 .update_btn,
@@ -150,6 +151,34 @@
   flex-direction: row-reverse;
 }
 
+/* استایل‌های جدید برای اسکرول در موبایل */
+@media (max-width: 425px) {
+  .tabel_container {
+    padding: 10px;
+    overflow-x: scroll; /* اسکرول افقی اجباری */
+    -webkit-overflow-scrolling: touch; /* اسکرول نرم در آیفون */
+  }
+  
+  .table {
+    min-width: 100%; /* عرض جدول برابر با عرض صفحه */
+  }
+  
+  .table th, 
+  .table td {
+    padding: 8px 5px; /* padding کمتر برای موبایل */
+    font-size: 12px; /* فونت کوچکتر برای موبایل */
+  }
+  
+  .product img {
+    width: 60px; /* تصویر کوچکتر برای موبایل */
+  }
+  
+  .counter div {
+    flex-direction: column; /* دکمه‌های + و - زیر هم در موبایل */
+    align-items: center;
+  }
+}
+
 /* ریسپانسیو برای سایز 768px */
 @media (max-width: 875px) {
   .tabel_container section {
@@ -191,7 +220,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    overflow-x: hidden !important;
+    overflow-x: auto !important; /* تغییر از hidden به auto */
   }
 }
 
