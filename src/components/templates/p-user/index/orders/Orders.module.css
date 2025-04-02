@@ -44,4 +44,17 @@
   .content {
       width: 100%;
   }
+  .content_details {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.content_details p {
+    font-size: 14px;
+}
+
+.content_details a {
+    font-size: 12px;
+}
 }
