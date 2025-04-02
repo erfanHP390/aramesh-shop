@@ -6,6 +6,7 @@ import styles from "@/styles/checkout.module.css"
 function Discount() {
 
     const [showDiscountForm, setShowDiscountForm] = useState(false)
+    const getPriceCart = JSON.parse(localStorage.getItem("priceCart"))
 
   return (
     <section className={styles.discount}>
@@ -17,7 +18,7 @@ function Discount() {
         <div className={styles.discount_container}>
                 <p>اگر کد تخفیف دارید لطفا در باکس زیر بنویسید</p>
                 <div>
-                    <input type="text" placeholder="کد تخفیف" />
+                    <input type="text" placeholder="کد تخفیف" value={getPriceCart?.appliedDiscount?.code}  />
                     <button>اعمال کوپن</button>
                 </div>
         </div>

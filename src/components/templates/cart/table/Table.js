@@ -13,7 +13,7 @@ const stateOptions = stateData();
 
 function Table() {
   const [cart, setCart] = useState([]);
-  const [discount, setDiscount] = useState("");
+  const [discountInput, setDiscountInput] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [productPrice, setProductPrice] = useState(0);
   const [stateSelectedOption, setStateSelectedOption] = useState(null);
@@ -21,7 +21,7 @@ function Table() {
   const [citySelectedOption, setCitySelectedOption] = useState(null);
   const [citySelectorDisabel, setCitySelectorDisabel] = useState(true);
   const [cityOption, setCityOption] = useState([]);
-  const [discountPercent, setDiscountPercent] = useState(0); // اضافه شده برای ذخیره درصد تخفیف
+  const [appliedDiscount, setAppliedDiscount] = useState(null);
 
   useEffect(() => {
     setCitySelectedOption(null);
@@ -112,26 +112,10 @@ function Table() {
 
     setCart(getCart);
     
-    // اگر اطلاعات قیمت در localStorage وجود داشت، آنها را بارگذاری کن
-    if (getPriceCart.discountPercent) {
-      setDiscountPercent(getPriceCart.discountPercent);
+    if (getPriceCart.appliedDiscount) {
+      setAppliedDiscount(getPriceCart.appliedDiscount);
     }
   }, []);
-
-  const calcTotalPrice = () => {
-    let price = productPrice;
-
-    if (stateSelectedOption) {
-      price = price + stateSelectedOption.price;
-    }
-
-    // اعمال تخفیف اگر وجود دارد
-    if (discountPercent > 0) {
-      price = price - (productPrice * discountPercent) / 100;
-    }
-
-    setTotalPrice(price);
-  };
 
   const calcProductPrice = () => {
     let productsPrices = 0;
@@ -146,16 +130,30 @@ function Table() {
     setProductPrice(productsPrices);
   };
 
+  const calcTotalPrice = () => {
+    let price = productPrice;
+
+    if (stateSelectedOption) {
+      price = price + stateSelectedOption.price;
+    }
+
+    if (appliedDiscount) {
+      price = price - (productPrice * appliedDiscount.percent) / 100;
+    }
+
+    setTotalPrice(price);
+  };
+
   useEffect(() => {
     calcProductPrice();
   }, [cart]);
 
   useEffect(() => {
     calcTotalPrice();
-  }, [productPrice, stateSelectedOption, discountPercent]);
+  }, [productPrice, stateSelectedOption, appliedDiscount]);
 
   const discountHandler = async () => {
-    if (!discount) {
+    if (!discountInput) {
       return swalAlert("لطفا کد تخفیف وارد کنید", "error", "فهمیدم");
     }
 
@@ -164,13 +162,24 @@ function Table() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ code: discount }),
+      body: JSON.stringify({ code: discountInput }),
     });
 
     if (res.status === 200) {
       const discountCode = await res.json();
-      setDiscountPercent(discountCode.percent); // ذخیره درصد تخفیف
-      calcTotalPrice(); // محاسبه مجدد قیمت با تخفیف
+      const newDiscount = {
+        code: discountInput,
+        percent: discountCode.percent,
+      };
+      setAppliedDiscount(newDiscount);
+      setDiscountInput("");
+      
+      // ذخیره در localStorage
+      const priceCart = JSON.parse(localStorage.getItem("priceCart")) || {};
+      localStorage.setItem("priceCart", JSON.stringify({
+        ...priceCart,
+        appliedDiscount: newDiscount
+      }));
 
       toastSuccess(
         "کد تخفیف با موفقیت اعمال شد",
@@ -184,7 +193,6 @@ function Table() {
         "colored"
       );
     } else if (res.status === 400) {
-      setDiscount("");
       toastError(
         "کد تخفیف وارد نشده است",
         "top-center",
@@ -197,7 +205,6 @@ function Table() {
         "colored"
       );
     } else if (res.status === 422) {
-      setDiscount("");
       toastError(
         "کد تخفیف منقضی شده است",
         "top-center",
@@ -210,7 +217,6 @@ function Table() {
         "colored"
       );
     } else if (res.status === 404) {
-      setDiscount("");
       toastError(
         "کد تخفیف یافت نشد",
         "top-center",
@@ -223,7 +229,6 @@ function Table() {
         "colored"
       );
     } else if (res.status === 500) {
-      setDiscount("");
       toastError(
         "خطا در سرور ، لطفا بعدا تلاش کنید",
         "top-center",
@@ -245,17 +250,38 @@ function Table() {
       productPrice,
       province: stateSelectedOption?.label || "",
       city: citySelectedOption?.label || "",
-      discountPercent, // ذخیره درصد تخفیف
+      appliedDiscount,
     };
 
     localStorage.setItem("priceCart", JSON.stringify(prices));
   };
 
   const handleUpdateCart = () => {
-    // فقط اطلاعات را در localStorage ذخیره کنید و صفحه را رفرش نکنید
     addPriceToLS();
     toastSuccess(
       "سبد خرید با موفقیت بروزرسانی شد",
+      "top-center",
+      3000,
+      false,
+      true,
+      true,
+      true,
+      undefined,
+      "colored"
+    );
+  };
+
+  const removeDiscount = () => {
+    setAppliedDiscount(null);
+    setDiscountInput("");
+    
+    // حذف تخفیف از localStorage
+    const priceCart = JSON.parse(localStorage.getItem("priceCart")) || {};
+    delete priceCart.appliedDiscount;
+    localStorage.setItem("priceCart", JSON.stringify(priceCart));
+    
+    toastSuccess(
+      "تخفیف با موفقیت حذف شد",
       "top-center",
       3000,
       false,
@@ -316,15 +342,24 @@ function Table() {
             <input
               type="text"
               placeholder="کد تخفیف"
-              value={discount}
-              onChange={(event) => setDiscount(event.target.value)}
+              value={discountInput}
+              onChange={(event) => setDiscountInput(event.target.value)}
             />
-            <button
-              className={styles.set_off_btn}
-              onClick={() => discountHandler()}
-            >
-              اعمال کوپن
-            </button>
+            {appliedDiscount ? (
+              <button
+                className={styles.remove_discount_btn}
+                onClick={removeDiscount}
+              >
+                حذف تخفیف
+              </button>
+            ) : (
+              <button
+                className={styles.set_off_btn}
+                onClick={discountHandler}
+              >
+                اعمال کوپن
+              </button>
+            )}
           </div>
         </section>
       </div>
@@ -342,10 +377,10 @@ function Table() {
           </p>
         )}
 
-        {discountPercent > 0 && (
+        {appliedDiscount && (
           <div className={totalStyles.discount}>
-            <p>تخفیف: </p>
-            <p>-{(productPrice * discountPercent / 100).toLocaleString()} تومان</p>
+            <p>تخفیف ({appliedDiscount.code}): </p>
+            <p>-{(productPrice * appliedDiscount.percent / 100).toLocaleString()} تومان</p>
           </div>
         )}
 
@@ -378,7 +413,7 @@ function Table() {
                 classNamePrefix="react-select"
               />
             </div>
-
+            
             <div className={styles.group}>
               <label className={styles.select_label}>
                 شهر<span>*</span>
@@ -391,11 +426,7 @@ function Table() {
                 isRtl={true}
                 isSearchable={true}
                 options={cityOption}
-                placeholder={
-                  citySelectorDisabel
-                    ? "ابتدا استان را انتخاب کنید"
-                    : "انتخاب شهر"
-                }
+                placeholder={citySelectorDisabel ? "ابتدا استان را انتخاب کنید" : "انتخاب شهر"}
                 styles={customStyles}
                 noOptionsMessage={() => "شهری یافت نشد"}
                 className="react-select-container"
