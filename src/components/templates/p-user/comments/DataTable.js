@@ -3,12 +3,46 @@ import { swalAlert } from "@/utils/helpers";
 import styles from "./DataTable.module.css"
 import { FaRegStar, FaStar } from "react-icons/fa";
 import swal from "sweetalert";
+import { useRouter } from "next/navigation";
 
 function DataTable({ comments, title }) {
+
+    const router = useRouter()
 
     const showCommentBody = (commentBody) => {
         swalAlert(commentBody, undefined, "فهمیدم");
     };
+
+    const deleteComment = async (commentID) => {
+        swal({
+          title: "آیا از حذف کاربر اطمینان دارین؟",
+          icon: "warning",
+          buttons: ["نه", "آره"],
+        }).then(async (result) => {
+    
+          if(result) {
+    
+            const res = await fetch(`/api/comment/${commentID}` , {
+              method: "DELETE"
+            })
+    
+            if(res.status === 200) {
+              swalAlert("کامنت با موفقیت حذف شد" , "success" , "فهمیدم")
+              router.refresh()
+            }
+    
+          }
+    
+        })
+    
+    
+    
+      }
+
+      const editComment = async (commentID) => {
+        console.log(commentID);
+        
+      }
 
     return (
         <div>
@@ -27,6 +61,8 @@ function DataTable({ comments, title }) {
                             <th>امتیاز</th>
                             <th>وضعیت</th>
                             <th>مشاهده</th>
+                            <th>ویرایش</th>
+                            <th>حذف</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +91,24 @@ function DataTable({ comments, title }) {
                                         className={styles.btn}
                                     >
                                         مشاهده
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className={styles.btn}
+                                        onClick={() => editComment(comment._id)}
+                                    >
+                                        ویرایش
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className={styles.btn}
+                                        onClick={() => deleteComment(comment._id)}
+                                    >
+                                        حذف
                                     </button>
                                 </td>
                             </tr>
