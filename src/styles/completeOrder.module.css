@@ -1,0 +1,144 @@
+.container {
+    max-width: 1222px; 
+    width: 100%;
+    padding: 2rem 15px;
+    margin: 0 auto 4rem;
+    min-height: calc(100vh - 400px);
+  }
+  
+  .box {
+    background-color: #6F4E37; /* قهوه‌ای گرم */
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    direction: rtl;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    color: #D2B48C; /* بژ روشن */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .orderDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #FFFFFF; /* سفید */
+    padding: 1rem;
+    background-color: #A68A64; /* قهوه‌ای روشن */
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .orderDetails li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #D2B48C; /* بژ روشن */
+  }
+  
+  .orderDetails li:last-child {
+    border-bottom: none;
+  }
+  
+  .orderDetails span {
+    color: #FFD700; /* طلایی */
+    font-weight: 500;
+  }
+  
+  .orderDetails strong {
+    color: #FFD700; /* طلایی */
+    font-size: 1.1rem;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .payButton {
+    background-color: #CC5500; /* نارنجی گرم */
+    color: white !important;
+  }
+  
+  .backButton {
+    background-color: #A68A64; /* قهوه‌ای روشن */
+    color: white !important;
+  }
+  
+  .box button {
+    margin-top: 0;
+    padding: 12px 30px;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: none;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+  }
+  
+  .box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .payButton:hover {
+    background-color: #E05E00;
+  }
+  
+  .backButton:hover {
+    background-color: #B89A70;
+  }
+  
+  /* حالت ریسپانسیو */
+  @media (max-width: 768px) {
+    .box {
+      padding: 1.5rem;
+    }
+    
+    .title {
+      font-size: 1.3rem;
+    }
+    
+    .buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .box button {
+      width: 100%;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .box {
+      padding: 1rem;
+    }
+    
+    .orderDetails {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+    
+    .orderDetails strong {
+      font-size: 1rem;
+    }
+  }
