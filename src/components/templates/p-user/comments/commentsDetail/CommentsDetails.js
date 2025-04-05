@@ -1,0 +1,160 @@
+"use client";
+import React, { useState } from "react";
+import { IoCloudUploadOutline } from "react-icons/io5";
+import { MdOutlineDelete } from "react-icons/md";
+import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { validateEmail } from "@/utils/auth";
+import { useRouter } from "next/navigation";
+
+function CommentsDetails({ comment }) {
+  const router = useRouter();
+  const [email, setEmail] = useState(comment.email);
+  const [body, setBody] = useState(comment.body);
+  const [score, setScore] = useState(comment.score);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const updateComment = async () => {
+    if (!email || !body || !score) {
+      setIsLoading(false);
+      return swalAlert("لطفا موارد را پر کنید", "error", "فهمیدم");
+    }
+
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      setIsLoading(false);
+      return swalAlert("ایمیل نامعتبر است", "error", "فهمیدم");
+    }
+
+    const editComment = {
+      email,
+      body,
+      score,
+    };
+
+    const res = await fetch(`/api/comment/${comment._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editComment),
+    });
+
+    if (res.status === 200) {
+      setIsLoading(false);
+      toastSuccess(
+        "کامنت با موفقیت ویرایش شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      router.refresh();
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "لطفا شماره تلفن یا ایمیل خود را وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "لطفا یک شماره تفلن یاایمیل معتبر وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 404) {
+      setIsLoading(false);
+      toastError(
+        "کاربر یافت نشد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
+  return (
+    <main>
+      <div className={styles.details}>
+        <h1 className={styles.title}>
+          <span>جزئیات کامنت</span>
+        </h1>
+        <div className={styles.details_main}>
+          <section>
+            <div>
+              <label>ایمیل</label>
+              <input
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="لطفا ایمیل خود را وارد کنید"
+                type="text"
+              />
+            </div>
+            <div>
+              <label>امتیاز</label>
+              <input value={score}
+              onChange={(event) => setScore(event.target.value)}
+              type="number" />
+            </div>
+            <div>
+              <label>متن پیام</label>
+              <br />
+              <textarea value={body}
+              className={styles.formTextarea}
+              onChange={(event) => setBody(event.target.value)}
+              type="text" />
+            </div>
+          </section>
+        </div>
+        <button
+          type="submit"
+          className={styles.submit_btn}
+          onClick={() => {
+            setIsLoading(true);
+            updateComment();
+          }}
+        >
+          {isLoading ? "لطفا منتظر باشید" : "ثبت ویرایش"}
+        </button>
+      </div>
+    </main>
+  );
+}
+
+export default CommentsDetails;
