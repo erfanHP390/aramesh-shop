@@ -4,6 +4,7 @@ import styles from "./DataTable.module.css"
 import { FaRegStar, FaStar } from "react-icons/fa";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function DataTable({ comments, title }) {
 
@@ -38,12 +39,6 @@ function DataTable({ comments, title }) {
     
     
       }
-
-      const editComment = async (commentID) => {
-        console.log(commentID);
-        
-      }
-
     return (
         <div>
             <div>
@@ -97,9 +92,8 @@ function DataTable({ comments, title }) {
                                     <button
                                         type="button"
                                         className={styles.btn}
-                                        onClick={() => editComment(comment._id)}
                                     >
-                                        ویرایش
+                                        <Link href={`/p-user/comments/${comment._id}`}>ویرایش</Link>
                                     </button>
                                 </td>
                                 <td>
