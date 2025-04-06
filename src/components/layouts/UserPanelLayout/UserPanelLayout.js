@@ -5,6 +5,8 @@ import { authUser } from "@/utils/authUserLink";
 import { redirect } from "next/navigation";
 import SidebarWrapper from "@/components/templates/p-user/sidebarWrapper/SidebarWrapper";
 import connectToDB from "@/configs/db";
+import UserProfileModel from "@/models/UserProfile"
+
 
 const UserPanelLayout = async ({ children }) => {
   connectToDB()
@@ -13,10 +15,13 @@ const UserPanelLayout = async ({ children }) => {
     redirect("/login&register");
   }
 
+  const profileUser = await UserProfileModel.findOne({user: user._id})
+
+
   return (
     <div className={styles.layout}>
       <section className={styles.section}>
-        <SidebarWrapper  name={user.name}  role={user.role}>{children}</SidebarWrapper>
+        <SidebarWrapper  profileUser={JSON.parse(JSON.stringify(profileUser))}  name={user.name}  role={user.role}>{children}</SidebarWrapper>
       </section>
     </div>
   );
