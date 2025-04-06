@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { swalAlert, toastError } from "@/utils/helpers";
 import { validateEmail, validatePhone } from "@/utils/auth";
 
-function AccountDetail() {
+function AccountDetail({profileUser}) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -147,7 +147,7 @@ function AccountDetail() {
                     </section>
                     <section>
                         <div className={styles.uploader}>
-                            <img src="/images/user2.avif" alt="" />
+                            <img src={profileUser ? profileUser.img : "/images/user2.avif"} alt="" />
                             <div>
                                 <div>
                                     <button>

@@ -5,7 +5,7 @@ import Sidebar from "@/components/modules/p-user/sidebar/Sidebar";
 import { FaTimes } from "react-icons/fa";
 import Topbar from "@/components/modules/p-user/topbar/Topbar";
 
-function SidebarWrapper({ name,role , children }) {
+function SidebarWrapper({ name,role ,profileUser  , children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -21,7 +21,7 @@ function SidebarWrapper({ name,role , children }) {
         </button>
       </div>
       <div className={styles.contents}>
-        <Topbar toggleSidebar={toggleSidebar}  name={name}  role={role} />
+        <Topbar toggleSidebar={toggleSidebar}  profileUser={profileUser}  name={name}  role={role} />
         {children}
       </div>
     </>
