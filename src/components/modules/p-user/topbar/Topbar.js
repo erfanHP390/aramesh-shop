@@ -20,7 +20,7 @@ const Topbar = ({name ,role , toggleSidebar }) => {
             <p>{name}</p>
             <span>{role === "ADMIN" ? "ادمین" :  "کاربر عادی"}</span>
           </div>
-          <img src="/images/shahin.jpg" alt=""  className={styles.img_profile} />
+          <img src="/images/user2.avif" alt=""  className={styles.img_profile} />
         </div>
         <section>
           <div className={styles.searchBox}>

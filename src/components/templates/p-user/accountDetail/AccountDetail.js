@@ -147,7 +147,7 @@ function AccountDetail() {
                     </section>
                     <section>
                         <div className={styles.uploader}>
-                            <img src="/images/shahin.jpg" alt="" />
+                            <img src="/images/user2.avif" alt="" />
                             <div>
                                 <div>
                                     <button>
