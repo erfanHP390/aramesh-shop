@@ -219,6 +219,85 @@ function AccountDetail({ profileUser }) {
     }
   };
 
+  const deleteProfile = async (userID) => {
+
+    swal({
+      title: "آیا از حذف عکس اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+
+      if(result) {
+        if(!userID) {
+          setIsLoading(false)
+          return swalAlert("خطا در ارسال شناسه کاربر" , "error" , "فهمیدم")
+        }
+    
+        const res = await fetch(`/api/auth/changeProfile/${userID}` , {
+          method: "DELETE"
+        })
+    
+        if (res.status === 200) {
+          setIsLoading(false);
+          setImg(null);
+          toastSuccess(
+            "عکس پروفایل با موفقیت حذف شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 400) {
+          setIsLoading(false);
+          toastError(
+             "لطفا عکس یا آیدی خود را وارد نمایید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          setIsLoading(false);
+          toastError(
+            "پروفایل کاربر یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          setIsLoading(false);
+          toastError(
+            data.message || "خطا در سرور، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
+      }
+      
+    })
+    
+  }
+
   return (
     <main>
       <div className={styles.details}>
@@ -256,6 +335,9 @@ function AccountDetail({ profileUser }) {
             </div>
           </section>
           <section>
+            <p style={{color: "red"}}>
+              لطفا عکس قدیمی خود را ابتدا حذف و سپس عکس جدید خود را بارگزاری کنید
+            </p>
             <div className={styles.uploader}>
               <img
                 src={profileUser ? profileUser.img : "/images/user2.avif"}
@@ -290,7 +372,10 @@ function AccountDetail({ profileUser }) {
                   <IoCloudUploadOutline />
                   {isLoading ? "لطفا منتظر باشید" : "تغییر عکس"}
                 </button>
-                <button>
+                <button onClick={() => {
+                  setIsLoading(true)
+                  deleteProfile(user)
+                }}>
                   <MdOutlineDelete />
                   حذف
                 </button>
