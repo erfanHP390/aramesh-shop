@@ -4,7 +4,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import styles from "./AccountDetail.module.css";
 import { useEffect, useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import { validateEmail, validatePhone } from "@/utils/auth";
+import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 
 function AccountDetail({ profileUser }) {
@@ -14,6 +14,7 @@ function AccountDetail({ profileUser }) {
   const [phone, setPhone] = useState("");
   const [user, setUser] = useState("");
   const [img, setImg] = useState(null);
+  const [changePassword, setChangePassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -129,10 +130,14 @@ function AccountDetail({ profileUser }) {
       return swalAlert("لطفا عکس خود را ارسال کنید", "error", "فهمیدم");
     }
 
-    if (img.size > 5 * 1024 * 1024) { 
-        setIsLoading(false)
-        return swalAlert("حجم فایل نباید بیشتر از ۵ مگابایت باشد", "error", "فهمیدم");
-      }
+    if (img.size > 5 * 1024 * 1024) {
+      setIsLoading(false);
+      return swalAlert(
+        "حجم فایل نباید بیشتر از ۵ مگابایت باشد",
+        "error",
+        "فهمیدم"
+      );
+    }
 
     try {
       setIsLoading(true);
@@ -220,23 +225,21 @@ function AccountDetail({ profileUser }) {
   };
 
   const deleteProfile = async (userID) => {
-
     swal({
       title: "آیا از حذف عکس اطمینان دارید؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
-
-      if(result) {
-        if(!userID) {
-          setIsLoading(false)
-          return swalAlert("خطا در ارسال شناسه کاربر" , "error" , "فهمیدم")
+      if (result) {
+        if (!userID) {
+          setIsLoading(false);
+          return swalAlert("خطا در ارسال شناسه کاربر", "error", "فهمیدم");
         }
-    
-        const res = await fetch(`/api/auth/changeProfile/${userID}` , {
-          method: "DELETE"
-        })
-    
+
+        const res = await fetch(`/api/auth/changeProfile/${userID}`, {
+          method: "DELETE",
+        });
+
         if (res.status === 200) {
           setIsLoading(false);
           setImg(null);
@@ -255,7 +258,7 @@ function AccountDetail({ profileUser }) {
         } else if (res.status === 400) {
           setIsLoading(false);
           toastError(
-             "لطفا عکس یا آیدی خود را وارد نمایید",
+            "لطفا عکس یا آیدی خود را وارد نمایید",
             "top-center",
             5000,
             false,
@@ -293,10 +296,100 @@ function AccountDetail({ profileUser }) {
           );
         }
       }
-      
-    })
-    
-  }
+    });
+  };
+
+  const changePasswordHandler = async () => {
+    if (!user || !changePassword) {
+      setIsLoading(false);
+      return swalAlert(
+        "لطفا رمزعبور خود را وارد نمایید در صورت بروز مشکل به پشتیبانی پیام بدید",
+        "error",
+        "فهمیدم"
+      );
+    }
+
+    const isValidPassword = validatePassword(changePassword);
+    if (!isValidPassword) {
+      setIsLoading(false);
+      return swalAlert(
+        "رمز عبور نامعتبر است لطفا.رمز عبور باید حداقل از هشت کارکتر،نماد و اعداد و حرف  بزرگ و کوچک تشکیل شده باشد",
+        "error",
+        "فهمیدم"
+      );
+    }
+
+    const changpasswordUser = {
+      id: user,
+      password: changePassword,
+    };
+
+    const res = await fetch("/api/auth/changePassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(changpasswordUser),
+    });
+
+
+    if (res.status === 200) {
+      setIsLoading(false);
+      setChangePassword("")
+      toastSuccess(
+        "رمز عبور با موفقیت تغییر پیدا کرد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      router.refresh();
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "لطفا شناسه خود و رمزعبور جدید را وارد نمایید. درصورت بروز مشکل به پشتیبانی پیام دهید" ,
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 404) {
+      setIsLoading(false);
+      toastError(
+        "کاربر یافت نشد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        data.message || "خطا در سرور، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+
+  };
 
   return (
     <main>
@@ -335,8 +428,9 @@ function AccountDetail({ profileUser }) {
             </div>
           </section>
           <section>
-            <p style={{color: "red"}}>
-              لطفا عکس قدیمی خود را ابتدا حذف و سپس عکس جدید خود را بارگزاری کنید
+            <p style={{ color: "red" }}>
+              لطفا عکس قدیمی خود را ابتدا حذف و سپس عکس جدید خود را بارگزاری
+              کنید
             </p>
             <div className={styles.uploader}>
               <img
@@ -347,9 +441,7 @@ function AccountDetail({ profileUser }) {
                 <div>
                   <button>
                     <IoCloudUploadOutline />
-                    {
-                        img ? "تصویر با موفقیت بارگزاری شد" : "بارگزاری عکس"
-                    }
+                    {img ? "تصویر با موفقیت بارگزاری شد" : "بارگزاری عکس"}
                   </button>
                   <input
                     type="file"
@@ -372,10 +464,12 @@ function AccountDetail({ profileUser }) {
                   <IoCloudUploadOutline />
                   {isLoading ? "لطفا منتظر باشید" : "تغییر عکس"}
                 </button>
-                <button onClick={() => {
-                  setIsLoading(true)
-                  deleteProfile(user)
-                }}>
+                <button
+                  onClick={() => {
+                    setIsLoading(true);
+                    deleteProfile(user);
+                  }}
+                >
                   <MdOutlineDelete />
                   حذف
                 </button>
@@ -384,8 +478,21 @@ function AccountDetail({ profileUser }) {
             <div>
               <label>رمز عبور</label>
               <div className={styles.password_group}>
-                <input type="password" />
-                <button>تغییر رمز عبور</button>
+                <input
+                  type="password"
+                  value={changePassword}
+                  onChange={(event) => setChangePassword(event.target.value)}
+                />
+                <button
+                  onClick={() => {
+                    setIsLoading(true);
+                    changePasswordHandler();
+                  }}
+                >
+                  {
+                    isLoading ? "لطفا منتظر باشید" : "تغییر رمزعبور"
+                  }
+                </button>
               </div>
             </div>
           </section>
