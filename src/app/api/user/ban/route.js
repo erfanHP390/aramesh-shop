@@ -11,11 +11,11 @@ export async function POST(req) {
         const body =await req.json()
         const {email , phone} = body
         
-        if(!email || !phone) {
-            return Response.json({message: "one field must fill"} , {
-                status: 400
-            })
-        }
+        // if(!email || !phone) {
+        //     return Response.json({message: "one field must fill"} , {
+        //         status: 400
+        //     })
+        // }
 
         const isValidEmail = validateEmail(email)
         if(!isValidEmail) {
@@ -25,7 +25,7 @@ export async function POST(req) {
         }
 
         const isValidPhone = validatePhone(phone)
-        if(!isValidPhone) {
+        if(!isValidPhone || !isValidEmail) {
             return Response.json({message: "phone is not valid"} , {
                 status: 422
             })
