@@ -4,6 +4,7 @@ import styles from "./ProductTable.module.css"
 import Modal from '@/components/modules/Modal/Modal';
 import { swalAlert, toastError, toastSuccess } from '@/utils/helpers';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 function ProductTable({products , title}) {
@@ -134,7 +135,7 @@ function ProductTable({products , title}) {
                   </td>
                   <td>
                     <button type="button" className={styles.edit_btn}>
-                      ویرایش
+                      <Link href={`/p-admin/products/${product._id}`}>ویرایش</Link>
                     </button>
                   </td>
                   <td>
