@@ -2,9 +2,12 @@
 import React, { useState } from 'react'
 import styles from "./ProductTable.module.css"
 import Modal from '@/components/modules/Modal/Modal';
+import { swalAlert, toastError, toastSuccess } from '@/utils/helpers';
+import { useRouter } from 'next/navigation';
 
 
 function ProductTable({products , title}) {
+  const router = useRouter()
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const hideModal = () => setShowModal(false);
@@ -13,6 +16,82 @@ function ProductTable({products , title}) {
       const product = products.find(product => product._id === productID);
       setSelectedProduct(product);
       setShowModal(true);
+    }
+
+    const removeProduct = async (productID) => {
+
+      swal({
+        title: "آیا از حذف محصول اطمینان دارید؟",
+        icon: "warning",
+        buttons: ["نه", "آره"],
+      }).then(async (result) => {
+
+        if(result) {
+
+          if(!productID) {
+            return swalAlert("شناسه محصول ارسال نشده است" , "error" , "فهمیدم")
+          }
+
+          const res = await fetch(`/api/product/${productID}` , {
+            method: "DELETE"
+          })
+
+          if (res.status === 200) {
+              toastSuccess(
+                "محصول با موفقیت حذف شد",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+              router.refresh()
+          } else if (res.status === 400) {
+            toastError(
+              "شناسه محصول ارسال نشده است",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          } else if (res.status === 422) {
+            toastError(
+              "شناسه محصول نامعتبر است",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          } else if (res.status === 500) {
+            toastError(
+              "خطا در سرور ، لطفا بعدا تلاش کنید",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          }
+
+
+        }
+
+      })
+
     }
 
   return (
@@ -59,7 +138,7 @@ function ProductTable({products , title}) {
                     </button>
                   </td>
                   <td>
-                    <button type="button" className={styles.delete_btn}>
+                    <button onClick={() => removeProduct(product._id)} type="button" className={styles.delete_btn}>
                       حذف
                     </button>
                   </td>
