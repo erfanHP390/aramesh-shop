@@ -7,77 +7,120 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 function CommentTable({ comments, title }) {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const showCommentBody = (text) => {
     swalAlert(text, undefined, "بستن");
   };
 
   const acceptComment = async (commentID) => {
-
-    const res = await fetch("/api/comment/accept" , {
+    const res = await fetch("/api/comment/accept", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: commentID })
-    })
+      },
+      body: JSON.stringify({ id: commentID }),
+    });
 
-
-    if(res.status === 200) {
-      swal("کامنت تایید شد" , "success" , "فهمیدم")
-      router.refresh()
+    if (res.status === 200) {
+      swal("کامنت تایید شد", "success", "فهمیدم");
+      router.refresh();
     }
-    
+  };
 
-  }
-
-  const rejectComment =async (commentID) => {
-    const res = await fetch("/api/comment/reject" , {
+  const rejectComment = async (commentID) => {
+    const res = await fetch("/api/comment/reject", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: commentID })
-    })
+      },
+      body: JSON.stringify({ id: commentID }),
+    });
 
     console.log(res);
 
-    if(res.status === 200) {
-      swal("کامنت رد شد" , "success" , "فهمیدم")
-      router.refresh()
+    if (res.status === 200) {
+      swal("کامنت رد شد", "success", "فهمیدم");
+      router.refresh();
     }
-  }
+  };
 
-  
   const removeComment = async (commentID) => {
     swal({
       title: "آیا از حذف کاربر اطمینان دارین؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
+      if (result) {
+        const res = await fetch(`/api/comment/${commentID}`, {
+          method: "DELETE",
+        });
 
-      if(result) {
-
-        const res = await fetch(`/api/comment/${commentID}` , {
-          method: "DELETE"
-        })
-
-        
-
-        if(res.status === 200) {
-          swalAlert("کامنت با موفقیت حذف شد" , "success" , "فهمیدم")
-          router.refresh()
+        if (res.status === 200) {
+          toastSuccess(
+            "کامنت با موفقیت حذف شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 400) {
+          toastError(
+            "شناسه کامنت ارسال نشده است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         }
-
+      } else if (res.status === 422) {
+        toastError(
+          "شناسه کامنت نامعتبر است",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+      } else if (res.status === 404) {
+        toastError(
+          "کامنت یافت نشد",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+      } else if (res.status === 500) {
+        toastError(
+          "خطا در سرور ، لطفا بعدا تلاش کنید",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
       }
-
-    })
-
-
-
-  }
+    });
+  };
 
   return (
     <div>
@@ -135,17 +178,29 @@ function CommentTable({ comments, title }) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}  onClick={() => removeComment(comment._id)}>
+                  <button
+                    type="button"
+                    className={styles.delete_btn}
+                    onClick={() => removeComment(comment._id)}
+                  >
                     حذف
                   </button>
                 </td>
                 <td>
                   {comment.isAccept ? (
-                    <button type="button" className={styles.delete_btn}  onClick={() => rejectComment(comment._id)}>
+                    <button
+                      type="button"
+                      className={styles.delete_btn}
+                      onClick={() => rejectComment(comment._id)}
+                    >
                       رد
                     </button>
                   ) : (
-                    <button type="button" className={styles.delete_btn}  onClick={() => acceptComment(comment._id)}>
+                    <button
+                      type="button"
+                      className={styles.delete_btn}
+                      onClick={() => acceptComment(comment._id)}
+                    >
                       تایید
                     </button>
                   )}
