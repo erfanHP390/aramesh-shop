@@ -4,6 +4,7 @@ import styles from "@/components/templates/p-admin/tickets/TicketTable.module.cs
 import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
 import TicketTable from "@/components/templates/p-admin/tickets/TicketTable";
+import { authUser } from "@/utils/authUserLink";
 
 const page = async () => {
     connectToDB();
@@ -13,6 +14,8 @@ const page = async () => {
       .populate("department")
       .populate("subDepartment")
       .lean();
+
+      const user =await authUser()
   
     return (
       <AdminPanelLayout>
@@ -23,6 +26,8 @@ const page = async () => {
             <TicketTable
               tickets={JSON.parse(JSON.stringify(tickets))}
               title="لیست تیکت ها"
+              email={user.email}
+              phone={user.phone}
             />
           )}
         </main>
