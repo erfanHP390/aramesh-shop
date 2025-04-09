@@ -3,8 +3,10 @@ import React from "react";
 import styles from "./TicketTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert"
+import { useRouter } from "next/navigation";
 
-function TicketTable({tickets , title}) {
+function TicketTable({tickets , title , email , phone}) {
+  const router = useRouter()
 
     const showTicketBody = (text) => {
         swalAlert(text , undefined , "بستن")
@@ -54,6 +56,63 @@ function TicketTable({tickets , title}) {
       )
     }
 
+    const banUser = async () => {
+      swal({
+        title: "آیا از مسدود کردن کاربر اطمینان دارید؟",
+        icon: "warning",
+        buttons: ["نه", "آره"],
+      }).then(async (result) => {
+        if (result) {
+          const res = await fetch("/api/user/ban", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email , phone }),
+          });
+  
+          if (res.status === 200) {
+            toastSuccess(
+              "کاربر با موفقیت مسدود شد",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+            router.refresh();
+          } else if (res.status === 422) {
+            toastError(
+              "ایمیل/تلفن کاربر نامعتبر است",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          } else if (res.status === 500) {
+            toastError(
+              "خطا در سرور ، لطفا بعدا تلاش کنید",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          }
+        }
+      });
+    };
+
   return (
     <div>
       <div>
@@ -99,7 +158,9 @@ function TicketTable({tickets , title}) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn} >
+                  <button
+                  onClick={() => banUser()}
+                  type="button" className={styles.delete_btn} >
                     بن
                   </button>
                 </td>
