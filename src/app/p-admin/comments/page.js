@@ -4,6 +4,7 @@ import styles from "@/components/templates/p-admin/comments/CommentTable.module.
 import connectToDB from "@/configs/db";
 import CommentModel from "@/models/Comment";
 import CommentTable from "@/components/templates/p-admin/comments/CommentTable";
+import { authUser } from "@/utils/authUserLink";
 
 const page = async () => {
     connectToDB();
@@ -11,6 +12,7 @@ const page = async () => {
       .sort({ _id: -1 })
       .populate("productID")
       .lean();
+      const user = await authUser()
   
     return (
       <AdminPanelLayout>
@@ -21,6 +23,7 @@ const page = async () => {
             <CommentTable
               comments={JSON.parse(JSON.stringify(comments))}
               title="لیست کامنت ها"
+              phone={user.phone}
             />
           )}
         </main>
