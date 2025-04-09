@@ -3,6 +3,7 @@ import UserModel from "@/models/User"
 import { generateAccessToken, hashPassword } from "@/utils/auth";
 import { roles } from "@/utils/constants";
 import { validatePhone , validateEmail ,validatePassword } from "@/utils/auth";
+import BanModel from "@/models/Ban"
 
 
 export async function POST(req) {
@@ -53,6 +54,15 @@ export async function POST(req) {
         if(isUserExist) {
             return Response.json({message: "the username or email or phone is already exist"} , {
                 status: 422
+            })
+        }
+
+        const banEmail = await BanModel.findOne({email})
+        const banPhone = await BanModel.findOne({phone})
+
+        if(banEmail || banPhone) {
+            return Response.json({message: "email/phone is banned"} , {
+                status: 403
             })
         }
     
