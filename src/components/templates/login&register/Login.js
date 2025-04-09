@@ -51,11 +51,7 @@ const Login = ({ showRegisterForm }) => {
         "تلاش مجدد"
       );
     }
-
-    // const isValidPassword = validatePassword(password);
-    // if (!isValidPassword) {
-    //   return swalAlert("ایمیل یا پسورد اشتباه است", "error", "تلاش مجدد");
-    // }
+    
 
     const user = { email, password };
 
@@ -123,6 +119,22 @@ const Login = ({ showRegisterForm }) => {
       setIsLoading("");
       toastError(
         "ایمیل/رمزعبور صحیح نیست",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+    else if (res.status === 403) {
+      setEmail("");
+      setPassword("");
+      setIsLoading("");
+      toastError(
+        "ایمیل مسدود است",
         "top-center",
         5000,
         false,
