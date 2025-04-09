@@ -3,6 +3,7 @@ import { validatePhone } from "@/utils/auth";
 const request = require("request");
 import OtpModel from "@/models/Otp";
 import UserModel from "@/models/User";
+import BanModel from "@/models/Ban"
 
 export async function POST(req) {
   try {
@@ -28,6 +29,13 @@ export async function POST(req) {
           status: 422,
         }
       );
+    }
+
+    const banPhone = await BanModel.findOne({phone})
+    if(banPhone) {
+      return Response.json({message: "phone is banned"} , {
+        status: 403
+      })
     }
 
 

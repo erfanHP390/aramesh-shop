@@ -4,6 +4,8 @@ import { generateRefreshToken, validatePhone } from "@/utils/auth";
 import UserModel from "@/models/User";
 import { generateAccessToken } from "@/utils/auth";
 import { roles } from "@/utils/constants";
+import BanModel from "@/models/Ban"
+
 
 export async function POST(req) {
   try {
@@ -30,6 +32,13 @@ export async function POST(req) {
         }
       );
     }
+
+        const banPhone = await BanModel.findOne({phone})
+        if(banPhone) {
+          return Response.json({message: "phone is banned"} , {
+            status: 403
+          })
+        }
 
     const otp = await OtpModel.findOne({ phone, code });
     const otpPhone = await OtpModel.findOne({ phone });
