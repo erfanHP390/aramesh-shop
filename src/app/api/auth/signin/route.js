@@ -1,6 +1,7 @@
 import { generateAccessToken, generateRefreshToken, validateEmail, validatePassword, verifyPassword } from "@/utils/auth"
 import UserModel from "@/models/User"
 import connectToDB from "@/configs/db"
+import BanModel from "@/models/Ban"
 
 
 export async function POST(req) {
@@ -12,11 +13,18 @@ export async function POST(req) {
         const {email , password} = body
     
         const isValidEmail = validateEmail(email)
-        // const isValidPassword = validatePassword(password)
     
         if(!isValidEmail) {
             return Response.json({message: "email or password is invalid"} , {
                 status: 419
+            })
+        }
+
+        const banEmail = await BanModel.findOne({email})
+
+        if(banEmail) {
+            return Response.json({message: "email is banned"} , {
+                status: 403
             })
         }
     
