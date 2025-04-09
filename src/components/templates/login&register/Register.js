@@ -104,7 +104,43 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    } else if (res.status === 500) {
+    } else if (res.status === 403) {
+      setName("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setIsLoading(false);
+      toastError(
+        "شماره تلفن / ایمیل مسدود است لطفا شماره تلفن / ایمیل دیگری وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
+    else if (res.status === 419) {
+      setName("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setIsLoading(false);
+      toastError(
+        "شماره تلفن/ایمیل باید فرمت معتبر و رمزعبور حداقل از نماد و حرف بزرگ و کوچک و  نماد تشکیل شده باشد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
+    else if (res.status === 500) {
       setName("");
       setPhone("");
       setEmail("");
