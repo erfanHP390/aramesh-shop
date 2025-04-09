@@ -251,3 +251,218 @@
         padding: 0.3rem 0.6rem; /* کاهش پدینگ برای موبایل‌های کوچک */
     }
 }
+
+/* استایل‌های مودال محصول */
+.modal_product {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: #F8F4EF; /* رنگ پس‌زمینه بژ روشن */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.15); /* سایه با رنگ قهوه‌ای */
+  }
+  
+  .modal_product_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #D2B48C; /* خط جداکننده بژ */
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal_product_title {
+    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .modal_product_close {
+    background: none;
+    border: none;
+    color: #CC5500; /* رنگ نارنجی */
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .modal_product_close:hover {
+    color: #A68A64; /* رنگ قهوه‌ای روشن */
+  }
+  
+  .modal_product_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .modal_product_image_container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(111, 78, 55, 0.1);
+    aspect-ratio: 1/1;
+    background-color: white;
+  }
+  
+  .modal_product_image {
+    object-fit: contain;
+    padding: 1rem;
+  }
+  
+  .modal_product_info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .modal_product_price {
+    font-size: 1.8rem;
+    color: #CC5500; /* رنگ نارنجی */
+    font-weight: 700;
+  }
+  
+  .modal_product_rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6F4E37; /* رنگ قهوه‌ای */
+  }
+  
+  .modal_product_rating_stars {
+    color: #FFC107; /* رنگ ستاره‌ها */
+  }
+  
+  .modal_product_meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .modal_product_meta_item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .modal_product_meta_label {
+    font-size: 0.85rem;
+    color: #A68A64; /* رنگ قهوه‌ای روشن */
+  }
+  
+  .modal_product_meta_value {
+    font-weight: 500;
+    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+  }
+  
+  .modal_product_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .modal_product_tag {
+    background-color: #D2B48C; /* رنگ بژ */
+    color: #6F4E37; /* رنگ قهوه‌ای */
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .modal_product_description {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+  }
+  
+  .modal_product_description_title {
+    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #D2B48C; /* خط جداکننده بژ */
+    padding-bottom: 0.5rem;
+  }
+  
+  .modal_product_description_text {
+    color: #5A4A42; /* رنگ قهوه‌ای تیره */
+    line-height: 1.6;
+  }
+  
+  .modal_product_actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #D2B48C; /* خط جداکننده بژ */
+  }
+  
+  .modal_product_button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  
+  .modal_product_button_primary {
+    background-color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    color: white;
+  }
+  
+  .modal_product_button_primary:hover {
+    background-color: #5A3D2A; /* رنگ قهوه‌ای تیره */
+  }
+  
+  .modal_product_button_secondary {
+    background-color: #F5F5F5;
+    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    border: 1px solid #D2B48C; /* رنگ بژ */
+  }
+  
+  .modal_product_button_secondary:hover {
+    background-color: #E8E0D9; /* رنگ بژ روشن */
+  }
+  
+  /* استایل‌های ریسپانسیو */
+  @media (max-width: 768px) {
+    .modal_product_content {
+      grid-template-columns: 1fr;
+    }
+    
+    .modal_product_image_container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    .modal_product_meta {
+      grid-template-columns: 1fr;
+    }
+    
+    .modal_product_actions {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .modal_product_button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal_product {
+      padding: 1rem;
+    }
+    
+    .modal_product_title {
+      font-size: 1.25rem;
+    }
+    
+    .modal_product_price {
+      font-size: 1.5rem;
+    }
+  }
