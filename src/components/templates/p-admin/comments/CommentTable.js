@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-function CommentTable({ comments, title }) {
+function CommentTable({ comments, title  ,phone}) {
   const router = useRouter();
 
   const showCommentBody = (text) => {
@@ -121,6 +121,62 @@ function CommentTable({ comments, title }) {
       }
     });
   };
+  const banUser = async (commentEmail) => {
+    swal({
+      title: "آیا از مسدود کردن کاربر اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+        const res = await fetch("/api/user/ban", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: commentEmail , phone }),
+        });
+
+        if (res.status === 200) {
+          toastSuccess(
+            "کاربر با موفقیت مسدود شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 422) {
+          toastError(
+            "ایمیل/تلفن کاربر نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
+      }
+    });
+  };
 
   return (
     <div>
@@ -206,7 +262,11 @@ function CommentTable({ comments, title }) {
                   )}
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}>
+                  <button
+                    onClick={() => banUser(comment.email)}
+                    type="button"
+                    className={styles.delete_btn}
+                  >
                     بن
                   </button>
                 </td>
