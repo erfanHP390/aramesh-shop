@@ -14,9 +14,12 @@ export default async function page({params}) {
     connectToDB()
     const user = await authUser();
     const productID = params.id
-    const  product = await ProductModel.findOne({_id: productID}).populate("comments")
+    const product = await ProductModel.findOne({_id: productID}).populate("comments")
 
     const relatedProducts = await ProductModel.find({smell: product.smell})
+    const filteredRelatedProducts = relatedProducts.filter(
+        relatedProduct => String(relatedProduct._id) !== String(productID)
+    )
 
     return (
         <div className={styles.container}>
@@ -27,7 +30,7 @@ export default async function page({params}) {
                     <Details product={JSON.parse(JSON.stringify(product))} />
                 </div>
                 <Tabs  product={JSON.parse(JSON.stringify(product))} />
-                <MoreProducts  relatedProducts={JSON.parse(JSON.stringify(relatedProducts))} />
+                <MoreProducts  relatedProducts={JSON.parse(JSON.stringify(filteredRelatedProducts))} />
             </div>
             <Footer />
         </div>
