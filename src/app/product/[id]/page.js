@@ -26,7 +26,7 @@ export default async function page({params}) {
             <Navbar isLogin={user ? true : false} />
             <div data-aos="fade-up" className={styles.contents}>
                 <div className={styles.main}>
-                    <Gallery />
+                    <Gallery product={JSON.parse(JSON.stringify(product))} />
                     <Details product={JSON.parse(JSON.stringify(product))} />
                 </div>
                 <Tabs  product={JSON.parse(JSON.stringify(product))} />
