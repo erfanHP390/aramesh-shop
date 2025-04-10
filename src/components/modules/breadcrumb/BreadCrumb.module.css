@@ -49,3 +49,21 @@
     font-size: 4.4rem;
     color: #FFD700; /* عنوان طلایی */
   }
+
+  @media (max-width: 512px) {
+    .title {
+      font-size: 3.4rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .title {
+      font-size: 2.4rem;
+    }
+  }
+
+  @media (max-width: 336px) {
+    .title {
+      font-size: 2rem;
+    }
+  }
