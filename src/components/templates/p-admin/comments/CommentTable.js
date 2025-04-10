@@ -82,7 +82,7 @@ function CommentTable({ comments, title  ,phone}) {
             "colored"
           );
         }
-      } else if (res.status === 422) {
+      else if (res.status === 422) {
         toastError(
           "شناسه کامنت نامعتبر است",
           "top-center",
@@ -119,7 +119,7 @@ function CommentTable({ comments, title  ,phone}) {
           "colored"
         );
       }
-    });
+    }});
   };
   const banUser = async (commentEmail) => {
     swal({
