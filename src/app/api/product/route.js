@@ -1,5 +1,6 @@
 import connectToDB from "@/configs/db";
 import ProductModel from "@/models/Product"
+import { authAdmin } from "@/utils/authUserLink";
 // import fs from "fs";
 import { writeFile } from "fs/promises";
 import path from "path";
@@ -8,6 +9,16 @@ export async function POST(req) {
   connectToDB();
 
   try {
+
+        const admin = await authAdmin();
+        if (!admin) {
+          return Response.json(
+            { message: "this route is protected" },
+            {
+              status: 401,
+            }
+          );
+        }
 
     const formData = await req.formData();
 

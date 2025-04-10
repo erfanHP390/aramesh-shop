@@ -1,5 +1,5 @@
 import connectToDB from "@/configs/db"
-import { authUser } from "@/utils/authUserLink"
+import { authAdmin, authUser } from "@/utils/authUserLink"
 import TicketModel from "@/models/Ticket"
 
 
@@ -8,6 +8,17 @@ export async function POST(req) {
     try {
 
         connectToDB()
+
+        const admin = await authAdmin();
+        if (!admin) {
+          return Response.json(
+            { message: "this route is protected" },
+            {
+              status: 401,
+            }
+          );
+        }
+    
 
         const reqBody = await req.json()
         const {title , body , department , subDepartment , priority , ticketID} = reqBody

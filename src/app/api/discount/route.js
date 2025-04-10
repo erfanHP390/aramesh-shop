@@ -1,11 +1,23 @@
 import connectToDB from "@/configs/db"
 import DiscountModel from "@/models/Discount"
+import { authAdmin } from "@/utils/authUserLink";
 
 export async function POST(req) {
 
     try {
 
         connectToDB()
+
+            const admin = await authAdmin();
+            if (!admin) {
+              return Response.json(
+                { message: "this route is protected" },
+                {
+                  status: 401,
+                }
+              );
+            }
+        
 
         const body = await req.json()
         const {code , percent , maxUse} = body

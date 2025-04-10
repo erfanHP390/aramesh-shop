@@ -3,9 +3,18 @@ import { writeFile, unlink } from "fs/promises";
 import path from "path";
 import ProductModel from "@/models/Product";
 import { isValidObjectId } from "mongoose";
+import { authAdmin, authUser } from "@/utils/authUserLink";
 
 export async function PUT(req, { params }) {
   try {
+
+    const admin = await authAdmin()
+    if(!admin) {
+      return Response.json({message: "this route is protected"} , {
+        status: 401
+      })
+    }
+
     connectToDB();
 
     const id = params.id;

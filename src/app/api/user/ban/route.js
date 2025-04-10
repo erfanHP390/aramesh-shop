@@ -1,6 +1,7 @@
 import connectToDB from "@/configs/db";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import BanModel from "@/models/Ban"
+import { authAdmin } from "@/utils/authUserLink";
 
 export async function POST(req) {
 
@@ -11,11 +12,15 @@ export async function POST(req) {
         const body =await req.json()
         const {email , phone} = body
         
-        // if(!email || !phone) {
-        //     return Response.json({message: "one field must fill"} , {
-        //         status: 400
-        //     })
-        // }
+        const admin = await authAdmin();
+        if (!admin) {
+          return Response.json(
+            { message: "this route is protected" },
+            {
+              status: 401,
+            }
+          );
+        }
 
         const isValidEmail = validateEmail(email)
         if(!isValidEmail) {

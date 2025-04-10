@@ -2,10 +2,23 @@ import connectToDB from "@/configs/db";
 import { isValidObjectId } from "mongoose";
 import CommentModel from "@/models/Comment";
 import { validateEmail } from "@/utils/auth";
+import { authAdmin } from "@/utils/authUserLink";
 
 export async function DELETE(req, { params }) {
   try {
     connectToDB();
+
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
+    }
+
+
     const id = params.id;
 
     if (!id) {

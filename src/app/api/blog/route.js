@@ -2,10 +2,21 @@ import connectToDB from "@/configs/db";
 import { writeFile } from "fs/promises";
 import path from "path";
 import BlogModel from "@/models/Blog";
+import { authAdmin } from "@/utils/authUserLink";
 
 export async function POST(req) {
   try {
     connectToDB();
+
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
+    }
 
     const formData = await req.formData();
 
@@ -53,8 +64,6 @@ export async function POST(req) {
       { message: "article is created successfully" },
       { status: 201 }
     );
-
-    
   } catch (err) {
     return Response.json(
       { message: `interval error server ${err}` },
@@ -67,12 +76,10 @@ export async function POST(req) {
 
 export async function GET(req) {
   try {
-
-    connectToDB()
+    connectToDB();
     const blogs = await BlogModel.find({}).populate("comments");
 
-    return Response.json(blogs)
-
+    return Response.json(blogs);
   } catch (err) {
     return Response.json(
       { message: `interval error server ${err}` },
