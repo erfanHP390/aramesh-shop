@@ -2,8 +2,8 @@
 
 import styles from "./Sidebar.module.css";
 import { ImReply } from "react-icons/im";
-import { FaComments, FaHeart, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
-import { MdOutlineAttachMoney } from "react-icons/md";
+import { FaBlog, FaComments, FaHeart, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
+import { MdOutlineArticle, MdOutlineAttachMoney } from "react-icons/md";
 import { MdSms, MdLogout } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { TbListDetails } from "react-icons/tb";
@@ -94,6 +94,10 @@ const Sidebar = ({name}) => {
             <Link href={"/p-admin/products"}  className={path.includes("/p-admin/products") && styles.sidebar_link_active}>
               <FaShoppingBag />
               محصولات
+            </Link>
+            <Link href={"/p-admin/blogs"}  className={path.includes("/p-admin/blogs") && styles.sidebar_link_active}>
+              <MdOutlineArticle /> 
+              مقالات
             </Link>
             <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") && styles.sidebar_link_active} >
               <FaUsers />
