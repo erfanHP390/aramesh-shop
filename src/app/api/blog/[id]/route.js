@@ -2,6 +2,9 @@ import connectToDB from "@/configs/db";
 import { isValidObjectId } from "mongoose";
 import { authAdmin } from "@/utils/authUserLink";
 import BlogModel from "@/models/Blog"
+import { unlink } from "fs/promises";
+import path from "path";
+import { URL } from "url";
 
 export async function DELETE(req, { params }) {
   try {
@@ -46,6 +49,25 @@ export async function DELETE(req, { params }) {
         }
       );
     }
+
+        // حذف فایل تصویر از سیستم فایل
+        if (isExistBlog.img) {
+          try {
+            // استخراج مسیر فایل از URL
+            const imgUrl = new URL(isExistBlog.img);
+            const filePath = path.join(
+              process.cwd(),
+              "public",
+              imgUrl.pathname
+            );
+            
+            await unlink(filePath);
+            console.log(`تصویر با موفقیت حذف شد: ${filePath}`);
+          } catch (err) {
+            console.error(`خطا در حذف تصویر: ${err.message}`);
+            // حتی اگر حذف فایل با خطا مواجه شد، ادامه دهید
+          }
+        }
 
     await BlogModel.findOneAndDelete({ _id: id });
 
