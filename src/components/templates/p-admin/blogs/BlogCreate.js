@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 
 import React, { useState } from 'react'
+import Loading from "@/app/loading";
 
 function BlogCreate() {
 
@@ -172,7 +173,7 @@ function BlogCreate() {
           setIsLoading(true)
           createBlog()
       }} type="submit" className={styles.submit_btn}>
-        {isLoading ? "لطفا منتظر باشید" : "ثبت مقاله"}
+        {isLoading ? <Loading /> : "ثبت مقاله"}
       </button>
     </div>
   </main>

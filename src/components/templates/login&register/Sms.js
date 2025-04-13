@@ -4,6 +4,7 @@ import styles from "./Sms.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 const Sms = ({hideOtpForm , phone}) => {
 
@@ -169,7 +170,7 @@ const Sms = ({hideOtpForm , phone}) => {
           verifyCode()
         }}>
           {
-            isLoading ? "لطفا منتظر بمانید": "ثبت کد تایید"
+            isLoading ?  <Loading />: "ثبت کد تایید"
           }
         </button>
         <p className={styles.send_again_code}>ارسال مجدد کد یکبار مصرف</p>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./Form.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePhone } from "@/utils/auth";
+import Loading from "@/app/loading";
 
 export default function Form() {
   const [email, setEmail] = useState("");
@@ -181,7 +182,7 @@ export default function Form() {
           sendMessage(event);
         }}
       >
-        {isLoading ? "در حال ثبت ، لطفا منتظر باشید" : "ثبت"}
+        {isLoading ? <Loading /> : "ثبت"}
       </button>
     </form>
   );

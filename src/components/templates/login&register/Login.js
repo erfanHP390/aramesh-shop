@@ -6,6 +6,7 @@ import Link from "next/link";
 import { swalAlert, toastSuccess , toastError } from "@/utils/helpers";
 import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 const Login = ({ showRegisterForm }) => {
   const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
@@ -275,7 +276,7 @@ const Login = ({ showRegisterForm }) => {
                 loginWithPassword();
               }}
             >
-              {isLoading ? "در حال بررسی" : "ورود"}
+              {isLoading ? <Loading />: "ورود"}
             </button>
             <Link href={"/forgetPassword"} className={styles.forgot_pass}>
               رمز عبور را فراموش کرده اید؟
@@ -290,7 +291,7 @@ const Login = ({ showRegisterForm }) => {
               }}
               className={styles.btn}
             >
-                            {isLoadingOtp ? "لطفا منتظر بمانید.." : "ورود با کد تایید"}
+                            {isLoadingOtp ? <Loading /> : "ورود با کد تایید"}
             </button>
             <span>ایا حساب کاربری ندارید؟</span>
             <button onClick={showRegisterForm} className={styles.btn_light}>

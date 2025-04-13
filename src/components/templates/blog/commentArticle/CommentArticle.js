@@ -4,6 +4,7 @@ import styles from "./CommentArticle.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 function CommentArticle({ comments, blogId }) {
 
@@ -266,7 +267,7 @@ function CommentArticle({ comments, blogId }) {
             AddComment(event);
           }}
         >
-          {isLoading ? "در حال ثبت ، لطفا منتظر بمانید" : "ارسال دیدگاه"}
+          {isLoading ?  <Loading /> : "ارسال دیدگاه"}
         </button>
       </form>
     </div>

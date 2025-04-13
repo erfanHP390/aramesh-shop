@@ -5,6 +5,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
 import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 function BlogDetails({ blog }) {
     
@@ -196,7 +197,7 @@ function BlogDetails({ blog }) {
             setIsLoading(true)
             updateBlog()
         }} type="submit" className={styles.submit_btn}>
-          {isLoading ? "لطفا منتظر باشید" : "ثبت ویرایش"}
+          {isLoading ? <Loading /> : "ثبت ویرایش"}
         </button>
       </div>
     </main>

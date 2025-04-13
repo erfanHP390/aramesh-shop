@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./OrdersDetails.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
+import Loading from "@/app/loading";
 
 function OrdersDetails() {
   const [createAccount, setCreateAccount] = useState(false);
@@ -445,7 +446,7 @@ function OrdersDetails() {
               }}
               className={styles.submit}
             >
-              {isLoading ? "لطفا منتظر بمانید" : "ثبت سفارش"}
+              {isLoading ? <Loading /> : "ثبت سفارش"}
             </button>
           </div>
         </div>

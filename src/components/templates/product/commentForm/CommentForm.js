@@ -3,6 +3,7 @@ import styles from "./CommentForm.module.css";
 import { useEffect, useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
+import Loading from "@/app/loading";
 
 const CommentForm = ({ productID }) => {
   
@@ -217,7 +218,7 @@ const CommentForm = ({ productID }) => {
         setIsLoading(true)
         sendComment()
       }}>{
-        isLoading ? "در حال ثبت ، لطفا منتظر باشید" : "ثبت"
+        isLoading ? <Loading />: "ثبت"
       }</button>
     </div>
   );

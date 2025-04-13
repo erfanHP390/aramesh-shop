@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toastSuccess, toastError, swalAlert } from "@/utils/helpers";
 import { validatePhone, validateEmail, validatePassword } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 const Register = ({ showLoginForm }) => {
   const [registerWithPass, setRegisterWithPass] = useState(false);
@@ -290,7 +291,7 @@ const Register = ({ showLoginForm }) => {
               style={{ marginTop: "1rem" }}
               className={styles.btn}
             >
-              {isLoadingOtp ? "لطفا منتظر بمانید.." : "ثبت نام با کد تایید"}
+              {isLoadingOtp ? <Loading /> : "ثبت نام با کد تایید"}
             </p>
 
             <button
@@ -305,7 +306,7 @@ const Register = ({ showLoginForm }) => {
               style={{ marginTop: ".7rem" }}
               className={styles.btn}
             >
-              {isLoading ? "لطفا صبر کنید" : "ثبت نام با رمز عبور"}
+              {isLoading ? <Loading /> : "ثبت نام با رمز عبور"}
             </button>
             <p onClick={showLoginForm} className={styles.back_to_login}>
               برگشت به ورود

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from '@/app/loading';
 
 function SendPhone() {
 
@@ -133,7 +134,7 @@ function SendPhone() {
           resetPassword()
         }}>
           {
-            isLoading ? "لطفا منتظر بمانید" : "بازنشانی رمزعبور"
+            isLoading ? <Loading /> : "بازنشانی رمزعبور"
           }
         </button>
         <Link href={"/login&register"} className={styles.back_to_login}>

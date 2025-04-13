@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 function AccountDetail({ profileUser }) {
   const router = useRouter();
@@ -462,7 +463,7 @@ function AccountDetail({ profileUser }) {
                   }}
                 >
                   <IoCloudUploadOutline />
-                  {isLoading ? "لطفا منتظر باشید" : "تغییر عکس"}
+                  {isLoading ? <Loading /> : "تغییر عکس"}
                 </button>
                 <button
                   onClick={() => {
@@ -490,7 +491,7 @@ function AccountDetail({ profileUser }) {
                   }}
                 >
                   {
-                    isLoading ? "لطفا منتظر باشید" : "تغییر رمزعبور"
+                    isLoading ? <Loading /> : "تغییر رمزعبور"
                   }
                 </button>
               </div>
@@ -505,7 +506,7 @@ function AccountDetail({ profileUser }) {
             updateUser();
           }}
         >
-          {isLoading ? "لطفا منتظر باشید" : "ثبت تغییرات"}
+          {isLoading ? <Loading />: "ثبت تغییرات"}
         </button>
       </div>
     </main>

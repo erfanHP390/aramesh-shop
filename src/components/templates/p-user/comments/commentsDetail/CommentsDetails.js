@@ -6,6 +6,7 @@ import styles from "@/components/templates/p-user/accountDetail/AccountDetail.mo
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 function CommentsDetails({ comment }) {
   const router = useRouter();
@@ -150,7 +151,7 @@ function CommentsDetails({ comment }) {
             updateComment();
           }}
         >
-          {isLoading ? "لطفا منتظر باشید" : "ثبت ویرایش"}
+          {isLoading ? <Loading />: "ثبت ویرایش"}
         </button>
       </div>
     </main>

@@ -3,6 +3,7 @@ import { swalAlert } from '@/utils/helpers'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import styles from "@/styles/completeOrder.module.css"
+import Loading from '@/app/loading'
 
 
 function Main() {
@@ -53,7 +54,7 @@ function Main() {
                 <Link href={'/checkout'}><button className={styles.backButton}> بازگشت</button></Link>
               </div>
             </div>
-          </main></>) : (<><p>در حال بارگذاری</p></>)    
+          </main></>) : (<><Loading /></>)    
     }
     </>
   )
