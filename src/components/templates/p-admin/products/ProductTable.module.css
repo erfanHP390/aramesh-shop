@@ -1,52 +1,65 @@
 .title {
-    margin-top: 30px;
-    text-align: right;
-    text-transform: uppercase;
-    position: relative;
-    font-size: 30px;
-    z-index: 1;
-    font-weight: 500;
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.title a {
+  background-color: #D2B48C; /* تغییر به بژ روشن */
+  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  font-size: 1rem;
+  display: flex;
+  position: relative;
+  left: 30px;
+  border-radius: 20px;
+  padding: 0 10px;
+  align-items: center;
+  border: 1px solid #6F4E37; /* تغییر به قهوه‌ای گرم */
 }
 
 .title:before {
-    border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
-    content: "";
-    margin: 0 auto;
-    position: absolute;
-    top: 52%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 95%;
-    z-index: -1;
+  border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .title span {
-    background: #6F4E37; /* تغییر به قهوه‌ای گرم */
-    padding: 0 15px;
-    margin-right: 4rem;
-    color: white; /* تغییر رنگ متن به سفید */
-    border-radius: 5px; /* اضافه کردن border-radius برای زیبایی */
+  background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  padding: 0 15px;
+  margin-right: 4rem;
+  color: white; /* تغییر رنگ متن به سفید */
 }
 
 .title:before {
-    border-top: none;
+  border-top: none;
 }
 
 .title:after {
-    border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-    -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    content: "";
-    margin: 0 auto;
-    position: absolute;
-    top: 51%;
-    left: 0;
-    right: 0;
-    width: 95%;
-    z-index: -1;
+  border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
+  -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 51%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .table {
@@ -466,3 +479,52 @@
       font-size: 1.5rem;
     }
   }
+
+  @media (max-width: 1136px) {
+    .title {
+        font-size: 24px; /* کاهش سایز فونت برای تبلت‌ها */
+    }
+
+    .title a {
+        font-size: 0.9rem; /* کاهش سایز فونت لینک برای تبلت‌ها */
+    }
+
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 20px; /* کاهش سایز فونت برای موبایل‌ها */
+    }
+
+    .title a {
+        font-size: 0.8rem; /* کاهش سایز فونت لینک برای موبایل‌ها */
+    }
+
+    .filtering {
+        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        gap: 10px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+    }
+
+    .title a {
+        font-size: 0.7rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+    }
+
+}
+
+@media (max-width: 348px) {
+    .title {
+        font-size: 15px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+    }
+
+    .title a {
+        font-size: 0.5rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+    }
+
+}
