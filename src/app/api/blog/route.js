@@ -29,7 +29,7 @@ export async function POST(req) {
 
     const buffer = Buffer.from(await img.arrayBuffer());
     const filename = Date.now() + img.name;
-    const imgPath = path.join(process.cwd(), "public/uploads/blogs" + filename);
+    const imgPath = path.join(process.cwd(), "public/uploads/" + filename);
 
     await writeFile(imgPath, buffer);
 
@@ -57,7 +57,7 @@ export async function POST(req) {
       shortDesc,
       description,
       author,
-      img: `http://localhost:3000/uploads/blogs/${filename}`,
+      img: `http://localhost:3000/uploads/${filename}`,
     });
 
     return Response.json(
