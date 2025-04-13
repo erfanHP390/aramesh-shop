@@ -2,8 +2,7 @@ import AdminPanelLayout from '@/components/layouts/AdminPanelLayout/AdminPanelLa
 import connectToDB from '@/configs/db'
 import React from 'react'
 import BlogModel from "@/models/Blog"
-import BlogDetails from '@/components/templates/p-admin/blogs/BlogDeatils'
-import { JsonWebTokenError } from 'jsonwebtoken'
+import BlogDetails from '@/components/templates/p-admin/blogs/BlogDetails'
 
 async function page({params}) {
 
