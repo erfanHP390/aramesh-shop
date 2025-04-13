@@ -1,0 +1,129 @@
+/* app/Loading.css */
+.coffee-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #6F4E37; /* قهوه‌ای گرم */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 9999;
+  }
+  
+  /* فنجان قهوه */
+  .coffee-cup {
+    width: 100px;
+    height: 80px;
+    border: 8px solid #D2B48C; /* بژ روشن */
+    border-radius: 0 0 40px 40px;
+    position: relative;
+    box-shadow: 0 0 0 6px #5A3E36; /* قهوه‌ای تیره */
+  }
+  
+  .coffee-liquid {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: #CC5500; /* نارنجی گرم */
+    border-radius: 0 0 30px 30px;
+    animation: liquid 3s infinite;
+  }
+  
+  @keyframes liquid {
+    0%, 100% { height: 65%; }
+    50% { height: 45%; }
+  }
+  
+  /* بخار قهوه */
+  .steam {
+    display: flex;
+    gap: 10px;
+    margin-top: -20px;
+  }
+  
+  .steam span {
+    display: inline-block;
+    width: 8px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: steam 2s infinite;
+  }
+  
+  .steam span:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .steam span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .steam span:nth-child(3) {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes steam {
+    0% { transform: translateY(0) scale(1); opacity: 0.7; }
+    100% { transform: translateY(-30px) scale(0.5); opacity: 0; }
+  }
+  
+  /* متن */
+  .loader-text {
+    text-align: center;
+  }
+  
+  .loader-text h2 {
+    color: #FFD700; /* طلایی */
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .loader-text p {
+    color: #FFFFFF; /* سفید */
+    font-size: 1.2rem;
+  }
+  
+  /* نوار پیشرفت */
+  .progress-container {
+    width: 80%;
+    max-width: 300px;
+    height: 8px;
+    background: #A68A64; /* قهوه‌ای روشن */
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #FFD700, #CC5500); /* طلایی به نارنجی */
+    animation: progress 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes progress {
+    0% { width: 0; }
+    70% { width: 100%; }
+    100% { width: 100%; }
+  }
+  
+  /* حالت موبایل */
+  @media (max-width: 768px) {
+    .coffee-cup {
+      width: 80px;
+      height: 60px;
+      border-width: 6px;
+    }
+    
+    .loader-text h2 {
+      font-size: 1.5rem;
+    }
+    
+    .loader-text p {
+      font-size: 1rem;
+    }
+  }
