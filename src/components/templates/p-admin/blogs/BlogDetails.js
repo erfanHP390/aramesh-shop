@@ -7,7 +7,6 @@ import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 function BlogDetails({ blog }) {
-    console.log(blog);
     
     const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
@@ -20,10 +19,9 @@ function BlogDetails({ blog }) {
   const [author, setAuthor] = useState(blog.author);
   const [img , setImg] = useState("")
 
-  console.log(author , titr);
   
 
-  const updateProduct = async () => {
+  const updateBlog = async () => {
 
     const formData = new FormData()
     formData.append('title', title || blog.title )
@@ -196,7 +194,7 @@ function BlogDetails({ blog }) {
         </div>
         <button onClick={() => {
             setIsLoading(true)
-            updateProduct()
+            updateBlog()
         }} type="submit" className={styles.submit_btn}>
           {isLoading ? "لطفا منتظر باشید" : "ثبت ویرایش"}
         </button>
