@@ -93,6 +93,7 @@ function BlogTable({ blogs, title }) {
         <div>
           <h1 className={styles.title}>
             <span>{title}</span>
+            <Link href="/p-admin/blogs/create"> ایجاد مقاله </Link>
           </h1>
         </div>
         <div className={styles.table_container}>
