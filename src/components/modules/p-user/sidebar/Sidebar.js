@@ -5,13 +5,14 @@ import { ImReply } from "react-icons/im";
 import { FaBlog, FaComments, FaHeart, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
 import { MdOutlineArticle, MdOutlineAttachMoney } from "react-icons/md";
 import { MdSms, MdLogout } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { TbListDetails } from "react-icons/tb";
 import Link from "next/link";
 import { toastSuccess } from "@/utils/helpers";
 
 
 const Sidebar = ({name}) => {
+  const router = useRouter()
   const path = usePathname();
   
 
@@ -39,9 +40,7 @@ const Sidebar = ({name}) => {
             undefined,
             "colored"
           );
-          setTimeout(() => {
-            location.replace("/")
-          } , 3000)
+            router.replace("/")
         }
 
       }
