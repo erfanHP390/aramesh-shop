@@ -79,7 +79,7 @@ function AccountDetail({ profileUser }) {
           });
 
           if (res.status === 200) {
-            location.replace("/login&register");
+            router.replace("/login&register");
           }
         }
       });

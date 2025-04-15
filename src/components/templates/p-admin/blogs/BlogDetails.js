@@ -52,7 +52,7 @@ function BlogDetails({ blog }) {
           undefined,
           "colored"
         );
-        location.reload()
+        router.refresh()
       } else if (res.status === 400) {
         setIsLoading(false);
         toastError(

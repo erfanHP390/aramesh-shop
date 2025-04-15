@@ -72,6 +72,7 @@ const Login = ({ showRegisterForm }) => {
       setEmail("");
       setPassword("");
       setIsLoading("");
+      router.replace("/p-user")
       toastSuccess(
         "خوش آمدید 😊",
         "top-center",
@@ -83,7 +84,6 @@ const Login = ({ showRegisterForm }) => {
         undefined,
         "colored"
       );
-      router.replace("/p-user")
     } else if (res.status === 419) {
       setEmail("");
       setPassword("");

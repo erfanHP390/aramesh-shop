@@ -2,12 +2,14 @@
 import styles from "@/styles/p-user/sendTicket.module.css"
 import { swalAlert, toastSuccess } from "@/utils/helpers";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 
 
 function SendTicket() {
 
+  const router = useRouter()
     const [title , setTitle] = useState("")
     const [body , setBody] = useState("")
     const [departments , setDepartments] = useState([])
@@ -71,9 +73,7 @@ function SendTicket() {
           undefined,
           "colored"
         );
-        setTimeout(() => {
-          location.replace("/p-user/tickets")
-        }, 3500);
+          router.replace("/p-user/tickets")
       }
 
 
