@@ -101,6 +101,7 @@ function ProductTable({products , title}) {
         <div>
           <h1 className={styles.title}>
             <span>{title}</span>
+            <Link href="/p-admin/products/create"> ایجاد محصول </Link>
           </h1>
         </div>
         <div className={styles.table_container}>
