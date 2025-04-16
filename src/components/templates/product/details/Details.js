@@ -16,6 +16,7 @@ const Details = ({ product }) => {
       id: product._id,
       name: product.name,
       price: product.price,
+      img: product.img,
       count,
     };
 
