@@ -3,7 +3,7 @@ import styles from "./ProductWUser.module.css"
 import Link from 'next/link';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
-function ProductWUser({ name, price, score, _id }) {
+function ProductWUser({ name, price, score, _id , img }) {
 
     const removeProduct = (productId) => {
         swal({
@@ -21,8 +21,8 @@ function ProductWUser({ name, price, score, _id }) {
                 <img
                     width={283}
                     height={283}
-                    src="https://set-coffee.com/wp-content/uploads/2022/03/ethiopia-430x430.png"
-                    alt=""
+                    src={img}
+                    alt={name}
                     style={{ width: '100%', height: 'auto' }} /* ریسپانسیو کردن تصویر */
                 />
             </Link>
