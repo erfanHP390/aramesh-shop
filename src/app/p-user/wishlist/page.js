@@ -15,6 +15,9 @@ async function page() {
     "product"
   );
 
+  const validWishlist = wishlist.filter(wish => wish.product !== null);
+  
+
   const banUserEmail = await BanModel.findOne({ email: user.email }).lean();
   const banUserPhone = await BanModel.findOne({ phone: user.phone }).lean();
 
@@ -29,14 +32,15 @@ async function page() {
           <span>علاقه مندی ها</span>
         </h1>
         <div className={styles.container}>
-          {wishlist.length > 0 ? (
+        {validWishlist.length > 0 ? (
             <>
-              {wishlist.map((wish) => (
+              {validWishlist.map((wish) => (
                 <ProductWUser
                   key={wish._id}
                   name={wish.product.name}
                   price={wish.product.price}
                   score={wish.product.score}
+                  img={wish.product.img}
                   productID={String(wish.product._id)}
                 />
               ))}
