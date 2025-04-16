@@ -15,9 +15,10 @@ const page = async () => {
   const user = await authUser();
   if (user) {
     wishes = await WishlistModel.find({ user: user._id })
-      .populate("product", "name price score")
+      .populate("product", "name price score img")
       .lean();
-  }
+    }
+    const validWishlist = wishes.filter(wish => wish.product !== null);
 
   return (
     <>
@@ -26,12 +27,12 @@ const page = async () => {
       <main className={styles.container} data-aos="fade-up">
         <p className={styles.title}>محصولات مورد علاقه شما</p>
         <section className={styles.wishes_product}>
-          {wishes.length > 0 &&
-            wishes.map((wish) => <Product key={wish._id} {...wish.product} />)}
+          {validWishlist.length > 0 &&
+            validWishlist.map((wish) => <Product key={wish._id} {...wish.product} />)}
         </section>
       </main>
 
-      {wishes.length === 0 && (
+      {validWishlist.length === 0 && (
         <div className={styles.wishlist_empty} data-aos="fade-up">
           <FaRegHeart />
           <p>محصولی یافت نشد</p>
