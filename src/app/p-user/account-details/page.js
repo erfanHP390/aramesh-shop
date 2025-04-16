@@ -3,6 +3,7 @@ import AccountDetail from '@/components/templates/p-user/accountDetail/AccountDe
 import connectToDB from '@/configs/db'
 import UserProfileModel from "@/models/UserProfile"
 import { authUser } from '@/utils/authUserLink'
+import BanModel from "@/models/Ban";
 
 
 async function page() {
@@ -10,10 +11,14 @@ async function page() {
   connectToDB()
   const user =  await authUser()
   const profileUser = await UserProfileModel.findOne({user: user._id})
+    const banUserEmail = await BanModel.findOne({ email: user.email }).lean();
+    const banUserPhone = await BanModel.findOne({ phone: user.phone }).lean();
+  
+
 
   return (
     <UserPanelLayout>
-      <AccountDetail  profileUser={JSON.parse(JSON.stringify(profileUser))} />
+      <AccountDetail  bannedMobile={banUserPhone ? true : false}  bannedEmail={banUserEmail ? true : false}  profileUser={JSON.parse(JSON.stringify(profileUser))} />
     </UserPanelLayout>
   )
 }

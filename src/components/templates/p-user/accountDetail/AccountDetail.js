@@ -8,7 +8,7 @@ import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 
-function AccountDetail({ profileUser }) {
+function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -333,10 +333,9 @@ function AccountDetail({ profileUser }) {
       body: JSON.stringify(changpasswordUser),
     });
 
-
     if (res.status === 200) {
       setIsLoading(false);
-      setChangePassword("")
+      setChangePassword("");
       toastSuccess(
         "رمز عبور با موفقیت تغییر پیدا کرد",
         "top-center",
@@ -352,7 +351,7 @@ function AccountDetail({ profileUser }) {
     } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
-        "لطفا شناسه خود و رمزعبور جدید را وارد نمایید. درصورت بروز مشکل به پشتیبانی پیام دهید" ,
+        "لطفا شناسه خود و رمزعبور جدید را وارد نمایید. درصورت بروز مشکل به پشتیبانی پیام دهید",
         "top-center",
         5000,
         false,
@@ -389,7 +388,6 @@ function AccountDetail({ profileUser }) {
         "colored"
       );
     }
-
   };
 
   return (
@@ -399,6 +397,12 @@ function AccountDetail({ profileUser }) {
           <span>جزئیات اکانت</span>
         </h1>
         <div className={styles.details_main}>
+          {bannedEmail || bannedMobile && (
+            <p style={{ color: "red" }}>
+              ایمیل/شماره تلفن شما در سایت بلاک شده است.لطفا ایمیل/شماره تلفن خود را تغییر و حتما به
+              پشتیبانی تیکت دهید
+            </p>
+          )}
           <section>
             <div>
               <label>نام کاربری</label>
@@ -490,9 +494,7 @@ function AccountDetail({ profileUser }) {
                     changePasswordHandler();
                   }}
                 >
-                  {
-                    isLoading ? <Loading /> : "تغییر رمزعبور"
-                  }
+                  {isLoading ? <Loading /> : "تغییر رمزعبور"}
                 </button>
               </div>
             </div>
@@ -506,7 +508,7 @@ function AccountDetail({ profileUser }) {
             updateUser();
           }}
         >
-          {isLoading ? <Loading />: "ثبت تغییرات"}
+          {isLoading ? <Loading /> : "ثبت تغییرات"}
         </button>
       </div>
     </main>

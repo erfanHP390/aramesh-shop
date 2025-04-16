@@ -4,13 +4,28 @@ import styles from "@/styles/p-user/answerTicket.module.css";
 import Answer from "@/components/templates/p-user/tickets/answer/Answer";
 import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
+import BanModel from "@/models/Ban";
+import { redirect } from "next/navigation";
+import { authUser } from "@/utils/authUserLink";
 
 async function page({ params }) {
   connectToDB();
+    const user = await authUser();
   const ticketID = params.id;
-  const ticket = await TicketModel.findOne({ _id: ticketID }).populate('user' , "name role").lean()    
+  const ticket = await TicketModel.findOne({ _id: ticketID })
+    .populate("user", "name role")
+    .lean();
 
-      const answerTicket = await TicketModel.findOne({ mainTicket: ticket._id }).populate('user' , "name role").lean();
+  const banUserEmail = await BanModel.findOne({ email: user.email }).lean();
+  const banUserPhone = await BanModel.findOne({ phone: user.phone }).lean();
+  const answerTicket = await TicketModel.findOne({ mainTicket: ticket._id })
+    .populate("user", "name role")
+    .lean();
+
+  if (banUserEmail || banUserPhone) {
+    redirect("/p-user/account-details");
+  }
+
   return (
     <UserPanelLayout>
       <main className={styles.container}>

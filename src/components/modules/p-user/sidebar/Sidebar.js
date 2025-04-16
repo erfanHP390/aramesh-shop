@@ -54,7 +54,7 @@ const Sidebar = ({name}) => {
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (
           <>
-            <Link href={"/p-user"} className={location.pathname === ("/p-user") && styles.sidebar_link_active}>
+            <Link href={"/p-user"} className={path.includes === ("/p-user") && styles.sidebar_link_active}>
               <ImReply />
               پیشخوان
             </Link>
