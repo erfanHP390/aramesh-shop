@@ -26,7 +26,11 @@ async function page() {
 
   return (
     <UserPanelLayout>
-      <OrdersMain orders={JSON.parse(JSON.stringify(orders))} />
+      {orders.length === 0 ? (
+        <p className={styles.empty}>سفارشی وجود ندارد</p>
+      ) : (
+        <OrdersMain orders={JSON.parse(JSON.stringify(orders))} />
+      )}
     </UserPanelLayout>
   );
 }

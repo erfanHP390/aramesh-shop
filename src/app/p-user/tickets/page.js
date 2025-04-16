@@ -5,6 +5,7 @@ import { authUser } from "@/utils/authUserLink";
 import TicketModel from "@/models/Ticket";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 
 async function page() {
   connectToDB();
@@ -21,7 +22,11 @@ async function page() {
 
   return (
     <UserPanelLayout>
-      <AllTickets tickets={JSON.parse(JSON.stringify(tickets))} />
+      {tickets.length === 0 ? (
+        <p className={emptyStyles.empty}>تیکتی وجود ندارد</p>
+      ) : (
+        <AllTickets tickets={JSON.parse(JSON.stringify(tickets))} />
+      )}
     </UserPanelLayout>
   );
 }
