@@ -37,6 +37,7 @@ async function page() {
               {validWishlist.map((wish) => (
                 <ProductWUser
                   key={wish._id}
+                  wishID={wish._id}
                   name={wish.product.name}
                   price={wish.product.price}
                   score={wish.product.score}
