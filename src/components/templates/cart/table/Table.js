@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import stateData from "@/utils/stateData";
 import Link from "next/link";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { TbShoppingCartX } from "react-icons/tb";
 
 const stateOptions = stateData();
 
@@ -111,7 +112,7 @@ function Table() {
     const getPriceCart = JSON.parse(localStorage.getItem("priceCart")) || {};
 
     setCart(getCart);
-    
+
     if (getPriceCart.appliedDiscount) {
       setAppliedDiscount(getPriceCart.appliedDiscount);
     }
@@ -173,13 +174,16 @@ function Table() {
       };
       setAppliedDiscount(newDiscount);
       setDiscountInput("");
-      
+
       // ذخیره در localStorage
       const priceCart = JSON.parse(localStorage.getItem("priceCart")) || {};
-      localStorage.setItem("priceCart", JSON.stringify({
-        ...priceCart,
-        appliedDiscount: newDiscount
-      }));
+      localStorage.setItem(
+        "priceCart",
+        JSON.stringify({
+          ...priceCart,
+          appliedDiscount: newDiscount,
+        })
+      );
 
       toastSuccess(
         "کد تخفیف با موفقیت اعمال شد",
@@ -274,12 +278,12 @@ function Table() {
   const removeDiscount = () => {
     setAppliedDiscount(null);
     setDiscountInput("");
-    
+
     // حذف تخفیف از localStorage
     const priceCart = JSON.parse(localStorage.getItem("priceCart")) || {};
     delete priceCart.appliedDiscount;
     localStorage.setItem("priceCart", JSON.stringify(priceCart));
-    
+
     toastSuccess(
       "تخفیف با موفقیت حذف شد",
       "top-center",
@@ -295,163 +299,191 @@ function Table() {
 
   return (
     <>
-      <div className={styles.tabel_container}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>جمع جزء</th>
-              <th>تعداد</th>
-              <th>قیمت</th>
-              <th>محصول</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {cart.map((item) => (
-              <tr key={item.id}>
-                <td>{(item.price * item.count).toLocaleString()} تومان</td>
-                <td className={styles.counter}>
-                  <div>
-                    <span>-</span>
-                    <p>{item.count}</p>
-                    <span>+</span>
-                  </div>
-                </td>
-                <td className={styles.price}>
-                  {item.price.toLocaleString()} تومان
-                </td>
-                <td className={styles.product}>
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                  />
-                  <Link href={`/product/${item.id}`}>{item.name}</Link>
-                </td>
-                <td>
-                  <IoMdClose className={styles.delete_icon} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <section>
-          <button className={styles.update_btn} onClick={handleUpdateCart}>
-            بروزرسانی سبد خرید
-          </button>
-          <div className={styles.discount_container}>
-            <input
-              type="text"
-              placeholder="کد تخفیف"
-              value={discountInput}
-              onChange={(event) => setDiscountInput(event.target.value)}
-            />
-            {appliedDiscount ? (
-              <button
-                className={styles.remove_discount_btn}
-                onClick={removeDiscount}
-              >
-                حذف تخفیف
+      {cart.length > 0 && (
+        <>
+          <div className={styles.tabel_container}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>جمع جزء</th>
+                  <th>تعداد</th>
+                  <th>قیمت</th>
+                  <th>محصول</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <tr key={item.id}>
+                    <td>{(item.price * item.count).toLocaleString()} تومان</td>
+                    <td className={styles.counter}>
+                      <div>
+                        <span>-</span>
+                        <p>{item.count}</p>
+                        <span>+</span>
+                      </div>
+                    </td>
+                    <td className={styles.price}>
+                      {item.price.toLocaleString()} تومان
+                    </td>
+                    <td className={styles.product}>
+                      <img src={item.img} alt={item.name} />
+                      <Link href={`/product/${item.id}`}>{item.name}</Link>
+                    </td>
+                    <td>
+                      <IoMdClose className={styles.delete_icon} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <section>
+              <button className={styles.update_btn} onClick={handleUpdateCart}>
+                بروزرسانی سبد خرید
               </button>
-            ) : (
-              <button
-                className={styles.set_off_btn}
-                onClick={discountHandler}
-              >
-                اعمال کوپن
-              </button>
+              <div className={styles.discount_container}>
+                <input
+                  type="text"
+                  placeholder="کد تخفیف"
+                  value={discountInput}
+                  onChange={(event) => setDiscountInput(event.target.value)}
+                />
+                {appliedDiscount ? (
+                  <button
+                    className={styles.remove_discount_btn}
+                    onClick={removeDiscount}
+                  >
+                    حذف تخفیف
+                  </button>
+                ) : (
+                  <button
+                    className={styles.set_off_btn}
+                    onClick={discountHandler}
+                  >
+                    اعمال کوپن
+                  </button>
+                )}
+              </div>
+            </section>
+          </div>
+          <div className={totalStyles.totals}>
+            <p className={totalStyles.totals_title}>جمع کل سبد خرید</p>
+
+            <div className={totalStyles.subtotal}>
+              <p>جمع کالاهای خریداری شده </p>
+              <p>{productPrice.toLocaleString()} تومان</p>
+            </div>
+
+            {stateSelectedOption && (
+              <p className={totalStyles.motor}>
+                پیک موتوری: <strong>{stateSelectedOption.price} تومان</strong>
+              </p>
             )}
-          </div>
-        </section>
-      </div>
-      <div className={totalStyles.totals}>
-        <p className={totalStyles.totals_title}>جمع کل سبد خرید</p>
 
-        <div className={totalStyles.subtotal}>
-          <p>جمع کالاهای خریداری شده </p>
-          <p>{productPrice.toLocaleString()} تومان</p>
-        </div>
+            {appliedDiscount && (
+              <div className={totalStyles.discount}>
+                <p>تخفیف ({appliedDiscount.code}): </p>
+                <p>
+                  -
+                  {(
+                    (productPrice * appliedDiscount.percent) /
+                    100
+                  ).toLocaleString()}{" "}
+                  تومان
+                </p>
+              </div>
+            )}
 
-        {stateSelectedOption && (
-          <p className={totalStyles.motor}>
-            پیک موتوری: <strong>{stateSelectedOption.price} تومان</strong>
-          </p>
-        )}
-
-        {appliedDiscount && (
-          <div className={totalStyles.discount}>
-            <p>تخفیف ({appliedDiscount.code}): </p>
-            <p>-{(productPrice * appliedDiscount.percent / 100).toLocaleString()} تومان</p>
-          </div>
-        )}
-
-        <div className={totalStyles.address}>
-          <p>حمل و نقل </p>
-        </div>
-        <p
-          onClick={() => setChangeAddress((prev) => !prev)}
-          className={totalStyles.change_address}
-        >
-          تغییر آدرس
-        </p>
-        {changeAddress && (
-          <div className={styles.groups}>
-            <div className={styles.group}>
-              <label className={styles.select_label}>
-                استان<span>*</span>
-              </label>
-              <Select
-                defaultValue={stateSelectedOption}
-                onChange={setStateSelectedOption}
-                isClearable={true}
-                placeholder="انتخاب استان"
-                isRtl={true}
-                isSearchable={true}
-                options={stateOptions}
-                styles={customStyles}
-                noOptionsMessage={() => "استانی یافت نشد"}
-                className="react-select-container"
-                classNamePrefix="react-select"
-              />
+            <div className={totalStyles.address}>
+              <p>حمل و نقل </p>
             </div>
-            
-            <div className={styles.group}>
-              <label className={styles.select_label}>
-                شهر<span>*</span>
-              </label>
-              <Select
-                defaultValue={citySelectedOption}
-                onChange={setCitySelectedOption}
-                isDisabled={citySelectorDisabel}
-                isClearable={true}
-                isRtl={true}
-                isSearchable={true}
-                options={cityOption}
-                placeholder={citySelectorDisabel ? "ابتدا استان را انتخاب کنید" : "انتخاب شهر"}
-                styles={customStyles}
-                noOptionsMessage={() => "شهری یافت نشد"}
-                className="react-select-container"
-                classNamePrefix="react-select"
-              />
-            </div>
-            <button className={totalStyles.checkout_btn} onClick={handleUpdateCart}>
-              بروزرسانی سبد خرید
-            </button>
-          </div>
-        )}
+            <p
+              onClick={() => setChangeAddress((prev) => !prev)}
+              className={totalStyles.change_address}
+            >
+              تغییر آدرس
+            </p>
+            {changeAddress && (
+              <div className={styles.groups}>
+                <div className={styles.group}>
+                  <label className={styles.select_label}>
+                    استان<span>*</span>
+                  </label>
+                  <Select
+                    defaultValue={stateSelectedOption}
+                    onChange={setStateSelectedOption}
+                    isClearable={true}
+                    placeholder="انتخاب استان"
+                    isRtl={true}
+                    isSearchable={true}
+                    options={stateOptions}
+                    styles={customStyles}
+                    noOptionsMessage={() => "استانی یافت نشد"}
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                  />
+                </div>
 
-        <div className={totalStyles.total}>
-          <p>مجموع</p>
-          <p>{totalPrice.toLocaleString()} تومان</p>
+                <div className={styles.group}>
+                  <label className={styles.select_label}>
+                    شهر<span>*</span>
+                  </label>
+                  <Select
+                    defaultValue={citySelectedOption}
+                    onChange={setCitySelectedOption}
+                    isDisabled={citySelectorDisabel}
+                    isClearable={true}
+                    isRtl={true}
+                    isSearchable={true}
+                    options={cityOption}
+                    placeholder={
+                      citySelectorDisabel
+                        ? "ابتدا استان را انتخاب کنید"
+                        : "انتخاب شهر"
+                    }
+                    styles={customStyles}
+                    noOptionsMessage={() => "شهری یافت نشد"}
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                  />
+                </div>
+                <button
+                  className={totalStyles.checkout_btn}
+                  onClick={handleUpdateCart}
+                >
+                  بروزرسانی سبد خرید
+                </button>
+              </div>
+            )}
+
+            <div className={totalStyles.total}>
+              <p>مجموع</p>
+              <p>{totalPrice.toLocaleString()} تومان</p>
+            </div>
+            <Link href={"/checkout"}>
+              <button
+                className={totalStyles.checkout_btn}
+                onClick={() => addPriceToLS()}
+              >
+                ادامه جهت تسویه حساب
+              </button>
+            </Link>
+          </div>
+        </>
+      )}
+      {cart.length === 0 && (
+        <div class={styles.cart_empty} data-aos="fade-up">
+          <TbShoppingCartX />
+          <p>سبد خرید شما در حال حاضر خالی است. </p>
+          <span>
+            قبل از تسویه حساب، باید چند محصول را به سبد خرید خود اضافه کنید.
+          </span>
+          <span>در صفحه "فروشگاه"، محصولات جالب زیادی خواهید یافت.</span>
+          <div>
+            <Link href="/category">بازگشت به فروشگاه</Link>
+          </div>
         </div>
-        <Link href={"/checkout"}>
-          <button
-            className={totalStyles.checkout_btn}
-            onClick={() => addPriceToLS()}
-          >
-            ادامه جهت تسویه حساب
-          </button>
-        </Link>
-      </div>
+      )}
     </>
   );
 }
