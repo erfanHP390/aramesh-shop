@@ -1,106 +1,156 @@
-.empty {
-  color: white;
-  background-color: #CC5500;
-  padding: 0.7rem 2rem;
-  width: max-content;
-  margin: 15rem auto;
-  font-size: 1.7rem;
-  border-radius: 5px;
-}
-
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-around;
-  padding: 0 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
 }
 
 .title {
-  margin-top: 30px;
-  text-align: right;
-  text-transform: uppercase;
+  color: #ffff;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2.5rem;
   position: relative;
-  font-size: 30px;
-  z-index: 1;
-  margin-bottom: 10px;
-  font-weight: 500;
+  padding-bottom: 1rem;
 }
 
-.title:before {
-  border-top: 2px solid #A68A64;
-  content: "";
-  margin: 0 auto;
+.title::after {
+  content: '';
   position: absolute;
-  top: 52%;
-  left: 0;
-  right: 0;
   bottom: 0;
-  width: 100%;
-  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #A68A64;
+  border-radius: 3px;
 }
 
-.title span {
-  background: #6F4E37;
-  padding: 0 15px;
-  margin-right: 4rem;
+.wishes_product {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.wishlist_empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #FFF9F2;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.wishlist_empty svg {
+  font-size: 3.5rem;
+  color: #CC5500;
+  margin-bottom: 1.5rem;
+}
+
+.wishlist_empty p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #6F4E37;
+  margin-bottom: 0.5rem;
+}
+
+.wishlist_empty span {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.wishlist_empty div {
+  margin-top: 1.5rem;
+}
+
+.wishlist_empty a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #CC5500;
   color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-.title:before {
-  border-top: none;
+.wishlist_empty a:hover {
+  background: #B34700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(204, 85, 0, 0.2);
 }
 
-.title:after {
-  border-bottom: 1px solid #CC5500;
-  -webkit-box-shadow: 0 1px 0 0 #CC5500;
-  -moz-box-shadow: 0 1px 0 0 #CC5500;
-  box-shadow: 0 1px 0 0 #CC5500;
-  content: "";
-  margin: 0 auto;
-  position: absolute;
-  top: 51%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: -1;
+/* Media Queries */
+@media (max-width: 992px) {
+  .wishes_product {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
 }
 
-/* Media Queries برای صفحه علاقه‌مندی‌ها */
 @media (max-width: 768px) {
-  .title {
-      font-size: 24px; /* کاهش سایز فونت برای موبایل */
-  }
-
-  .title span {
-      margin-right: 2rem; /* کاهش فاصله برای موبایل */
-  }
-
   .container {
-      padding: 0 15px; /* کاهش پدینگ برای موبایل */
+    padding: 1.5rem 1rem;
   }
-
-  .empty {
-      font-size: 1.2rem; /* کاهش سایز فونت برای موبایل */
-      margin: 10rem auto; /* کاهش فاصله برای موبایل */
+  
+  .title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .wishlist_empty {
+    padding: 2rem 1rem;
+  }
+  
+  .wishlist_empty svg {
+    font-size: 3rem;
+  }
+  
+  .wishlist_empty p {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
   .title {
-      font-size: 20px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+    font-size: 1.5rem;
+    padding-bottom: 0.75rem;
   }
-
-  .title span {
-      margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+  
+  .title::after {
+    width: 80px;
+    height: 2px;
   }
-
-  .container {
-      gap: 10px; /* کاهش فاصله بین آیتم‌ها برای موبایل‌های کوچک */
+  
+  .wishes_product {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
   }
-
-  .empty {
-      font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
-      padding: 0.5rem 1rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+  
+  .wishlist_empty {
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+  }
+  
+  .wishlist_empty svg {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .wishlist_empty p {
+    font-size: 1.2rem;
+  }
+  
+  .wishlist_empty a {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
