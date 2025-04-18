@@ -95,6 +95,20 @@ const Sms = ({hideOtpForm , phone}) => {
         undefined,
         "colored"
       );
+    } else if (res.status === 403) {
+      setIsLoading(false)
+      setCode("")
+      toastError(
+        "این مشاره تلفن مسدود است ، لطفا دوباره تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 410) {
       setIsLoading(false)
       setCode("")

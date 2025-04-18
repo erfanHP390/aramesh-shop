@@ -13,13 +13,7 @@ export async function POST(req) {
     try {
         const body = await req.json()
         const {name , phone , email , password} = body
-    
-        if(!name.trim()) {
-            return Response.json({message: "name have not empty"} , {
-                status: 400
-            })
-        }
-    
+
         const isValidPhone = validatePhone(phone)
         if(!isValidPhone) {
         return  Response.json({message: "phone format is not valid"} , {

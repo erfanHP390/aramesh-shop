@@ -1,6 +1,6 @@
 "use client";
 import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
-import { swalAlert } from "@/utils/helpers";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 function DiscountTable({ discounts }) {
@@ -8,7 +8,7 @@ function DiscountTable({ discounts }) {
 
   const removeDiscount = async (discountID) => {
     swal({
-      title: "آیا از تغییر نقش کاربر اطمینان دارید؟",
+      title: "آیا از حذف کد تخفیف اطمینان دارید؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
@@ -18,8 +18,82 @@ function DiscountTable({ discounts }) {
         });
 
         if (res.status === 200) {
-          swalAlert("کد تخفیف با موفقیت حذف شد" ,"success" , "فهمیدم")
+          toastSuccess(
+            "کد تخفیف حذف شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
           router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+             "فقط ادمین/مدیر سایت اجازه حذف کد تخفیف را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 400) {
+          setIsLoading(false);
+          toastError(
+            "شناسه کد تخفیف ارسال نشده است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 422) {
+          setIsLoading(false);
+          toastError(
+            "شناسه کدتحفیف نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          setIsLoading(false);
+          toastError(
+            "کد تخفیف یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          setIsLoading(false);
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         }
       }
     });

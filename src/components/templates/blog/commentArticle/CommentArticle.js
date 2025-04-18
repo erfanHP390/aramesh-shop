@@ -110,7 +110,7 @@ function CommentArticle({ comments, blogId }) {
       setEducation("");
       setDescription("");
       toastError(
-        "لطفا یک ایمیل معتبر وراد کنید",
+        "لطفا یک ایمیل معتبر وارد کنید",
         "top-center",
         5000,
         false,

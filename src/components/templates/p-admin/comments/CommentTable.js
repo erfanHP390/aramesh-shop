@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-function CommentTable({ comments, title  ,phone}) {
+function CommentTable({ comments, title, phone }) {
   const router = useRouter();
 
   const showCommentBody = (text) => {
@@ -23,8 +23,69 @@ function CommentTable({ comments, title  ,phone}) {
     });
 
     if (res.status === 200) {
-      swal("کامنت تایید شد", "success", "فهمیدم");
+      toastSuccess(
+        "کامنت تایید شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
       router.refresh();
+    } else if (res.status === 401) {
+      toastError(
+        "فقط ادمین/مدیر سایت اجازه تایید کامنت را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت ارسال نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت نامعتبر است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     }
   };
 
@@ -37,11 +98,70 @@ function CommentTable({ comments, title  ,phone}) {
       body: JSON.stringify({ id: commentID }),
     });
 
-    console.log(res);
-
     if (res.status === 200) {
-      swal("کامنت رد شد", "success", "فهمیدم");
+      toastSuccess(
+        "کامنت رد شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
       router.refresh();
+    } else if (res.status === 401) {
+      toastError(
+        "فقط ادمین/مدیر سایت اجازه رد کامنت را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت ارسال نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت نامعتبر است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     }
   };
 
@@ -69,6 +189,18 @@ function CommentTable({ comments, title  ,phone}) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+            "فقط ادمین/مدیر سایت اجازه حذف کامنت را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 400) {
           toastError(
             "شناسه کامنت ارسال نشده است",
@@ -81,45 +213,45 @@ function CommentTable({ comments, title  ,phone}) {
             undefined,
             "colored"
           );
+        } else if (res.status === 422) {
+          toastError(
+            "شناسه کامنت نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          toastError(
+            "کامنت یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         }
-      else if (res.status === 422) {
-        toastError(
-          "شناسه کامنت نامعتبر است",
-          "top-center",
-          5000,
-          false,
-          true,
-          true,
-          true,
-          undefined,
-          "colored"
-        );
-      } else if (res.status === 404) {
-        toastError(
-          "کامنت یافت نشد",
-          "top-center",
-          5000,
-          false,
-          true,
-          true,
-          true,
-          undefined,
-          "colored"
-        );
-      } else if (res.status === 500) {
-        toastError(
-          "خطا در سرور ، لطفا بعدا تلاش کنید",
-          "top-center",
-          5000,
-          false,
-          true,
-          true,
-          true,
-          undefined,
-          "colored"
-        );
       }
-    }});
+    });
   };
   const banUser = async (commentEmail) => {
     swal({
@@ -133,7 +265,7 @@ function CommentTable({ comments, title  ,phone}) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: commentEmail , phone }),
+          body: JSON.stringify({ email: commentEmail, phone }),
         });
 
         if (res.status === 200) {
@@ -149,6 +281,18 @@ function CommentTable({ comments, title  ,phone}) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+            "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 422) {
           toastError(
             "ایمیل/تلفن کاربر نامعتبر است",

@@ -129,8 +129,7 @@ const Login = ({ showRegisterForm }) => {
         undefined,
         "colored"
       );
-    }
-    else if (res.status === 403) {
+    } else if (res.status === 403) {
       setEmail("");
       setPassword("");
       setIsLoading("");
@@ -145,6 +144,19 @@ const Login = ({ showRegisterForm }) => {
         undefined,
         "colored"
       );
+    } else if (res.status === 500) {
+          setIsLoading(false)
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
     }
   };
 

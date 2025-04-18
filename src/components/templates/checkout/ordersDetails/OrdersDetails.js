@@ -282,6 +282,20 @@ function OrdersDetails() {
         "colored"
       );
     } 
+    else if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "ایمیل/شماره تلفن وارد شده مسدود می باشد.لطفا مورد جدیدی وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } 
     else if (res.status === 422) {
       setIsLoading(false);
       toastError(

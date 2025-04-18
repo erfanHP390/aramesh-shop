@@ -45,8 +45,9 @@ export async function DELETE(req , {params}) {
   
       return Response.json({message: "success" })
     } catch (err) {
-      console.log(err);
-      
+      return Response.json({message: `interval error server ${err}`} , {
+        status: 500
+      })
     }
   
   }
@@ -55,6 +56,17 @@ export async function DELETE(req , {params}) {
   export async function POST(req , {params}) {
     try {
       connectToDB();
+
+      const admin = await authAdmin();
+      if (!admin) {
+        return Response.json(
+          { message: "this route is protected" },
+          {
+            status: 401,
+          }
+        );
+      }
+
       const id = params.id;
       const body = await req.json()
       const {name , email , phone} = body

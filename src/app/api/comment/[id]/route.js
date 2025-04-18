@@ -63,6 +63,17 @@ export async function DELETE(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     connectToDB();
+
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
+    }
+
     const id = params.id;
 
     const reqBody = await req.json();

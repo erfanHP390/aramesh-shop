@@ -49,7 +49,6 @@ export default function Form() {
       body: JSON.stringify(newMessage),
     });
 
-    console.log(res);
 
     if (res.status === 201) {
       setCompany("");

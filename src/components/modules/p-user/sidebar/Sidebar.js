@@ -8,7 +8,7 @@ import { MdSms, MdLogout } from "react-icons/md";
 import { usePathname, useRouter } from "next/navigation";
 import { TbListDetails } from "react-icons/tb";
 import Link from "next/link";
-import { toastSuccess } from "@/utils/helpers";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 
 
 const Sidebar = ({name}) => {

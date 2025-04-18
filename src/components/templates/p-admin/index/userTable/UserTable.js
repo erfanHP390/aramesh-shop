@@ -6,13 +6,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 function UserTable({ users, title }) {
+  const router = useRouter();
 
-  const router = useRouter()
-
-  const changeRole =(userID) => {
-
-    if(!userID) {
-      swalAlert("خطا در ارسال شناسه کاربر مورد نظر" , "error" , "تلاش مجدد")
+  const changeRole = (userID) => {
+    if (!userID) {
+      swalAlert("خطا در ارسال شناسه کاربر مورد نظر", "error", "تلاش مجدد");
     }
 
     swal({
@@ -20,7 +18,7 @@ function UserTable({ users, title }) {
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
-      if(result) {
+      if (result) {
         const res = await fetch("/api/user/role", {
           method: "PUT",
           headers: {
@@ -29,8 +27,6 @@ function UserTable({ users, title }) {
           body: JSON.stringify({ id: userID }),
         });
 
-        
-    
         if (res.status === 200) {
           toastSuccess(
             "نقش کاربر با موفقیت تغییر پیدا کرد",
@@ -43,7 +39,19 @@ function UserTable({ users, title }) {
             undefined,
             "colored"
           );
-          router.refresh()
+          router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+             "فقط ادمین/مدیر سایت اجازه تغییر نقش کاربر را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 422) {
           toastError(
             "خطا در شناسایی ID کاربر",
@@ -81,11 +89,8 @@ function UserTable({ users, title }) {
             "colored"
           );
         }
-
-      }})
-
-
-
+      }
+    });
   };
 
   const removeUser = async (userID) => {
@@ -95,67 +100,89 @@ function UserTable({ users, title }) {
       buttons: ["نه", "آره"],
     }).then(async (result) => {
       if (result) {
-          const res = await fetch(`/api/user/${userID}`, {
-            method: "DELETE",
-          });
-          if (res.status === 200) {
-            toastSuccess(
-              "کاربر با موفقیت حذف شد",
-              "top-center",
-              5000,
-              false,
-              true,
-              true,
-              true,
-              undefined,
-              "colored"
-            );
-            router.refresh();
-          } else if (res.status === 422) {
-            toastError(
-              "خطا در شناسایی ID کاربر",
-              "top-center",
-              5000,
-              false,
-              true,
-              true,
-              true,
-              undefined,
-              "colored"
-            );
-          } else if (res.status === 404) {
-            toastError(
-              "کاربر یافت نشد",
-              "top-center",
-              5000,
-              false,
-              true,
-              true,
-              true,
-              undefined,
-              "colored"
-            );
-          } else if (res.status === 500) {
-            toastError(
-              "خطا در سرور ، لطفا بعدا تلاش کنید",
-              "top-center",
-              5000,
-              false,
-              true,
-              true,
-              true,
-              undefined,
-              "colored"
-            );
-          }
-        
+        const res = await fetch(`/api/user/${userID}`, {
+          method: "DELETE",
+        });
+        if (res.status === 200) {
+          toastSuccess(
+            "کاربر با موفقیت حذف شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+            "فقط ادمین/مدیر سایت اجازه حذف کاربر را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 400) {
+          toastError(
+            "شناسه کاربر ارسال نشده است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 422) {
+          toastError(
+            "خطا در شناسایی ID کاربر",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          toastError(
+            "کاربر یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
       }
     });
   };
 
-  const banUser =  (email , phone) => {
-
-    console.log(email , phone);
+  const banUser = (email, phone) => {
+    console.log(email, phone);
 
     swal({
       title: "آیا از حذف کاربر اطمینان دارین؟",
@@ -163,23 +190,20 @@ function UserTable({ users, title }) {
       buttons: ["نه", "آره"],
     }).then(async (result) => {
       if (result) {
-
-        if(!email || !phone) {
-          swalAlert("اطلاعات کاربر ناقص است" , "error" , "فهمیدم")
+        if (!email || !phone) {
+          swalAlert("اطلاعات کاربر ناقص است", "error", "فهمیدم");
         }
 
-        const isValidEmail = validateEmail(email)
-        if(!isValidEmail) {
-          swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
-        }
-        
-
-        const isValidPhone = validatePhone(phone)
-        if(!isValidPhone) {
-          swalAlert("ایمیل ثبت شده معتبر نیست" , "error" , "فهمیدم")
+        const isValidEmail = validateEmail(email);
+        if (!isValidEmail) {
+          swalAlert("ایمیل ثبت شده معتبر نیست", "error", "فهمیدم");
         }
 
-        
+        const isValidPhone = validatePhone(phone);
+        if (!isValidPhone) {
+          swalAlert("ایمیل ثبت شده معتبر نیست", "error", "فهمیدم");
+        }
+
         const res = await fetch("/api/user/ban", {
           method: "POST",
           headers: {
@@ -201,6 +225,18 @@ function UserTable({ users, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+             "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 400) {
           toastError(
             "اطلاعات ارسال شده ناقص است",
@@ -238,11 +274,9 @@ function UserTable({ users, title }) {
             "colored"
           );
         }
-
-
       }
     });
-  }
+  };
 
   return (
     <div>
@@ -273,7 +307,10 @@ function UserTable({ users, title }) {
                 <td>{user.email ? user.email : "ایمیل یافت نشد"}</td>
                 <td>{user.role === "USER" ? "کاربر عادی" : "مدیر"}</td>
                 <td>
-                  <Link href={`/p-admin/users/${user._id}`} className={styles.edit_btn}>
+                  <Link
+                    href={`/p-admin/users/${user._id}`}
+                    className={styles.edit_btn}
+                  >
                     ویرایش
                   </Link>
                 </td>
@@ -287,14 +324,20 @@ function UserTable({ users, title }) {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}
-                  onClick={() => removeUser(user._id)}
+                  <button
+                    type="button"
+                    className={styles.delete_btn}
+                    onClick={() => removeUser(user._id)}
                   >
                     حذف
                   </button>
                 </td>
                 <td>
-                  <button type="button" className={styles.delete_btn}   onClick={() => banUser(user.email , user.phone)}>
+                  <button
+                    type="button"
+                    className={styles.delete_btn}
+                    onClick={() => banUser(user.email, user.phone)}
+                  >
                     بن
                   </button>
                 </td>

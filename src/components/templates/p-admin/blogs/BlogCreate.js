@@ -2,7 +2,7 @@
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
-import { toastError, toastSuccess } from "@/utils/helpers";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 
@@ -55,7 +55,7 @@ function BlogCreate() {
             "colored"
           );
           router.replace("/p-admin/blogs")
-        } else if (res.status === 400) {
+      } else if (res.status === 400) {
           setIsLoading(false);
           toastError(
              "لطفا تمامی موارد را وارد نمایید",
@@ -68,8 +68,20 @@ function BlogCreate() {
             undefined,
             "colored"
           );
-        }
-        else if (res.status === 500) {
+      } else if (res.status === 401) {
+          setIsLoading(false);
+          toastError(
+             "فقط ادمین/مدیر سایت اجازه ایجاد مقاله را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+      } else if (res.status === 500) {
           setIsLoading(false);
           toastError(
             data.message || "خطا در سرور، لطفا بعدا تلاش کنید",
@@ -82,7 +94,7 @@ function BlogCreate() {
             undefined,
             "colored"
           );
-        }
+      }
   
     }
 

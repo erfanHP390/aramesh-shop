@@ -46,9 +46,21 @@ function BlogTable({ blogs, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+            "فقط ادمین/مدیر سایت اجازه حذف مقاله را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 400) {
           toastError(
-            "شناسه مقالهمقاله ارسال نشده است",
+            "شناسه مقاله ارسال نشده است",
             "top-center",
             5000,
             false,
@@ -61,6 +73,18 @@ function BlogTable({ blogs, title }) {
         } else if (res.status === 422) {
           toastError(
             "شناسه مقاله نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          toastError(
+            " مقاله یافت نشد ",
             "top-center",
             5000,
             false,

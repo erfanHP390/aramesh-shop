@@ -1,18 +1,21 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { CiSearch, CiHeart } from "react-icons/ci";
-import styles from "./Product.module.css"
+import styles from "./Product.module.css";
 import connectToDB from "@/configs/db";
-import { swalAlert } from "@/utils/helpers";
+import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import React, { useEffect, useState } from "react";
+import Loading from "@/app/loading";
+import { useRouter } from "next/navigation";
 
-export default function Product({_id ,name , price , img}) {
-
-  const [user , setUser] = useState("")
+export default function Product({ _id, name, price, img }) {
+  const router = useRouter()
+  const [user, setUser] = useState("");
   const [count, setCount] = useState(1);
+  const [isLoading , setIsLoading] = useState(false)
 
-  connectToDB()
+  connectToDB();
 
   useEffect(() => {
     const authUser = async () => {
@@ -22,6 +25,19 @@ export default function Product({_id ,name , price , img}) {
         const data = await res.json();
         console.log(data);
         setUser({ ...data });
+      } else if (res.status === 401) {
+        toastError(
+          "لطفا ابتدا وارد شوید",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        router.replace("/login&register")
       }
     };
 
@@ -54,10 +70,72 @@ export default function Product({_id ,name , price , img}) {
     console.log("Response ->", res);
 
     if (res.status === 201) {
-      swalAlert("محصول مورد نظر به علاقه‌مندی‌ها اضافه شد", "success", "فهمیدم");
+      setIsLoading(false)
+      toastSuccess(
+        "محصول با موفقیت به علاقه مندی ها افزوده شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false)
+      toastError(
+        "شناسه کاربر و محصول باید ارسال شود. به پشتیبانی تیکت بدهید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false)
+      toastError(
+        "شناسه کاربر/محصول نامعتبر است.لطفا در صورت مشکل به پشتیبانی پیام دهید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 404) {
+      setIsLoading(false)
+      toastError(
+        "کاربر/محصول یافت نشد.لطفا دوباره تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false)
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     }
   };
-
 
   const addProductHandler = (cart) => {
     const cartItem = {
@@ -96,32 +174,28 @@ export default function Product({_id ,name , price , img}) {
     }
   };
 
-
-
   return (
     <div className={styles.card}>
       <div className={styles.details_container}>
-        <img
-          src={img}
-          alt=""
-        />
+        <img src={img} alt="" />
         <div className={styles.icons}>
           <Link href={`/product/${_id}`}>
             <CiSearch />
             <p className={styles.tooltip}>مشاهده سریع</p>
           </Link>
-          <div  onClick={addToWishlist}>
-          <CiHeart />
-          <p className={styles.tooltip}>افزودن به علاقه مندی ها </p>
+          <div onClick={(event) => {
+            setIsLoading(true)
+            addToWishlist(event)
+          }}>
+            <CiHeart />
+            <p className={styles.tooltip}>{isLoading ? <Loading /> : "افزودن به علاقه مندی ها"}</p>
           </div>
         </div>
-        <button  onClick={() => addToCart()}>افزودن به سبد خرید</button>
+        <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
       </div>
 
       <div className={styles.details}>
-        <Link href={`/product/${_id}`}>
-        {name}
-        </Link>
+        <Link href={`/product/${_id}`}>{name}</Link>
         <div>
           <FaStar />
           <FaStar />
@@ -132,5 +206,5 @@ export default function Product({_id ,name , price , img}) {
         <span>{price?.toLocaleString()} تومان</span>
       </div>
     </div>
-  )
+  );
 }

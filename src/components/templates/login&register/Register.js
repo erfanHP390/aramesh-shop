@@ -30,7 +30,7 @@ const Register = ({ showLoginForm }) => {
     const isValidPhone = validatePhone(phone);
     if (!isValidPhone) {
       setIsLoading(false);
-      return swalAlert("شماره تماس  معتبر است", "error", "تلاش مجدد");
+      return swalAlert("شماره تماس  نامعتبر است", "error", "تلاش مجدد");
     }
 
     if (email) {
@@ -122,8 +122,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 419) {
+    } else if (res.status === 419) {
       setName("");
       setPhone("");
       setEmail("");
@@ -140,8 +139,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 500) {
+    } else if (res.status === 500) {
       setName("");
       setPhone("");
       setEmail("");
@@ -215,12 +213,29 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
+    } else if (res.status === 403) {
+      setName("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setIsLoading(false);
+      toastError(
+        "شماره تلفن  مسدود است ،لطفا شماره تلفن  دیگری وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 422) {
       setIsLoadingOtp(false);
       setName("");
       setPhone("");
       toastError(
-        "شماره تلفن نامعتبر است یا از قبل ثبت شده است",
+        "شماره تلفن نامعتبر است ",
         "top-center",
         5000,
         false,

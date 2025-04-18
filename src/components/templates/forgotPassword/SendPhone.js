@@ -66,7 +66,21 @@ function SendPhone() {
           else if (res.status === 422) {
             setIsLoading(false);
             toastError(
-              "لطفا یک شماره تفلن یاایمیل معتبر وارد نمایید",
+              "لطفا یک شماره تلفن یاایمیل معتبر وارد نمایید",
+              "top-center",
+              5000,
+              false,
+              true,
+              true,
+              true,
+              undefined,
+              "colored"
+            );
+          }
+          else if (res.status === 403) {
+            setIsLoading(false);
+            toastError(
+              "شماره تلفن/ایمیل مسدود است.لطفا یک شماره تلفن/ایمیل دیگر وارد نمایید",
               "top-center",
               5000,
               false,

@@ -269,6 +269,19 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
             undefined,
             "colored"
           );
+        } else if (res.status === 422) {
+          setIsLoading(false);
+          toastError(
+            "شناسه عکس نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 404) {
           setIsLoading(false);
           toastError(
@@ -361,6 +374,19 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
         undefined,
         "colored"
       );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "اطلاعات ارسالی ناقص است ، در صورت مشکل به پشتیبانی تیکت دهید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 404) {
       setIsLoading(false);
       toastError(
@@ -397,12 +423,13 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
           <span>جزئیات اکانت</span>
         </h1>
         <div className={styles.details_main}>
-          {bannedEmail || bannedMobile && (
-            <p style={{ color: "red" }}>
-              ایمیل/شماره تلفن شما در سایت بلاک شده است.لطفا ایمیل/شماره تلفن خود را تغییر و حتما به
-              پشتیبانی تیکت دهید
-            </p>
-          )}
+          {bannedEmail ||
+            (bannedMobile && (
+              <p style={{ color: "red" }}>
+                ایمیل/شماره تلفن شما در سایت بلاک شده است.لطفا ایمیل/شماره تلفن
+                خود را تغییر و حتما به پشتیبانی تیکت دهید
+              </p>
+            ))}
           <section>
             <div>
               <label>نام کاربری</label>

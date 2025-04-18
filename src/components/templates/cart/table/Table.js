@@ -262,17 +262,7 @@ function Table() {
 
   const handleUpdateCart = () => {
     addPriceToLS();
-    toastSuccess(
-      "سبد خرید با موفقیت بروزرسانی شد",
-      "top-center",
-      3000,
-      false,
-      true,
-      true,
-      true,
-      undefined,
-      "colored"
-    );
+    swalAlert("سبد خرید با موفقیت بروزرسانی شد" , "success" , "فهمیدم")
   };
 
   const removeDiscount = () => {
@@ -284,17 +274,7 @@ function Table() {
     delete priceCart.appliedDiscount;
     localStorage.setItem("priceCart", JSON.stringify(priceCart));
 
-    toastSuccess(
-      "تخفیف با موفقیت حذف شد",
-      "top-center",
-      3000,
-      false,
-      true,
-      true,
-      true,
-      undefined,
-      "colored"
-    );
+    swalAlert("کدتخفیف با موفقیت حذف شد" , "success" , "فهمیدم")
   };
 
   return (

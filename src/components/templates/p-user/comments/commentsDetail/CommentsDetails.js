@@ -55,10 +55,23 @@ function CommentsDetails({ comment }) {
         "colored"
       );
       router.refresh();
+    } else if (res.status === 401) {
+      setIsLoading(false);
+      toastError(
+        "فقط ادمین/مدیر سایت ویرایش کامنت را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
-        "لطفا شماره تلفن یا ایمیل خود را وارد نمایید",
+        "اطلاعات ارسالی ناقص است،پشتیبانی",
         "top-center",
         5000,
         false,
@@ -71,7 +84,7 @@ function CommentsDetails({ comment }) {
     } else if (res.status === 422) {
       setIsLoading(false);
       toastError(
-        "لطفا یک شماره تفلن یاایمیل معتبر وارد نمایید",
+        "اطلاعات ارسالی نامعتبر است،پشتیبانی",
         "top-center",
         5000,
         false,
@@ -84,7 +97,7 @@ function CommentsDetails({ comment }) {
     } else if (res.status === 404) {
       setIsLoading(false);
       toastError(
-        "کاربر یافت نشد",
+        "کامنت یافت نشد",
         "top-center",
         5000,
         false,
@@ -129,17 +142,21 @@ function CommentsDetails({ comment }) {
             </div>
             <div>
               <label>امتیاز</label>
-              <input value={score}
-              onChange={(event) => setScore(event.target.value)}
-              type="number" />
+              <input
+                value={score}
+                onChange={(event) => setScore(event.target.value)}
+                type="number"
+              />
             </div>
             <div>
               <label>متن پیام</label>
               <br />
-              <textarea value={body}
-              className={styles.formTextarea}
-              onChange={(event) => setBody(event.target.value)}
-              type="text" />
+              <textarea
+                value={body}
+                className={styles.formTextarea}
+                onChange={(event) => setBody(event.target.value)}
+                type="text"
+              />
             </div>
           </section>
         </div>
@@ -151,7 +168,7 @@ function CommentsDetails({ comment }) {
             updateComment();
           }}
         >
-          {isLoading ? <Loading />: "ثبت ویرایش"}
+          {isLoading ? <Loading /> : "ثبت ویرایش"}
         </button>
       </div>
     </main>
