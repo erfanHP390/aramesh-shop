@@ -1,5 +1,4 @@
 "use client";
-import { swalAlert } from "@/utils/helpers";
 import styles from "./DataTable.module.css";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import swal from "sweetalert";
