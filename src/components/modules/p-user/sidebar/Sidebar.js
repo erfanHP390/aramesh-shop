@@ -98,6 +98,10 @@ const Sidebar = ({name}) => {
               <MdOutlineArticle /> 
               مقالات
             </Link>
+            <Link href={"/p-admin/orders"}  className={path.includes("/p-admin/orders") && styles.sidebar_link_active}>
+              <FaShoppingBag/> 
+              سفارش ها
+            </Link>
             <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") && styles.sidebar_link_active} >
               <FaUsers />
               کاربران
