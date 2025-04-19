@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 function OrderTable({ orders, title }) {
-  console.log(orders);
 
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
@@ -19,6 +18,102 @@ function OrderTable({ orders, title }) {
     setSelectedOrder(order);
     setShowModal(true);
   };
+
+  const removeOrder = async (orderID) => {
+        swal({
+          title: "آیا از حذف سفارش اطمینان دارید؟",
+          icon: "warning",
+          buttons: ["نه", "آره"],
+        }).then(async (result) => {
+          if (result) {
+            if (!orderID) {
+              return swalAlert("شناسه سفارش ارسال نشده است", "error", "فهمیدم");
+            }
+    
+            const res = await fetch(`/api/removeOrders/${orderID}`, {
+              method: "DELETE",
+            });
+
+            console.log(res);
+            
+    
+            if (res.status === 200) {
+              toastSuccess(
+                "سفارش با موفقیت حذف شد",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+              router.refresh();
+            } else if (res.status === 401) {
+              toastError(
+                 "فقط ادمین/مدیر سایت اجازه حذف سفارش را دارد",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+            } else if (res.status === 400) {
+              toastError(
+                "اطلاعات لازم ارسال نشده است",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+            } else if (res.status === 422) {
+              toastError(
+                "اطلاعات ارسالی نامعتبر است",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+            } else if (res.status === 404) {
+              toastError(
+                "سفارش یافت نشد",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+            } else if (res.status === 500) {
+              toastError(
+                "خطا در سرور ، لطفا بعدا تلاش کنید",
+                "top-center",
+                5000,
+                false,
+                true,
+                true,
+                true,
+                undefined,
+                "colored"
+              );
+            }
+          }
+        });
+  }
 
   return (
     <>
@@ -72,7 +167,7 @@ function OrderTable({ orders, title }) {
                   </td>
                   <td>
                     <button
-                      //   onClick={() => removeProduct(product._id)}
+                        onClick={() => removeOrder(order._id)}
                       type="button"
                       className={styles.delete_btn}
                     >
