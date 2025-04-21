@@ -7,12 +7,15 @@
   align-items: center;
   padding: 0 30px;
   height: 90px;
-  position: relative;
-  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1100;
   direction: rtl;
 }
 
-/* لوگو (در همه سایزها نمایش داده می‌شود) */
+/* لوگو */
 .logo_container {
   display: flex;
   align-items: center;
@@ -22,8 +25,7 @@
   color: #FFD700;
 }
 
-
-/* منو در حالت دسکتاپ (853px و بزرگتر) */
+/* منو دسکتاپ */
 .desktop_links {
   display: flex;
   gap: 25px;
@@ -43,7 +45,6 @@
   transition: all 0.5s ease;
 }
 
-
 .desktop_links li a,
 .dropdown_header {
   text-decoration: none;
@@ -57,7 +58,7 @@
   color: #CC5500;
 }
 
-/* بخش dropdown در دسکتاپ */
+/* dropdown دسکتاپ */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -82,7 +83,7 @@
   min-width: 220px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 20px;
-  z-index: 1;
+  z-index: 1101;
   text-align: right;
   flex-direction: column;
 }
@@ -111,8 +112,7 @@
   color: #FFFF;
 }
 
-
-/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */
+/* آیکون‌ها */
 .navbar_icons {
   display: flex;
   gap: 20px;
@@ -135,36 +135,36 @@
   padding: 2px 6px;
   font-size: 12px;
 }
+
+/* منو موبایل */
 .dropdown_header_mobile {
   display: flex;
   flex-direction: row;
   gap: 80px;
-    padding: 10px;
-    color: #FFF;
-    background-color: #CC5500;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  padding: 10px;
+  color: #FFF;
+  background-color: #CC5500;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
-
-
 
 .dropdown_content_mobile {
   display: flex;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .dropdown_content_mobile_link {
   margin-bottom: 0.92rem;
 }
 
-/* آیکون همبرگر منو (فقط در موبایل و زمانی که سایدبار بسته است) */
+/* آیکون همبرگر */
 .menu_icon {
   display: none;
   cursor: pointer;
@@ -172,24 +172,23 @@
   color: #FFD700;
 }
 
-/* منو در حالت موبایل (سایدبار) */
+/* سایدبار موبایل */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 90px;
   right: -300px;
   width: 250px;
-  height: 100vh;
+  height: calc(100vh - 90px);
   background: #A68A64;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transition: right 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 1099;
 }
 
 .sidebar.open {
   right: 0;
 }
 
-/* آیکون ضربدر در سایدبار */
 .close_icon {
   cursor: pointer;
   font-size: 1.5rem;
@@ -198,14 +197,12 @@
   color: #FFD700;
 }
 
-/* محتوای سایدبار (قابلیت اسکرول) */
 .sidebar_content {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 150px);
   overflow-y: auto;
   padding: 20px;
 }
 
-/* لینک‌ها در سایدبار */
 .mobile_links {
   list-style: none;
   padding: 0;
@@ -232,7 +229,7 @@
   background-color: #FFD700;
 }
 
-/* رسپانسیو برای اندازه‌های کوچکتر از 853px */
+/* رسپانسیو */
 @media (max-width: 875px) {
   .desktop_links {
     display: none;
@@ -252,9 +249,30 @@
   }
 }
 
-/* سایدبار در 853px و بزرگتر نمایش داده نشود */
 @media (min-width: 875px) {
   .sidebar {
     display: none;
   }
+}
+
+/* استایل‌های اضافه شده برای محتوای صفحه */
+.container {
+  margin-top: 90px;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1098;
+  display: none;
+}
+
+.sidebar.open + .overlay {
+  display: block;
 }

@@ -1,5 +1,5 @@
 .container {
-  color: #6F4E37; /* متن قهوه‌ای گرم برای خوانایی بهتر روی پس‌زمینه سفید */
+  color: #6F4E37;
   text-align: right;
   max-width: 1222px;
   width: 100%;
@@ -8,64 +8,67 @@
   margin-right: auto;
   margin-bottom: 4rem;
   margin-left: auto;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  padding: 20px; /* اضافه کردن padding برای فاصله بهتر */
-  border-radius: 8px; /* اضافه کردن گوشه‌های گرد */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه برای عمق بخشیدن به صفحه */
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* اضافه کردن position */
+  z-index: 1000; /* مقدار z-index بالا */
 }
 
 .maps {
   display: flex;
-  gap: 20px; /* فاصله بین مپ‌ها */
-  margin-bottom: 2rem; /* فاصله از بخش‌های دیگر */
+  gap: 20px;
+  margin-bottom: 2rem;
+  position: relative; /* اضافه کردن position */
+  z-index: 1; /* مقدار z-index پایین‌تر */
 }
 
 .maps section {
-  flex: 1; /* تقسیم مساوی فضای بین مپ‌ها */
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  padding: 20px; /* اضافه کردن padding */
-  border-radius: 10px; /* اضافه کردن گوشه‌های گرد */
-  box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.1); /* سایه با رنگ قهوه‌ای گرم */
+  flex: 1;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.1);
+  position: relative; /* اضافه کردن position */
+  z-index: 1; /* مقدار z-index پایین‌تر */
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .maps {
-      flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
-      gap: 15px;
-  }
-
-  .maps section {
-      padding: 15px; /* کاهش padding */
-  }
+/* استایل برای leaflet-bar */
+.leaflet-bar {
+  position: relative;
+  z-index: 1001 !important; /* مقدار بالاتر از container */
 }
 
-@media (max-width: 480px) {
-  .maps section {
-      padding: 10px; /* کاهش بیشتر padding */
-  }
+/* استایل برای details */
+.details {
+  position: relative;
+  z-index: 1002 !important; /* بالاترین مقدار */
 }
 
 .contents {
   display: flex;
   gap: 35px;
+  position: relative; /* اضافه کردن position */
+  z-index: 1000; /* مقدار z-index بالا */
 }
 
 .contents section,
 .contents form {
   width: 50%;
   margin-top: 3rem;
+  position: relative; /* اضافه کردن position */
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .maps {
-      flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
+      flex-direction: column;
       gap: 20px;
   }
 
   .maps section {
-      width: 100%; /* عرض کامل برای نقشه‌ها */
+      width: 100%;
   }
 
   .contents {
