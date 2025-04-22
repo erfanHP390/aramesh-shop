@@ -107,3 +107,55 @@
       margin-top: 1rem;
   }
 }
+
+.mainTitle {
+  color: #6F4E37;
+  font-size: 2.2rem;
+  text-align: center;
+  margin: 1.5rem 0;
+  font-weight: 700;
+}
+
+.introText {
+  text-align: center;
+  color: #5d432c;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.phoneLink {
+  color: #CC5500;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.phoneLink:hover {
+  color: #a68a64;
+}
+
+.aboutLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #6F4E37;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid #D2B48C;
+  padding-bottom: 0.2rem;
+  transition: all 0.3s;
+}
+
+.aboutLink:hover {
+  color: #CC5500;
+  border-bottom-color: #CC5500;
+}
+
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 1.8rem;
+  }
+  
+  .introText {
+    font-size: 1rem;
+  }
+}

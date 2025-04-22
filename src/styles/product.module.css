@@ -56,3 +56,31 @@
       margin-top: 100px;
   }
 }
+
+.productTitle {
+  color: #6F4E37;
+  font-size: 1.8rem;
+  text-align: right;
+  margin: 1rem 0 0.5rem;
+  font-weight: 700;
+  padding: 0 1rem;
+}
+
+.productSubtitle {
+  color: #A68A64;
+  text-align: right;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .productTitle {
+    font-size: 1.5rem;
+  }
+  
+  .productSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
