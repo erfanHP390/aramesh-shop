@@ -1,0 +1,130 @@
+import connectToDB from "@/configs/db";
+import { isValidObjectId } from "mongoose";
+import CommentBlogModel from "@/models/CommentBlog";
+import { validateEmail } from "@/utils/auth";
+import { authAdmin } from "@/utils/authUserLink";
+
+export async function DELETE(req, { params }) {
+  try {
+    connectToDB();
+
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const id = params.id;
+
+    if (!id) {
+      return Response.json(
+        { message: "must send one id" },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    if (!isValidObjectId(id)) {
+      return Response.json(
+        { message: "id is not valid" },
+        {
+          status: 422,
+        }
+      );
+    }
+
+    const comment = await CommentBlogModel.findOne({ _id: id });
+
+    if (!comment) {
+      return Response.json(
+        { message: "comment not found" },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    await CommentBlogModel.findOneAndDelete({ _id: id });
+
+    return Response.json({ message: "comment deleted successfully" });
+  } catch (err) {
+    return Response.json(`interval error server ${err}`, {
+      status: 500,
+    });
+  }
+}
+
+export async function PUT(req, { params }) {
+  try {
+    connectToDB();
+
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const id = params.id;
+
+    const reqBody = await req.json();
+    const { description, email, education, isAccept } = reqBody;
+
+    if (!description || !education) {
+      return Response.json(
+        { message: "all fields must be filled" },
+        { status: 400 }
+      );
+    }
+
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      return Response.json({ message: "email is not valid" }, { status: 422 });
+    }
+
+    if (!id) {
+      return Response.json({ message: "id must be sent" }, { status: 400 });
+    }
+
+    if (!isValidObjectId(id)) {
+      return Response.json({ message: "id is not valid" }, { status: 422 });
+    }
+
+    const comment = await CommentBlogModel.findOne({ _id: id });
+    if (!comment) {
+      return Response.json(
+        { message: "comment is not found" },
+        { status: 404 }
+      );
+    }
+
+    await CommentBlogModel.updateOne(
+      { _id: id },
+      {
+        $set: {
+          description,
+          email,
+          education,
+        },
+      }
+    );
+
+    return Response.json(
+      { message: "comment is updated successfully" },
+      { status: 200 }
+    );
+  } catch (err) {
+    return Response.json(
+      { message: `interval error server: ${err.message}` },
+      { status: 500 }
+    );
+  }
+}
