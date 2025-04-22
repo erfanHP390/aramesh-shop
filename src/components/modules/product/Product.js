@@ -25,20 +25,7 @@ export default function Product({ _id, name, price, img }) {
         const data = await res.json();
         console.log(data);
         setUser({ ...data });
-      } else if (res.status === 401) {
-        toastError(
-          "لطفا ابتدا وارد شوید",
-          "top-center",
-          5000,
-          false,
-          true,
-          true,
-          true,
-          undefined,
-          "colored"
-        );
-        router.replace("/login&register")
-      }
+      } 
     };
 
     authUser();
