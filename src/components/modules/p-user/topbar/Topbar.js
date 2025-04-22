@@ -4,10 +4,10 @@ import { useState } from "react";
 import styles from "./Topbar.module.css";
 import { IoIosSearch, IoIosNotifications } from "react-icons/io";
 import Modal from "../modal/Model";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome } from "react-icons/fa";
+import Link from "next/link";
 
 const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
-  const [showNotifications, setShowNotifications] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const hideModal = () => setShowModal(false);
@@ -29,20 +29,18 @@ const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
               <IoIosSearch />
             </div>
           </div>
-          <div
-            onClick={() => setShowNotifications(true)}
+          <Link href={"/"}
             className={styles.notification}
           >
-            <IoIosNotifications />
-            <span>0</span>
-          </div>
+            <FaHome />
+          </Link>
           <div className={styles.menuIcon} onClick={toggleSidebar}>
             <FaBars />
           </div>
         </section>
       </div>
 
-      {showNotifications && (
+      {/* {showNotifications && (
         <div>
           <div
             onClick={() => setShowNotifications(false)}
@@ -73,7 +71,7 @@ const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
             </div>
           </section>
         </div>
-      )}
+      )} */}
       {showModal && (
         <Modal title="از واحد پشتیبانی" hideModal={hideModal}>
           <p className={styles.modal_text}>عالی هستی ادمین عزیز</p>
