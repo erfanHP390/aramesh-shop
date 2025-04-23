@@ -5,25 +5,31 @@ import About from "@/components/templates/index/about/About";
 import Articles from "@/components/templates/index/articles/Articles";
 import Footer from "@/components/modules/Footer/Footer";
 import connectToDB from "@/configs/db";
-import { authUser } from "@/utils/authUserLink";
-import ProductModel from "@/models/Product"
+import { authAdmin, authUser } from "@/utils/authUserLink";
+import ProductModel from "@/models/Product";
+import WishListModel from "@/models/Wishlist";
 
 export default async function Home() {
-  connectToDB()
+  connectToDB();
 
-  const user = await authUser()
+  const user = await authUser();
+  const admin = await authAdmin();
 
-  const products = await ProductModel.find()
+  const products = await ProductModel.find();
+  const wishlist = await WishListModel.find({});
 
-
-return (
-<>
-<Navbar isLogin={user ? true : false} />
-<Banner />
-<Latest  products={JSON.parse(JSON.stringify(products))} />
-<About />
-<Articles />
-<Footer />
-</>
-);
+  return (
+    <>
+      <Navbar
+        isLogin={user ? true : false}
+        isAdmin={admin ? true : false}
+        whishList={wishlist.length}
+      />
+      <Banner />
+      <Latest products={JSON.parse(JSON.stringify(products))} />
+      <About />
+      <Articles />
+      <Footer />
+    </>
+  );
 }
