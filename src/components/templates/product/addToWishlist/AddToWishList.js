@@ -121,10 +121,10 @@ export default function AddToWishList({productID}) {
   return (
     <div onClick={() => {
       setIsLoading(true)
-      addToWishlist()
+      addToWishlist(event)
     }}>
       <CiHeart />
-      <a href="/">افزودن به علاقه مندی ها</a>
+      <a href="/" >افزودن به علاقه مندی ها</a>
     </div>
   );
 }
