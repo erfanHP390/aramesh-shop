@@ -42,6 +42,14 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
+    stock: {
+        type: Number,
+        required: true
+    },
+    uses: {
+        type: Number,
+        default: 0
+    },
     comments: {
         type: [{
             type: mongoose.Types.ObjectId,
