@@ -12,24 +12,29 @@ export default function Navbar({ isLogin, whishList, isAdmin }) {
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
-  useEffect(() => {
-    const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCartItemsCount(cart.length);
-    };
+const getSafeLocalStorage = (key, defaultValue) => {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.error("Error reading from localStorage:", error);
+    return defaultValue;
+  }
+};
 
-    updateCartCount();
-
-    const handleStorageChange = () => {
-      updateCartCount();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+useEffect(() => {
+  const updateCartCount = () => {
+    const cart = getSafeLocalStorage("cart", []);
+    setCartItemsCount(cart.length);
+  };
+  
+  updateCartCount();
+  window.addEventListener("storage", updateCartCount);
+  
+  return () => {
+    window.removeEventListener("storage", updateCartCount);
+  };
+}, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
