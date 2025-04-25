@@ -44,14 +44,12 @@ useEffect(() => {
   return (
     <nav className={styles.navbar}>
       <main>
-        {/* لوگو (در همه سایزها نمایش داده می‌شود) */}
         <div className={styles.logo_container}>
           <Link href="/">
             <h1 className={styles.logo}>فروشگاه آرامش</h1>
           </Link>
         </div>
 
-        {/* منو در حالت دسکتاپ (853px و بزرگتر) */}
         <ul className={styles.desktop_links}>
           <li>
             <Link href="/">صفحه اصلی</Link>
@@ -112,7 +110,6 @@ useEffect(() => {
           )}
         </ul>
 
-        {/* آیکون‌ها (سبد خرید و علاقه‌مندی‌ها) */}
         <div className={styles.navbar_icons}>
           <Link href="/cart">
             <FaShoppingCart />
@@ -122,7 +119,6 @@ useEffect(() => {
             <FaRegHeart />
             <span>{whishList}</span>
           </Link>
-          {/* آیکون همبرگر منو (فقط در موبایل و زمانی که سایدبار بسته است) */}
           {!isOpen && (
             <div className={styles.menu_icon} onClick={toggleMenu}>
               <FaBars />
@@ -130,7 +126,6 @@ useEffect(() => {
           )}
         </div>
 
-        {/* بقیه کدهای منو موبایل بدون تغییر */}
       </main>
     </nav>
   );

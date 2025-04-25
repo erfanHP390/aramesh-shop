@@ -1,17 +1,17 @@
 .tabel_container {
   width: 100%;
-  overflow-x: auto; /* اسکرول افقی فعال شود */
-  background-color: #6F4E37; /* قهوه‌ای گرم */
-  color: #FFFFFF; /* سفید */
+  overflow-x: auto; 
+  background-color: #6F4E37; 
+  color: #FFFFFF; 
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  -webkit-overflow-scrolling: touch; /* اسکرول نرم در آیفون */
+  -webkit-overflow-scrolling: touch; 
 }
 
 .table {
   width: 100%;
-  min-width: 600px; /* حداقل عرض جدول برای جلوگیری از فشرده شدن بیش از حد */
+  min-width: 600px; 
   border-spacing: 0;
   color: black;
   background-color: #ffffff;
@@ -23,12 +23,12 @@
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  font-size: clamp(12px, 2vw, 14px); 
 }
 
 .table th {
-  background-color: #D2B48C; /* بژ روشن */
-  color: #000000; /* سیاه */
+  background-color: #D2B48C; 
+  color: #000000; 
 }
 
 .product {
@@ -48,19 +48,19 @@
   word-wrap: break-word;
   line-height: 1.4;
   display: inline-block;
-  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  font-size: clamp(12px, 2vw, 14px); 
   text-align: center;
-  color: #000000; /* سیاه */
+  color: #000000; 
   text-decoration: none;
 }
 
 .product a:hover {
-  color: #CC5500; /* نارنجی گرم */
+  color: #CC5500; 
 }
 
 .price {
   color: #777 !important;
-  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  font-size: clamp(12px, 2vw, 14px); 
 }
 
 .counter div {
@@ -73,12 +73,12 @@
 .counter span {
   cursor: pointer;
   padding: 8px 10px;
-  color: #000000; /* سیاه */
+  color: #000000; 
 }
 
 .counter span:hover {
   color: white;
-  background: #CC5500; /* نارنجی گرم */
+  background: #CC5500; 
 }
 
 .counter p {
@@ -100,9 +100,9 @@
 
 .update_btn,
 .set_off_btn {
-  white-space: nowrap; /* متن دکمه‌ها همیشه در یک خط */
+  white-space: nowrap; 
   padding: 10px 20px;
-  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  font-size: clamp(12px, 2vw, 14px); 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -114,17 +114,17 @@
 }
 
 .update_btn:hover {
-  background: #CC5500; /* نارنجی گرم */
+  background: #CC5500; 
   color: white;
 }
 
 .set_off_btn {
-  background-color: #CC5500; /* نارنجی گرم */
+  background-color: #CC5500; 
   color: white;
 }
 
 .set_off_btn:hover {
-  background: #A68A64; /* قهوه‌ای روشن */
+  background: #A68A64; 
 }
 
 .tabel_container section {
@@ -132,7 +132,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  gap: 10px; /* فاصله بین عناصر */
+  gap: 10px; 
 }
 
 .tabel_container section input {
@@ -140,10 +140,10 @@
   border-radius: 5px;
   background-color: white;
   color: black;
-  width: 100%; /* عرض کامل */
+  width: 100%; 
   direction: rtl;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: clamp(12px, 2vw, 14px); /* فونت به‌صورت پویا تنظیم می‌شود */
+  font-size: clamp(12px, 2vw, 14px); 
 }
 
 .discount_container {
@@ -159,7 +159,7 @@
   text-align: center;
   min-height: 60vh;
   padding: 2rem;
-  background-color: #FFF9F2; /* پس‌زمینه کرم روشن */
+  background-color: #FFF9F2; 
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   max-width: 800px;
@@ -169,7 +169,7 @@
 
 .cart_empty svg {
   font-size: 8rem;
-  color: #E0D5C8; /* رنگ آیکون روشن‌تر */
+  color: #E0D5C8; 
   margin-bottom: 2rem;
   opacity: 0.8;
 }
@@ -177,7 +177,7 @@
 .cart_empty p {
   font-size: 2rem;
   font-weight: 600;
-  color: #6F4E37; /* قهوه‌ای تیره */
+  color: #6F4E37; 
   margin-bottom: 1.5rem;
 }
 
@@ -196,7 +196,7 @@
 .cart_empty a {
   display: inline-block;
   padding: 0.8rem 2rem;
-  background-color: #CC5500; /* نارنجی */
+  background-color: #CC5500; 
   color: white;
   border-radius: 6px;
   font-weight: 500;
@@ -206,12 +206,11 @@
 }
 
 .cart_empty a:hover {
-  background-color: #B34700; /* نارنجی تیره‌تر */
+  background-color: #B34700;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(204, 85, 0, 0.25);
 }
 
-/* ریسپانسیو برای تبلت */
 @media (max-width: 1000px) {
   .cart_empty {
     min-height: 50vh;
@@ -238,7 +237,6 @@
   }
 }
 
-/* ریسپانسیو برای موبایل */
 @media (max-width: 480px) {
   .cart_empty {
     min-height: 40vh;
@@ -267,49 +265,47 @@
   }
 }
 
-/* استایل‌های جدید برای اسکرول در موبایل */
 @media (max-width: 425px) {
   .tabel_container {
     padding: 10px;
-    overflow-x: scroll; /* اسکرول افقی اجباری */
-    -webkit-overflow-scrolling: touch; /* اسکرول نرم در آیفون */
+    overflow-x: scroll; 
+    -webkit-overflow-scrolling: touch; 
   }
   
   .table {
-    min-width: 100%; /* عرض جدول برابر با عرض صفحه */
+    min-width: 100%; 
   }
   
   .table th, 
   .table td {
-    padding: 8px 5px; /* padding کمتر برای موبایل */
-    font-size: 12px; /* فونت کوچکتر برای موبایل */
+    padding: 8px 5px; 
+    font-size: 12px; 
   }
   
   .product img {
-    width: 60px; /* تصویر کوچکتر برای موبایل */
+    width: 60px; 
   }
   
   .counter div {
-    flex-direction: column; /* دکمه‌های + و - زیر هم در موبایل */
+    flex-direction: column; 
     align-items: center;
   }
 }
 
-/* ریسپانسیو برای سایز 768px */
 @media (max-width: 875px) {
   .tabel_container section {
-    flex-direction: column; /* عناصر زیر هم قرار بگیرند */
-    align-items: stretch; /* عرض کامل */
+    flex-direction: column; 
+    align-items: stretch; 
   }
 
   .update_btn,
   .set_off_btn {
-    width: 100%; /* عرض کامل */
-    text-align: center; /* متن وسط‌چین */
+    width: 100%; 
+    text-align: center; 
   }
 
   .tabel_container section input {
-    width: 100%; /* عرض کامل */
+    width: 100%; 
   }
   .discount_container {
     display: flex;
@@ -336,7 +332,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    overflow-x: auto !important; /* تغییر از hidden به auto */
+    overflow-x: auto !important; 
   }
 }
 

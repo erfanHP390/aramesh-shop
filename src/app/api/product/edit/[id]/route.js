@@ -19,7 +19,6 @@ export async function PUT(req, { params }) {
 
     const id = params.id;
 
-    // اعتبارسنجی ID
     if (!id) {
       return Response.json(
         { message: "id is required" },
@@ -46,7 +45,6 @@ export async function PUT(req, { params }) {
     const img = formData.get("img");
     const score = parseInt(formData.get("score"))
 
-    // ابتدا محصول موجود را پیدا کنید
     const existingProduct = await ProductModel.findOne({_id: id});
     if (!existingProduct) {
       return Response.json(
@@ -74,9 +72,9 @@ export async function PUT(req, { params }) {
           const imgUrl = new URL(existingProduct.img);
           const filePath = path.join(process.cwd(), "public", imgUrl.pathname);
           await unlink(filePath);
-          console.log(`تصویر قدیمی با موفقیت حذف شد: ${filePath}`);
+          console.log(`old img is deleted successfully: ${filePath}`);
         } catch (err) {
-          console.error(`خطا در حذف تصویر قدیمی: ${err.message}`);
+          console.error(`err in delete old-img: ${err.message}`);
         }
       }
 
@@ -91,12 +89,12 @@ export async function PUT(req, { params }) {
     await ProductModel.findByIdAndUpdate(id, updateData, { new: true });
 
     return Response.json({ 
-      message: "محصول با موفقیت به روز رسانی شد",
+      message: "product is created successfully",
     });
 
   } catch (err) {
     return Response.json(
-      { message: `خطای سرور: ${err.message}` },
+      { message: `err in server: ${err.message}` },
       { status: 500 }
     );
   }

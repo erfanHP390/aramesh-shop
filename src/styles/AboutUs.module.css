@@ -1,36 +1,34 @@
-/* AboutUs.module.css */
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
   direction: rtl;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  background-color: #FFFFFF; 
 }
 
 .section {
   text-align: center;
   margin-bottom: 3rem;
   padding: 2rem;
-  background-color: #5A3E36; /* پس‌زمینه قهوه‌ای تیره */
+  background-color: #5A3E36; 
   border-radius: 8px;
 }
 
 .section h1 {
-  font-size: 2.25rem; /* 36px */
+  font-size: 2.25rem; 
   font-weight: 700;
-  color: #FFD700; /* عنوان طلایی */
+  color: #FFD700; 
   margin-bottom: 1rem;
 }
 
 .section p {
-  font-size: 1.125rem; /* 18px */
-  color: #FFFFFF; /* متن سفید */
+  font-size: 1.125rem; 
+  color: #FFFFFF; 
 }
 
 .content {
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  line-height: 1.5; /* leading-relaxed */
+  color: #5A3E36; 
+  line-height: 1.5; 
   margin-bottom: 1rem;
   padding: 1rem;
 }
@@ -49,29 +47,29 @@
 }
 
 .card {
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  padding: 1.5rem; /* p-6 */
-  border-radius: 0.5rem; /* rounded-lg */
-  box-shadow: 0 4px 6px -1px rgba(90, 62, 54, 0.1), 0 2px 4px -1px rgba(90, 62, 54, 0.06); /* سایه با رنگ قهوه‌ای تیره */
+  background-color: #FFFFFF; 
+  padding: 1.5rem; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 4px 6px -1px rgba(90, 62, 54, 0.1), 0 2px 4px -1px rgba(90, 62, 54, 0.06); 
 }
 
 .card h2 {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem; 
   font-weight: 700;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
   margin-bottom: 1rem;
 }
 
 .card h3 {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem; 
   font-weight: 600;
-  color: #CC5500; /* عنوان نارنجی گرم */
+  color: #CC5500; 
   margin-bottom: 1rem;
 }
 
 .card p {
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  line-height: 1.75; /* leading-relaxed */
+  color: #5A3E36; 
+  line-height: 1.75; 
   margin-bottom: 1rem;
 }
 

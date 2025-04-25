@@ -122,7 +122,7 @@ export async function PUT(req, { params }) {
         $set: {
           email,
           body,
-          score: score !== undefined ? score : comment.score, // اگر score ارسال نشده از مقدار قبلی استفاده کن
+          score: score !== undefined ? score : comment.score,
         },
       }
     );

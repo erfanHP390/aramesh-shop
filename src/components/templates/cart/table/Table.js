@@ -26,7 +26,6 @@ function Table() {
   const [cityOption, setCityOption] = useState([]);
   const [appliedDiscount, setAppliedDiscount] = useState(null);
 
-  // تابع ایمن برای خواندن از localStorage
   const getSafeLocalStorage = (key, defaultValue) => {
     try {
       const item = localStorage.getItem(key);
@@ -49,9 +48,8 @@ function Table() {
     }
   }, [stateSelectedOption]);
 
-  // استایل‌های سفارشی برای Select (همان کد قبلی)
   const customStyles = {
-    // ... (همان استایل‌های قبلی)
+   
   };
 
   useEffect(() => {
@@ -314,7 +312,6 @@ function Table() {
             </section>
           </div>
           <div className={totalStyles.totals}>
-            {/* ... (بقیه کدهای مربوط به جمع کل سبد خرید) */}
           </div>
         </>
       ) : (

@@ -50,10 +50,10 @@ export async function DELETE(req, { params }) {
       );
     }
 
-        // حذف فایل تصویر از سیستم فایل
+        // delete image from uploads file
         if (isExistBlog.img) {
           try {
-            // استخراج مسیر فایل از URL
+            // extract file url-address 
             const imgUrl = new URL(isExistBlog.img);
             const filePath = path.join(
               process.cwd(),
@@ -62,10 +62,9 @@ export async function DELETE(req, { params }) {
             );
             
             await unlink(filePath);
-            console.log(`تصویر با موفقیت حذف شد: ${filePath}`);
+            console.log(`img is deleted successfully: ${filePath}`);
           } catch (err) {
-            console.error(`خطا در حذف تصویر: ${err.message}`);
-            // حتی اگر حذف فایل با خطا مواجه شد، ادامه دهید
+            console.error(`err in delete: ${err.message}`);
           }
         }
 

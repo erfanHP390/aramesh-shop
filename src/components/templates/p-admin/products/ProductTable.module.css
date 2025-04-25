@@ -11,8 +11,8 @@
 }
 
 .title a {
-  background-color: #D2B48C; /* تغییر به بژ روشن */
-  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  background-color: #D2B48C; 
+  color: #6F4E37; 
   font-size: 1rem;
   display: flex;
   position: relative;
@@ -20,11 +20,11 @@
   border-radius: 20px;
   padding: 0 10px;
   align-items: center;
-  border: 1px solid #6F4E37; /* تغییر به قهوه‌ای گرم */
+  border: 1px solid #6F4E37; 
 }
 
 .title:before {
-  border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+  border-top: 2px solid #A68A64; 
   content: "";
   margin: 0 auto;
   position: absolute;
@@ -37,10 +37,10 @@
 }
 
 .title span {
-  background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  background: #6F4E37; 
   padding: 0 15px;
   margin-right: 4rem;
-  color: white; /* تغییر رنگ متن به سفید */
+  color: white; 
 }
 
 .title:before {
@@ -48,10 +48,10 @@
 }
 
 .title:after {
-  border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-  -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-  -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-  box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  border-bottom: 1px solid #CC5500; 
+  -webkit-box-shadow: 0 1px 0 0 #CC5500; 
+  -moz-box-shadow: 0 1px 0 0 #CC5500; 
+  box-shadow: 0 1px 0 0 #CC5500; 
   content: "";
   margin: 0 auto;
   position: absolute;
@@ -64,31 +64,31 @@
 
 .table {
     width: 100%;
-    background-color: #F5F5F5; /* تغییر به رنگ پس‌زمینه روشن */
+    background-color: #F5F5F5; 
     border-collapse: collapse;
 }
 
 .table th {
     border: none;
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    color: #6F4E37; 
     text-align: center;
     padding: 12px 22px;
-    background-color: #D2B48C; /* تغییر به بژ روشن */
+    background-color: #D2B48C; 
 }
 
 .table td {
     padding: 8px 22px;
     text-align: center;
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
-    border-bottom: 1px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    color: #6F4E37; 
+    border-bottom: 1px solid #A68A64; 
 }
 
 .table tbody tr {
-    background-color: white; /* پس‌زمینه سفید برای ردیف‌ها */
+    background-color: white; 
 }
 
 .table tbody tr:hover {
-    background-color: #F5F5F5; /* تغییر رنگ هنگام هاور */
+    background-color: #F5F5F5; 
 }
 
 .delete_btn,
@@ -107,29 +107,29 @@
 }
 
 .delete_btn {
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
 }
 
 .delete_btn:hover {
-    background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+    background-color: #A68A64; 
 }
 
 .edit_btn {
-    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    background-color: #6F4E37; 
 }
 
 .edit_btn:hover {
-    background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+    background-color: #A68A64; 
 }
 
 .table_container {
     padding: 40px 25px;
-    overflow-x: auto; /* اضافه کردن اسکرول افقی برای جدول */
+    overflow-x: auto; 
 }
 
 .empty {
     color: white;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     padding: 0.7rem 2rem;
     width: max-content;
     margin: 15rem auto;
@@ -137,156 +137,154 @@
     border-radius: 5px;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 1200px) {
     .table th,
     .table td {
-        padding: 8px 15px; /* کاهش پدینگ برای سایز‌های متوسط */
+        padding: 8px 15px; 
     }
 
     .table_container {
-        padding: 30px 20px; /* کاهش پدینگ برای سایز‌های متوسط */
+        padding: 30px 20px; 
     }
 
     .title {
-        font-size: 26px; /* کاهش سایز فونت برای سایز‌های متوسط */
+        font-size: 26px; 
     }
 
     .title span {
-        margin-right: 3rem; /* کاهش فاصله برای سایز‌های متوسط */
+        margin-right: 3rem; 
     }
 }
 
 @media (max-width: 1036px) {
     .table th,
     .table td {
-        padding: 6px 10px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+        padding: 6px 10px; 
     }
 
     .table_container {
-        padding: 20px 15px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+        padding: 20px 15px; 
     }
 
     .title {
-        font-size: 22px; /* کاهش بیشتر سایز فونت برای تبلت‌ها */
+        font-size: 22px; 
     }
 
     .title span {
-        margin-right: 2rem; /* کاهش بیشتر فاصله برای تبلت‌ها */
+        margin-right: 2rem; 
     }
 
     .empty {
-        font-size: 1.4rem; /* کاهش سایز فونت برای تبلت‌ها */
-        margin: 10rem auto; /* کاهش فاصله برای تبلت‌ها */
+        font-size: 1.4rem; 
+        margin: 10rem auto; 
     }
 }
 
 @media (max-width: 875px) {
     .table th,
     .table td {
-        padding: 6px 8px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+        padding: 6px 8px; 
     }
 
     .table_container {
-        padding: 15px 10px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+        padding: 15px 10px; 
     }
 
     .title {
-        font-size: 20px; /* کاهش بیشتر سایز فونت برای تبلت‌ها */
+        font-size: 20px; 
     }
 
     .title span {
-        margin-right: 1.5rem; /* کاهش بیشتر فاصله برای تبلت‌ها */
+        margin-right: 1.5rem; 
     }
 
     .empty {
-        font-size: 1.2rem; /* کاهش بیشتر سایز فونت برای تبلت‌ها */
-        padding: 0.5rem 1rem; /* کاهش پدینگ برای تبلت‌ها */
+        font-size: 1.2rem; 
+        padding: 0.5rem 1rem; 
     }
 }
 
 @media (max-width: 768px) {
     .table th,
     .table td {
-        font-size: 12px; /* کاهش سایز فونت برای موبایل‌ها */
+        font-size: 12px; 
     }
 
     .delete_btn,
     .edit_btn {
-        font-size: 12px; /* کاهش سایز فونت دکمه‌ها برای موبایل‌ها */
+        font-size: 12px; 
     }
 
     .table_container {
-        padding: 10px 5px; /* کاهش بیشتر پدینگ برای موبایل‌ها */
+        padding: 10px 5px; 
     }
 
     .title {
-        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
+        font-size: 18px; 
     }
 
     .title span {
-        margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌ها */
+        margin-right: 1rem; 
     }
 
     .empty {
-        font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
-        padding: 0.4rem 0.8rem; /* کاهش پدینگ برای موبایل‌ها */
+        font-size: 1rem; 
+        padding: 0.4rem 0.8rem; 
     }
 }
 
 @media (max-width: 480px) {
     .table th,
     .table td {
-        padding: 4px 8px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
-        font-size: 10px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        padding: 4px 8px; 
+        font-size: 10px; 
     }
 
     .delete_btn,
     .edit_btn {
-        font-size: 10px; /* کاهش بیشتر سایز فونت دکمه‌ها برای موبایل‌های کوچک */
-        padding: 0.3rem 0.5rem; /* کاهش پدینگ دکمه‌ها برای موبایل‌های کوچک */
+        font-size: 10px; 
+        padding: 0.3rem 0.5rem; 
     }
 
     .table_container {
-        padding: 5px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
+        padding: 5px; 
     }
 
     .title {
-        font-size: 16px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 16px; 
     }
 
     .title span {
-        margin-right: 0.5rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+        margin-right: 0.5rem; 
     }
 
     .empty {
-        font-size: 0.9rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
-        padding: 0.3rem 0.6rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+        font-size: 0.9rem; 
+        padding: 0.3rem 0.6rem; 
     }
 }
 
-/* استایل‌های مودال محصول */
 .modal_product {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
-    background-color: #F8F4EF; /* رنگ پس‌زمینه بژ روشن */
+    background-color: #F8F4EF; 
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.15); /* سایه با رنگ قهوه‌ای */
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.15); 
   }
   
   .modal_product_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #D2B48C; /* خط جداکننده بژ */
+    border-bottom: 2px solid #D2B48C; 
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
   
   .modal_product_title {
-    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    color: #6F4E37; 
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
@@ -295,14 +293,14 @@
   .modal_product_close {
     background: none;
     border: none;
-    color: #CC5500; /* رنگ نارنجی */
+    color: #CC5500; 
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.3s;
   }
   
   .modal_product_close:hover {
-    color: #A68A64; /* رنگ قهوه‌ای روشن */
+    color: #A68A64; 
   }
   
   .modal_product_content {
@@ -333,7 +331,7 @@
   
   .modal_product_price {
     font-size: 1.8rem;
-    color: #CC5500; /* رنگ نارنجی */
+    color: #CC5500; 
     font-weight: 700;
   }
   
@@ -341,11 +339,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #6F4E37; /* رنگ قهوه‌ای */
+    color: #6F4E37; 
   }
   
   .modal_product_rating_stars {
-    color: #FFC107; /* رنگ ستاره‌ها */
+    color: #FFC107; 
   }
   
   .modal_product_meta {
@@ -363,12 +361,12 @@
   
   .modal_product_meta_label {
     font-size: 0.85rem;
-    color: #A68A64; /* رنگ قهوه‌ای روشن */
+    color: #A68A64; 
   }
   
   .modal_product_meta_value {
     font-weight: 500;
-    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    color: #6F4E37; 
   }
   
   .modal_product_tags {
@@ -379,8 +377,8 @@
   }
   
   .modal_product_tag {
-    background-color: #D2B48C; /* رنگ بژ */
-    color: #6F4E37; /* رنگ قهوه‌ای */
+    background-color: #D2B48C; 
+    color: #6F4E37; 
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -392,15 +390,15 @@
   }
   
   .modal_product_description_title {
-    color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    color: #6F4E37; 
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid #D2B48C; /* خط جداکننده بژ */
+    border-bottom: 1px solid #D2B48C; 
     padding-bottom: 0.5rem;
   }
   
   .modal_product_description_text {
-    color: #5A4A42; /* رنگ قهوه‌ای تیره */
+    color: #5A4A42; 
     line-height: 1.6;
   }
   
@@ -410,7 +408,7 @@
     gap: 1rem;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #D2B48C; /* خط جداکننده بژ */
+    border-top: 1px solid #D2B48C; 
   }
   
   .modal_product_button {
@@ -423,25 +421,24 @@
   }
   
   .modal_product_button_primary {
-    background-color: #6F4E37; /* رنگ قهوه‌ای گرم */
+    background-color: #6F4E37; 
     color: white;
   }
   
   .modal_product_button_primary:hover {
-    background-color: #5A3D2A; /* رنگ قهوه‌ای تیره */
+    background-color: #5A3D2A; 
   }
   
   .modal_product_button_secondary {
     background-color: #F5F5F5;
-    color: #6F4E37; /* رنگ قهوه‌ای گرم */
-    border: 1px solid #D2B48C; /* رنگ بژ */
+    color: #6F4E37; 
+    border: 1px solid #D2B48C; 
   }
   
   .modal_product_button_secondary:hover {
-    background-color: #E8E0D9; /* رنگ بژ روشن */
+    background-color: #E8E0D9; 
   }
   
-  /* استایل‌های ریسپانسیو */
   @media (max-width: 768px) {
     .modal_product_content {
       grid-template-columns: 1fr;
@@ -482,26 +479,26 @@
 
   @media (max-width: 1136px) {
     .title {
-        font-size: 24px; /* کاهش سایز فونت برای تبلت‌ها */
+        font-size: 24px; 
     }
 
     .title a {
-        font-size: 0.9rem; /* کاهش سایز فونت لینک برای تبلت‌ها */
+        font-size: 0.9rem; 
     }
 
 }
 
 @media (max-width: 768px) {
     .title {
-        font-size: 20px; /* کاهش سایز فونت برای موبایل‌ها */
+        font-size: 20px; 
     }
 
     .title a {
-        font-size: 0.8rem; /* کاهش سایز فونت لینک برای موبایل‌ها */
+        font-size: 0.8rem; 
     }
 
     .filtering {
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        flex-direction: column; 
         gap: 10px;
     }
 
@@ -509,22 +506,22 @@
 
 @media (max-width: 480px) {
     .title {
-        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 18px; 
     }
 
     .title a {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+        font-size: 0.7rem; 
     }
 
 }
 
 @media (max-width: 348px) {
     .title {
-        font-size: 15px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 15px; 
     }
 
     .title a {
-        font-size: 0.5rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+        font-size: 0.5rem; 
     }
 
 }

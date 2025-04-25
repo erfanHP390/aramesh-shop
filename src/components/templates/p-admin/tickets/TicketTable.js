@@ -149,18 +149,15 @@ function TicketTable({ tickets, title, email, phone }) {
 
   const applyFilters = (e) => {
     e.preventDefault();
-    // فیلترها از طریق state اعمال می‌شوند، نیازی به ارسال درخواست جدید نیست
   };
 
   const filteredTickets = tickets
     .filter((ticket) => {
-      // فیلتر جهت (فرستاده شده/دریافتی)
       if (directionFilter === "sent") return ticket.isAnswer === false;
       if (directionFilter === "received") return ticket.isAnswer === true;
       return true;
     })
     .filter((ticket) => {
-      // فیلتر وضعیت
       if (statusFilter === "all") return true;
       if (statusFilter === "open") return !ticket.hasAnswer && !ticket.isClosed;
       if (statusFilter === "closed") return ticket.isClosed;
@@ -169,10 +166,9 @@ function TicketTable({ tickets, title, email, phone }) {
       return true;
     })
     .sort((a, b) => {
-      // مرتب‌سازی بر اساس تاریخ
       const dateA = new Date(dateFilter === "createdAt" ? a.createdAt : a.updatedAt);
       const dateB = new Date(dateFilter === "createdAt" ? b.createdAt : b.updatedAt);
-      return dateB - dateA; // جدیدترین اول
+      return dateB - dateA;
     });
 
   return (

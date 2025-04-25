@@ -7,16 +7,16 @@
 .box {
   border-radius: 5px;
   padding: 1rem;
-  border: 2px solid #CC5500; /* نارنجی گرم */
+  border: 2px solid #CC5500; 
   position: relative;
   width: 270px;
   margin: 0 auto;
-  background-color: #A68A64; /* قهوه‌ای روشن */
+  background-color: #A68A64; 
   color: white;
 }
 
 .box_chart_icon {
-  color: #CC5500; /* نارنجی گرم */
+  color: #CC5500; 
   font-size: 2.5rem;
 }
 
@@ -26,7 +26,7 @@
   height: 2px;
   top: 6px;
   display: block;
-  background-color: #CC5500; /* نارنجی گرم */
+  background-color: #CC5500; 
   width: 80%;
 }
 
@@ -36,7 +36,7 @@
   height: 2px;
   top: 40px;
   display: block;
-  background-color: #CC5500; /* نارنجی گرم */
+  background-color: #CC5500; 
   width: 58%;
 }
 

@@ -3,7 +3,6 @@ import React from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import dynamic from "next/dynamic";
 
-// بارگذاری پویای Tooltip از Leaflet
 const Tooltip = dynamic(
   () => import("leaflet").then((L) => L.Tooltip),
   { ssr: false }

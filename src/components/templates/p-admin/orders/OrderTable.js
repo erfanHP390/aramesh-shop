@@ -194,7 +194,6 @@ function OrderTable({ orders, title }) {
             </div>
 
             <div className={styles.modal_product_content}>
-              {/* 1. اطلاعات سفارش */}
               <div className={styles.modal_product_info}>
                 <h3 className={styles.modal_product_description_title}>
                   اطلاعات سفارش
@@ -255,7 +254,6 @@ function OrderTable({ orders, title }) {
                 </div>
               </div>
 
-              {/* 2. اطلاعات مشتری */}
               <div className={styles.modal_product_info}>
                 <h3 className={styles.modal_product_description_title}>
                   اطلاعات مشتری
@@ -318,7 +316,6 @@ function OrderTable({ orders, title }) {
                 </div>
               </div>
 
-              {/* 3. اطلاعات سبد خرید */}
               {selectedOrder.basket && selectedOrder.basket.length > 0 && (
                 <div className={styles.modal_product_info}>
                   <h3 className={styles.modal_product_description_title}>
@@ -351,7 +348,6 @@ function OrderTable({ orders, title }) {
                 </div>
               )}
 
-              {/* 4. اطلاعات محصولات */}
               {selectedOrder.products && selectedOrder.products.length > 0 && (
                 <div className={styles.modal_product_info}>
                   <h3 className={styles.modal_product_description_title}>

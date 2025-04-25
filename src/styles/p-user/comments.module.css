@@ -1,6 +1,6 @@
 .empty {
     color: white;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     padding: 0.7rem 2rem;
     width: max-content;
     margin: 15rem auto;
@@ -11,27 +11,22 @@
   @media (max-width: 875px) {
 
     .empty {
-        font-size: 1.4rem; /* کاهش سایز فونت برای تبلت‌ها */
-        margin: 10rem auto; /* کاهش فاصله برای تبلت‌ها */
+        font-size: 1.4rem; 
+        margin: 10rem auto; 
     }
   }
 
   @media (max-width: 768px) {
 
     .empty {
-        font-size: 1.2rem; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
-        padding: 0.5rem 1rem; /* کاهش پدینگ برای موبایل‌ها */
+        font-size: 1.2rem; 
+        padding: 0.5rem 1rem; 
     }
   }
 
   @media (max-width: 425px) {
-
     .empty {
-        font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
-        padding: 0.4rem 0.8rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+        font-size: 1rem; 
+        padding: 0.4rem 0.8rem; 
     }
   }
-
-
-
-

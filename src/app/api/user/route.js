@@ -55,7 +55,6 @@ export async function DELETE(req) {
     connectToDB();
     const body = await req.json();
     const { id } = body;
-    // Validation (You)
 
     await UserModel.findOneAndDelete({ _id: id });
     return Response.json({ message: "User removed successfully :))" });

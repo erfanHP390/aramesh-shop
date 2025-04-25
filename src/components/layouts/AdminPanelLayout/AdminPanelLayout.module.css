@@ -1,5 +1,5 @@
 .layout {
-  background: #6F4E37; /* قهوه‌ای گرم */
+  background: #6F4E37; 
   width: 100%;
   direction: rtl;
   min-height: 100vh;
@@ -12,14 +12,14 @@
 
 .contents {
   width: 100%;
-  margin-right: 350px; /* عرض سایدبار */
+  margin-right: 350px; 
   transition: margin-right 0.3s ease;
 }
 
 .sidebar {
   width: 350px;
   height: 100vh;
-  background-color: #A68A64; /* قهوه‌ای روشن */
+  background-color: #A68A64; 
   color: white;
   padding: 10px;
   position: fixed;
@@ -56,7 +56,6 @@
 }
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 992px) {
   .contents {
     margin-right: 0;

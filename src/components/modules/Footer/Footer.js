@@ -13,13 +13,12 @@ export default function Footer() {
   
 
   useEffect(() => {
-    // بررسی وجود `window` قبل از استفاده
     if (typeof window !== "undefined") {
       const handleResize = () => {
         setIsMobile(window.innerWidth <= 986);
       };
 
-      handleResize(); // تنظیم مقدار اولیه
+      handleResize(); 
       window.addEventListener('resize', handleResize);
 
       return () => {

@@ -1,8 +1,6 @@
-/* product.module.css */
-
 .container {
   overflow: auto;
-  background-color: #A68A64; /* پس‌زمینه سفید */
+  background-color: #A68A64; 
 }
 
 .contents {
@@ -11,14 +9,14 @@
   margin-top: 160px;
   text-align: right;
   padding-top: 25px;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
   direction: rtl;
   font-family: shabnam;
   padding-bottom: 5rem;
 }
 
 .contents hr {
-  border-top-color: #A68A64; /* خط جداکننده با رنگ قهوه‌ای روشن */
+  border-top-color: #A68A64; 
   margin: 20px 0px;
 }
 

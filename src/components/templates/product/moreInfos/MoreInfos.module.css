@@ -1,18 +1,16 @@
-/* MoreInfoes.module.css */
-
 .moreInfoes {
     margin-top: 20px;
-    background-color: #FFFFFF; /* پس‌زمینه سفید */
+    background-color: #FFFFFF; 
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); 
     line-height: 3.25;
 }
 
 .moreInfoes p {
     font-size: 14px;
     font-family: shabnam;
-    color: #5A3E36; /* متن قهوه‌ای تیره */
+    color: #5A3E36; 
 }
 
 @media (max-width: 768px) {

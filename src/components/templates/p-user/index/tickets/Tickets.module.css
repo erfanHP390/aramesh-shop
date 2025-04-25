@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  border-bottom: 1px solid #CC5500; /* نارنجی گرم */
+  border-bottom: 1px solid #CC5500; 
 }
 
 .content {
-  background-color: #A68A64; /* قهوه‌ای روشن */
+  background-color: #A68A64; 
   width: 50%;
   color: white;
   padding: 0px 15px;
@@ -14,7 +14,7 @@
 }
 
 .content_details a svg {
-  color: #CC5500; /* نارنجی گرم */
+  color: #CC5500; 
 }
 
 .content_details a {
@@ -24,7 +24,7 @@
 }
 
 .content:nth-child(1) a:not(.content_details *) {
-  background: #CC5500 !important; /* نارنجی گرم */
+  background: #CC5500 !important; 
   border-right-color: white;
   color: white;
 }

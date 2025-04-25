@@ -1,17 +1,15 @@
-/* Article.module.css */
-
 .card {
     position: relative;
     overflow: hidden;
-    background-color: #FFFFFF; /* پس‌زمینه کارت */
-    border: 1px solid #A68A64; /* حاشیه کارت (قهوه‌ای روشن) */
+    background-color: #FFFFFF; 
+    border: 1px solid #A68A64; 
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.2); /* سایه با رنگ قهوه‌ای تیره */
+    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.2); 
   }
   
   .date span:nth-child(1) {
@@ -23,10 +21,10 @@
     top: 12px;
     right: 12px;
     padding: 0.3rem 0.5rem;
-    background: #FFFFFF; /* پس‌زمینه تاریخ (سفید) */
+    background: #FFFFFF; 
     display: grid;
     border-radius: 4px;
-    color: #5A3E36; /* رنگ متن تاریخ (قهوه‌ای تیره) */
+    color: #5A3E36; 
     z-index: 2;
   }
   
@@ -42,8 +40,8 @@
     left: -4px;
     border-radius: 100%;
     padding: 0.1rem 0.2rem 0;
-    background-color: #CC5500; /* پس‌زمینه تعداد کامنت‌ها (نارنجی گرم) */
-    color: #FFFFFF; /* متن تعداد کامنت‌ها (سفید) */
+    background-color: #CC5500; 
+    color: #FFFFFF; 
   }
   
   .details div div {
@@ -53,17 +51,17 @@
   .details div svg {
     font-size: 1.2rem;
     cursor: pointer;
-    color: #FFD700; /* رنگ آیکون‌ها (قهوه‌ای تیره) */
+    color: #FFD700; 
     transition: color 0.3s ease;
   }
   
   .details div svg:hover {
-    color: #CC5500; /* هاور آیکون‌ها (نارنجی گرم) */
+    color: #CC5500; 
   }
   
   .details div {
     font-size: 14px;
-    color: #FFD700; /* رنگ متن نویسنده (قهوه‌ای تیره) */
+    color: #FFD700; 
     justify-content: center;
     display: flex;
     align-items: center;
@@ -79,7 +77,7 @@
     background: linear-gradient(
       to bottom,
       transparent 5%,
-      rgba(90, 62, 54, 0.35) 50%, /* گرادینت با رنگ قهوه‌ای تیره */
+      rgba(90, 62, 54, 0.35) 50%, 
       rgba(90, 62, 54, 0.8) 100%
     );
     bottom: 0px;
@@ -87,10 +85,10 @@
   
   .tag {
     font-size: 13px;
-    background-color: #CC5500; /* پس‌زمینه تگ (نارنجی گرم) */
+    background-color: #CC5500; 
     padding: 0.5rem;
     border-radius: 3px;
-    color: #FFFFFF; /* متن تگ (سفید) */
+    color: #FFFFFF; 
   }
   
   .title {
@@ -99,7 +97,7 @@
     line-height: 1.4;
     display: block;
     font-size: 23px;
-    color: #FFFFFF; /* رنگ عنوان مقاله (سفید) */
+    color: #FFFFFF; 
   }
   
   .card:hover .img_container:nth-child(1)::after {
@@ -110,7 +108,7 @@
     bottom: 0;
     opacity: 1;
     left: 0;
-    background-color: rgba(90, 62, 54, 0.5); /* لایه نیمه‌شفاف (قهوه‌ای تیره) */
+    background-color: rgba(90, 62, 54, 0.5); 
     transition: opacity 0.7s ease;
   }
   
@@ -136,18 +134,18 @@
   
   .tooltip svg {
     font-size: 1rem !important;
-    color: #FFFFFF; /* رنگ آیکون‌های اشتراک‌گذاری (سفید) */
+    color: #FFFFFF; 
   }
   
   .tooltip {
     position: absolute !important;
     top: -35px;
-    background-color: #5A3E36; /* پس‌زمینه تولتیپ (قهوه‌ای تیره) */
+    background-color: #5A3E36; 
     padding: 0.3rem 0.3rem 0;
     border-radius: 4px;
     z-index: 999;
     opacity: 0;
-    color: #FFFFFF !important; /* متن تولتیپ (سفید) */
+    color: #FFFFFF !important; 
     display: flex;
     gap: 5px;
     transition: opacity 0.3s ease;
@@ -159,7 +157,7 @@
     top: 100%;
     margin-left: -5px;
     border-width: 5px 5px 0;
-    border-top-color: #5A3E36 !important; /* رنگ پیکان تولتیپ (قهوه‌ای تیره) */
+    border-top-color: #5A3E36 !important; 
   }
   
   .tooltip::before {
@@ -170,7 +168,6 @@
     border-color: transparent;
   }
   
-  /* Media Queries for Responsive Design */
   @media (max-width: 768px) {
     .card {
       margin-bottom: 20px;

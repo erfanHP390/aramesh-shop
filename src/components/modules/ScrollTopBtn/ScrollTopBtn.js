@@ -7,7 +7,6 @@ export default function ScrollTopBtn() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // بررسی وجود `window` قبل از استفاده
     if (typeof window !== "undefined") {
       const toggleVisibility = () => {
         if (window.pageYOffset > 0) {
@@ -23,7 +22,6 @@ export default function ScrollTopBtn() {
   }, []);
 
   const scrollToTop = () => {
-    // بررسی وجود `window` قبل از استفاده
     if (typeof window !== "undefined") {
       window.scrollTo({
         top: 0,

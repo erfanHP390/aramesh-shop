@@ -41,7 +41,6 @@ function OrdersADetails({ order }) {
     products: order.products || [],
   });
 
-  // محاسبه خودکار totalPrice هنگام تغییرات basket
   useEffect(() => {
     const newTotalPrice = formData.basket.reduce(
       (sum, item) => sum + item.price * item.count,
@@ -50,7 +49,6 @@ function OrdersADetails({ order }) {
     setFormData((prev) => ({ ...prev, totalPrice: newTotalPrice }));
   }, [formData.basket]);
 
-  // مقداردهی اولیه Selectها بر اساس مقادیر موجود در order
   useEffect(() => {
     if (order.province) {
       const state = stateOptions.find(
@@ -82,7 +80,6 @@ function OrdersADetails({ order }) {
     }
   }, [order, stateOptions]);
 
-  // هنگام تغییر استان، شهرهای مربوطه را بارگذاری کن
   useEffect(() => {
     if (stateSelectedOption) {
       const cities = stateSelectedOption.value.map((city) => ({
@@ -109,7 +106,6 @@ function OrdersADetails({ order }) {
     }
   }, [stateSelectedOption]);
 
-  // هنگام تغییر شهر، مقدار city را در formData به‌روزرسانی کن
   useEffect(() => {
     if (citySelectedOption) {
       setFormData((prev) => ({
@@ -151,7 +147,6 @@ function OrdersADetails({ order }) {
   const editProduct = async (orderID) => {
     setIsLoading(true);
 
-    // اعتبارسنجی فیلدهای اجباری
     const requiredFields = [
       "firstName",
       "lastName",
@@ -174,13 +169,11 @@ function OrdersADetails({ order }) {
       }
     }
 
-    // اعتبارسنجی ایمیل
     if (!validateEmail(formData.email)) {
       setIsLoading(false);
       return swalAlert("ایمیل معتبر وارد نمایید", "error", "فهمیدم");
     }
 
-    // اعتبارسنجی شماره موبایل
     if (!validatePhone(formData.mobile)) {
       setIsLoading(false);
       return swalAlert("شماره موبایل معتبر وارد نمایید", "error", "فهمیدم");

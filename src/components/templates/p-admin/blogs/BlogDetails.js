@@ -139,7 +139,7 @@ function BlogDetails({ blog }) {
                       accept="image/*"
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
-                          setImg(e.target.files[0]); // ذخیره فایل در state
+                          setImg(e.target.files[0]); 
                         }
                       }}
                     />

@@ -9,7 +9,6 @@ import {
   YAxis,
 } from "recharts";
 
-// بارگذاری پویای Tooltip از Leaflet
 const Tooltip = dynamic(
   () => import("leaflet").then((L) => L.Tooltip),
   { ssr: false }

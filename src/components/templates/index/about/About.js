@@ -1,4 +1,3 @@
-// app/services/page.js
 import React from "react";
 import Image from "next/image";
 import styles from "./About.module.css";
@@ -32,10 +31,10 @@ export default function Services() {
       <div className={styles.section}>
         <div className={styles.imageContainer}>
           <Image
-            src="/images/about-us/quick-delivery.png" // مسیر عکس اول
+            src="/images/about-us/quick-delivery.png" 
             alt="ارسال سریع قهوه آرامش"
-            width={300} // عرض عکس
-            height={300} // ارتفاع عکس
+            width={300} 
+            height={300} 
             className={styles.image}
           />
         </div>
@@ -52,10 +51,10 @@ export default function Services() {
       <div className={styles.section}>
         <div className={styles.imageContainer}>
           <Image
-            src="/images/about-us/advice.webp" // مسیر عکس دوم
+            src="/images/about-us/advice.webp" 
             alt="مشاوره تخصصی قهوه آرامش"
-            width={300} // عرض عکس
-            height={300} // ارتفاع عکس
+            width={300} 
+            height={300} 
             className={styles.image}
           />
         </div>
@@ -73,10 +72,10 @@ export default function Services() {
       <div className={styles.section}>
         <div className={styles.imageContainer}>
           <Image
-            src="/images/about-us/offer.webp" // مسیر عکس سوم
+            src="/images/about-us/offer.webp" 
             alt="تخفیف‌های ویژه قهوه آرامش"
-            width={300} // عرض عکس
-            height={300} // ارتفاع عکس
+            width={300} 
+            height={300} 
             className={styles.image}
           />
         </div>
@@ -96,10 +95,10 @@ export default function Services() {
       <div className={styles.section}>
         <div className={styles.imageContainer}>
           <Image
-            src="/images/about-us/support.png" // مسیر عکس چهارم
+            src="/images/about-us/support.png" 
             alt="پشتیبانی ۲۴/۷ قهوه آرامش"
-            width={300} // عرض عکس
-            height={300} // ارتفاع عکس
+            width={300} 
+            height={300} 
             className={styles.image}
           />
         </div>

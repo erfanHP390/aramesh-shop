@@ -9,7 +9,7 @@
 }
 
 .title:before {
-  border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+  border-top: 2px solid #A68A64; 
   content: "";
   margin: 0 auto;
   position: absolute;
@@ -22,10 +22,10 @@
 }
 
 .title span {
-  background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  background: #6F4E37; 
   padding: 0 15px;
   margin-right: 4rem;
-  color: white; /* اضافه کردن رنگ سفید برای متن */
+  color: white; 
 }
 
 .title:before {
@@ -33,10 +33,10 @@
 }
 
 .title:after {
-  border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-  -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-  -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-  box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+  border-bottom: 1px solid #CC5500; 
+  -webkit-box-shadow: 0 1px 0 0 #CC5500; 
+  -moz-box-shadow: 0 1px 0 0 #CC5500; 
+  box-shadow: 0 1px 0 0 #CC5500; 
   content: "";
   margin: 0 auto;
   position: absolute;
@@ -49,31 +49,31 @@
 
 .table {
   width: 100%;
-  background-color: #F5F5F5; /* تغییر به رنگ پس‌زمینه روشن */
+  background-color: #F5F5F5; 
   border-collapse: collapse;
 }
 
 .table th {
   border: none;
-  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  color: #6F4E37; 
   text-align: center;
   padding: 12px 22px;
-  background-color: #D2B48C; /* تغییر به بژ روشن */
+  background-color: #D2B48C; 
 }
 
 .table td {
   padding: 8px 22px;
   text-align: center;
-  color: #6F4E37; /* تغییر به قهوه‌ای گرم */
-  border-bottom: 1px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+  color: #6F4E37; 
+  border-bottom: 1px solid #A68A64; 
 }
 
 .table tbody tr {
-  background-color: white; /* پس‌زمینه سفید برای ردیف‌ها */
+  background-color: white; 
 }
 
 .table tbody tr:hover {
-  background-color: #F5F5F5; /* تغییر رنگ هنگام هاور */
+  background-color: #F5F5F5; 
 }
 
 .delete_btn,
@@ -92,29 +92,29 @@
 }
 
 .btn {
-  background-color: #CC5500; /* تغییر به نارنجی گرم */
+  background-color: #CC5500; 
 }
 
 .btn:hover {
-  background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+  background-color: #A68A64; 
 }
 
 .no_check {
-  background-color: #711d1c; /* تغییر به رنگ قبلی */
+  background-color: #711d1c; 
 }
 
 .no_check:hover {
-  background-color: #A68A64; /* تغییر به قهوه‌ای روشن هنگام هاور */
+  background-color: #A68A64; 
 }
 
 .table_container {
   padding: 40px 25px;
-  overflow-x: auto; /* اضافه کردن اسکرول افقی برای جدول */
+  overflow-x: auto; 
 }
 
 .empty {
   color: white;
-  background-color: #CC5500; /* تغییر به نارنجی گرم */
+  background-color: #CC5500; 
   padding: 0.7rem 2rem;
   width: max-content;
   margin: 15rem auto;
@@ -122,106 +122,105 @@
   border-radius: 5px;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 1136px) {
   .table th,
   .table td {
-      padding: 8px 15px; /* کاهش پدینگ برای سایز‌های متوسط */
+      padding: 8px 15px; 
   }
 
   .table_container {
-      padding: 30px 20px; /* کاهش پدینگ برای سایز‌های متوسط */
+      padding: 30px 20px; 
   }
 
   .title {
-      font-size: 26px; /* کاهش سایز فونت برای سایز‌های متوسط */
+      font-size: 26px; 
   }
 
   .title span {
-      margin-right: 3rem; /* کاهش فاصله برای سایز‌های متوسط */
+      margin-right: 3rem; 
   }
 }
 
 @media (max-width: 875px) {
   .table th,
   .table td {
-      padding: 6px 10px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+      padding: 6px 10px; 
   }
 
   .table_container {
-      padding: 20px 15px; /* کاهش بیشتر پدینگ برای تبلت‌ها */
+      padding: 20px 15px; 
   }
 
   .title {
-      font-size: 22px; /* کاهش بیشتر سایز فونت برای تبلت‌ها */
+      font-size: 22px; 
   }
 
   .title span {
-      margin-right: 2rem; /* کاهش بیشتر فاصله برای تبلت‌ها */
+      margin-right: 2rem; 
   }
 
   .empty {
-      font-size: 1.4rem; /* کاهش سایز فونت برای تبلت‌ها */
-      margin: 10rem auto; /* کاهش فاصله برای تبلت‌ها */
+      font-size: 1.4rem; 
+      margin: 10rem auto; 
   }
 }
 
 @media (max-width: 768px) {
   .table th,
   .table td {
-      font-size: 12px; /* کاهش سایز فونت برای موبایل‌ها */
+      font-size: 12px; 
   }
 
   .btn,
   .no_check {
-      font-size: 12px; /* کاهش سایز فونت دکمه‌ها برای موبایل‌ها */
+      font-size: 12px; 
   }
 
   .table_container {
-      padding: 15px 10px; /* کاهش بیشتر پدینگ برای موبایل‌ها */
+      padding: 15px 10px; 
   }
 
   .title {
-      font-size: 20px; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
+      font-size: 20px; 
   }
 
   .title span {
-      margin-right: 1.5rem; /* کاهش بیشتر فاصله برای موبایل‌ها */
+      margin-right: 1.5rem; 
   }
 
   .empty {
-      font-size: 1.2rem; /* کاهش بیشتر سایز فونت برای موبایل‌ها */
-      padding: 0.5rem 1rem; /* کاهش پدینگ برای موبایل‌ها */
+      font-size: 1.2rem; 
+      padding: 0.5rem 1rem; 
   }
 }
 
 @media (max-width: 425px) {
   .table th,
   .table td {
-      padding: 4px 8px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
-      font-size: 10px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+      padding: 4px 8px; 
+      font-size: 10px; 
   }
 
   .btn,
   .no_check {
-      font-size: 10px; /* کاهش بیشتر سایز فونت دکمه‌ها برای موبایل‌های کوچک */
-      padding: 0.3rem 0.5rem; /* کاهش پدینگ دکمه‌ها برای موبایل‌های کوچک */
+      font-size: 10px; 
+      padding: 0.3rem 0.5rem; 
   }
 
   .table_container {
-      padding: 10px 5px; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
+      padding: 10px 5px; 
   }
 
   .title {
-      font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+      font-size: 18px; 
   }
 
   .title span {
-      margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+      margin-right: 1rem; 
   }
 
   .empty {
-      font-size: 1rem; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
-      padding: 0.4rem 0.8rem; /* کاهش پدینگ برای موبایل‌های کوچک */
+      font-size: 1rem; 
+      padding: 0.4rem 0.8rem; 
   }
 }

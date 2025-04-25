@@ -34,10 +34,10 @@ export async function DELETE(req, { params }) {
       );
     }
 
-    // حذف فایل تصویر از سیستم فایل
+    // delete file from uploads file
     if (isExistProfile.img) {
       try {
-        // استخراج مسیر فایل از URL
+        // extract file from url-address
         const imgUrl = new URL(isExistProfile.img);
         const filePath = path.join(
           process.cwd(),
@@ -46,14 +46,12 @@ export async function DELETE(req, { params }) {
         );
         
         await unlink(filePath);
-        console.log(`تصویر با موفقیت حذف شد: ${filePath}`);
+        console.log(`image is deleted successfully: ${filePath}`);
       } catch (err) {
-        console.error(`خطا در حذف تصویر: ${err.message}`);
-        // حتی اگر حذف فایل با خطا مواجه شد، ادامه دهید
+        console.error(`err in delete img: ${err.message}`);
       }
     }
 
-    // حذف رکورد از دیتابیس
     await UserProfileModel.findOneAndDelete({ user: id });
 
     return Response.json(

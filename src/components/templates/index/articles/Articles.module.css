@@ -1,43 +1,40 @@
-/* articles.module.css */
-
 .title {
-    color: #FFD700; /* رنگ عنوان (طلایی) */
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 10px;
-    display: flex !important;
+  color: #ffd700;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex !important;
+}
+
+.description {
+  color: #a68a64;
+  text-align: center;
+  font-size: 18px;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.container {
+  max-width: 1222px;
+  margin: 0 auto;
+  direction: rtl !important;
+  padding: 20px;
+}
+
+.container main {
+  margin: 40px 0 90px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
   }
-  
+
   .description {
-    color: #A68A64; /* رنگ توضیحات (قهوه‌ای روشن) */
-    text-align: center;
-    font-size: 18px;
-    justify-content: flex-start;
-    display: flex;
+    font-size: 14px;
   }
-  
-  .container {
-    max-width: 1222px;
-    margin: 0 auto;
-    direction: rtl !important;
-    padding: 20px;
-  }
-  
+
   .container main {
-    margin: 40px 0 90px;
+    margin: 20px 0 40px;
   }
-  
-  /* Media Queries for Responsive Design */
-  @media (max-width: 768px) {
-    .title {
-      font-size: 28px;
-    }
-  
-    .description {
-      font-size: 14px;
-    }
-  
-    .container main {
-      margin: 20px 0 40px;
-    }
-  }
+}

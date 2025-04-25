@@ -1,7 +1,7 @@
 .details {
     padding: 20px;
-    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
-    color: white; /* تغییر رنگ متن به سفید */
+    background-color: #6F4E37; 
+    color: white; 
   }
   
   .details_main {
@@ -9,7 +9,7 @@
     display: flex;
     width: 100%;
     gap: 30px;
-    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
+    flex-wrap: wrap; 
   }
   
   .details_main section:nth-child(1) {
@@ -29,7 +29,7 @@
     color: black;
     outline: 0;
     border-radius: 5px;
-    border: 3px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border: 3px solid #A68A64; 
     margin-top: 4.5px;
   }
   
@@ -64,7 +64,7 @@
     outline: 0;
     color: black;
     border-radius: 5px;
-    border: 3px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border: 3px solid #A68A64; 
     width: 100%;
   }
   
@@ -90,7 +90,7 @@
   }
   
   .title:before {
-    border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border-top: 2px solid #A68A64; 
     content: "";
     margin: 0 auto;
     position: absolute;
@@ -103,10 +103,10 @@
   }
   
   .title span {
-    background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    background: #6F4E37; 
     padding: 0 15px;
     margin-right: 4rem;
-    color: white; /* تغییر رنگ متن به سفید */
+    color: white; 
   }
   
   .title:before {
@@ -114,10 +114,10 @@
   }
   
   .title:after {
-    border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-    -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+    border-bottom: 1px solid #CC5500; 
+    -webkit-box-shadow: 0 1px 0 0 #CC5500; 
+    -moz-box-shadow: 0 1px 0 0 #CC5500; 
+    box-shadow: 0 1px 0 0 #CC5500; 
     content: "";
     margin: 0 auto;
     position: absolute;
@@ -139,7 +139,7 @@
     content: "";
     width: 40px;
     height: 2px;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     position: absolute;
     transform: rotate(327deg);
     top: 16px;
@@ -150,7 +150,7 @@
     content: "";
     width: 70px;
     height: 2px;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     position: absolute;
     transform: rotate(327deg);
     top: 24px;
@@ -161,7 +161,7 @@
     width: 200px;
     display: block;
     border-radius: 100%;
-    border: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border: 2px solid #A68A64; 
   }
   
   .uploader button svg {
@@ -170,7 +170,7 @@
   
   .uploader button,
   .password_group button {
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     color: white;
     padding: 0.7rem;
     margin-top: 10px;
@@ -226,7 +226,7 @@
   }
   
   .submit_btn {
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     color: white;
     padding: 0.4rem;
     display: flex;
@@ -249,55 +249,54 @@
     cursor: none;
   }
   
-  /* Media Queries برای ریسپانسیو کردن */
   @media (max-width: 1136px) {
     .details_main {
-        flex-direction: column; /* تغییر جهت به عمودی برای تبلت‌ها */
+        flex-direction: column; 
     }
   
     .uploader {
-        flex-direction: column; /* تغییر جهت به عمودی برای تبلت‌ها */
+        flex-direction: column; 
     }
   
     .submit_btn {
-        width: 50%; /* افزایش عرض دکمه برای تبلت‌ها */
+        width: 50%; 
     }
   }
   
   @media (max-width: 768px) {
     .title {
-        font-size: 24px; /* کاهش سایز فونت برای موبایل‌ها */
+        font-size: 24px; 
     }
   
     .title span {
-        margin-right: 2rem; /* کاهش فاصله برای موبایل‌ها */
+        margin-right: 2rem; 
     }
   
     .uploader img {
-        width: 150px; /* کاهش سایز تصویر برای موبایل‌ها */
+        width: 150px; 
     }
   
     .submit_btn {
-        width: 70%; /* افزایش عرض دکمه برای موبایل‌ها */
-        font-size: 1.5rem; /* کاهش سایز فونت دکمه برای موبایل‌ها */
+        width: 70%; 
+        font-size: 1.5rem; 
     }
   }
   
   @media (max-width: 480px) {
     .title {
-        font-size: 20px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 20px; 
     }
   
     .title span {
-        margin-right: 1rem; /* کاهش بیشتر فاصله برای موبایل‌های کوچک */
+        margin-right: 1rem; 
     }
   
     .uploader img {
-        width: 120px; /* کاهش بیشتر سایز تصویر برای موبایل‌های کوچک */
+        width: 120px; 
     }
   
     .submit_btn {
-        width: 90%; /* افزایش عرض دکمه برای موبایل‌های کوچک */
-        font-size: 1.2rem; /* کاهش بیشتر سایز فونت دکمه برای موبایل‌های کوچک */
+        width: 90%; 
+        font-size: 1.2rem; 
     }
   }

@@ -4,7 +4,6 @@ import "leaflet/dist/leaflet.css";
 import React from 'react';
 import styles from "./Map.module.css";
 
-// بارگذاری پویای کامپوننت‌های Leaflet
 const MapContainer = dynamic(
   () => import("react-leaflet").then((L) => L.MapContainer),
   { ssr: false }

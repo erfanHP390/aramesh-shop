@@ -1,7 +1,7 @@
 .card {
   width: 100%;
-  background: #6F4E37; /* قهوه‌ای گرم */
-  color: #FFFFFF; /* سفید */
+  background: #6F4E37; 
+  color: #FFFFFF; 
   padding: 1.5rem;
   border-radius: 8px;
   display: flex;
@@ -16,7 +16,7 @@
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  background: #5A3E36; /* قهوه‌ای تیره برای حالت hover */
+  background: #5A3E36; 
 }
 
 .orderInfo {
@@ -33,18 +33,18 @@
 
 .orderCode {
   font-weight: 600;
-  color: #FFD700; /* طلایی */
+  color: #FFD700; 
   text-align: right;
 }
 
 .completed {
-  color: #D2B48C; /* بژ روشن */
+  color: #D2B48C; 
   font-weight: 500;
   text-align: right;
 }
 
 .pending {
-  color: #CC5500; /* نارنجی گرم */
+  color: #CC5500; 
   font-weight: 500;
   text-align: right;
 }
@@ -58,19 +58,18 @@
 }
 
 .date {
-  color: #A68A64; /* قهوه‌ای روشن */
+  color: #A68A64; 
   font-size: 0.9rem;
   text-align: right;
 }
 
 .price {
-  color: #FFFFFF; /* سفید */
+  color: #FFFFFF; 
   font-weight: 700;
   font-size: 1.1rem;
   text-align: right;
 }
 
-/* حالت‌های ریسپانسیو */
 @media (max-width: 768px) {
   .card {
     flex-direction: column;

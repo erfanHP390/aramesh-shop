@@ -145,11 +145,11 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
 
       const formData = new FormData();
       formData.append("user", user);
-      formData.append("img", img); // img باید یک File object باشد
+      formData.append("img", img); 
 
       const res = await fetch("/api/auth/changeProfile", {
         method: "PUT",
-        body: formData, // حذف header Content-Type برای FormData
+        body: formData, 
       });
 
       const data = await res.json();
@@ -480,7 +480,7 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
                     accept="image/*"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
-                        setImg(e.target.files[0]); // ذخیره فایل در state
+                        setImg(e.target.files[0]); 
                       }
                     }}
                   />

@@ -2,15 +2,15 @@
 .form textarea {
     outline: 0;
     border: 0;
-    background: #F5F5F5; /* پس‌زمینه خاکستری روشن برای فیلدها */
+    background: #F5F5F5; 
     width: 100%;
     direction: rtl;
     font-size: 16px;
     border-radius: 5px;
-    color: #6F4E37; /* متن قهوه‌ای گرم */
+    color: #6F4E37; 
     resize: none;
     padding: 0.8rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1); /* حاشیه نازک */
+    border: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
 .groups {
@@ -30,11 +30,11 @@
     font-size: 22px;
     margin-bottom: 2rem;
     margin-top: 1rem;
-    color: #6F4E37; /* متن قهوه‌ای گرم */
+    color: #6F4E37; 
 }
 
 .form button:hover {
-    background-color: #FFD700; /* نارنجی گرم هنگام hover */
+    background-color: #FFD700; 
     color: #FFFFFF;
 }
 
@@ -43,8 +43,8 @@
     font-size: 13px;
     line-height: 18px;
     border-radius: 4px;
-    background-color: #CC5500; /* قهوه‌ای گرم */
-    color: #FFFFFF; /* متن سفید */
+    background-color: #CC5500;
+    color: #FFFFFF; 
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -65,19 +65,18 @@
 }
 
 .form span {
-    color: #A68A64; /* قهوه‌ای روشن برای متن کوچک */
+    color: #A68A64; 
     font-size: 14px;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .groups {
-        flex-direction: column; /* تغییر جهت به عمودی در دستگاه‌های کوچک‌تر */
+        flex-direction: column; 
         gap: 10px;
     }
 
     .form p {
-        font-size: 18px; /* کاهش سایز فونت برای دستگاه‌های کوچک‌تر */
+        font-size: 18px; 
     }
 
     .form button {

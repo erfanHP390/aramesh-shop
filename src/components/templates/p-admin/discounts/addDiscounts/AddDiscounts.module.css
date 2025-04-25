@@ -1,13 +1,13 @@
 .discount {
     padding: 20px;
-    background-color: #6F4E37; /* قهوه‌ای گرم برای پس‌زمینه */
-    color: white; /* متن سفید برای خوانایی بهتر */
+    background-color: #6F4E37; 
+    color: white; 
 }
 
 .discount_main {
     display: grid;
     gap: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* ریسپانسیو کردن گرید */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
 }
 
 .discount_main div {
@@ -18,9 +18,9 @@
 .discount select {
     background: white;
     padding: 10px;
-    color: #6F4E37; /* قهوه‌ای گرم برای متن */
+    color: #6F4E37; 
     border-radius: 5px;
-    border: 3px solid #A68A64; /* قهوه‌ای روشن برای حاشیه */
+    border: 3px solid #A68A64; 
     margin-top: 4.5px;
     outline: 0;
 }
@@ -30,9 +30,9 @@
     background-color: white;
     margin-top: 4px;
     outline: 0;
-    color: #6F4E37; /* قهوه‌ای گرم برای متن */
+    color: #6F4E37; 
     border-radius: 5px;
-    border: 3px solid #A68A64; /* قهوه‌ای روشن برای حاشیه */
+    border: 3px solid #A68A64; 
     width: 100%;
 }
 
@@ -44,16 +44,16 @@
     font-size: 30px;
     position: relative;
     z-index: 1;
-    color: #FFD700; /* طلایی برای عنوان */
+    color: #FFD700; 
 }
 
 .discount label {
     font-size: 20px;
-    color: #D2B48C; /* بژ روشن برای برچسب‌ها */
+    color: #D2B48C; 
 }
 
 .discount button {
-    background-color: #CC5500; /* نارنجی گرم برای دکمه */
+    background-color: #CC5500; 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -61,16 +61,16 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    width: 100%; /* دکمه در موبایل‌ها عرض کامل داشته باشد */
+    width: 100%; 
 }
 
 .discount button:hover {
-    background-color: #A68A64; /* قهوه‌ای روشن هنگام هاور */
+    background-color: #A68A64; 
 }
 
 .empty {
     color: white;
-    background-color: #CC5500; /* نارنجی گرم برای پس‌زمینه */
+    background-color: #CC5500; 
     padding: 0.7rem 2rem;
     width: max-content;
     margin: 15rem auto;
@@ -78,42 +78,41 @@
     border-radius: 5px;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 768px) {
     .discount_main {
-        grid-template-columns: 1fr; /* در موبایل‌ها یک ستونه شود */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 
     .discount p {
-        font-size: 24px; /* کاهش سایز فونت عنوان */
+        font-size: 24px; 
     }
 
     .discount label {
-        font-size: 18px; /* کاهش سایز فونت برچسب‌ها */
+        font-size: 18px; 
     }
 
     .discount button {
-        font-size: 14px; /* کاهش سایز فونت دکمه */
+        font-size: 14px; 
     }
 }
 
 @media (max-width: 480px) {
     .discount p {
-        font-size: 20px; /* کاهش بیشتر سایز فونت عنوان */
+        font-size: 20px; 
     }
 
     .discount label {
-        font-size: 16px; /* کاهش بیشتر سایز فونت برچسب‌ها */
+        font-size: 16px; 
     }
 
     .discount button {
-        font-size: 12px; /* کاهش بیشتر سایز فونت دکمه */
+        font-size: 12px; 
     }
 
     .empty {
-        font-size: 1.2rem; /* کاهش سایز فونت برای پیام خالی */
+        font-size: 1.2rem; 
         padding: 0.5rem 1rem;
-        margin: 10rem auto; /* کاهش فاصله برای موبایل‌های کوچک */
+        margin: 10rem auto; 
     }
 }

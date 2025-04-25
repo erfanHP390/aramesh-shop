@@ -1,8 +1,6 @@
 import Stepper from '@/components/modules/cart/stepper/Stepper'
 import Footer from '@/components/modules/Footer/Footer'
 import Navbar from '@/components/modules/navbar/Navbar'
-import Link from 'next/link'
-import styles from "@/styles/completeOrder.module.css"
 import React from 'react'
 import { authUser } from '@/utils/authUserLink'
 import connectToDB from '@/configs/db'

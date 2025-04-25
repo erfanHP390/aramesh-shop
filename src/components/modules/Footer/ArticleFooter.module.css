@@ -1,5 +1,3 @@
-/* ArticleFooter.module.css */
-
 .article {
   font-family: shabnam;
   display: flex;
@@ -36,7 +34,6 @@
   opacity: 0.8;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .article {
     flex-direction: column;

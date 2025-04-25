@@ -1,45 +1,44 @@
 .container {
-    padding: 20px;
-    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
-    color: white; /* تغییر رنگ متن به سفید */
+  padding: 20px;
+  background-color: #6f4e37;
+  color: white;
 }
 
 .title {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* تراز عمودی عناصر */
-    text-transform: uppercase;
-    position: relative;
-    font-size: 30px;
-    z-index: 1;
-    margin-bottom: 30px;
-    font-weight: 500;
-    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
-    gap: 10px; /* اضافه کردن فاصله بین عناصر */
-}
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  margin-bottom: 30px;
+  font-weight: 500;
+  flex-wrap: wrap;
+  gap: 10px;
 
-.title a {
-    background-color: #D2B48C; /* تغییر به بژ روشن */
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  .title a {
+    background-color: #d2b48c;
+    color: #6f4e37;
     font-size: 1rem;
     display: flex;
     border-radius: 20px;
-    padding: 0.5rem 1rem; /* افزایش پدینگ برای بهتر دیده شدن */
+    padding: 0.5rem 1rem;
     align-items: center;
-    border: 1px solid #6F4E37; /* تغییر به قهوه‌ای گرم */
-    text-decoration: none; /* حذف underline از لینک */
-    transition: background-color 0.3s ease, color 0.3s ease; /* اضافه کردن transition برای hover */
-}
+    border: 1px solid #6f4e37;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-.title a:hover {
-    background-color: #CC5500; /* تغییر به نارنجی گرم هنگام hover */
-    color: white; /* تغییر رنگ متن به سفید هنگام hover */
-}
+  .title a:hover {
+    background-color: #cc5500;
+    color: white;
+  }
 
-.title:before {
-    border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
-    content: "";
+  .title:before {
+    border-top: 2px solid #a68a64;
+    content: '';
     margin: 0 auto;
     position: absolute;
     top: 52%;
@@ -48,26 +47,26 @@
     bottom: 0;
     width: 100%;
     z-index: -1;
-}
+  }
 
-.title span {
-    background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+  .title span {
+    background: #6f4e37;
     padding: 0 15px;
     margin-right: 4rem;
-    color: white; /* تغییر رنگ متن به سفید */
-    border-radius: 5px; /* اضافه کردن border-radius برای زیبایی */
-}
+    color: white;
+    border-radius: 5px;
+  }
 
-.title:before {
+  .title:before {
     border-top: none;
-}
+  }
 
-.title:after {
-    border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-    -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    content: "";
+  .title:after {
+    border-bottom: 1px solid #cc5500;
+    -webkit-box-shadow: 0 1px 0 0 #cc5500;
+    -moz-box-shadow: 0 1px 0 0 #cc5500;
+    box-shadow: 0 1px 0 0 #cc5500;
+    content: '';
     margin: 0 auto;
     position: absolute;
     top: 51%;
@@ -75,55 +74,55 @@
     right: 0;
     width: 100%;
     z-index: -1;
-}
+  }
 
-.empty {
+  .empty {
     width: 100%;
     border-radius: 5px;
-    background-color: #A68A64; /* تغییر به قهوه‌ای روشن */
+    background-color: #a68a64;
     text-align: center;
     margin-top: 60px;
     padding: 20px 0;
-    color: white; /* تغییر رنگ متن به سفید */
-}
+    color: white;
+  }
 
-/* Media Queries برای ریسپانسیو کردن */
-@media (max-width: 1136px) {
+  @media (max-width: 1136px) {
     .title {
-        font-size: 24px; /* کاهش سایز فونت برای تبلت‌ها */
+      font-size: 24px;
     }
 
     .title a {
-        font-size: 0.9rem; /* کاهش سایز فونت لینک برای تبلت‌ها */
-        padding: 0.4rem 0.8rem; /* کاهش پدینگ برای تبلت‌ها */
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
     }
-}
+  }
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .title {
-        font-size: 20px; /* کاهش سایز فونت برای موبایل‌ها */
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
-        align-items: flex-start; /* تراز به چپ برای موبایل‌ها */
+      font-size: 20px;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .title a {
-        font-size: 0.8rem; /* کاهش سایز فونت لینک برای موبایل‌ها */
-        padding: 0.3rem 0.7rem; /* کاهش پدینگ برای موبایل‌ها */
-        margin-top: 10px; /* اضافه کردن فاصله از بالا */
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      margin-top: 10px;
     }
 
     .title span {
-        margin-right: 0; /* حذف margin-right برای موبایل‌ها */
+      margin-right: 0;
     }
-}
+  }
 
-@media (max-width: 480px) {
+  @media (max-width: 480px) {
     .title {
-        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+      font-size: 18px;
     }
 
     .title a {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
-        padding: 0.2rem 0.6rem; /* کاهش بیشتر پدینگ برای موبایل‌های کوچک */
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem; 
     }
+  }
 }

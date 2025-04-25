@@ -25,7 +25,6 @@
   width: 50%;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 1200px) {
   .dashboard_contents {
     padding: -1px 20px;

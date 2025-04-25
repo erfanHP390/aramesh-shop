@@ -19,7 +19,6 @@ export async function PUT(req, { params }) {
 
     const id = params.id;
 
-    // اعتبارسنجی ID
     if (!id) {
       return Response.json(
         { message: "id is required" },
@@ -43,7 +42,6 @@ export async function PUT(req, { params }) {
     const img = formData.get("img");
     const updatedAt = formData.get(new Date())
 
-    // ابتدا محصول موجود را پیدا کنید
     const existingBlog = await BlogModel.findOne({_id: id});
     if (!existingBlog) {
       return Response.json(
@@ -68,9 +66,9 @@ export async function PUT(req, { params }) {
           const imgUrl = new URL(existingBlog.img);
           const filePath = path.join(process.cwd(), "public", imgUrl.pathname);
           await unlink(filePath);
-          console.log(`تصویر قدیمی با موفقیت حذف شد: ${filePath}`);
+          console.log(`img is deleted successfully: ${filePath}`);
         } catch (err) {
-          console.error(`خطا در حذف تصویر قدیمی: ${err.message}`);
+          console.error(`err in delete: ${err.message}`);
         }
       }
 

@@ -1,8 +1,8 @@
 .ticket {
   width: 100%;
-  border-right: 3px solid #CC5500; /* نارنجی گرم */
+  border-right: 3px solid #CC5500; 
   padding: 1rem;
-  background-color: #A68A64; /* قهوه‌ای روشن */
+  background-color: #A68A64; 
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
@@ -38,7 +38,7 @@
 
 .answer {
   background-color: #6F4E37;
-  color: white; /* تغییر به قهوه‌ای گرم */
+  color: white; 
   border-radius: 5px;
   padding: 0.5rem;
 }

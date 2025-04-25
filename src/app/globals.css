@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #CC5500 !important; /* تغییر به نارنجی گرم */
+  background-color: #CC5500 !important;
 }
 
 html,
@@ -31,18 +31,18 @@ body {
 }
 
 body {
-  background: #6F4E37; /* قهوه‌ای گرم */
+  background: #6F4E37; 
   position: relative;
-  color: #FFFFFF; /* متن سفید */
+  color: #FFFFFF; 
 }
 
 a {
-  color: #FFFFFF; /* لینک‌ها سفید */
+  color: #FFFFFF; 
   text-decoration: none;
 }
 
 a:hover {
-  color: #CC5500; /* نارنجی گرم هنگام هاور */
+  color: #CC5500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,14 +60,14 @@ a:hover {
 .mySwiper .swiper-button-prev:after,
 .mySwiper .swiper-button-next:after {
   font-size: 26px !important;
-  color: #FFD700 !important; /* طلایی */
+  color: #FFD700 !important;
   font-weight: 1000;
 }
 
 .home-slider .swiper-button-prev:after,
 .home-slider .swiper-button-next:after {
   font-size: 14px !important;
-  color: #FFD700 !important; /* طلایی */
+  color: #FFD700 !important; 
   font-weight: 1000;
 }
 
@@ -79,7 +79,7 @@ a:hover {
 .gallery-slider .swiper-button-prev:after,
 .gallery-slider .swiper-button-next:after {
   font-size: 26px !important;
-  color: #FFD700 !important; /* طلایی */
+  color: #FFD700 !important;
   font-weight: 1000;
 }
 
@@ -129,24 +129,24 @@ a:hover {
 }
 
 .swal-modal {
-  background: #A68A64 !important; /* قهوه‌ای روشن */
-  border: 1px solid #CC5500; /* نارنجی گرم */
+  background: #A68A64 !important; 
+  border: 1px solid #CC5500; 
 }
 
 .swal-title {
-  color: #FFFFFF !important; /* سفید */
+  color: #FFFFFF !important; 
   direction: rtl;
 }
 
 .swal-button--confirm {
-  background: #D2B48C; /* بژ روشن */
-  color: #5A3E36; /* قهوه‌ای تیره */
+  background: #D2B48C; 
+  color: #5A3E36; 
 }
 
 .swal-content__input:focus,
 .swal-content__textarea:focus {
   outline: none;
-  border-color: #CC5500 !important; /* نارنجی گرم */
+  border-color: #CC5500 !important; 
 }
 
 .swal-button:not([disabled]):hover {
@@ -159,12 +159,12 @@ a:hover {
 
 .swal-button--confirm {
   box-shadow: none !important;
-  background: #CC5500 !important; /* نارنجی گرم */
-  color: #FFFFFF !important; /* سفید */
+  background: #CC5500 !important; 
+  color: #FFFFFF !important; 
 }
 
 .swal-content__input {
-  color: #5A3E36 !important; /* قهوه‌ای تیره */
+  color: #5A3E36 !important; 
 }
 
 .swal-button:focus {
@@ -180,8 +180,8 @@ a:hover {
 .css-16xfy0z-control {
   height: 51px;
   margin-top: 0.3rem;
-  background-color: #A68A64 !important; /* قهوه‌ای روشن */
-  color: #FFFFFF !important; /* سفید */
+  background-color: #A68A64 !important;
+  color: #FFFFFF !important;
 }
 
 /* leaflet */
@@ -191,8 +191,8 @@ a:hover {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-  background-color: #A68A64 !important; /* قهوه‌ای روشن */
-  color: #FFFFFF !important; /* سفید */
+  background-color: #A68A64 !important;
+  color: #FFFFFF !important;
 }
 
 .leaflet-default-icon-path {
@@ -208,35 +208,35 @@ a:hover {
 
 /* Navbar Styles */
 .navbar {
-  background-color: #5A3E36; /* قهوه‌ای تیره */
+  background-color: #5A3E36; 
   padding: 1rem 2rem;
 }
 
 .navbar-brand {
-  color: #FFD700 !important; /* طلایی */
+  color: #FFD700 !important; 
   font-weight: bold;
   font-size: 1.5rem;
 }
 
 .nav-link {
-  color: #FFFFFF !important; /* سفید */
+  color: #FFFFFF !important; 
 }
 
 .nav-link:hover {
-  color: #CC5500 !important; /* نارنجی گرم */
+  color: #CC5500 !important;
 }
 
 .dropdown-menu {
-  background-color: #A68A64; /* قهوه‌ای روشن */
-  border: 1px solid #FFD700; /* طلایی */
+  background-color: #A68A64; 
+  border: 1px solid #FFD700; 
 }
 
 .dropdown-item {
-  color: #FFFFFF !important; /* سفید */
+  color: #FFFFFF !important; 
 }
 
 .dropdown-item:hover {
-  background-color: #CC5500; /* نارنجی گرم */
+  background-color: #CC5500; 
   color: #FFFFFF !important;
 }
 
@@ -246,19 +246,19 @@ a:hover {
 
 /* Sidebar Styles */
 .sidebar {
-  background-color: #A68A64; /* قهوه‌ای روشن */
-  color: #FFFFFF; /* سفید */
+  background-color: #A68A64; 
+  color: #FFFFFF; 
 }
 
 .sidebar-link {
-  color: #FFFFFF; /* سفید */
+  color: #FFFFFF; 
 }
 
 .sidebar-link:hover {
-  color: #FFD700; /* طلایی */
+  color: #FFD700; 
 }
 
 .sidebar-highlight {
-  background-color: #CC5500; /* نارنجی گرم */
+  background-color: #CC5500; 
   color: #FFFFFF !important;
 }

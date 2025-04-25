@@ -1,11 +1,9 @@
-/* Gallery.module.css */
-
 .gallery {
     width: 36%;
-    background-color: #FFFFFF; /* پس‌زمینه سفید */
+    background-color: #FFFFFF; 
     border-radius: 8px;
     padding: 10px;
-    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+    box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); 
 }
 
 @media (max-width: 992px) {

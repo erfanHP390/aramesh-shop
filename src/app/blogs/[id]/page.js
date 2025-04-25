@@ -82,7 +82,6 @@ async function page({ params }) {
   const user = await authUser();
   const blog = await BlogModel.findOne({ _id: id }).populate("comments").lean();
 
-  // Schema Markup برای سئو
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -124,7 +123,6 @@ async function page({ params }) {
       <Navbar isLogin={user ? true : false} />
       <BreadCrumb route={"قهوه"} />
       <div className={styles.container}>
-        {/* اضافه کردن Schema Markup */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -25,11 +25,9 @@ const Gallery = ({product}) => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2 gallery-slider"
             >
-                {/* {product.map((product , index) => ( */}
                     <SwiperSlide >
                         <img src={product.img} alt={product.name} />
                     </SwiperSlide>
-                {/* ))} */}
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -40,11 +38,9 @@ const Gallery = ({product}) => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="gallery-slider-2"
             >
-                {/* {product.map((product , index) => ( */}
                     <SwiperSlide >
                         <img src={product.img} alt={product.name} />
                     </SwiperSlide>
-                {/* ))} */}
             </Swiper>
         </section>
     );

@@ -1,25 +1,23 @@
-/* login.module.css */
-
 .form {
   display: grid;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  background-color: #FFFFFF;
   padding: 20px 25px;
   width: 380px;
   font-family: shabnam;
   margin: 0 auto;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1);
   text-align: center;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
 }
 
 .input {
   font-family: shabnam;
   padding: 13px;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  background-color: #FFFFFF; 
+  color: #5A3E36; 
   border-radius: 3px;
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border: 1px solid #A68A64; 
   direction: rtl;
   margin-top: 20px;
 }
@@ -27,7 +25,7 @@
 .checkbox p {
   font-size: 14px;
   font-family: shabnam;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
 }
 
 .checkbox {
@@ -43,7 +41,7 @@
   -webkit-appearance: none;
   width: 1rem;
   height: 1rem;
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border: 1px solid #A68A64; 
   border-radius: 3px;
   vertical-align: sub;
   transform: translateY(-10%);
@@ -51,7 +49,7 @@
 }
 
 .checkbox input:checked {
-  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
+  background-color: #CC5500; 
   border-color: #CC5500;
 }
 
@@ -64,8 +62,8 @@
 
 .checkbox input:checked:focus,
 .checkbox input:checked:hover {
-  box-shadow: 0 0 0 3px #A68A64; /* سایه قهوه‌ای روشن */
-  border-color: #CC5500; /* حاشیه نارنجی گرم */
+  box-shadow: 0 0 0 3px #A68A64; 
+  border-color: #CC5500; 
 }
 
 .checkbox input:after {
@@ -83,45 +81,45 @@
 
 .checkbox input:focus,
 .checkbox input:hover {
-  box-shadow: 0 0 0 3px #A68A64; /* سایه قهوه‌ای روشن */
+  box-shadow: 0 0 0 3px #A68A64; 
   border-color: #8c8c8c;
 }
 
 .btn_light {
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  color: #5A3E36; 
+  border: 1px solid #A68A64; 
   margin-bottom: 3rem;
   cursor: pointer;
   padding: 1rem;
   font-family: shabnam;
-  background: #FFFFFF; /* پس‌زمینه سفید */
+  background: #FFFFFF; 
   transition: background-color 0.3s ease;
 }
 
 .btn_light:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #FFD700; 
 }
 
 .btn {
   padding: 0.8rem;
   cursor: pointer;
   font-family: shabnam;
-  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
-  color: #FFFFFF; /* متن سفید */
+  background-color: #CC5500; 
+  color: #FFFFFF; 
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #FFD700; 
 }
 
 .forgot_pass {
   font-size: 13px;
   margin: 15px 0;
   cursor: pointer;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
 }
 
 .form span {
@@ -129,7 +127,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   font-size: 13px;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5A3E36; 
 }
 
 .redirect_to_home {
@@ -142,13 +140,13 @@
   margin-top: 0.75rem;
   padding: 10px  25px;
   border-radius: 10%;
-  color: #FFF; /* متن نارنجی گرم */
+  color: #FFF; 
   background-color: #CC5500;
   transition: all 0.3s ease;
 }
 
 .redirect_to_home:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #FFD700; 
 }
 
 

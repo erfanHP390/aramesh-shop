@@ -1,6 +1,6 @@
 .tag{
     font-size: 13px;
-    background-color: #CC5500; /* نارنجی گرم */
+    background-color: #CC5500; 
     padding: 0.5rem;
     color: white;
     border-radius: 3px;
@@ -13,12 +13,12 @@
     text-align: center;
     margin-top: 1.7rem;
     line-height: 1.2;
-    color: #FFD700; /* بژ روشن */
+    color: #FFD700; 
 }
 .author{
     display: flex;
     gap: 10px;
-    color: #FFD700; /* بژ روشن */
+    color: #FFD700; 
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
@@ -44,12 +44,12 @@
     top: 12px;
     right: 12px;
     padding: 0.3rem 0.5rem;
-    background: #5A3E36; /* قهوه‌ای تیره */
+    background: #5A3E36; 
     display: grid;
     border-radius: 4px;
     text-align: center;
     color: white;
-    border: 1px solid #D2B48C; /* بژ روشن */
+    border: 1px solid #D2B48C; 
 }
 
 
@@ -61,7 +61,7 @@
     border-radius: 8px;
 }
 .img_content p{
-    color: #fff; /* بژ روشن */
+    color: #fff; 
     padding: 5px 10px 5px 0;
     font-style: italic;
     line-height: 1.6;
@@ -79,8 +79,8 @@
 }
 .contents{
     padding: 20px 0;
-    border-top: 1px solid #A68A64; /* قهوه‌ای روشن */
-    border-bottom: 1px solid #A68A64; /* قهوه‌ای روشن */
+    border-top: 1px solid #A68A64; 
+    border-bottom: 1px solid #A68A64; 
     margin-top: 30px;
 }
 .icons a:nth-child(1){
@@ -118,9 +118,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* section > strong {
-    color: #D2B48C;  
-} */
+
 
 @media (max-width: 992px) {
     .title {

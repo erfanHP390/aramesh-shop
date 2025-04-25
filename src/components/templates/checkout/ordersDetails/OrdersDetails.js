@@ -482,7 +482,6 @@ function OrdersDetails() {
               />
             </div>
           </div>
-          {/* گروه فیلدهای نام و نام خانوادگی */}
           <div className={styles.groups}>
             <div className={styles.group}>
               <label className={styles.input_label}>
@@ -511,7 +510,6 @@ function OrdersDetails() {
             </div>
           </div>
 
-          {/* فیلد نام شرکت */}
           <div className={styles.group}>
             <label className={styles.input_label}>نام شرکت (اختیاری)</label>
             <input
@@ -523,7 +521,6 @@ function OrdersDetails() {
             />
           </div>
 
-          {/* گروه فیلدهای استان و شهر */}
           <div className={styles.groups}>
             <div className={styles.group}>
               <label className={styles.select_label}>
@@ -540,7 +537,6 @@ function OrdersDetails() {
             </div>
           </div>
 
-          {/* فیلد آدرس */}
           <div className={styles.group}>
             <label className={styles.input_label}>
               آدرس خیابان<span>*</span>
@@ -554,7 +550,6 @@ function OrdersDetails() {
             />
           </div>
 
-          {/* فیلد کدپستی */}
           <div className={styles.group}>
             <label className={styles.input_label}>
               کدپستی (بدون فاصله)<span>*</span>
@@ -568,7 +563,6 @@ function OrdersDetails() {
             />
           </div>
 
-          {/* فیلد شماره موبایل */}
           <div className={styles.group}>
             <label className={styles.input_label}>
               شماره موبایل <span>*</span>
@@ -582,7 +576,6 @@ function OrdersDetails() {
             />
           </div>
 
-          {/* فیلد ایمیل */}
           <div className={styles.group}>
             <label className={styles.input_label}>
               ایمیل <span>*</span>
@@ -596,7 +589,6 @@ function OrdersDetails() {
             />
           </div>
 
-          {/* بخش ایجاد حساب کاربری */}
           <div className={styles.create_account}>
             <div
               className={styles.account_toggle}
@@ -630,7 +622,6 @@ function OrdersDetails() {
             )}
           </div>
 
-          {/* فیلد توضیحات سفارش */}
           <div className={styles.group}>
             <label className={styles.input_label}>
               توضیحات سفارش (اختیاری)

@@ -5,9 +5,9 @@
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%; /* عرض کامل برای موبایل */
-    max-width: 300px; /* حداکثر عرض برای دسکتاپ */
-    margin: 0 auto; /*居中 کردن کارت */
+    width: 100%; 
+    max-width: 300px; 
+    margin: 0 auto; 
 }
 
 .card svg {
@@ -50,39 +50,38 @@
     outline: 0;
 }
 
-/* Media Queries برای کامپوننت ProductWUser */
 @media (max-width: 768px) {
     .card {
-        max-width: 250px; /* کاهش عرض کارت برای تبلت */
+        max-width: 250px; 
     }
 
     .card p {
-        font-size: 0.8rem; /* کاهش سایز فونت برای تبلت */
+        font-size: 0.8rem; 
     }
 
     .card span {
-        font-size: 0.8rem; /* کاهش سایز فونت برای تبلت */
+        font-size: 0.8rem; 
     }
 
     .delete_btn {
-        font-size: 0.8rem; /* کاهش سایز فونت دکمه برای تبلت */
+        font-size: 0.8rem; 
     }
 }
 
 @media (max-width: 480px) {
     .card {
-        max-width: 100%; /* عرض کامل برای موبایل */
+        max-width: 100%; 
     }
 
     .card p {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت برای موبایل */
+        font-size: 0.7rem; 
     }
 
     .card span {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت برای موبایل */
+        font-size: 0.7rem; 
     }
 
     .delete_btn {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت دکمه برای موبایل */
+        font-size: 0.7rem; 
     }
 }

@@ -82,7 +82,7 @@ function ProductWUser({ name, price, score, productID, wishID, img }) {
           height={283}
           src={img}
           alt={name}
-          style={{ width: "100%", height: "auto" }} /* ریسپانسیو کردن تصویر */
+          style={{ width: "100%", height: "auto" }} 
         />
       </Link>
       <p dir="rtl">{name}</p>

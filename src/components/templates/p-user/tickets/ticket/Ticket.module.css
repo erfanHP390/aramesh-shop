@@ -1,16 +1,16 @@
 .ticket {
     width: 100%;
-    border-right: 3px solid #CC5500; /* تغییر به نارنجی گرم */
+    border-right: 3px solid #CC5500; 
     padding: 1rem;
-    background-color: #A68A64; /* تغییر به قهوه‌ای روشن */
+    background-color: #A68A64; 
     display: flex;
     justify-content: space-between;
     border-radius: 5px;
     margin: 1rem auto;
-    height: auto; /* تغییر ارتفاع به auto برای ریسپانسیو شدن */
+    height: auto; 
     align-items: center;
-    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
-    gap: 10px; /* اضافه کردن فاصله بین عناصر */
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
 .department {
@@ -18,7 +18,7 @@
     width: max-content;
     border-radius: 5px;
     background: white;
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    color: #6F4E37; 
 }
 
 .ticket div {
@@ -26,7 +26,7 @@
 }
 
 .no_answer {
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
     color: white;
     border-radius: 5px;
     padding: 0.5rem;
@@ -34,7 +34,7 @@
 
 .answer {
     background-color: #6F4E37;
-    color: white; /* تغییر به قهوه‌ای گرم */
+    color: white; 
     border-radius: 5px;
     padding: 0.5rem;
 }
@@ -50,14 +50,13 @@
     padding-top: 0.5rem;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 768px) {
     .ticket {
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        flex-direction: column; 
         text-align: center;
     }
 
     .ticket div {
-        width: 100%; /* افزایش عرض div برای موبایل‌ها */
+        width: 100%; 
     }
 }

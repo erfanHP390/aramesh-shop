@@ -1,22 +1,22 @@
 .userTicket {
     width: 50%;
-    background-color: #A68A64; /* قهوه‌ای گرم برای کاربر */
+    background-color: #A68A64; 
     border-radius: 5px;
     padding: 0px 10px 10px;
-    color: white; /* متن سفید برای خوانایی بهتر */
+    color: white; 
     margin-bottom: 15px;
-    border: 2px solid #D2B48C; /* حاشیه بژ روشن */
+    border: 2px solid #D2B48C; 
 }
 
 .adminticket {
     width: 50%;
-    background-color: #F5F5F5; /* پس‌زمینه روشن برای ادمین */
+    background-color: #F5F5F5; 
     border-radius: 5px;
     padding: 0px 10px 10px;
-    border: 2px solid #CC5500; /* حاشیه نارنجی گرم */
+    border: 2px solid #CC5500; 
     margin-bottom: 15px;
     margin-right: auto;
-    color: #6F4E37; /* متن قهوه‌ای گرم برای خوانایی بهتر */
+    color: #6F4E37; 
 }
 
 .userTicket img,
@@ -42,8 +42,8 @@
 }
 
 .adminticket .ticket_text {
-    background-color: #CC5500; /* نارنجی گرم برای پس‌زمینه متن ادمین */
-    color: white; /* متن سفید برای خوانایی بهتر */
+    background-color: #CC5500; 
+    color: white; 
 }
 
 .ticket_text {
@@ -57,11 +57,11 @@
 .empty {
     width: 100%;
     border-radius: 5px;
-    background-color: #A68A64; /* قهوه‌ای روشن برای بخش خالی */
+    background-color: #A68A64; 
     text-align: center;
     margin-top: 60px;
     padding: 20px 0;
-    color: white; /* متن سفید برای خوانایی بهتر */
+    color: white; 
 }
 
 .ticket_main div div span {
@@ -76,20 +76,19 @@
     flex-direction: column;
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 768px) {
     .userTicket,
     .adminticket {
-        width: 100%; /* افزایش عرض به 100% برای موبایل‌ها */
+        width: 100%; 
     }
 
     .ticket_main {
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
-        align-items: flex-start; /* تراز به چپ برای موبایل‌ها */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     .ticket_main div {
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
-        align-items: flex-start; /* تراز به چپ برای موبایل‌ها */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 }

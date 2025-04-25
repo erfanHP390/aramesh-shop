@@ -7,7 +7,6 @@ export async function PUT(req, { params }) {
   try {
     connectToDB();
 
-    // احراز هویت ادمین
     const admin = await authAdmin();
     if (!admin) {
       return Response.json(

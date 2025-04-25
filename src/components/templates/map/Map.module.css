@@ -2,64 +2,63 @@
     border-radius: 10px;
     height: 300px;
     width: 100%;
-    border: 2px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+    border: 2px solid #A68A64; 
 }
 
 .details {
     margin: -73px 50px 0px 50px;
-    padding: 15px 20px; /* افزایش padding برای فاصله بهتر */
-    background-color: #FFFFFF; /* پس‌زمینه سفید */
-    box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.2); /* سایه با رنگ قهوه‌ای گرم */
+    padding: 15px 20px; 
+    background-color: #FFFFFF; 
+    box-shadow: 0px 4px 10px rgba(111, 78, 55, 0.2); 
     z-index: 9999;
     position: relative;
     border-radius: 8px;
-    border: 1px solid #D2B48C; /* حاشیه بژ روشن */
+    border: 1px solid #D2B48C; 
 }
 
 .details h3 {
     margin-top: 0.5rem;
-    color: #6F4E37; /* متن قهوه‌ای گرم */
-    font-size: 20px; /* افزایش سایز فونت برای تیتر */
+    color: #6F4E37; 
+    font-size: 20px; 
 }
 
 .details span {
-    color: #A68A64; /* قهوه‌ای روشن برای متن کوچک */
+    color: #A68A64; 
     font-size: 14px;
 }
 
 .details p {
     margin-top: 0.7rem;
     margin-bottom: 0.3rem;
-    color: #6F4E37; /* متن قهوه‌ای گرم */
-    line-height: 1.6; /* افزایش فاصله خطوط برای خوانایی بهتر */
+    color: #6F4E37; 
+    line-height: 1.6; 
 }
 
 .details a {
-    text-decoration: none; /* حذف underline پیش‌فرض */
+    text-decoration: none; 
     margin-top: 0.5rem;
     font-size: 15px;
-    color: #CC5500; /* نارنجی گرم برای لینک‌ها */
-    font-weight: 600; /* افزایش وزن فونت */
-    transition: color 0.3s ease; /* انیمیشن hover */
+    color: #CC5500; 
+    font-weight: 600; 
+    transition: color 0.3s ease; 
 }
 
 .details a:hover {
-    color: #FFD700; /* تغییر رنگ به قهوه‌ای روشن هنگام hover */
+    color: #FFD700; 
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .map {
-        height: 250px; /* کاهش ارتفاع نقشه در دستگاه‌های کوچک‌تر */
+        height: 250px; 
     }
 
     .details {
-        margin: -73px 20px 0px 20px; /* کاهش فاصله از دیواره‌ها */
-        padding: 10px 15px; /* کاهش padding */
+        margin: -73px 20px 0px 20px; 
+        padding: 10px 15px; 
     }
 
     .details h3 {
-        font-size: 18px; /* کاهش سایز فونت */
+        font-size: 18px; 
     }
 
     .details p {
@@ -73,12 +72,12 @@
 
 @media (max-width: 480px) {
     .map {
-        height: 200px; /* کاهش بیشتر ارتفاع نقشه */
+        height: 200px; 
     }
 
     .details {
         margin: -73px 10px 0px 10px;
-        padding: 10px; /* کاهش بیشتر padding */
+        padding: 10px; 
     }
 
     .details h3 {

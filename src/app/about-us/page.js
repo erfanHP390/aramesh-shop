@@ -73,7 +73,6 @@ async function page() {
   connectToDB();
   const user = await authUser();
 
-  // Schema Markup برای صفحه درباره ما
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -110,7 +109,6 @@ async function page() {
       <Navbar isLogin={user ? true : false} />
       <BreadCrumb route={"درباره ما"} />
 
-      {/* اضافه کردن Schema Markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

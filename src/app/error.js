@@ -1,5 +1,4 @@
-// app/error.js
-'use client' // ضروری برای استفاده از hooks و error handling
+'use client' 
 
 import styles from './Error.module.css';
 import Link from 'next/link';

@@ -1,7 +1,6 @@
 import connectToDB from "@/configs/db";
 import { authUser } from "@/utils/authUserLink";
 import WishlistModel from "@/models/Wishlist"
-import { isValidObjectId } from "mongoose";
 
 
 export async function DELETE(req, {params}) {    

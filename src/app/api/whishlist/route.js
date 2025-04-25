@@ -17,7 +17,6 @@ export async function POST(req) {
             });
         }
 
-        // Use 'new' with ObjectId
         const userId = mongoose.Types.ObjectId.isValid(user) ? new mongoose.Types.ObjectId(user) : null;
         const productId = mongoose.Types.ObjectId.isValid(product) ? new mongoose.Types.ObjectId(product) : null;
 

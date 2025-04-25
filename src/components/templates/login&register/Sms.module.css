@@ -1,25 +1,23 @@
-/* sms.module.css */
-
 .form {
   display: grid;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  background-color: #ffffff;
   padding: 50px 95px;
   width: 380px;
   font-family: shabnam;
   margin: 7rem auto 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1);
   text-align: center;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .input {
   font-family: shabnam;
   padding: 13px;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  background-color: #ffffff;
+  color: #5a3e36;
   border-radius: 3px;
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border: 1px solid #a68a64;
   direction: ltr;
   margin-top: 20px;
 }
@@ -28,21 +26,21 @@
   padding: 0.8rem;
   cursor: pointer;
   font-family: shabnam;
-  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
-  color: #FFFFFF; /* متن سفید */
+  background-color: #cc5500;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #ffd700;
 }
 
 .code_title {
   font-size: 13px;
   margin-top: 18px;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
   opacity: 0.6;
   white-space: nowrap;
 }
@@ -50,7 +48,7 @@
 .number {
   font-size: 13px;
   margin-top: 7px;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
   opacity: 0.6;
   white-space: nowrap;
 }
@@ -61,7 +59,7 @@
   opacity: 0.6;
   cursor: pointer;
   white-space: nowrap;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .redirect_to_home {
@@ -72,27 +70,24 @@
   font-family: shabnam;
   font-size: 13px;
   margin-top: 0.75rem;
-  padding: 10px  25px;
+  padding: 10px 25px;
   border-radius: 10%;
-  color: #FFF; /* متن نارنجی گرم */
-  background-color: #CC5500;
+  color: #fff;
+  background-color: #cc5500;
   transition: all 0.3s ease;
 }
 
 .redirect_to_home:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #ffd700;
 }
 
-
 @media (max-width: 400px) {
-
   .form {
     width: 390px !important;
   }
 }
 
 @media (max-width: 378px) {
-
   .form {
     width: 316px !important;
     align-items: center !important;

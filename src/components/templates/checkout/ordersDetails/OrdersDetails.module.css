@@ -116,7 +116,6 @@
     }
 }
 
-/* استایل‌های بخش ایجاد حساب کاربری */
 .create_account {
     margin-top: 2rem;
     border: 1px solid rgba(255, 215, 0, 0.3);
@@ -207,7 +206,6 @@
     background-color: #CC5500;
 }
 
-/* انیمیشن */
 @keyframes fadeIn {
     from { 
         opacity: 0;
@@ -221,7 +219,6 @@
     }
 }
 
-/* استایل‌های ریسپانسیو */
 @media (max-width: 768px) {
     .account_toggle {
         padding: 0.8rem 1.2rem;

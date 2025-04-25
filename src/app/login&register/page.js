@@ -44,7 +44,6 @@ export const metadata = {
 };
 
 const Login_register = () => {
-  // Schema Markup برای صفحه ورود/ثبت نام
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -60,7 +59,6 @@ const Login_register = () => {
 
   return (
     <>
-      {/* اضافه کردن Schema Markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

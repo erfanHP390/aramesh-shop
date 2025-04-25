@@ -150,34 +150,32 @@
     opacity: 1;
   }
   
-  /* رسپانسیو برای موبایل (صفحه‌های با عرض کمتر از 768px) */
   @media (max-width: 768px) {
     .details_container img {
-      height: 250px; /* کاهش ارتفاع تصویر در موبایل */
+      height: 250px; 
     }
   
     .details_container button {
-      font-size: 14px; /* کاهش اندازه فونت دکمه */
+      font-size: 14px; 
       padding: 0.3rem 0.5rem;
     }
   
     .icons {
-      font-size: 1.5rem; /* کاهش اندازه آیکون‌ها */
+      font-size: 1.5rem; 
     }
   }
   
-  /* رسپانسیو برای موبایل‌های کوچک (صفحه‌های با عرض کمتر از 480px) */
   @media (max-width: 480px) {
     .details_container img {
-      height: 200px; /* کاهش بیشتر ارتفاع تصویر */
+      height: 200px; 
     }
   
     .details_container button {
-      font-size: 12px; /* کاهش بیشتر اندازه فونت دکمه */
+      font-size: 12px; 
       padding: 0.2rem 0.4rem;
     }
   
     .icons {
-      font-size: 1.2rem; /* کاهش بیشتر اندازه آیکون‌ها */
+      font-size: 1.2rem; 
     }
   }

@@ -1,7 +1,7 @@
 .container {
     padding: 20px;
-    background-color: #6F4E37; /* تغییر به قهوه‌ای گرم */
-    color: white; /* تغییر رنگ متن به سفید */
+    background-color: #6F4E37; 
+    color: white; 
 }
 
 .title {
@@ -17,8 +17,8 @@
 }
 
 .title a {
-    background-color: #D2B48C; /* تغییر به بژ روشن */
-    color: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    background-color: #D2B48C; 
+    color: #6F4E37; 
     font-size: 1rem;
     display: flex;
     position: relative;
@@ -26,11 +26,11 @@
     border-radius: 20px;
     padding: 0 10px;
     align-items: center;
-    border: 1px solid #6F4E37; /* تغییر به قهوه‌ای گرم */
+    border: 1px solid #6F4E37; 
 }
 
 .title:before {
-    border-top: 2px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border-top: 2px solid #A68A64; 
     content: "";
     margin: 0 auto;
     position: absolute;
@@ -43,10 +43,10 @@
 }
 
 .title span {
-    background: #6F4E37; /* تغییر به قهوه‌ای گرم */
+    background: #6F4E37; 
     padding: 0 15px;
     margin-right: 4rem;
-    color: white; /* تغییر رنگ متن به سفید */
+    color: white; 
 }
 
 .title:before {
@@ -54,10 +54,10 @@
 }
 
 .title:after {
-    border-bottom: 1px solid #CC5500; /* تغییر به نارنجی گرم */
-    -webkit-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    -moz-box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
-    box-shadow: 0 1px 0 0 #CC5500; /* تغییر به نارنجی گرم */
+    border-bottom: 1px solid #CC5500; 
+    -webkit-box-shadow: 0 1px 0 0 #CC5500; 
+    -moz-box-shadow: 0 1px 0 0 #CC5500; 
+    box-shadow: 0 1px 0 0 #CC5500; 
     content: "";
     margin: 0 auto;
     position: absolute;
@@ -70,7 +70,7 @@
 
 .boxes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ریسپانسیو کردن گرید */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
     gap: 20px;
     margin-bottom: 2rem;
 }
@@ -80,7 +80,7 @@
     padding: 10px;
     color: black;
     border: none;
-    border-bottom: 3px solid #A68A64; /* تغییر به قهوه‌ای روشن */
+    border-bottom: 3px solid #A68A64; 
     margin-top: 4.5px;
     width: 150px;
     outline: 0;
@@ -91,13 +91,13 @@
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 2rem;
-    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
+    flex-wrap: wrap; 
 }
 
 .filtering div {
     display: flex;
     gap: 15px;
-    flex-wrap: wrap; /* اضافه کردن wrap برای ریسپانسیو شدن */
+    flex-wrap: wrap; 
 }
 
 .filtering button {
@@ -107,77 +107,76 @@
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #CC5500; /* تغییر به نارنجی گرم */
+    background-color: #CC5500; 
 }
 
 .empty {
     width: 100%;
     border-radius: 5px;
-    background-color: #A68A64; /* تغییر به قهوه‌ای روشن */
+    background-color: #A68A64; 
     text-align: center;
     margin-top: 60px;
     padding: 20px 0;
-    color: white; /* تغییر رنگ متن به سفید */
+    color: white; 
 }
 
-/* Media Queries برای ریسپانسیو کردن */
 @media (max-width: 1136px) {
     .title {
-        font-size: 24px; /* کاهش سایز فونت برای تبلت‌ها */
+        font-size: 24px; 
     }
 
     .title a {
-        font-size: 0.9rem; /* کاهش سایز فونت لینک برای تبلت‌ها */
+        font-size: 0.9rem; 
     }
 
     .filtering select {
-        width: 120px; /* کاهش عرض select برای تبلت‌ها */
+        width: 120px; 
     }
 }
 
 @media (max-width: 768px) {
     .title {
-        font-size: 20px; /* کاهش سایز فونت برای موبایل‌ها */
+        font-size: 20px; 
     }
 
     .title a {
-        font-size: 0.8rem; /* کاهش سایز فونت لینک برای موبایل‌ها */
+        font-size: 0.8rem; 
     }
 
     .filtering {
-        flex-direction: column; /* تغییر جهت به عمودی برای موبایل‌ها */
+        flex-direction: column; 
         gap: 10px;
     }
 
     .filtering button {
-        width: 100%; /* افزایش عرض دکمه برای موبایل‌ها */
+        width: 100%; 
     }
 }
 
 @media (max-width: 480px) {
     .title {
-        font-size: 18px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 18px; 
     }
 
     .title a {
-        font-size: 0.7rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+        font-size: 0.7rem; 
     }
 
     .filtering select {
-        width: 100%; /* افزایش عرض select برای موبایل‌های کوچک */
+        width: 100%; 
     }
 }
 
 @media (max-width: 348px) {
     .title {
-        font-size: 15px; /* کاهش بیشتر سایز فونت برای موبایل‌های کوچک */
+        font-size: 15px; 
     }
 
     .title a {
-        font-size: 0.5rem; /* کاهش بیشتر سایز فونت لینک برای موبایل‌های کوچک */
+        font-size: 0.5rem; 
     }
 
     .filtering select {
-        width: 100%; /* افزایش عرض select برای موبایل‌های کوچک */
+        width: 100%; 
     }
 }

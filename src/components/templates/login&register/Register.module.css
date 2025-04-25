@@ -1,63 +1,61 @@
-/* register.module.css */
-
 .form {
   display: grid;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
+  background-color: #ffffff;
   padding: 20px 25px;
   width: 380px;
   font-family: shabnam;
   margin: 0 auto;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); /* سایه با رنگ قهوه‌ای تیره */
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1);
   text-align: center;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .input {
   font-family: shabnam;
   padding: 13px;
-  background-color: #FFFFFF; /* پس‌زمینه سفید */
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  background-color: #ffffff;
+  color: #5a3e36;
   border-radius: 3px;
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  border: 1px solid #a68a64;
   direction: rtl;
   margin-top: 20px;
 }
 
 .btn_light {
-  color: #5A3E36; /* متن قهوه‌ای تیره */
-  border: 1px solid #A68A64; /* حاشیه قهوه‌ای روشن */
+  color: #5a3e36; 
+  border: 1px solid #a68a64; 
   margin-bottom: 3rem;
   cursor: pointer;
   padding: 1rem;
   font-family: shabnam;
-  background: #FFFFFF; /* پس‌زمینه سفید */
+  background: #ffffff;
   transition: background-color 0.3s ease;
 }
 
 .btn_light:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #ffd700;
 }
 
 .btn {
   padding: 0.8rem;
   cursor: pointer;
   font-family: shabnam;
-  background-color: #CC5500; /* پس‌زمینه نارنجی گرم */
-  color: #FFFFFF; /* متن سفید */
+  background-color: #cc5500;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #ffd700; 
 }
 
 .forgot_pass {
   font-size: 13px;
   margin: 15px 0;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .form span {
@@ -65,7 +63,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   font-size: 13px;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .back_to_login {
@@ -74,7 +72,7 @@
   margin-top: 1rem;
   cursor: pointer;
   margin-bottom: 3rem;
-  color: #5A3E36; /* متن قهوه‌ای تیره */
+  color: #5a3e36;
 }
 
 .redirect_to_home {
@@ -85,26 +83,24 @@
   font-family: shabnam;
   font-size: 13px;
   margin-top: 0.75rem;
-  padding: 10px  25px;
+  padding: 10px 25px;
   border-radius: 10%;
-  color: #FFF; /* متن نارنجی گرم */
-  background-color: #CC5500;
+  color: #fff;
+  background-color: #cc5500;
   transition: all 0.3s ease;
 }
 
 .redirect_to_home:hover {
-  background-color: #FFD700; /* هاور با رنگ طلایی */
+  background-color: #ffd700;
 }
 
 @media (max-width: 400px) {
-
   .form_bg {
     width: 390px !important;
   }
 }
 
 @media (max-width: 378px) {
-
   .form {
     width: 316px !important;
   }

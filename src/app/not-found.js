@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '@/styles/404.module.css'; // فرض کنید فایل استایل‌ها اینجاست
+import styles from '@/styles/404.module.css'; 
 
 export default function NotFound() {
   return (

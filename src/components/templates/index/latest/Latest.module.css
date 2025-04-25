@@ -1,7 +1,7 @@
 .container {
     max-width: 1222px;
     margin: 0 auto;
-    padding: 0 20px; /* اضافه کردن padding برای فاصله از لبه‌ها در موبایل */
+    padding: 0 20px; 
     direction: rtl;
   }
   
@@ -43,54 +43,51 @@
   
   .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 ستون در دسکتاپ */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 30px;
     padding: 20px 0px;
     justify-content: space-between;
   }
   
-  /* رسپانسیو برای تبلت (صفحه‌های با عرض کمتر از 1024px) */
   @media (max-width: 1024px) {
     .products {
-      grid-template-columns: repeat(3, 1fr); /* 3 ستون در تبلت */
+      grid-template-columns: repeat(3, 1fr); 
     }
   }
   
-  /* رسپانسیو برای موبایل (صفحه‌های با عرض کمتر از 768px) */
   @media (max-width: 768px) {
     .products {
-      grid-template-columns: repeat(2, 1fr); /* 2 ستون در موبایل */
+      grid-template-columns: repeat(2, 1fr); 
       gap: 20px;
     }
   
     .title p {
-      font-size: 28px; /* کاهش اندازه فونت برای موبایل */
+      font-size: 28px; 
     }
   
     .link_btn {
-      padding: 10px; /* کاهش padding برای موبایل */
+      padding: 10px; 
       font-size: 14px;
     }
   }
   
-  /* رسپانسیو برای موبایل‌های کوچک (صفحه‌های با عرض کمتر از 480px) */
   @media (max-width: 480px) {
     .products {
-      grid-template-columns: 1fr; /* 1 ستون در موبایل‌های کوچک */
+      grid-template-columns: 1fr; 
       gap: 15px;
     }
   
     .title {
-      flex-direction: column; /* تغییر جهت به عمودی در موبایل‌های کوچک */
+      flex-direction: column; 
       gap: 10px;
     }
   
     .title p {
-      font-size: 24px; /* کاهش بیشتر اندازه فونت */
+      font-size: 24px; 
     }
   
     .link_btn {
-      width: 100%; /* دکمه تمام عرض در موبایل‌های کوچک */
+      width: 100%; 
       justify-content: center;
     }
   }

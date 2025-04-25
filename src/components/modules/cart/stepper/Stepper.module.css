@@ -6,8 +6,8 @@
     gap: 18px;
     margin-top: 6.5rem;
     padding-bottom: 3.8rem;
-    background-color: #6F4E37; /* قهوه‌ای گرم */
-    color: #FFFFFF; /* سفید */
+    background-color: #6F4E37; 
+    color: #FFFFFF; 
   }
   
   .stepper p,
@@ -26,7 +26,6 @@
     opacity: 0.7;
   }
   
-  /* ریسپانسیو برای سایز 768px */
   @media (max-width: 768px) {
     .stepper {
       gap: 10px;
@@ -49,7 +48,6 @@
     }
   }
   
-  /* ریسپانسیو برای سایز 480px */
   @media (max-width: 480px) {
     .stepper p,
     .stepper a {

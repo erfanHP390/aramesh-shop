@@ -133,13 +133,13 @@ function DataTable({ comments, title }) {
                     <FaStar
                       key={index}
                       style={{ color: "#FFD700" }}
-                    /> /* تغییر رنگ ستاره‌ها به طلایی */
+                    /> 
                   ))}
                   {new Array(5 - comment.score).fill(0).map((item, index) => (
                     <FaRegStar
                       key={index}
                       style={{ color: "#A68A64" }}
-                    /> /* تغییر رنگ ستاره‌های خالی به قهوه‌ای روشن */
+                    /> 
                   ))}
                 </td>
                 <td>
