@@ -1,0 +1,225 @@
+/* === ساختار اصلی === */
+.filter_container {
+    position: relative;
+  }
+  
+  /* === دکمه toggle === */
+  .toggle_btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: #5A3E36;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .toggle_btn:hover {
+    background-color: #3E2723;
+  }
+  
+  .toggle_icon {
+    font-size: 16px;
+  }
+  
+  /* === سایدبار فیلتر با اسکرول === */
+  .filter_sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background-color: #A68A64;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s ease-out;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter_sidebar.visible {
+    right: 0;
+  }
+  
+  .sidebar_content {
+    overflow-y: auto;
+    height: 100%;
+    padding: 25px;
+    padding-bottom: 100px; /* فضای اضافه برای اسکرول */
+  }
+  
+  /* === Overlay === */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1099;
+  }
+  
+  /* === بخش‌های داخلی === */
+  .filter_section {
+    margin-bottom: 30px;
+  }
+  
+  .section_title {
+    font-size: 16px;
+    color: #5A3E36;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D2B48C;
+  }
+  
+  /* بخش قیمت */
+  .apply_btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #8B6B4D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .apply_btn:hover {
+    background-color: #6F4E37;
+  }
+  
+  /* بخش دسته‌بندی */
+  .category_list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .category_item {
+    margin-bottom: 10px;
+  }
+  
+  .category_item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+  }
+  
+  .category_item input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 4px;
+  }
+  
+  .category_item:hover .checkmark {
+    background-color: #ccc;
+  }
+  
+  .category_item input:checked ~ .checkmark {
+    background-color: #5A3E36;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .category_item input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .category_item .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .count {
+    margin-right: auto;
+    color: #A68A64;
+    font-size: 12px;
+  }
+  
+  /* بخش امتیاز */
+  .rating_list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .rating_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .stars {
+    display: flex;
+    gap: 3px;
+    margin-left: 10px;
+  }
+  
+  .filled_star {
+    color: #FFA000;
+  }
+  
+  .empty_star {
+    color: #D2B48C;
+  }
+  
+  /* بخش محصولات */
+  .products_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* اسکرول بار سفارشی */
+  .sidebar_content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .sidebar_content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .sidebar_content::-webkit-scrollbar-thumb {
+    background: #A68A64;
+    border-radius: 3px;
+  }
+  
+  .sidebar_content::-webkit-scrollbar-thumb:hover {
+    background: #8B6B4D;
+  }
+  
+  /* رسپانسیو */
+  @media (max-width: 768px) {
+    .filter_sidebar {
+      width: 280px;
+    }
+    
+    .toggle_btn {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
