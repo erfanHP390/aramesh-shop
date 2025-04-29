@@ -10,13 +10,20 @@ export default function Filtering() {
   const [minValue, setMinValue] = useState(140000);
   const [maxValue, setMaxValue] = useState(6790000);
   const [showFilter, setShowFilter] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const priceFilterHandler = () => {
     alert(`فیلتر قیمت: ${minValue.toLocaleString()} تا ${maxValue.toLocaleString()} تومان`);
   };
 
   useEffect(() => {
+    if (!isMounted) return;
+
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         setShowFilter(false);
@@ -25,11 +32,12 @@ export default function Filtering() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isMounted]);
+
+  if (!isMounted) return null;
 
   return (
     <div className={styles.filter_container}>
-      {/* دکمه نمایش/بستن فیلتر */}
       <button
         className={styles.toggle_btn}
         onClick={() => setShowFilter(!showFilter)}
@@ -47,13 +55,11 @@ export default function Filtering() {
         )}
       </button>
 
-      {/* سایدبار فیلتر با قابلیت اسکرول */}
       <div
         ref={sidebarRef}
         className={`${styles.filter_sidebar} ${showFilter ? styles.visible : ""}`}
       >
         <div className={styles.sidebar_content}>
-          {/* بخش فیلتر قیمت */}
           <div className={styles.filter_section}>
             <h3 className={styles.section_title}>محدوده قیمت</h3>
             <MultiRangeSlider
@@ -72,7 +78,6 @@ export default function Filtering() {
             </button>
           </div>
 
-          {/* بخش دسته‌بندی */}
           <div className={styles.filter_section}>
             <h3 className={styles.section_title}>دسته‌بندی</h3>
             <ul className={styles.category_list}>
@@ -89,7 +94,6 @@ export default function Filtering() {
             </ul>
           </div>
 
-          {/* بخش امتیاز */}
           <div className={styles.filter_section}>
             <h3 className={styles.section_title}>امتیاز</h3>
             <ul className={styles.rating_list}>
@@ -108,7 +112,6 @@ export default function Filtering() {
             </ul>
           </div>
 
-          {/* بخش محصولات پرفروش */}
           <div className={styles.filter_section}>
             <h3 className={styles.section_title}>پرفروش‌ترین‌ها</h3>
             <div className={styles.products_grid}>
@@ -120,7 +123,6 @@ export default function Filtering() {
         </div>
       </div>
 
-      {/* Overlay */}
       {showFilter && (
         <div 
           className={styles.overlay}

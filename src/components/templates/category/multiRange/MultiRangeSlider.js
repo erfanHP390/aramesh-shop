@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./MultiRangeSlider.module.css";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
+    const [isMounted, setIsMounted] = useState(false);
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const rangeRef = useRef(null);
@@ -10,13 +11,15 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     const maxThumbRef = useRef(null);
     const sliderRef = useRef(null);
 
-    // تبدیل مقدار به درصد با محدودیت‌های صحیح
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     const getPercent = useCallback(
         (value) => Math.min(Math.max(Math.round(((value - min) / (max - min)) * 100), 0), 100),
         [min, max]
     );
 
-    // بروزرسانی موقعیت نوار انتخاب
     useEffect(() => {
         const minPercent = getPercent(minVal);
         const maxPercent = getPercent(maxVal);
@@ -27,12 +30,10 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         }
     }, [minVal, maxVal, getPercent]);
 
-    // ارسال تغییرات به والد
     useEffect(() => {
         onChange({ min: minVal, max: maxVal });
     }, [minVal, maxVal, onChange]);
 
-    // هندلرهای حرکت برای دستگیره حداقل
     const handleMinMouseDown = (e) => {
         e.preventDefault();
         document.addEventListener('mousemove', handleMinMove);
@@ -70,7 +71,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
     const handleMinTouchEnd = handleMinUp;
 
-    // هندلرهای حرکت برای دستگیره حداکثر
     const handleMaxMouseDown = (e) => {
         e.preventDefault();
         document.addEventListener('mousemove', handleMaxMove);
@@ -108,10 +108,11 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
     const handleMaxTouchEnd = handleMaxUp;
 
-    // فرمت قیمت به فارسی
     const formatPrice = (price) => {
         return new Intl.NumberFormat('fa-IR').format(price) + " تومان";
     };
+
+    if (!isMounted) return null;
 
     return (
         <div className={styles.container}>

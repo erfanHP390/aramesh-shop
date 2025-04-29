@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./products.module.css";
 import { MdOutlineGridView } from "react-icons/md";
 import { BiSolidGrid } from "react-icons/bi";
@@ -7,15 +7,22 @@ import { TfiLayoutGrid4Alt } from "react-icons/tfi";
 import Product from "@/components/modules/product/Product";
 
 function Products() {
-  const [columns, setColumns] = useState(3); // مقدار پیش‌فرض 4 ستون
+  const [columns, setColumns] = useState(3);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <div className={styles.products}>
       <div className={styles.filtering}>
         <div className={styles.view}>
-          <TfiLayoutGrid4Alt  className={columns === 4 && styles.active} onClick={() => setColumns(4)} />
-          <BiSolidGrid className={columns === 3 && styles.active} onClick={() => setColumns(3)} />
-          <MdOutlineGridView  className={columns === 2 && styles.active} onClick={() => setColumns(2)} />
+          <TfiLayoutGrid4Alt className={columns === 4 ? styles.active : ""} onClick={() => setColumns(4)} />
+          <BiSolidGrid className={columns === 3 ? styles.active : ""} onClick={() => setColumns(3)} />
+          <MdOutlineGridView className={columns === 2 ? styles.active : ""} onClick={() => setColumns(2)} />
         </div>
         <select name="orderby">
           <option value="default">مرتب‌سازی پیش‌فرض</option>
