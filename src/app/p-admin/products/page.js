@@ -1,6 +1,7 @@
 import AdminPanelLayout from '@/components/layouts/AdminPanelLayout/AdminPanelLayout'
 import connectToDB from '@/configs/db'
 import React from 'react'
+import styles from "@/components/templates/p-admin/tickets/TicketTable.module.css"
 import ProductModel from "@/models/Product"
 import ProductTable from '@/components/templates/p-admin/products/ProductTable'
 
