@@ -11,6 +11,10 @@
     padding: 1rem;
     box-sizing: border-box;
   }
+
+  .modal_main::-webkit-scrollbar {
+    display: none !important;
+  }
   
   .modal_overlay {
     background: rgba(0, 0, 0, 0.6);
