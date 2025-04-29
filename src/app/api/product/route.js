@@ -30,6 +30,8 @@ export async function POST(req) {
       const suitableFor = formData.get("suitableFor") 
       const smell = formData.get("smell") 
       const tags = formData.get("tags")
+      const stock = formData.get("stock");
+      const uses = formData.get("uses");  
       const img = formData.get("img")
 
       const buffer = Buffer.from(await img.arrayBuffer());
@@ -39,7 +41,7 @@ export async function POST(req) {
       await writeFile(imgPath , buffer)
 
 
-    if(!name || !price || !shortDesc || !longDesc || !weight || !smell || !tags) {
+    if(!name || !price || !shortDesc || !longDesc || !weight || !smell || !tags || !stock) {
       return Response.json({message: "all fields must have something expect score"} , {
         status: 400
       } )
@@ -52,7 +54,7 @@ export async function POST(req) {
     }
 
 
-     await ProductModel.create({ name, price, shortDesc, longDesc, weight, suitableFor, smell, tags , img: `http://localhost:3000/uploads/${filename}` })
+     await ProductModel.create({ name, price, shortDesc, longDesc, weight, suitableFor, smell, tags , img: `http://localhost:3000/uploads/${filename}`, stock , uses: 0 })
 
     return Response.json({message: "product is created successfully"} , {
         status: 201

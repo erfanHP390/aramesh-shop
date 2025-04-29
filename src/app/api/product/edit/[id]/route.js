@@ -42,6 +42,8 @@ export async function PUT(req, { params }) {
     const suitableFor = formData.get("suitableFor");
     const smell = formData.get("smell");
     const tags = formData.get("tags");
+    const stock = formData.get("stock");
+    const uses = formData.get("uses");
     const img = formData.get("img");
     const score = parseInt(formData.get("score"))
 
@@ -63,7 +65,9 @@ export async function PUT(req, { params }) {
       smell: smell || existingProduct.smell,
       tags: tags || existingProduct.tags,
       img: img || existingProduct.img,
-      score: score || existingProduct.score
+      score: score || existingProduct.score,
+      stock: stock || existingProduct.stock,
+      uses: uses || existingProduct.uses
     };
 
     if (img && img.size > 0) {
