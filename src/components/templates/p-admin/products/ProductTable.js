@@ -127,7 +127,8 @@ function ProductTable({ products, title }) {
                 <th>شناسه</th>
                 <th>نام</th>
                 <th>قیمت</th>
-                <th>امتیاز</th>
+                <th>موجودی</th>
+                <th>فروخته شده</th>
                 <th>مشاهده جزئیات</th>
                 <th>ویرایش</th>
                 <th>حذف</th>
@@ -139,8 +140,8 @@ function ProductTable({ products, title }) {
                   <td>{index + 1}</td>
                   <td>{product.name}</td>
                   <td>{product.price.toLocaleString()}</td>
-                  <td>{product.score}</td>
-
+                  <td>{product.stock}</td>
+                  <td>{product.uses}</td>
                   <td>
                     <button
                       onClick={() => showProductDetails(product._id)}
@@ -190,8 +191,12 @@ function ProductTable({ products, title }) {
                 <img
                   src={selectedProduct.img}
                   alt={selectedProduct.name}
-                  fill
                   className={styles.modal_product_image}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain'
+                  }}
                 />
               </div>
 
@@ -215,6 +220,18 @@ function ProductTable({ products, title }) {
                       {selectedProduct.weight} گرم
                     </span>
                   </div>
+                  <div className={styles.modal_product_meta_item}>
+                    <span className={styles.modal_product_meta_label}>وضعیت موجودی</span>
+                    <span className={styles.modal_product_meta_value}>
+                      {selectedProduct.stock}
+                    </span>
+                  </div>
+                  <div className={styles.modal_product_meta_item}>
+                    <span className={styles.modal_product_meta_label}>تعداد فروخته شده</span>
+                    <span className={styles.modal_product_meta_value}>
+                      {selectedProduct.uses}
+                    </span>
+                  </div>
 
                   <div className={styles.modal_product_meta_item}>
                     <span className={styles.modal_product_meta_label}>
@@ -233,7 +250,20 @@ function ProductTable({ products, title }) {
                       {selectedProduct.suitableFor}
                     </span>
                   </div>
+
+                  <div className={styles.modal_product_meta_item}>
+                    <span className={styles.modal_product_meta_label}>
+                      آخرین بروزرسانی
+                    </span>
+                    <span className={styles.modal_product_meta_value}>
+                      {new Date(selectedProduct.updatedAt).toLocaleDateString("fa-IR")}
+                    </span>
+                  </div>
+
+
+
                 </div>
+                
 
                 {selectedProduct.tags && selectedProduct.tags.length > 0 && (
                   <div className={styles.modal_product_tags}>
