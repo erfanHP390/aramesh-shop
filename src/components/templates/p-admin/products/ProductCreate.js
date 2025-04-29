@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 import React, { useState } from "react";
 import Loading from "@/app/loading";
+import Link from "next/link";
 
 function ProductCreate() {
   const router = useRouter();
@@ -21,8 +22,9 @@ function ProductCreate() {
   const [smell, setSmell] = useState("");
   const [tags, setTags] = useState("");
   const [img, setImg] = useState("");
+  const [stock , setStock] = useState("")
 
-  const createBlog = async () => {
+  const createProduct = async () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
@@ -33,12 +35,13 @@ function ProductCreate() {
     formData.append("smell", smell);
     formData.append("tags", tags);
     formData.append("img", img);
-
+    formData.append("stock" , stock)
     const res = await fetch(`/api/product`, {
       method: "POST",
       body: formData,
     });
 
+    
     const data = await res.json();
 
     if (res.status === 201) {
@@ -54,7 +57,7 @@ function ProductCreate() {
         undefined,
         "colored"
       );
-      router.replace("/p-admin/products");
+      router.refresh();
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(
@@ -102,6 +105,7 @@ function ProductCreate() {
       <div className={styles.details}>
         <h1 className={styles.title}>
           <span>ایجاد محصول</span>
+          <Link href="/p-admin/products">همه محصولات</Link>
         </h1>
         <div className={styles.details_main}>
           <section>
@@ -142,6 +146,15 @@ function ProductCreate() {
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
                 placeholder="لطفا قیمت محصول خود را وارد کنید"
+                type="number"
+              />
+            </div>
+            <div>
+              <label>وضعیت موجودی محصول</label>
+              <input
+                value={stock}
+                onChange={(event) => setStock(event.target.value)}
+                placeholder="لطفا وضعیت موجودی محصول خود را وارد کنید"
                 type="number"
               />
             </div>
@@ -206,7 +219,7 @@ function ProductCreate() {
         <button
           onClick={() => {
             setIsLoading(true);
-            createBlog();
+            createProduct();
           }}
           type="submit"
           className={styles.submit_btn}
