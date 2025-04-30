@@ -1,19 +1,22 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./products.module.css";
+import btnStyles from "@/styles/articles.module.css"
 import Product from "@/components/modules/product/Product";
 
 function Products({products}) {
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
-  if (!isMounted) return null;
+  const [visibleProducts, setVisibleProducts] = useState(6);
+  const productsToShow = products.slice(0, visibleProducts);
+
+  const loadMore = () => {
+    setVisibleProducts(prev => prev + 3);
+  };
 
   return (
-    <div className={styles.products}>
+    <>
+        <div className={styles.products}>
       <div className={styles.filtering}>
         <select name="orderby">
           <option value="default">مرتب‌سازی پیش‌فرض</option>
@@ -26,11 +29,20 @@ function Products({products}) {
       </div>
 
       <main className={styles.main}>
-        {products.map((product) => (
+        {productsToShow.map((product) => (
           <Product key={product._id} {...product} />
         ))}
       </main>
+
+      {visibleProducts < products.length && (
+        <div className={btnStyles.buttonContainer}>
+          <button className={btnStyles.loadMoreBtn} onClick={loadMore}>
+            نمایش محصولات بیشتر
+          </button>
+        </div>
+      )}
     </div>
+    </>
   );
 }
 
