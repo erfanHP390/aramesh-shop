@@ -21,21 +21,35 @@ function Products({ productsDB }) {
     min: 140000,
     max: 6790000
   });
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const sidebarRef = useRef(null);
+
+  const categories = ['اسپرسو', 'ارگانیک', 'دستگاه', 'لوازم جانبی', 'گواتمالا'];
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    const filtered = products.filter(
+    let filtered = [...products];
+    
+    filtered = filtered.filter(
       product => product.price >= priceFilter.min && product.price <= priceFilter.max
     );
+    
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter(product => {
+        return selectedCategories.some(category => 
+          product.tags[0].includes(category)
+        );
+      });
+    }
+    
     setFilteredProducts(filtered);
     setVisibleProducts(6);
-  }, [priceFilter, products]);
+  }, [priceFilter, selectedCategories, products]);
 
   const productsToShow = filteredProducts.slice(0, visibleProducts);
 
@@ -49,6 +63,14 @@ function Products({ productsDB }) {
     newProducts = newProducts.filter(
       product => product.price >= priceFilter.min && product.price <= priceFilter.max
     );
+    
+    if (selectedCategories.length > 0) {
+      newProducts = newProducts.filter(product => {
+        return selectedCategories.some(category => 
+          product.tags[0].includes(category)
+        );
+      });
+    }
 
     switch (sort) {
       case "popularity":
@@ -71,7 +93,7 @@ function Products({ productsDB }) {
     }
     
     setProducts(newProducts);
-  }, [sort, productsDB, priceFilter]);
+  }, [sort, productsDB, priceFilter, selectedCategories]);
 
   const priceFilterHandler = () => {
     setPriceFilter({
@@ -79,6 +101,16 @@ function Products({ productsDB }) {
       max: maxValue
     });
     setShowFilter(false);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories(prev => {
+      if (prev.includes(category)) {
+        return prev.filter(c => c !== category);
+      } else {
+        return [...prev, category];
+      }
+    });
   };
 
   useEffect(() => {
@@ -147,13 +179,19 @@ function Products({ productsDB }) {
             <div className={filterStyles.filter_section}>
               <h3 className={filterStyles.section_title}>دسته‌بندی</h3>
               <ul className={filterStyles.category_list}>
-                {['اسپرسو', 'ارگانیک', 'دستگاه‌ها', 'لوازم جانبی', "گواتمالا"].map((cat, i) => (
+                {categories.map((cat, i) => (
                   <li key={i} className={filterStyles.category_item}>
                     <label>
-                      <input type="checkbox" />
+                      <input 
+                        type="checkbox" 
+                        checked={selectedCategories.includes(cat)}
+                        onChange={() => handleCategoryChange(cat)}
+                      />
                       <span className={filterStyles.checkmark}></span>
                       {cat}
-                      <span className={filterStyles.count}>({Math.floor(Math.random() * 20) + 5})</span>
+                      <span className={filterStyles.count}>
+                        ({productsDB.filter(p => p.tags[0].includes(cat)).length})
+                      </span>
                     </label>
                   </li>
                 ))}
@@ -214,9 +252,15 @@ function Products({ productsDB }) {
         </div>
 
         <main className={styles.main}>
-          {productsToShow.map((product) => (
-            <Product key={product._id} {...product} />
-          ))}
+          {productsToShow.length > 0 ? (
+            productsToShow.map((product) => (
+              <Product key={product._id} {...product} />
+            ))
+          ) : (
+            <div className={styles.noProducts}>
+              محصولی با فیلترهای انتخاب شده یافت نشد
+            </div>
+          )}
         </main>
 
         {visibleProducts < filteredProducts.length && (
