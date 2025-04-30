@@ -127,7 +127,7 @@ function DataTable({ comments, title }) {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{new Date(comment.date).toLocaleDateString("fa-IR")}</td>
-                <td>{comment.productID.name}</td>
+                <td>{comment.productID ? comment.productID.name : "محصول حذف شده"}</td>
                 <td>
                   {new Array(comment.score).fill(0).map((item, index) => (
                     <FaStar

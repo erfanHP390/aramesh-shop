@@ -361,7 +361,7 @@ function CommentTable({ comments, title, phone }) {
                     <FaRegStar key={index} style={{ color: "#A68A64" }} />
                   ))}
                 </td>
-                <td>{comment.productID.name}</td>
+                <td>{comment.productID ? comment.productID.name : "محصول حذف شده"}</td>
                 <td>{new Date(comment.date).toLocaleDateString("fa-IR")}</td>
                 <td>
                   <button
