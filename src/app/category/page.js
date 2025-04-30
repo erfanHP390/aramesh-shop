@@ -7,22 +7,22 @@ import Products from "@/components/templates/category/products/Products";
 import Filtering from "@/components/templates/category/filtering/Filtering";
 import connectToDB from "@/configs/db";
 import { authAdmin, authUser } from "@/utils/authUserLink";
-import ProductModel from "@/models/Product"
+import ProductModel from "@/models/Product";
 
 async function page() {
-  connectToDB()
-  const user = await authUser()
-  const admin = await authAdmin()
+  connectToDB();
+  const user = await authUser();
+  const admin = await authAdmin();
   const products = await ProductModel.find();
 
   return (
     <>
-      <Navbar isLogin={user ? true : false}  isAdmin={admin ? true : false}  />
+      <Navbar isLogin={user ? true : false} isAdmin={admin ? true : false} />
       <BreadCrumb route={'فروشگاه'} />
       <main className={styles.container} data-aos="fade-up">
         <div className={styles.category}>
-          <Filtering />
-          <Products products={JSON.parse(JSON.stringify(products))} />
+          {/* <Filtering  productsDB={JSON.parse(JSON.stringify(products))}  /> */}
+          <Products productsDB={JSON.parse(JSON.stringify(products))} />
         </div>
       </main>
       <Footer />
