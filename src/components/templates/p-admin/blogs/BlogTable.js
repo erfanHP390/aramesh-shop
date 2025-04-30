@@ -127,7 +127,7 @@ function BlogTable({ blogs, title }) {
                 <th>شناسه</th>
                 <th>عنوان</th>
                 <th>نویسنده</th>
-                <th>تیتر</th>
+                <th>تاریخ ایجاد</th>
                 <th>مشاهده جزئیات</th>
                 <th>ویرایش</th>
                 <th>حذف</th>
@@ -139,7 +139,7 @@ function BlogTable({ blogs, title }) {
                   <td>{index + 1}</td>
                   <td>{blog.title}</td>
                   <td>{blog.author}</td>
-                  <td>{blog.titr}</td>
+                  <td>{new Date(blog.createdAt).toLocaleDateString("fa-IR")}</td>
 
                   <td>
                     <button
