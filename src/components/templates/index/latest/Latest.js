@@ -18,7 +18,7 @@ export default function Latest({products}) {
       </section>
       <main data-aos="fade-up" className={styles.products}>
         {
-          products.map(product => (
+          products.slice(0,4).map(product => (
             <Product key={product._id}  {...product} />
           ))
         }
