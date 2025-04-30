@@ -9,11 +9,11 @@ import React, { useEffect, useState } from "react";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
 
-export default function Product({ _id, name, price, img }) {
-  const router = useRouter()
+export default function Product({ _id, name, price, img, score, uses, stock }) {
+  const router = useRouter();
   const [user, setUser] = useState("");
   const [count, setCount] = useState(1);
-  const [isLoading , setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   connectToDB();
 
@@ -25,7 +25,7 @@ export default function Product({ _id, name, price, img }) {
         const data = await res.json();
         console.log(data);
         setUser({ ...data });
-      } 
+      }
     };
 
     authUser();
@@ -57,7 +57,7 @@ export default function Product({ _id, name, price, img }) {
     console.log("Response ->", res);
 
     if (res.status === 201) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastSuccess(
         "محصول با موفقیت به علاقه مندی ها افزوده شد",
         "top-center",
@@ -70,7 +70,7 @@ export default function Product({ _id, name, price, img }) {
         "colored"
       );
     } else if (res.status === 400) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastError(
         "شناسه کاربر و محصول باید ارسال شود. به پشتیبانی تیکت بدهید",
         "top-center",
@@ -83,7 +83,7 @@ export default function Product({ _id, name, price, img }) {
         "colored"
       );
     } else if (res.status === 422) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastError(
         "شناسه کاربر/محصول نامعتبر است.لطفا در صورت مشکل به پشتیبانی پیام دهید",
         "top-center",
@@ -96,7 +96,7 @@ export default function Product({ _id, name, price, img }) {
         "colored"
       );
     } else if (res.status === 404) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastError(
         "کاربر/محصول یافت نشد.لطفا دوباره تلاش کنید",
         "top-center",
@@ -109,7 +109,7 @@ export default function Product({ _id, name, price, img }) {
         "colored"
       );
     } else if (res.status === 500) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastError(
         "خطا در سرور ، لطفا بعدا تلاش کنید",
         "top-center",
@@ -170,12 +170,16 @@ export default function Product({ _id, name, price, img }) {
             <CiSearch />
             <p className={styles.tooltip}>مشاهده سریع</p>
           </Link>
-          <div onClick={(event) => {
-            setIsLoading(true)
-            addToWishlist(event)
-          }}>
+          <div
+            onClick={(event) => {
+              setIsLoading(true);
+              addToWishlist(event);
+            }}
+          >
             <CiHeart />
-            <p className={styles.tooltip}>{isLoading ? <Loading /> : "افزودن به علاقه مندی ها"}</p>
+            <p className={styles.tooltip}>
+              {isLoading ? <Loading /> : "افزودن به علاقه مندی ها"}
+            </p>
           </div>
         </div>
         <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
@@ -184,11 +188,13 @@ export default function Product({ _id, name, price, img }) {
       <div className={styles.details}>
         <Link href={`/product/${_id}`}>{name}</Link>
         <div>
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaRegStar />
-          <FaRegStar />
+          {" "}
+          {new Array(score).fill(0).map((item, index) => (
+            <FaStar key={index} style={{ color: "#FFD700" }} />
+          ))}
+          {new Array(5 - score).fill(0).map((item, index) => (
+            <FaRegStar key={index} style={{ color: "#A68A64" }} />
+          ))}
         </div>
         <span>{price?.toLocaleString()} تومان</span>
       </div>
