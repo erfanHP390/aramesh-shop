@@ -5,7 +5,6 @@ import { useState } from "react";
 
 function ArticleLoad({blogs}) {
 
-  console.log(blogs);
   
 
   const [visibleArticles, setVisibleArticles] = useState(6);
