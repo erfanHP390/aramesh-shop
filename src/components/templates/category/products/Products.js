@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./products.module.css";
 import btnStyles from "@/styles/articles.module.css";
 import Product from "@/components/modules/product/Product";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import MultiRangeSlider from "../multiRange/MultiRangeSlider";
 import { FiFilter, FiX } from "react-icons/fi";
@@ -15,17 +14,13 @@ function Products({ productsDB }) {
   const [filteredProducts, setFilteredProducts] = useState([...productsDB]);
   const [visibleProducts, setVisibleProducts] = useState(6);
   
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
-  
   const [bestsellers, setBestsellers] = useState([...productsDB]);
-  const [minValue, setMinValue] = useState(
-    searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')) : 140000
-  );
-  const [maxValue, setMaxValue] = useState(
-    searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')) : 6790000
-  );
+  const [minValue, setMinValue] = useState(140000);
+  const [maxValue, setMaxValue] = useState(6790000);
+  const [priceFilter, setPriceFilter] = useState({
+    min: 140000,
+    max: 6790000
+  });
   const [showFilter, setShowFilter] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const sidebarRef = useRef(null);
@@ -35,15 +30,12 @@ function Products({ productsDB }) {
   }, []);
 
   useEffect(() => {
-    const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')) : 140000;
-    const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')) : 6790000;
-    
     const filtered = products.filter(
-      product => product.price >= minPrice && product.price <= maxPrice
+      product => product.price >= priceFilter.min && product.price <= priceFilter.max
     );
     setFilteredProducts(filtered);
     setVisibleProducts(6);
-  }, [searchParams, products]);
+  }, [priceFilter, products]);
 
   const productsToShow = filteredProducts.slice(0, visibleProducts);
 
@@ -54,10 +46,8 @@ function Products({ productsDB }) {
   useEffect(() => {
     let newProducts = [...productsDB];
     
-    const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')) : 140000;
-    const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')) : 6790000;
     newProducts = newProducts.filter(
-      product => product.price >= minPrice && product.price <= maxPrice
+      product => product.price >= priceFilter.min && product.price <= priceFilter.max
     );
 
     switch (sort) {
@@ -81,14 +71,13 @@ function Products({ productsDB }) {
     }
     
     setProducts(newProducts);
-  }, [sort, productsDB, searchParams]);
+  }, [sort, productsDB, priceFilter]);
 
   const priceFilterHandler = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('minPrice', minValue);
-    params.set('maxPrice', maxValue);
-    
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    setPriceFilter({
+      min: minValue,
+      max: maxValue
+    });
     setShowFilter(false);
   };
 
