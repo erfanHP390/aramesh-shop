@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 import React, { useState } from 'react'
 import Loading from "@/app/loading";
+import Link from "next/link";
 
 function BlogCreate() {
 
@@ -104,6 +105,7 @@ function BlogCreate() {
     <div className={styles.details}>
       <h1 className={styles.title}>
         <span>جزئیات مقاله</span>
+        <Link href="/p-admin/blogs">همه مقالات</Link>
       </h1>
       <div className={styles.details_main}>
         <section>
