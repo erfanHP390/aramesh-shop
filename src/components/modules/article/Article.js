@@ -11,12 +11,13 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-function Article({_id , titr , title , author , img , createdAt , comments}) {
+function Article({_id , titr , title , author , img , createdAt , comments , imgStyle}) {
   return (
     <div className={styles.card}>
       <Link className={styles.img_container} href={`/article/${_id}`}>
         <img
           src={img}
+          style={imgStyle}
           alt=""
         />
       </Link>
