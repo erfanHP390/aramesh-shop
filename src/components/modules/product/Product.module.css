@@ -18,6 +18,10 @@
     padding-top: 5px;
     justify-content: center;
   }
+
+  .details  a {
+    color:  #000 !important;
+  }
   
   .details svg {
     color: #FFD700;
@@ -110,7 +114,7 @@
     left: 120px;
     position: absolute;
     visibility: hidden;
-    color: #FFFFFF;
+    color: #000;
     width: max-content;
     border: 1px solid #CC5500;
     border-radius: 4px;

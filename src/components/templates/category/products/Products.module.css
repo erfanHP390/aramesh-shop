@@ -1,173 +1,68 @@
 .products {
-    width: 74%; /* عرض بیشتر در کنار سایدبار فیلتر */
+    width: 74%;
     background-color: #6F4E37;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    flex-grow: 1; /* در حالت دسکتاپ فضای باقی‌مانده را اشغال می‌کند */
+    flex-grow: 1;
 }
 
 .filtering {
-    flex-direction: row-reverse;
-    justify-content: space-between;
     display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
 }
 
 .filtering select {
     background: white;
     color: #5A3E36;
     direction: rtl;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 8px 30px 8px 15px;
     outline: 0;
-    height: auto;
-    border-top: none;
-    border-right: none;
-    appearance: none;
-    border-left: none;
-    border-radius: 0; 
-    background-position: left 17px top 44%; 
+    border: none;
+    border-radius: 4px;
     font-weight: 600;
-    font-size: inherit;
-    line-height: 1.2;
-    padding-inline-start: 2px;
-    padding-inline-end: 20px;
-    padding-left: 30px;
+    font-size: 14px;
+    appearance: none;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==);
     background-position: left 10px top 50%;
-    background-size: auto 18px;
+    background-size: 15px;
     background-repeat: no-repeat;
-    min-width: 180px; /* حداقل عرض برای select */
-}
-
-.view .active:hover {
-    color: #FFD700 !important;
-}
-
-.view .active {
-    color: #FFD700;
-    cursor: default !important;
-}
-
-.view svg:hover {
-    color: #D2B48C;
-}
-
-.view svg {
-    cursor: pointer;
-    transition: .1s all ease-in;
-    color: white;
-}
-
-.view {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 1.8rem;
-}
-
-.view svg:nth-child(2) {
-    font-size: 2rem;
-}
-
-.view svg:nth-child(1) { 
-    font-size: 1.5rem;
+    min-width: 200px;
 }
 
 .main {
-    /* تغییر برای نمایش 3-4 محصول در هر ردیف */
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) ); /* حداقل عرض 240px */
-    gap: 30px;
-    margin-top: 25px;
-}
-
-.available_filters {
-    display: flex;
-    direction: rtl;
-    gap: 15px;
-    justify-content: right;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.available_filters div {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    cursor: pointer;
-    flex-direction: row-reverse;
-    transition: .1s all ease-in;
-    color: white;
-}
-
-.available_filters div:hover {
-    color: #D2B48C;
-}
-
-.available_filters div:nth-child(1) {
-    padding-left: 15px;
-    border-left: 1px solid #D2B48C;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 @media (max-width: 1200px) {
-    .main {
-        grid-template-columns: repeat( auto-fill, minmax(220px, 1fr) ); /* کمتر از 1200px حداقل 220px */
-        gap: 25px;
-    }
-}
-
-
-@media (max-width: 992px) {
-     .products {
-        width: 100%; /* در تبلت‌ها عرض 100% می‌شود */
+    .products {
+        width: 100%;
         padding: 25px;
     }
     
     .main {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* کمتر از 992px حداقل 200px */
-        gap: 25px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-     .products {
-        width: 100%; /* در موبایل هم عرض 100% است */
+    .products {
         padding: 20px;
     }
     
     .main {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* کمتر از 768px حداقل 180px */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 20px;
     }
     
     .filtering select {
-        font-size: 14px;
-        padding-inline-end: 15px;
-        padding-left: 25px;
-    }
-    
-    .view {
-        font-size: 1.6rem;
-    }
-    
-    .view svg:nth-child(2) {
-        font-size: 1.8rem;
-    }
-    
-    .available_filters {
-        gap: 12px;
-    }
-     /* Filtering در 768px به پایین یک سایدبار است */
-}
-
-@media (max-width: 576px) {
-    .main {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* کمتر از 576px حداقل 150px */
-        gap: 15px;
+        min-width: 180px;
+        font-size: 13px;
     }
 }
-
 
 @media (max-width: 480px) {
     .products {
@@ -175,31 +70,15 @@
     }
     
     .main {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* کمتر از 480px حداقل 140px */
-        gap: 10px; /* کاهش فاصله بین محصولات در صفحه نمایش کوچکتر */
+        grid-template-columns: 0.5fr;
+        gap: 15px;
     }
     
     .filtering {
-        flex-direction: column;
-        gap: 15px;
+        justify-content: center;
     }
     
     .filtering select {
         width: 100%;
-        font-size: 13px;
-    }
-    
-    .view {
-        justify-content: center;
-        width: 100%;
-    }
-    
-    .available_filters {
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    .available_filters div {
-        font-size: 13px;
     }
 }

@@ -7,11 +7,13 @@ import Products from "@/components/templates/category/products/Products";
 import Filtering from "@/components/templates/category/filtering/Filtering";
 import connectToDB from "@/configs/db";
 import { authAdmin, authUser } from "@/utils/authUserLink";
+import ProductModel from "@/models/Product"
 
 async function page() {
   connectToDB()
   const user = await authUser()
   const admin = await authAdmin()
+  const products = await ProductModel.find();
 
   return (
     <>
@@ -20,7 +22,7 @@ async function page() {
       <main className={styles.container} data-aos="fade-up">
         <div className={styles.category}>
           <Filtering />
-          <Products />
+          <Products products={JSON.parse(JSON.stringify(products))} />
         </div>
       </main>
       <Footer />
