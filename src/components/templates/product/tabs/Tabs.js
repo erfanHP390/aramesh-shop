@@ -41,7 +41,7 @@ const Tabs = ({product}) => {
   
           <div className={styles.contents}>
             <section>
-              {tab === "description" && <Description />}
+              {tab === "description" && <Description  desc={product.longDesc} />}
               {tab == "moreInfoes" && (
                 <MoreInfoes product={JSON.parse(JSON.stringify(product))} />
               )}
