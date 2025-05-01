@@ -67,17 +67,35 @@ const Details = ({ product }) => {
       <span className={styles.description}>{product.shortDesc}</span>
       <hr />
       <div className={styles.Available}>
-        <IoCheckmark />
-        <p>موجود در انبار</p>
+        {product.uses === product.stock ? (
+          <>
+            <p className={styles.cart}>اتمام موجودی</p>
+          </>
+        ) : (
+          <>
+            <IoCheckmark />
+            <p>موجود در انبار</p>
+          </>
+        )}
       </div>
-      <div className={styles.cart}>
-        <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
-        <div>
-          <span onClick={() => setCount(count - 1)}>-</span>
-          {count === 0 ? setCount(1) : count}
-          <span onClick={() => setCount(count + 1)}>+</span>
-        </div>
-      </div>
+      {product.uses === product.stock ? (
+        <>
+          <div className={styles.cart}>
+            <button>موجود شد خبرم کن</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.cart}>
+            <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
+            <div>
+              <span onClick={() => setCount(count - 1)}>-</span>
+              {count === 0 ? setCount(1) : count}
+              <span onClick={() => setCount(count + 1)}>+</span>
+            </div>
+          </div>
+        </>
+      )}
       <section className={styles.wishlist}>
         <AddToWishList productID={product._id} />
         <div>
