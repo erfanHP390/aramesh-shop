@@ -118,6 +118,10 @@
   color: #cc5500;
 }
 
+.red_alert {
+  color: red;
+}
+
 @media (max-width: 768px) {
   .cart {
     flex-direction: column;
