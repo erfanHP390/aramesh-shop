@@ -22,11 +22,13 @@ function Products({ productsDB }) {
     max: 6790000
   });
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const sidebarRef = useRef(null);
 
   const categories = ['اسپرسو', 'ارگانیک', 'دستگاه', 'لوازم جانبی', 'گواتمالا'];
+  const ratings = [5, 4, 3];
 
   useEffect(() => {
     setIsMounted(true);
@@ -47,9 +49,13 @@ function Products({ productsDB }) {
       });
     }
     
+    if (selectedRating) {
+      filtered = filtered.filter(product => Math.floor(product.score) === selectedRating);
+    }
+    
     setFilteredProducts(filtered);
     setVisibleProducts(6);
-  }, [priceFilter, selectedCategories, products]);
+  }, [priceFilter, selectedCategories, selectedRating, products]);
 
   const productsToShow = filteredProducts.slice(0, visibleProducts);
 
@@ -70,6 +76,10 @@ function Products({ productsDB }) {
           product.tags[0].includes(category)
         );
       });
+    }
+
+    if (selectedRating) {
+      newProducts = newProducts.filter(product => Math.floor(product.score) === selectedRating);
     }
 
     switch (sort) {
@@ -93,7 +103,7 @@ function Products({ productsDB }) {
     }
     
     setProducts(newProducts);
-  }, [sort, productsDB, priceFilter, selectedCategories]);
+  }, [sort, productsDB, priceFilter, selectedCategories, selectedRating]);
 
   const priceFilterHandler = () => {
     setPriceFilter({
@@ -111,6 +121,14 @@ function Products({ productsDB }) {
         return [...prev, category];
       }
     });
+  };
+
+  const handleRatingClick = (rating) => {
+    setSelectedRating(prev => prev === rating ? null : rating);
+  };
+
+  const countProductsByRating = (rating) => {
+    return productsDB.filter(product => Math.floor(product.score) === rating).length;
   };
 
   useEffect(() => {
@@ -201,8 +219,12 @@ function Products({ productsDB }) {
             <div className={filterStyles.filter_section}>
               <h3 className={filterStyles.section_title}>امتیاز</h3>
               <ul className={filterStyles.rating_list}>
-                {[5, 4, 3].map((stars) => (
-                  <li key={stars} className={filterStyles.rating_item}>
+                {ratings.map((stars) => (
+                  <li 
+                    key={stars} 
+                    className={`${filterStyles.rating_item} ${selectedRating === stars ? filterStyles.selected : ''}`}
+                    onClick={() => handleRatingClick(stars)}
+                  >
                     <div className={filterStyles.stars}>
                       {[...Array(5)].map((_, i) => (
                         i < stars ? 
@@ -210,7 +232,7 @@ function Products({ productsDB }) {
                           <FaRegStar key={i} className={filterStyles.empty_star} />
                       ))}
                     </div>
-                    <span>({Math.floor(Math.random() * 30) + 10})</span>
+                    <span>({countProductsByRating(stars)})</span>
                   </li>
                 ))}
               </ul>
