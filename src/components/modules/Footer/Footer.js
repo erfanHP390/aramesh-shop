@@ -9,8 +9,7 @@ export default function Footer() {
   const [showMoreLinks, setShowMoreLinks] = useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-    const [allArticles, setAllArticles] = useState([]);
-  
+  const [allArticles, setAllArticles] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -18,7 +17,7 @@ export default function Footer() {
         setIsMobile(window.innerWidth <= 986);
       };
 
-      handleResize(); 
+      handleResize();
       window.addEventListener('resize', handleResize);
 
       return () => {
@@ -28,7 +27,6 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-
     const getBlogs = async () => {
       try {
         const res = await fetch("/api/blog");
@@ -39,8 +37,8 @@ export default function Footer() {
       }
     }
 
-    getBlogs()
-  } , [])
+    getBlogs();
+  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -53,9 +51,7 @@ export default function Footer() {
 
           <div className={styles.description}>
             <FaMap style={{ fontSize: "2rem" }} />
-            <p>
-              تهران ، خیابان فرشته
-            </p>
+            <p>تهران ، خیابان فرشته</p>
           </div>
           <div className={styles.description}>
             <FaPhoneAlt />
@@ -67,14 +63,13 @@ export default function Footer() {
           </div>
         </section>
 
-        <section>
+        <section className={styles.articlesSection}>
           <h4>جدیدترین نوشته ها</h4>
-
-          {
-            allArticles?.slice(0 , 2).map(blog => (
-              <ArticleFooter  key={blog._id}  {...blog} />
-            ))
-          }
+          <div className={styles.articlesContainer}>
+            {allArticles?.slice(0, 2).map(blog => (
+              <ArticleFooter key={blog._id} {...blog} />
+            ))}
+          </div>
         </section>
 
         <ul className={styles.links}>
@@ -91,7 +86,7 @@ export default function Footer() {
                   <Link href={"/contact-us"}>تماس با ما</Link>
                 </li>
                 <li>
-                  <Link href={"/about-us"}>درباره ما </Link>
+                  <Link href={"/about-us"}>درباره ما</Link>
                 </li>
                 <li>
                   <Link href={"/rules"}>قوانین</Link>
@@ -109,10 +104,10 @@ export default function Footer() {
             {(!isMobile || showQuickLinks) && (
               <>
                 <li>
-                  <Link href={"/category"}> فروشگاه </Link>
+                  <Link href={"/category"}>فروشگاه</Link>
                 </li>
                 <li>
-                  <Link href={"/articles"}> مقالات </Link>
+                  <Link href={"/articles"}>مقالات</Link>
                 </li>
                 <li>
                   <Link href={"/cart"}>سبد خرید</Link>
