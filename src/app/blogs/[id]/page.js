@@ -112,7 +112,7 @@ async function page({ params }) {
       text: comment.text,
       author: {
         "@type": "Person",
-        name: comment.user.name,
+        name: comment.name,
       },
       dateCreated: comment.createdAt.toISOString(),
     })),
