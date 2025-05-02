@@ -5,6 +5,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
+    direction: rtl !important;
 }
 
 .filtering {
@@ -82,3 +83,119 @@
         width: 100%;
     }
 }
+
+/* ========================================== */
+
+.cart_empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: 2rem;
+    background-color: #FFF9F2; 
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 2rem auto;
+    direction: rtl;
+  }
+  
+  .cart_empty svg {
+    font-size: 8rem;
+    color: #E0D5C8; 
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+  
+  .cart_empty p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #6F4E37; 
+    margin-bottom: 1.5rem;
+  }
+  
+  .cart_empty span {
+    display: block;
+    font-size: 1rem;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cart_empty div {
+    margin-top: 2rem;
+  }
+  
+  .cart_empty a {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #CC5500; 
+    color: white;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(204, 85, 0, 0.2);
+  }
+  
+  .cart_empty a:hover {
+    background-color: #B34700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(204, 85, 0, 0.25);
+  }
+  
+  @media (max-width: 1000px) {
+    .cart_empty {
+      min-height: 50vh;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+    }
+    
+    .cart_empty svg {
+      font-size: 6rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cart_empty p {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cart_empty span {
+      font-size: 0.9rem;
+    }
+    
+    .cart_empty a {
+      padding: 0.7rem 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cart_empty {
+      min-height: 40vh;
+      padding: 1rem;
+      margin: 1rem auto;
+      border-radius: 8px;
+    }
+    
+    .cart_empty svg {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cart_empty p {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .cart_empty span {
+      font-size: 0.8rem;
+    }
+    
+    .cart_empty a {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }

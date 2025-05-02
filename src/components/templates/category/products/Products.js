@@ -7,6 +7,8 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import MultiRangeSlider from "../multiRange/MultiRangeSlider";
 import { FiFilter, FiX } from "react-icons/fi";
 import filterStyles from "../filtering/Filtering.module.css";
+import { TbShoppingCartX } from "react-icons/tb";
+import Link from "next/link";
 
 function Products({ productsDB }) {
   const [sort, setSort] = useState("-1");
@@ -279,9 +281,15 @@ function Products({ productsDB }) {
               <Product key={product._id} {...product} />
             ))
           ) : (
-            <div className={styles.noProducts}>
-              محصولی با فیلترهای انتخاب شده یافت نشد
-            </div>
+            <div className={styles.cart_empty} data-aos="fade-up">
+            <TbShoppingCartX />
+            <p>محصولی مطابق با فیلتر انتخاب شده شما یافت نشد</p>
+            <span>
+              لطفا برای پیدا کردن محصول خود از فیلتر های دیگر کمک بگیرید
+            </span>
+            <span>در صورت راهنمایی یا بروز مشکل میتوانید به پشتیبانی تیکت دهید</span>
+            <Link href={"/p-user/tickets/sendTicket"}>ارسال تیکت</Link>
+          </div>
           )}
         </main>
 
