@@ -14,7 +14,7 @@ import {
 function Article({_id , titr , title , author , img , createdAt , comments , imgStyle}) {
   return (
     <div className={styles.card}>
-      <Link className={styles.img_container} href={`/article/${_id}`}>
+      <Link className={styles.img_container} href={`/blogs/${_id}`}>
         <img
           src={img}
           style={imgStyle}
@@ -26,7 +26,7 @@ function Article({_id , titr , title , author , img , createdAt , comments , img
       </div>
       <div className={styles.details}>
         <span className={styles.tag}>{titr}</span>
-        <Link href={`/article/${_id}`} className={styles.title}>
+        <Link href={`/blogs/${_id}`} className={styles.title}>
           {title}
         </Link>
         <div>

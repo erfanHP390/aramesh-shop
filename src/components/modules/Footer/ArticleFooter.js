@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ArticleFooter({ _id , img , title , comments , createdAt}) {
   return (
-    <Link href={`/blog/${_id}`} className={styles.article}>
+    <Link href={`/blogs/${_id}`} className={styles.article}>
       <img width={75} height={65} src={img} alt={title} />
       <div>
         <p className={styles.title}>{title}</p>
