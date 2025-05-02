@@ -16,31 +16,31 @@ export default function Information() {
       <p>اطلاعات تماس</p>
       <div>
         <PiCoffeeFill />
-        <p>شرکت فنجان داغ خوارزمی (کارخانه قهوه ست )</p>
+        <p>هلدینگ آرامش، بزرگترین و تخصصی ترین فروشگاه قهوه ایران</p>
       </div>
       <div>
         <FaInternetExplorer />
-        <p>set-coffee.com</p>
+        <p>aramesh-coffee.com</p>
       </div>
       <div>
         <BiSolidContact />
         <p>
           {" "}
-          تهران. پاکدشت . شهرک صنعتی خوارزمی. فاز 2 . بلوار بهارستان. خیابان
-          ماگنولیا بلوک آ117{" "}
+          مشهد ، شهرک صنعتی فاز دو ، میدان تلاش ، خیابان کوشش ، کوشش 2
+          {" "}
         </p>
       </div>
       <div>
         <FaPhone />
-        <p>021-36479228</p>
+        <p>051-36479228</p>
       </div>
       <div>
         <FaEnvelopeOpenText />
-        <p>offee[at]set-coffee.com</p>
+        <p>aramesh-holding-coffee.com</p>
       </div>
       <div>
         <FaEnvelopeOpenText />
-        <p>whole[at]set-coffee.com</p>
+        <p>arameshCoffeeBeans@yahoo.com</p>
       </div>
       <div>
         <FaTelegramPlane />
