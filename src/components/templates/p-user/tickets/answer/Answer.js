@@ -1,7 +1,7 @@
 import styles from "./Answer.module.css"
 
 
-function Answer({type , title , body , createdAt , user}) {
+function Answer({type , title , body , createdAt , user , profileUser}) {
   return (
     <section
       className={type == "user" ? styles.userTicket : styles.adminticket}
@@ -13,7 +13,8 @@ function Answer({type , title , body , createdAt , user}) {
             <p>{user.name}</p>
             <span>{user.role === "ADMIN" ? "ادمین" : "کاربر"}</span>
           </div>
-          <img src="/images/shahin.jpg" alt="" />
+          <img                 src={profileUser ? profileUser.img : "/images/user2.avif"}
+ alt="" />
         </div>
       </div>
       <div className={styles.ticket_text}>

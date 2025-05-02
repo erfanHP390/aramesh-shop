@@ -1,10 +1,12 @@
 import UserPanelLayout from "@/components/layouts/UserPanelLayout/UserPanelLayout";
 import Link from "next/link";
 import styles from "@/styles/p-user/answerTicket.module.css";
+import TitleStyles from "@/components/templates/p-user/tickets/allTickets/AllTickets.module.css"
 import Answer from "@/components/templates/p-user/tickets/answer/Answer";
 import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
 import BanModel from "@/models/Ban";
+import UserProfileModel from "@/models/UserProfile"
 import { redirect } from "next/navigation";
 import { authUser } from "@/utils/authUserLink";
 
@@ -12,6 +14,7 @@ async function page({ params }) {
   connectToDB();
     const user = await authUser();
   const ticketID = params.id;
+  const profileUser = await UserProfileModel.findOne({user: user._id})
   const ticket = await TicketModel.findOne({ _id: ticketID })
     .populate("user", "name role")
     .lean();
@@ -29,14 +32,14 @@ async function page({ params }) {
   return (
     <UserPanelLayout>
       <main className={styles.container}>
-        <h1 className={styles.title}>
+        <h1 className={TitleStyles.title}>
           <span>تیکت {ticket.title}</span>
           <Link href="/p-user/tickets/sendTicket">ارسال تیکت جدید</Link>
         </h1>
 
         <div>
           <Answer type="user" {...ticket} />
-          {answerTicket && <Answer type="admin" {...answerTicket} />}
+          {answerTicket && <Answer type="admin" {...answerTicket}  profileUser={JSON.parse(JSON.stringify(profileUser))}  />}
 
           {!answerTicket && (
             <div className={styles.empty}>
