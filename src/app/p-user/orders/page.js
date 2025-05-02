@@ -7,6 +7,8 @@ import { authUser } from "@/utils/authUserLink";
 import OrderModel from "@/models/Orders";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+
 
 async function page() {
   connectToDB();
@@ -27,7 +29,7 @@ async function page() {
   return (
     <UserPanelLayout>
       {orders.length === 0 ? (
-        <p className={styles.empty}>سفارشی وجود ندارد</p>
+        <p className={emptyStyles.empty}>سفارشی وجود ندارد</p>
       ) : (
         <OrdersMain orders={JSON.parse(JSON.stringify(orders))} />
       )}
