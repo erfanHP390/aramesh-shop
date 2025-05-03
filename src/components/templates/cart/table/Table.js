@@ -22,9 +22,10 @@ function Table() {
   const [stateSelectedOption, setStateSelectedOption] = useState(null);
   const [changeAddress, setChangeAddress] = useState(false);
   const [citySelectedOption, setCitySelectedOption] = useState(null);
-  const [citySelectorDisabel, setCitySelectorDisabel] = useState(true);
-  const [cityOption, setCityOption] = useState([]);
+  const [citySelectorDisabled, setCitySelectorDisabled] = useState(true);
+  const [cityOptions, setCityOptions] = useState([]);
   const [appliedDiscount, setAppliedDiscount] = useState(null);
+  const [postalCode, setPostalCode] = useState("");
 
   const getSafeLocalStorage = (key, defaultValue) => {
     try {
@@ -39,17 +40,85 @@ function Table() {
   useEffect(() => {
     setCitySelectedOption(null);
     if (stateSelectedOption?.value) {
-      const city = stateSelectedOption?.value.map((data) => ({
-        value: data,
-        label: data,
+      const cities = stateSelectedOption.value.map((cityName) => ({
+        value: cityName,
+        label: cityName,
+        price: stateSelectedOption.price
       }));
-      setCityOption(city);
-      setCitySelectorDisabel(false);
+      setCityOptions(cities);
+      setCitySelectorDisabled(false);
     }
   }, [stateSelectedOption]);
 
   const customStyles = {
-   
+    control: (base, { isFocused }) => ({
+      ...base,
+      backgroundColor: "#A68A64",
+      borderColor: isFocused ? "#FFD700" : "rgba(255, 255, 255, 0.3)",
+      borderWidth: "1px",
+      borderRadius: "8px",
+      minHeight: "48px",
+      boxShadow: isFocused ? "0 0 0 1px #FFD700" : "none",
+      "&:hover": {
+        borderColor: "#FFD700",
+      },
+      cursor: "pointer",
+      padding: "0 8px",
+    }),
+    placeholder: (base) => ({
+      ...base,
+      color: "rgba(255, 255, 255, 0.7)",
+      fontSize: "0.95rem",
+      textAlign: "right",
+      direction: "rtl",
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: "#FFFFFF",
+      fontSize: "0.95rem",
+      direction: "rtl",
+      textAlign: "right",
+    }),
+    input: (base) => ({
+      ...base,
+      color: "#FFFFFF",
+      direction: "rtl",
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "#6F4E37",
+      border: "1px solid rgba(255, 215, 0, 0.2)",
+      borderRadius: "8px",
+      overflow: "hidden",
+      marginTop: "4px",
+      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+    }),
+    option: (base, { isFocused, isSelected }) => ({
+      ...base,
+      backgroundColor: isSelected
+        ? "#CC5500"
+        : isFocused
+        ? "rgba(212, 181, 140, 0.3)"
+        : "transparent",
+      color: "#FFFFFF",
+      fontSize: "0.9rem",
+      padding: "12px 16px",
+      direction: "rtl",
+      textAlign: "right",
+      "&:active": {
+        backgroundColor: "#CC5500",
+      },
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      color: "rgba(255, 255, 255, 0.7)",
+      "&:hover": {
+        color: "#FFD700",
+      },
+    }),
   };
 
   useEffect(() => {
@@ -57,9 +126,26 @@ function Table() {
     const getPriceCart = getSafeLocalStorage("priceCart", {});
 
     setCart(getCart);
+    setPostalCode(getPriceCart.postalCode || "");
 
     if (getPriceCart.appliedDiscount) {
       setAppliedDiscount(getPriceCart.appliedDiscount);
+    }
+    if (getPriceCart.province) {
+      const selectedState = stateOptions.find(
+        (state) => state.label === getPriceCart.province
+      );
+      if (selectedState) {
+        setStateSelectedOption(selectedState);
+      }
+    }
+    if (getPriceCart.city) {
+      const selectedCity = {
+        value: getPriceCart.city,
+        label: getPriceCart.city,
+        price: getPriceCart.postPrice
+      };
+      setCitySelectedOption(selectedCity);
     }
   }, []);
 
@@ -79,7 +165,9 @@ function Table() {
   const calcTotalPrice = () => {
     let price = productPrice;
 
-    if (stateSelectedOption) {
+    if (citySelectedOption?.price) {
+      price = price + citySelectedOption.price;
+    } else if (stateSelectedOption?.price) {
       price = price + stateSelectedOption.price;
     }
 
@@ -96,7 +184,7 @@ function Table() {
 
   useEffect(() => {
     calcTotalPrice();
-  }, [productPrice, stateSelectedOption, appliedDiscount]);
+  }, [productPrice, stateSelectedOption, citySelectedOption, appliedDiscount]);
 
   const discountHandler = async () => {
     if (!discountInput) {
@@ -193,12 +281,13 @@ function Table() {
 
   const addPriceToLS = () => {
     const prices = {
-      postPrice: stateSelectedOption?.price || 0,
+      postPrice: citySelectedOption?.price || stateSelectedOption?.price || 0,
       totalPrice,
       productPrice,
       province: stateSelectedOption?.label || "",
       city: citySelectedOption?.label || "",
       appliedDiscount,
+      postalCode
     };
 
     localStorage.setItem("priceCart", JSON.stringify(prices));
@@ -239,6 +328,17 @@ function Table() {
     });
   };
 
+  const updateProductCount = (productId, newCount) => {
+    if (newCount < 1) return;
+    
+    const updatedCart = cart.map(item => 
+      item.id === productId ? {...item, count: newCount} : item
+    );
+    
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <>
       {cart.length > 0 ? (
@@ -260,16 +360,15 @@ function Table() {
                     <td>{(item.price * item.count).toLocaleString()} تومان</td>
                     <td className={styles.counter}>
                       <div>
-                        <span>-</span>
+                        <span onClick={() => updateProductCount(item.id, item.count - 1)}>-</span>
                         <p>{item.count}</p>
-                        <span>+</span>
+                        <span onClick={() => updateProductCount(item.id, item.count + 1)}>+</span>
                       </div>
                     </td>
                     <td className={styles.price}>
                       {item.price.toLocaleString()} تومان
                     </td>
                     <td className={styles.product}>
-                      <img src={item.img} alt={item.name} />
                       <Link href={`/product/${item.id}`}>{item.name}</Link>
                     </td>
                     <td>
@@ -312,6 +411,123 @@ function Table() {
             </section>
           </div>
           <div className={totalStyles.totals}>
+            <div className={totalStyles.totals_wrapper}>
+              <p className={totalStyles.totals_title}>جمع کل سبد خرید</p>
+
+              <div className={totalStyles.subtotal}>
+                <p>جمع جزء </p>
+                <p>{productPrice.toLocaleString()} تومان</p>
+              </div>
+
+              <div className={totalStyles.shipping_cost}>
+                <p>هزینه ارسال: </p>
+                <p>
+                  {citySelectedOption?.price 
+                    ? citySelectedOption.price.toLocaleString() 
+                    : stateSelectedOption?.price 
+                      ? stateSelectedOption.price.toLocaleString() 
+                      : "0"} تومان
+                </p>
+              </div>
+
+              <div className={totalStyles.address}>
+                <p>حمل و نقل </p>
+                <span>
+                  {stateSelectedOption?.label 
+                    ? `حمل و نقل به ${stateSelectedOption.label}` 
+                    : "لطفا استان را انتخاب کنید"}
+                  {citySelectedOption?.label ? ` (${citySelectedOption.label})` : ""}
+                </span>
+              </div>
+              
+              <div className={totalStyles.change_address_container}>
+                <button
+                  onClick={() => setChangeAddress((prev) => !prev)}
+                  className={totalStyles.change_address}
+                >
+                  {changeAddress ? "بستن" : "تغییر آدرس"}
+                </button>
+              </div>
+
+              {changeAddress && (
+                <div className={totalStyles.address_details}>
+                  <div className={totalStyles.select_wrapper}>
+                    <Select
+                      value={stateSelectedOption}
+                      onChange={(selectedOption) => {
+                        setStateSelectedOption(selectedOption);
+                        setCitySelectedOption(null);
+                      }}
+                      options={stateOptions}
+                      placeholder="انتخاب استان"
+                      isRtl={true}
+                      isSearchable={true}
+                      styles={customStyles}
+                      noOptionsMessage={() => "استانی یافت نشد"}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      getOptionLabel={(option) => option.label}
+                      getOptionValue={(option) => option.value}
+                    />
+                  </div>
+                  
+                  <div className={totalStyles.select_wrapper}>
+                    <Select
+                      value={citySelectedOption}
+                      onChange={setCitySelectedOption}
+                      options={cityOptions}
+                      isDisabled={citySelectorDisabled}
+                      placeholder={
+                        citySelectorDisabled
+                          ? "ابتدا استان را انتخاب کنید"
+                          : "انتخاب شهر"
+                      }
+                      isRtl={true}
+                      isSearchable={true}
+                      styles={customStyles}
+                      noOptionsMessage={() => "شهری یافت نشد"}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                    />
+                  </div>
+                  
+                  <input 
+                    type="number" 
+                    placeholder="کد پستی" 
+                    value={postalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
+                    className={totalStyles.postal_code_input}
+                  />
+                  
+                  <button 
+                    onClick={() => {
+                      addPriceToLS();
+                      setChangeAddress(false);
+                    }}
+                    className={totalStyles.update_address_btn}
+                  >
+                    بروزرسانی آدرس
+                  </button>
+                </div>
+              )}
+
+              <div className={totalStyles.total}>
+                <p>مجموع</p>
+                <p>{totalPrice.toLocaleString()} تومان</p>
+              </div>
+              
+              <div className={totalStyles.checkout_btn_wrapper}>
+                <Link href={"/checkout"}>
+                  <button 
+                    className={totalStyles.checkout_btn}
+                    onClick={addPriceToLS}
+                    disabled={!stateSelectedOption}
+                  >
+                    ادامه جهت تسویه حساب
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </>
       ) : (
