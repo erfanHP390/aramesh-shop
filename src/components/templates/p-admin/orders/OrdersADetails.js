@@ -200,6 +200,7 @@ function OrdersADetails({ order }) {
         undefined,
         "colored"
       );
+      router.refresh()
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(
