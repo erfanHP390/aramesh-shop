@@ -4,6 +4,7 @@ import styles from "./TicketTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function TicketTable({ tickets, title, email, phone }) {
   const router = useRouter();
@@ -11,9 +12,6 @@ function TicketTable({ tickets, title, email, phone }) {
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("updatedAt");
 
-  const showTicketBody = (text) => {
-    swalAlert(text, undefined, "بستن");
-  };
 
   const answerToTicket = async (ticket) => {
     swal({
@@ -243,9 +241,8 @@ function TicketTable({ tickets, title, email, phone }) {
                     <button
                       type="button"
                       className={styles.edit_btn}
-                      onClick={() => showTicketBody(ticket.body)}
                     >
-                      مشاهده
+                      <Link href={`/p-admin/tickets/answer/${ticket._id}`}>مشاهده</Link>
                     </button>
                   </td>
                   <td>
