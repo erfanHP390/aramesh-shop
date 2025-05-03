@@ -15,7 +15,7 @@ function DataTable({ comments, title }) {
 
   const deleteComment = async (commentID) => {
     swal({
-      title: "آیا از حذف کاربر اطمینان دارین؟",
+      title: "آیا از حذف کامنت اطمینان دارین؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
@@ -26,7 +26,7 @@ function DataTable({ comments, title }) {
 
         if (res.status === 200) {
           toastSuccess(
-            "محصول با موفقیت به علاقه مندی ها افزوده شد",
+            "کامنت با موفقیت حذف شد",
             "top-center",
             5000,
             false,
