@@ -9,7 +9,7 @@ import Title from "@/components/modules/p-user/title/Title";
 
 const page = async () => {
     connectToDB();
-    const tickets = await TicketModel.find({})
+    const tickets = await TicketModel.find({isAnswer: false})
       .sort({ _id: -1 })
       .populate("user")
       .populate("department")
