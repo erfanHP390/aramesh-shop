@@ -51,7 +51,6 @@ export async function generateMetadata({ params }) {
 
 export default async function page({params}) {
     connectToDB()
-    const user = await authUser();
     const productID = params.id
     const product = await ProductModel.findOne({_id: productID}).populate("comments")
 
@@ -87,7 +86,7 @@ export default async function page({params}) {
 
     return (
         <div className={styles.container}>
-            <Navbar isLogin={user ? true : false} />
+            <Navbar  />
             <div data-aos="fade-up" className={styles.contents}>
                 <div className={styles.main}>
                     <Gallery product={JSON.parse(JSON.stringify(product))} />

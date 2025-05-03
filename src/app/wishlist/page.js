@@ -22,7 +22,7 @@ const page = async () => {
 
   return (
     <>
-      <Navbar isLogin={user ? true : false} />
+      <Navbar  />
       <Breadcrumb route={"علاقه مندی ها"} />
       <main className={styles.container} data-aos="fade-up">
         <p className={styles.title}>محصولات مورد علاقه شما</p>

@@ -6,7 +6,6 @@ import Footer from "@/components/modules/Footer/Footer";
 import Products from "@/components/templates/category/products/Products";
 import Filtering from "@/components/templates/category/filtering/Filtering";
 import connectToDB from "@/configs/db";
-import { authAdmin, authUser } from "@/utils/authUserLink";
 import ProductModel from "@/models/Product";
 import Head from "next/head";
 
@@ -60,8 +59,6 @@ export const metadata = {
 
 async function page() {
   connectToDB();
-  const user = await authUser();
-  const admin = await authAdmin();
   const products = await ProductModel.find();
 
   const jsonLd = {
@@ -110,7 +107,7 @@ async function page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar isLogin={user ? true : false} isAdmin={admin ? true : false} />
+      <Navbar  />
       <BreadCrumb 
         route={'فروشگاه'} 
         links={[

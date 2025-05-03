@@ -120,7 +120,7 @@ async function page({ params }) {
 
   return (
     <>
-      <Navbar isLogin={user ? true : false} />
+      <Navbar  />
       <BreadCrumb route={"قهوه"} />
       <div className={styles.container}>
         <script

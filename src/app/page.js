@@ -20,11 +20,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar
-        isLogin={user ? true : false}
-        isAdmin={admin ? true : false}
-        whishList={wishlist.length}
-      />
+      <Navbar />
       <Banner />
       <Latest products={JSON.parse(JSON.stringify(products))} />
       <About />

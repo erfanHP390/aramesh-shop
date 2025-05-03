@@ -6,17 +6,15 @@ import Footer from '@/components/modules/Footer/Footer'
 import Discount from '@/components/templates/checkout/discount/Discount'
 import OrdersDetails from '@/components/templates/checkout/ordersDetails/OrdersDetails'
 import connectToDB from '@/configs/db'
-import { authUser } from '@/utils/authUserLink'
 
 async function page() {
 
 
   connectToDB()
-  const user = await authUser()
 
   return (
     <>
-    <Navbar  isLogin={user ? true : false} />
+    <Navbar   />
     <Stepper step="checkout" />
     <div className={styles.container} data-aos="fade-up">
 

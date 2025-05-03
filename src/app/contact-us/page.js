@@ -65,7 +65,6 @@ export const metadata = {
 
 export default async function page() {
   connectToDB()
-  const user = await authUser()
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -111,7 +110,7 @@ export default async function page() {
 
   return (
     <>
-      <Navbar isLogin={user ? true : false} />
+      <Navbar  />
       <BreadCrumb route={"تماس با ما"} />
       
       <script
