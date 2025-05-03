@@ -7,6 +7,7 @@ import CommentBlogModel from "@/models/CommentBlog";
 import CommentTable from "@/components/templates/p-admin/comments/CommentTable";
 import { authUser } from "@/utils/authUserLink";
 import CommentBTable from "@/components/templates/p-admin/comments/CommentBTable";
+import Title from "@/components/modules/p-user/title/Title";
 
 const page = async () => {
   connectToDB();
@@ -24,13 +25,13 @@ const page = async () => {
   return (
     <AdminPanelLayout>
       <main>
+        <Title  title={" کامنت ها"} />
         {comments.length === 0 && commentsBlog.length === 0 ? (
           <p className={styles.empty}>کامنتی وجود ندارد</p>
         ) : (
           <>
             <CommentTable
               comments={JSON.parse(JSON.stringify(comments))}
-              title="لیست کامنت محصولات"
               phone={user.phone}
             />
             <CommentBTable

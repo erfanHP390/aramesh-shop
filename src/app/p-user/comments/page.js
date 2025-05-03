@@ -26,7 +26,7 @@ async function page() {
   return (
     <UserPanelLayout>
       <main>
-        <Title title={"لیست کامنت ها"} route={"/category"}  text={"ایجاد کامنت جدید"} />
+        <Title title={" کامنت ها"} route={"/category"}  text={"ایجاد کامنت جدید"} />
         {comments.length === 0 ? (
           <p className={emptyStyles.empty}>کامنتی وجود ندارد</p>
         ) : (

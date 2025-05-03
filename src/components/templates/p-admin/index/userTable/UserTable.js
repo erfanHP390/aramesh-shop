@@ -280,11 +280,6 @@ function UserTable({ users, title }) {
 
   return (
     <div>
-      <div>
-        <h1 className={styles.title}>
-          <span>{title}</span>
-        </h1>
-      </div>
       <div className={styles.table_container}>
         <table className={styles.table}>
           <thead>

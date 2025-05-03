@@ -29,7 +29,7 @@ async function page() {
 
   return (
     <UserPanelLayout>
-      <Title title={"لیست سفارشات"} route={"/category"} text={"ایجاد سفارش جدید"} />
+      <Title title={" سفارشات"} route={"/category"} text={"ایجاد سفارش جدید"} />
       {orders.length === 0 ? (
         <p className={emptyStyles.empty}>سفارشی وجود ندارد</p>
       ) : (

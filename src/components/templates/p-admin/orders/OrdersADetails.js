@@ -342,7 +342,6 @@ function OrdersADetails({ order }) {
   return (
     <>
       <div className={styles.details}>
-        <p className={styles.details_title}>جزئیات صورتحساب</p>
         <form className={styles.form}>
           <div className={styles.groups}>
             <div className={styles.group}>

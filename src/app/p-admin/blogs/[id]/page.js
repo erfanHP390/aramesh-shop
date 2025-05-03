@@ -3,6 +3,7 @@ import connectToDB from '@/configs/db'
 import React from 'react'
 import BlogModel from "@/models/Blog"
 import BlogDetails from '@/components/templates/p-admin/blogs/BlogDetails'
+import Title from '@/components/modules/p-user/title/Title'
 
 async function page({params}) {
 
@@ -13,6 +14,7 @@ async function page({params}) {
 
   return (
     <AdminPanelLayout>
+      <Title title={"جزئیات مقاله"} route={"/p-admin/blogs"} text={"همه مقالات"} />
       <BlogDetails blog={JSON.parse(JSON.stringify(blog))}   />
     </AdminPanelLayout>
   )

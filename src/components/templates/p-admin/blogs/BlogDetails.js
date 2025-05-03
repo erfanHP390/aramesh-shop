@@ -120,9 +120,6 @@ function BlogDetails({ blog }) {
   return (
     <main>
       <div className={styles.details}>
-        <h1 className={styles.title}>
-          <span>جزئیات مقاله</span>
-        </h1>
         <div className={styles.details_main}>
           <section>
             <section>

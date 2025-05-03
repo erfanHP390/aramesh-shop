@@ -4,6 +4,7 @@ import styles from "@/components/templates/p-admin/index/userTable/UserTable.mod
 import UserTable from "@/components/templates/p-admin/index/userTable/UserTable";
 import connectToDB from "@/configs/db";
 import UserModel from "@/models/User";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page() {
     connectToDB();
@@ -12,12 +13,12 @@ async function page() {
   return (
     <AdminPanelLayout>
       <main>
+      <Title   title={" کاربران"} />
       {users.length === 0 ? (
           <p className={styles.empty}>کاربری وجود ندارد</p>
         ) : (
           <UserTable
             users={JSON.parse(JSON.stringify(users))}
-            title="لیست کاربران"
           />
         )}
       </main>

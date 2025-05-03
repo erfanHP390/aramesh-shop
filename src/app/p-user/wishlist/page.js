@@ -29,7 +29,7 @@ async function page() {
   return (
     <UserPanelLayout>
       <main>
-        <Title title={"لیست علاقه مندی ها"} />
+        <Title title={" علاقه مندی ها"} />
         <div className={styles.container}>
         {validWishlist.length > 0 ? (
             <>

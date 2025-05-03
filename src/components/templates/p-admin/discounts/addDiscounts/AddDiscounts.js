@@ -90,7 +90,6 @@ function AddDiscounts() {
 
   return (
     <section className={styles.discount}>
-      <p>افزودن کد تخفیف جدید</p>
       <div className={styles.discount_main}>
         <div>
           <label>شناسه تخفیف</label>

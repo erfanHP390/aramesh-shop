@@ -5,6 +5,7 @@ import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
 import TicketTable from "@/components/templates/p-admin/tickets/TicketTable";
 import { authUser } from "@/utils/authUserLink";
+import Title from "@/components/modules/p-user/title/Title";
 
 const page = async () => {
     connectToDB();
@@ -20,12 +21,12 @@ const page = async () => {
     return (
       <AdminPanelLayout>
         <main>
+        <Title   title={" تیکت ها"} />
           {tickets.length === 0 ? (
             <p className={styles.empty}>تیکتی وجود ندارد</p>
           ) : (
             <TicketTable
               tickets={JSON.parse(JSON.stringify(tickets))}
-              title="لیست تیکت ها"
               email={user.email}
               phone={user.phone}
             />

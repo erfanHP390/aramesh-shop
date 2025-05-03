@@ -103,10 +103,6 @@ function BlogCreate() {
   return (
     <main>
     <div className={styles.details}>
-      <h1 className={styles.title}>
-        <span>جزئیات مقاله</span>
-        <Link href="/p-admin/blogs">همه مقالات</Link>
-      </h1>
       <div className={styles.details_main}>
         <section>
                     <section>

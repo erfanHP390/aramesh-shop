@@ -129,9 +129,6 @@ function ProductDetails({ product }) {
   return (
     <main>
       <div className={styles.details}>
-        <h1 className={styles.title}>
-          <span>جزئیات محصول</span>
-        </h1>
         <div className={styles.details_main}>
           <section>
             <section>

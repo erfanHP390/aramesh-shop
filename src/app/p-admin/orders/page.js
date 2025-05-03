@@ -1,4 +1,5 @@
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
+import Title from "@/components/modules/p-user/title/Title";
 import OrderTable from "@/components/templates/p-admin/orders/OrderTable";
 import connectToDB from "@/configs/db";
 import OrderModel from "@/models/Orders";
@@ -13,7 +14,8 @@ async function page() {
 
   return (
     <AdminPanelLayout>
-      <OrderTable title="لیست سفارشات"  orders={JSON.parse(JSON.stringify(orders))} />
+      <Title title={" سفارشات"} />
+      <OrderTable orders={JSON.parse(JSON.stringify(orders))} />
     </AdminPanelLayout>
   );
 }

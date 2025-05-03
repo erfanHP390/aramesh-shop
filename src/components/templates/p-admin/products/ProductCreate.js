@@ -103,10 +103,6 @@ function ProductCreate() {
   return (
     <main>
       <div className={styles.details}>
-        <h1 className={styles.title}>
-          <span>ایجاد محصول</span>
-          <Link href="/p-admin/products">همه محصولات</Link>
-        </h1>
         <div className={styles.details_main}>
           <section>
             <section>

@@ -4,6 +4,7 @@ import React from 'react'
 import styles from "@/components/templates/p-admin/tickets/TicketTable.module.css"
 import ProductModel from "@/models/Product"
 import ProductTable from '@/components/templates/p-admin/products/ProductTable'
+import Title from '@/components/modules/p-user/title/Title'
 
 async function page() {
 
@@ -16,12 +17,12 @@ async function page() {
   return (
     <AdminPanelLayout>
     <main>
+    <Title route={"/p-admin/products/create"}  text={"ایجاد محصول جدید"}  title={" محصولات"} />
       {products.length === 0 ? (
         <p className={styles.empty}>محصولی وجود ندارد</p>
       ) : (
         <ProductTable
           products={JSON.parse(JSON.stringify(products))}
-          title="لیست محصولات"
         />
       )}
     </main>

@@ -174,11 +174,6 @@ function TicketTable({ tickets, title, email, phone }) {
   return (
     <>
       <div>
-        <div>
-          <h1 className={styles.title}>
-            <span>{title}</span>
-          </h1>
-        </div>
         <form onSubmit={applyFilters} className={styles.filtering}>
         <div className={styles.filter_group}>
           <select 

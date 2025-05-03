@@ -23,7 +23,7 @@ async function page() {
 
   return (
     <UserPanelLayout>
-      <Title title={"لیست تیکت ها"} route={"/p-user/tickets/sendTicket"} text={"ارسال تیکت"} />
+      <Title title={" تیکت ها"} route={"/p-user/tickets/sendTicket"} text={"ارسال تیکت"} />
       {tickets.length === 0 ? (
         <p className={emptyStyles.empty}>تیکتی وجود ندارد</p>
       ) : (

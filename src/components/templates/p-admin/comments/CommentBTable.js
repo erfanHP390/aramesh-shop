@@ -5,6 +5,7 @@ import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 function CommentBTable({comments , title , phone}) {
     console.log(comments);
@@ -328,9 +329,7 @@ function CommentBTable({comments , title , phone}) {
   return (
     <div>
       <div>
-        <h1 className={styles.title}>
-          <span>{title}</span>
-        </h1>
+      <Title   title={"مقالات"} />
       </div>
       <div className={styles.table_container}>
         <table className={styles.table}>
@@ -358,7 +357,7 @@ function CommentBTable({comments , title , phone}) {
                 <td>
                     {comment.education}
                 </td>
-                {/* <td>{comment?.blogID.title}</td> */}
+                <td>{comment.blogID ? comment.blogID.titr : "مقاله حذف شده"}</td>
                 <td>{new Date(comment.createdAt).toLocaleDateString("fa-IR")}</td>
                 <td>
                   <button

@@ -5,6 +5,7 @@ import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 function CommentTable({ comments, title, phone }) {
   const router = useRouter();
@@ -325,9 +326,7 @@ function CommentTable({ comments, title, phone }) {
   return (
     <div>
       <div>
-        <h1 className={styles.title}>
-          <span>{title}</span>
-        </h1>
+        <Title   title={"محصولات"} />
       </div>
       <div className={styles.table_container}>
         <table className={styles.table}>

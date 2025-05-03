@@ -11,6 +11,7 @@ import CommentBlogsModel from "@/models/CommentBlog"
 import BlogModel from "@/models/Blog"
 import SaleChart from "@/components/templates/p-admin/index/saleChart/SaleChart";
 import GrowthChart from "@/components/templates/p-admin/index/growthChart/GrowthChart";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page() {
 
@@ -26,6 +27,7 @@ async function page() {
   return (
     <AdminPanelLayout>
       <main>
+      <Title   title={"پنل مدیریت"} />
         <section className={styles.dashboard_contents}>
           <Box title="مجموع تیکت های دریافتی" value={tickets.length} />
           <Box title="مجموع محصولات سایت" value={products.length} />

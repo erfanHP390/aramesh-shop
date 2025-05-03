@@ -25,7 +25,7 @@ async function page({ params }) {
 
   return (
     <UserPanelLayout>
-      <Title  title={"ویرایش کامنت"} route={"/p-user/comments"}  text={"همه کامنت ها"} />
+      <Title  title={"جزئیات کامنت"} route={"/p-user/comments"}  text={"همه کامنت ها"} />
       <CommentsDetails comment={JSON.parse(JSON.stringify(comment))} />
     </UserPanelLayout>
   );
