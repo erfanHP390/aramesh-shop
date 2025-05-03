@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
+import Link from "next/link";
 
 function CommentTable({ comments, title, phone }) {
   const router = useRouter();
@@ -373,7 +374,7 @@ function CommentTable({ comments, title, phone }) {
                 </td>
                 <td>
                   <button type="button" className={styles.edit_btn}>
-                    ویرایش
+                  <Link href={`/p-user/comments/${comment._id}`}>ویرایش</Link>
                   </button>
                 </td>
                 <td>
