@@ -85,7 +85,7 @@ const Sidebar = ({name}) => {
           </>
         ) : (
           <>
-            <Link href={"/p-admin"} className={styles.sidebar_link_active}>
+            <Link href={"/p-admin"} className={path.includes === ("/p-admin") && styles.sidebar_link_active}>
               <ImReply />
               پیشخوان
             </Link>
