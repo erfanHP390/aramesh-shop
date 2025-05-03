@@ -352,12 +352,12 @@ function OrderTable({ orders, title }) {
                     <div key={index} className={styles.modal_product_info}>
                       <div className={styles.modal_product_header}>
                         <h4 className={styles.modal_product_title}>
-                          {product.name}
+                          {product.name ? product.name : "محصول حذف شده"}
                         </h4>
                       </div>
 
                       <div className={styles.modal_product_price}>
-                        {product.price.toLocaleString()} تومان
+                        {product.price  ? product.price.toLocaleString() : "حذف شده"} تومان
                       </div>
 
                       <div className={styles.modal_product_meta}>
@@ -366,7 +366,7 @@ function OrderTable({ orders, title }) {
                             وزن
                           </span>
                           <span className={styles.modal_product_meta_value}>
-                            {product.weight} گرم
+                            {product.weight ? product.weight : "حذف شده"} گرم
                           </span>
                         </div>
 
@@ -375,7 +375,7 @@ function OrderTable({ orders, title }) {
                             رایحه
                           </span>
                           <span className={styles.modal_product_meta_value}>
-                            {product.smell}
+                            {product.smell  ? product.smell : "حذف شده"}
                           </span>
                         </div>
 
@@ -384,7 +384,7 @@ function OrderTable({ orders, title }) {
                             مناسب برای
                           </span>
                           <span className={styles.modal_product_meta_value}>
-                            {product.suitableFor}
+                            {product.suitableFor ? product.suitableFor : "حذف شده"}
                           </span>
                         </div>
 
@@ -397,7 +397,7 @@ function OrderTable({ orders, title }) {
                               {"★".repeat(product.score)}
                               {"☆".repeat(5 - product.score)}
                             </span>
-                            ({product.score} از 5)
+                            ({product.score ? product.score : "حذف شده"} از 5)
                           </span>
                         </div>
                       </div>
@@ -420,7 +420,7 @@ function OrderTable({ orders, title }) {
                           توضیح کوتاه
                         </h5>
                         <p className={styles.modal_product_description_text}>
-                          {product.shortDesc}
+                          {product.shortDesc ? product.shortDesc : "حذف شده"}
                         </p>
                       </div>
 
@@ -429,7 +429,7 @@ function OrderTable({ orders, title }) {
                           توضیحات کامل
                         </h5>
                         <p className={styles.modal_product_description_text}>
-                          {product.longDesc}
+                          {product.longDesc ? product.longDesc : "حذف شده"}
                         </p>
                       </div>
                     </div>
