@@ -6,6 +6,7 @@ import { authUser } from "@/utils/authUserLink";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+import Title from "@/components/modules/p-user/title/Title";
 
 
 async function page() {
@@ -25,6 +26,7 @@ async function page() {
   return (
     <UserPanelLayout>
       <main>
+        <Title title={"لیست کامنت ها"} route={"/category"}  text={"ایجاد کامنت جدید"} />
         {comments.length === 0 ? (
           <p className={emptyStyles.empty}>کامنتی وجود ندارد</p>
         ) : (

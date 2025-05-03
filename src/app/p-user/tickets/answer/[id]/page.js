@@ -9,6 +9,7 @@ import BanModel from "@/models/Ban";
 import UserProfileModel from "@/models/UserProfile"
 import { redirect } from "next/navigation";
 import { authUser } from "@/utils/authUserLink";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page({ params }) {
   connectToDB();
@@ -32,11 +33,7 @@ async function page({ params }) {
   return (
     <UserPanelLayout>
       <main className={styles.container}>
-        <h1 className={TitleStyles.title}>
-          <span>تیکت {ticket.title}</span>
-          <Link href="/p-user/tickets/sendTicket">ارسال تیکت جدید</Link>
-        </h1>
-
+        <Title route={"/p-user/tickets/sendTicket"} text={"ارسال تیکت جدید"}  title={`تیکت: ${ticket.title}`} />
         <div>
           <Answer type="user" {...ticket} />
           {answerTicket && <Answer type="admin" {...answerTicket}  profileUser={JSON.parse(JSON.stringify(profileUser))}  />}

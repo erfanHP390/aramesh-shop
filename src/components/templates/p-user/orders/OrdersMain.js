@@ -21,11 +21,6 @@ function OrdersMain({ orders }) {
     <>
       <main>
         <div>
-          <div>
-            <h1 className={styles.title}>
-              <span>لیست سفارش ها</span>
-            </h1>
-          </div>
           <div className={styles.table_container}>
             <table className={styles.table}>
               <thead>

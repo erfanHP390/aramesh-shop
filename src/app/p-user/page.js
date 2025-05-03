@@ -12,6 +12,7 @@ import CommentModel from "@/models/Comment";
 import OrderModel from "@/models/Orders";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function Index() {
   connectToDB();
@@ -50,6 +51,7 @@ async function Index() {
     <>
       <UserPanelLayout>
         <main>
+          <Title title={"پنل کاربری"} />
           <section className={styles.boxes}>
             <Box title="مجموع تیکت ها " value={allTickets.length} />
             <Box title="مجموع کامنت ها " value={comments.length} />

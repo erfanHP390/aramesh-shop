@@ -4,6 +4,7 @@ import connectToDB from "@/configs/db";
 import { authUser } from "@/utils/authUserLink";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 
 async function page() {
@@ -20,6 +21,7 @@ async function page() {
 
   return (
     <UserPanelLayout>
+      <Title route={"/p-user/tickets"} text={"همه تیکت ها"} title={"ارسال تیکت جدید"} />
       <SendTicket />
     </UserPanelLayout>
   )

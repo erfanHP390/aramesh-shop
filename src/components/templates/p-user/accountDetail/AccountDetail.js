@@ -7,6 +7,7 @@ import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
+import Title from "@/components/modules/p-user/title/Title";
 
 function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
   const router = useRouter();
@@ -418,10 +419,7 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
 
   return (
     <main>
-      <div className={styles.details}>
-        <h1 className={styles.title}>
-          <span>جزئیات اکانت</span>
-        </h1>
+      <div className={styles.details}   >
         <div className={styles.details_main}>
           {bannedEmail ||
             (bannedMobile && (

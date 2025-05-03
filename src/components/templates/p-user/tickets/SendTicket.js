@@ -131,11 +131,6 @@ function SendTicket() {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>
-        <span>ارسال تیکت جدید</span>
-        <Link href="/p-user/tickets"> همه تیکت ها</Link>
-      </h1>
-
       <div className={styles.content}>
         <div className={styles.group}>
           <label>دپارتمان را انتخاب کنید:</label>

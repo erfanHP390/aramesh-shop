@@ -126,9 +126,6 @@ function CommentsDetails({ comment }) {
   return (
     <main>
       <div className={styles.details}>
-        <h1 className={styles.title}>
-          <span>جزئیات کامنت</span>
-        </h1>
         <div className={styles.details_main}>
           <section>
             <div>

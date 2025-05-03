@@ -8,6 +8,7 @@ import OrderModel from "@/models/Orders";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+import Title from "@/components/modules/p-user/title/Title";
 
 
 async function page() {
@@ -28,6 +29,7 @@ async function page() {
 
   return (
     <UserPanelLayout>
+      <Title title={"لیست سفارشات"} route={"/category"} text={"ایجاد سفارش جدید"} />
       {orders.length === 0 ? (
         <p className={emptyStyles.empty}>سفارشی وجود ندارد</p>
       ) : (

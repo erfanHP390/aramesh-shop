@@ -7,6 +7,7 @@ import connectToDB from "@/configs/db";
 import WishlistModel from "@/models/Wishlist";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page() {
   connectToDB();
@@ -28,9 +29,7 @@ async function page() {
   return (
     <UserPanelLayout>
       <main>
-        <h1 className={styles.title}>
-          <span>علاقه مندی ها</span>
-        </h1>
+        <Title title={"لیست علاقه مندی ها"} />
         <div className={styles.container}>
         {validWishlist.length > 0 ? (
             <>

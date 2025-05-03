@@ -6,6 +6,7 @@ import TicketModel from "@/models/Ticket";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page() {
   connectToDB();
@@ -22,6 +23,7 @@ async function page() {
 
   return (
     <UserPanelLayout>
+      <Title title={"لیست تیکت ها"} route={"/p-user/tickets/sendTicket"} text={"ارسال تیکت"} />
       {tickets.length === 0 ? (
         <p className={emptyStyles.empty}>تیکتی وجود ندارد</p>
       ) : (

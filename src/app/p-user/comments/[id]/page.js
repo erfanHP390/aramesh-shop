@@ -6,6 +6,7 @@ import React from "react";
 import CommentModel from "@/models/Comment";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
+import Title from "@/components/modules/p-user/title/Title";
 
 async function page({ params }) {
   connectToDB();
@@ -24,6 +25,7 @@ async function page({ params }) {
 
   return (
     <UserPanelLayout>
+      <Title  title={"ویرایش کامنت"} route={"/p-user/comments"}  text={"همه کامنت ها"} />
       <CommentsDetails comment={JSON.parse(JSON.stringify(comment))} />
     </UserPanelLayout>
   );
