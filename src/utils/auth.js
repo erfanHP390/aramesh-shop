@@ -15,7 +15,7 @@ const verifyPassword = async (password, hashedPassword) => {
 
 const generateAccessToken = (data) => {
   const token = sign({ ...data }, process.env.PRIVATEKEY , {
-    expiresIn: "60d"
+    expiresIn: "10h"
   });
   return token;
 };
@@ -32,7 +32,7 @@ const verifyToken = (token) => {
 
 const generateRefreshToken = (data) => {
   const token = sign({ ...data }, process.env.RefreshTokenSecretKey , {
-    expiresIn: "15d"
+    expiresIn: "48h"
   });
   return token;
 };
