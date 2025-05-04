@@ -4,8 +4,12 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
+import { hashPassword, verifyPassword } from "@/utils/auth";
+import { toastError, toastSuccess } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
-function NavbarClient({ isLogin, whishList, isAdmin }) {
+function NavbarClient({ isLogin, whishList, isAdmin, cookieHeader }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -19,6 +23,106 @@ function NavbarClient({ isLogin, whishList, isAdmin }) {
       return defaultValue;
     }
   };
+
+  useEffect(() => {
+    const refreshUser = async () => {
+      const res = await fetch("/api/auth/refresh", {
+        method: "POST",
+      });
+
+      const userData = await res.json();
+      console.log("res refresh", userData);
+
+      if (res.status === 200 && userData.user?.refreshToken) {
+        const refreshT = userData.user.refreshToken;
+
+        const signinUser = await fetch("/api/auth/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userRefreshToken: refreshT }),
+        });
+
+        if (signinUser.status === 200) {
+          toastSuccess(
+            "خوش آمدید 😊",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh()
+        } else if (signinUser.status === 419) {
+          toastError(
+            "ایمیل / رمز عبور نامعنبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (signinUser.status === 404) {
+          toastError(
+            "کاربر یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (signinUser.status === 401) {
+          toastError(
+            "ایمیل/رمزعبور صحیح نیست",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (signinUser.status === 403) {
+          toastError(
+            "ایمیل مسدود است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
+      }
+    };
+
+    refreshUser();
+  }, []);
 
   useEffect(() => {
     const updateCartCount = () => {
