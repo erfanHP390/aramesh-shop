@@ -13,7 +13,7 @@ export default async function Home() {
   connectToDB();
 
   const user = await authUser();
-  const admin = await authAdmin();
+  // const admin = await authAdmin();
 
   const products = await ProductModel.find();
   const wishlist = await WishListModel.find({});
