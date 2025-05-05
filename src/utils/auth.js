@@ -31,9 +31,7 @@ const verifyToken = (token) => {
 };
 
 const generateRefreshToken = (data) => {
-  const token = sign({ ...data }, process.env.RefreshTokenSecretKey , {
-    expiresIn: "48h"
-  });
+  const token = sign({ ...data }, process.env.RefreshTokenSecretKey ,);
   return token;
 };
 
