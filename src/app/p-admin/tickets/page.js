@@ -6,35 +6,43 @@ import TicketModel from "@/models/Ticket";
 import TicketTable from "@/components/templates/p-admin/tickets/TicketTable";
 import { authUser } from "@/utils/authUserLink";
 import Title from "@/components/modules/p-user/title/Title";
+import { IoTicketOutline } from "react-icons/io5";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
 const page = async () => {
-    connectToDB();
-    const tickets = await TicketModel.find({isAnswer: false})
-      .sort({ _id: -1 })
-      .populate("user")
-      .populate("department")
-      .populate("subDepartment")
-      .lean();
+  connectToDB();
+  const tickets = await TicketModel.find({ isAnswer: false })
+    .sort({ _id: -1 })
+    .populate("user")
+    .populate("department")
+    .populate("subDepartment")
+    .lean();
 
-      const user =await authUser()
-  
-    return (
-      <AdminPanelLayout>
-        <main>
-        <Title   title={" تیکت ها"} />
-          {tickets.length === 0 ? (
-            <p className={styles.empty}>تیکتی وجود ندارد</p>
-          ) : (
-            <TicketTable
-              tickets={JSON.parse(JSON.stringify(tickets))}
-              email={user.email}
-              phone={user.phone}
+  const user = await authUser();
+
+  return (
+    <AdminPanelLayout>
+      <main>
+        <Title title={" تیکت ها"} />
+        {tickets.length === 0 ? (
+          <>
+            <EmptyCart
+              icon={<IoTicketOutline />}
+              title={"تیکتی وجود ندارد"}
             />
-          )}
-        </main>
-      </AdminPanelLayout>
-    );
-  };
-  
-  export default page;
-  
+          </>
+        ) : (
+          <>
+          <TicketTable
+            tickets={JSON.parse(JSON.stringify(tickets))}
+            email={user.email}
+            phone={user.phone}
+          />
+          </>
+        )}
+      </main>
+    </AdminPanelLayout>
+  );
+};
+
+export default page;

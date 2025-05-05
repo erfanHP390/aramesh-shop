@@ -9,6 +9,9 @@ import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
 import Title from "@/components/modules/p-user/title/Title";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
+import { FaJediOrder } from "react-icons/fa";
+import { TbShoppingCartX } from "react-icons/tb";
 
 
 async function page() {
@@ -31,7 +34,7 @@ async function page() {
     <UserPanelLayout>
       <Title title={" سفارشات"} route={"/category"} text={"ایجاد سفارش جدید"} />
       {orders.length === 0 ? (
-        <p className={emptyStyles.empty}>سفارشی وجود ندارد</p>
+        <EmptyCart  icon={<TbShoppingCartX />}  body={"میتوانید در بخش فروشگاه نسبت به سفارش جدید اقدام نمایید"}  title={"سفارشی وجود ندارد"}  href={"/category"} textLink={"رفتن به فروشگاه"}  />
       ) : (
         <OrdersMain orders={JSON.parse(JSON.stringify(orders))} />
       )}

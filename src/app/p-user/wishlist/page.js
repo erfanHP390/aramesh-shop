@@ -8,6 +8,8 @@ import WishlistModel from "@/models/Wishlist";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 async function page() {
   connectToDB();
@@ -16,8 +18,7 @@ async function page() {
     "product"
   );
 
-  const validWishlist = wishlist.filter(wish => wish.product !== null);
-  
+  const validWishlist = wishlist.filter((wish) => wish.product !== null);
 
   const banUserEmail = await BanModel.findOne({ email: user.email }).lean();
   const banUserPhone = await BanModel.findOne({ phone: user.phone }).lean();
@@ -31,7 +32,7 @@ async function page() {
       <main>
         <Title title={" علاقه مندی ها"} />
         <div className={styles.container}>
-        {validWishlist.length > 0 ? (
+          {validWishlist.length > 0 ? (
             <>
               {validWishlist.map((wish) => (
                 <ProductWUser
@@ -47,7 +48,13 @@ async function page() {
             </>
           ) : (
             <>
-              <p className={styles.empty}>محصولی وجود ندارد</p>
+              <EmptyCart
+                icon={<MdProductionQuantityLimits />}
+                body={"میتوانید در بخش فروشگاه نسبت به انتخاب علاقه مندی های خود اقدام نمایید"}
+                title={"محصولی وجود ندارد"}
+                href={"/category"}
+                textLink={"رفتن به فروشگاه"}
+              />
             </>
           )}
         </div>

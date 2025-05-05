@@ -8,6 +8,8 @@ import CommentTable from "@/components/templates/p-admin/comments/CommentTable";
 import { authUser } from "@/utils/authUserLink";
 import CommentBTable from "@/components/templates/p-admin/comments/CommentBTable";
 import Title from "@/components/modules/p-user/title/Title";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
+import { FaRegComment } from "react-icons/fa";
 
 const page = async () => {
   connectToDB();
@@ -25,9 +27,14 @@ const page = async () => {
   return (
     <AdminPanelLayout>
       <main>
-        <Title  title={" کامنت ها"} />
+        <Title title={" کامنت ها"} />
         {comments.length === 0 && commentsBlog.length === 0 ? (
-          <p className={styles.empty}>کامنتی وجود ندارد</p>
+          <>
+            <EmptyCart
+              icon={<FaRegComment />}
+              title={"کامنتی وجود ندارد"}
+            />
+          </>
         ) : (
           <>
             <CommentTable

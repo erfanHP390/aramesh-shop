@@ -3,8 +3,10 @@ import React from "react";
 import BlogModel from "@/models/Blog";
 import BlogTable from "@/components/templates/p-admin/blogs/BlogTable";
 import connectToDB from "@/configs/db";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import Title from "@/components/modules/p-user/title/Title";
+import { MdOutlineArticle } from "react-icons/md";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
 async function page() {
   connectToDB();
@@ -15,9 +17,19 @@ async function page() {
 
   return (
     <AdminPanelLayout>
-      <Title route={"/p-admin/blogs/create"} text={"ایجاد مقاله جدید"} title={"مقالات"} />
+      <Title
+        route={"/p-admin/blogs/create"}
+        text={"ایجاد مقاله جدید"}
+        title={"مقالات"}
+      />
       {blogs.length === 0 ? (
-        <p className={emptyStyles.empty}>مقاله ای وجود ندارد</p>
+        <EmptyCart
+          icon={<MdOutlineArticle />}
+          body={"برای ایجاد مقاله کلیک کنید"}
+          title={"مقاله ای وجود ندارد"}
+          href={"/p-admin/blogs/create"}
+          textLink={"ایجاد مقاله"}
+        />
       ) : (
         <>
           <BlogTable

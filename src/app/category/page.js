@@ -8,10 +8,13 @@ import Filtering from "@/components/templates/category/filtering/Filtering";
 import connectToDB from "@/configs/db";
 import ProductModel from "@/models/Product";
 import Head from "next/head";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 export const metadata = {
   title: "فروشگاه تخصصی قهوه | خرید انواع قهوه اسپشیالیتی و تجهیزات کافی شاپ",
-  description: "خرید آنلاین بهترین قهوه‌های اسپشیالیتی، دستگاه‌های اسپرسو و لوازم کافی شاپ با کیفیت عالی و قیمت مناسب | ارسال سریع به سراسر کشور",
+  description:
+    "خرید آنلاین بهترین قهوه‌های اسپشیالیتی، دستگاه‌های اسپرسو و لوازم کافی شاپ با کیفیت عالی و قیمت مناسب | ارسال سریع به سراسر کشور",
   keywords: [
     "خرید قهوه اسپشیالیتی",
     "قهوه آرامش",
@@ -21,11 +24,12 @@ export const metadata = {
     "لوازم کافی شاپ",
     "قهوه گواتمالا",
     "قهوه برزیلی",
-    "قهوه اتیوپی"
+    "قهوه اتیوپی",
   ],
   openGraph: {
     title: "فروشگاه تخصصی قهوه آرامش | خرید آنلاین",
-    description: "انواع قهوه اسپشیالیتی، دستگاه‌های اسپرسو و لوازم کافی شاپ با بهترین کیفیت",
+    description:
+      "انواع قهوه اسپشیالیتی، دستگاه‌های اسپرسو و لوازم کافی شاپ با بهترین کیفیت",
     url: "https://aramesh-coffee.com/category",
     type: "website",
     images: [
@@ -34,13 +38,13 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "فروشگاه قهوه آرامش",
-      }
+      },
     ],
     siteName: "آرامش - فروشگاه تخصصی قهوه",
-    locale: "fa_IR"
+    locale: "fa_IR",
   },
   alternates: {
-    canonical: "https://aramesh-coffee.com/category"
+    canonical: "https://aramesh-coffee.com/category",
   },
   robots: {
     index: true,
@@ -53,8 +57,8 @@ export const metadata = {
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-    }
-  }
+    },
+  },
 };
 
 async function page() {
@@ -64,35 +68,35 @@ async function page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "فروشگاه قهوه آرامش",
-    "description": "خرید آنلاین انواع قهوه اسپشیالیتی و تجهیزات کافی شاپ",
-    "url": "https://aramesh-coffee.com/category",
-    "publisher": {
+    name: "فروشگاه قهوه آرامش",
+    description: "خرید آنلاین انواع قهوه اسپشیالیتی و تجهیزات کافی شاپ",
+    url: "https://aramesh-coffee.com/category",
+    publisher: {
       "@type": "Organization",
-      "name": "قهوه آرامش",
-      "logo": {
+      name: "قهوه آرامش",
+      logo: {
         "@type": "ImageObject",
-        "url": "https://aramesh-coffee.com/logo.png"
-      }
+        url: "https://aramesh-coffee.com/logo.png",
+      },
     },
-    "mainEntity": {
+    mainEntity: {
       "@type": "ItemList",
-      "itemListElement": products.map((product, index) => ({
+      itemListElement: products.map((product, index) => ({
         "@type": "ListItem",
-        "position": index + 1,
-        "item": {
+        position: index + 1,
+        item: {
           "@type": "Product",
-          "name": product.name,
-          "description": product.shortDesc,
-          "image": product.img,
-          "offers": {
+          name: product.name,
+          description: product.shortDesc,
+          image: product.img,
+          offers: {
             "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "IRR"
-          }
-        }
-      }))
-    }
+            price: product.price,
+            priceCurrency: "IRR",
+          },
+        },
+      })),
+    },
   };
 
   return (
@@ -107,24 +111,38 @@ async function page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar  />
-      <BreadCrumb 
-        route={'فروشگاه'} 
+      <Navbar />
+      <BreadCrumb
+        route={"فروشگاه"}
         links={[
-          { title: 'خانه', path: '/' },
-          { title: 'فروشگاه', path: '/category' }
+          { title: "خانه", path: "/" },
+          { title: "فروشگاه", path: "/category" },
         ]}
       />
-      
+
       <main className={styles.container} data-aos="fade-up">
         <h1 className={styles.mainTitle}>فروشگاه تخصصی قهوه آرامش</h1>
         <p className={styles.introText}>
           بهترین قهوه‌های اسپشیالیتی و تجهیزات کافی شاپ را از ما بخواهید
         </p>
-        
+
         <div className={styles.category}>
-          {/* <Filtering productsDB={JSON.parse(JSON.stringify(products))} /> */}
-          <Products productsDB={JSON.parse(JSON.stringify(products))} />
+          {products.length > 0 ? (
+            <>
+              {" "}
+              <Products productsDB={JSON.parse(JSON.stringify(products))} />
+            </>
+          ) : (
+            <>
+              <EmptyCart
+                icon={<MdProductionQuantityLimits />}
+                body={"بزودی با محصولاتی جدید شما را شگفت زده خواهیم کرد"}
+                title={"محصولی وجود ندارد"}
+                href={"/p-user/tickets/sendTicket"}
+                textLink={"ارسال پیشنهادات"}
+              />
+            </>
+          )}
         </div>
       </main>
       <Footer />

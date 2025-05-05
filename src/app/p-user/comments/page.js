@@ -5,9 +5,10 @@ import CommentModel from "@/models/Comment";
 import { authUser } from "@/utils/authUserLink";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
+import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import Title from "@/components/modules/p-user/title/Title";
-
+import { FaRegComment } from "react-icons/fa";
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
 async function page() {
   connectToDB();
@@ -26,9 +27,21 @@ async function page() {
   return (
     <UserPanelLayout>
       <main>
-        <Title title={" کامنت ها"} route={"/category"}  text={"ایجاد کامنت جدید"} />
+        <Title
+          title={" کامنت ها"}
+          route={"/category"}
+          text={"ایجاد کامنت جدید"}
+        />
         {comments.length === 0 ? (
-          <p className={emptyStyles.empty}>کامنتی وجود ندارد</p>
+          <EmptyCart
+            icon={<FaRegComment />}
+            title={"کامنتی وجود ندارد"}
+            body={
+              "میتوانید در بخش فروشگاه برای محصولات و یا بخش مقالات نظرات خود را ثبت کنید"
+            }
+            href={"/category"}
+            textLink={"فروشگاه"}
+          />
         ) : (
           <DataTable
             comments={JSON.parse(JSON.stringify(comments))}
