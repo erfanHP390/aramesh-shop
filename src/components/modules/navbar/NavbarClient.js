@@ -8,7 +8,7 @@ import { hashPassword, verifyPassword } from "@/utils/auth";
 import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
-function NavbarClient({ isLogin, whishList, isAdmin, cookieHeader }) {
+function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isShowDropMobile, setIsShowDropMobile] = useState(false);
@@ -121,7 +121,9 @@ function NavbarClient({ isLogin, whishList, isAdmin, cookieHeader }) {
       }
     };
 
-    refreshUser();
+    if(!isCookies) {
+      refreshUser();
+    }
   }, []);
 
   useEffect(() => {
