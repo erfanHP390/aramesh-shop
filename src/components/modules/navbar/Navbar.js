@@ -2,7 +2,7 @@ import NavbarClient from "./NavbarClient";
 import connectToDB from "@/configs/db";
 import { authAdmin, authUser } from "@/utils/authUserLink";
 import WishListModel from "@/models/Wishlist";
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 export default async function Navbar() {
   connectToDB();
@@ -11,7 +11,7 @@ export default async function Navbar() {
   const admin = await authAdmin();
 
   const wishlist = await WishListModel.find({});
-  // const cookieHeader = cookies.get("refresh-token")
+  const isCookies = cookies().get("token")
 
 
   return (
@@ -20,7 +20,7 @@ export default async function Navbar() {
         isLogin={user ? true : false}
         isAdmin={admin ? true : false}
         whishList={wishlist.length}
-        // cookieHeader={cookieHeader}
+        isCookies={cookies ? true :false}
       />
     </>
   );
