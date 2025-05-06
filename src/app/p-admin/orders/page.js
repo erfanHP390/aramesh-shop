@@ -7,6 +7,11 @@ import OrderModel from "@/models/Orders";
 import React from "react";
 import { CiShop } from "react-icons/ci";
 
+export const metadata = {
+  title: "پنل مدیریت | لیست سفارشات",
+};
+
+
 async function page() {
   connectToDB();
   const orders = await OrderModel.find({})

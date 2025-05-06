@@ -9,6 +9,12 @@ import Title from "@/components/modules/p-user/title/Title";
 import { IoTicketOutline } from "react-icons/io5";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
+
+export const metadata = {
+  title: "پنل مدیریت | لیست تیکت ها",
+};
+
+
 const page = async () => {
   connectToDB();
   const tickets = await TicketModel.find({ isAnswer: false })

@@ -11,6 +11,12 @@ import { redirect } from "next/navigation";
 import { authUser } from "@/utils/authUserLink";
 import Title from "@/components/modules/p-user/title/Title";
 
+
+export const metadata = {
+  title: "پنل مدیریت | صفحه گفتگو",
+};
+
+
 async function page({ params }) {
   connectToDB();
   const user = await authUser();

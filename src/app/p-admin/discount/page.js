@@ -8,6 +8,11 @@ import connectToDB from "@/configs/db";
 import DiscountModel from "@/models/Discount";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 
+export const metadata = {
+  title: "پنل مدیریت | لیست تحفیفات/افزودن تخفیف",
+};
+
+
 async function page() {
   connectToDB();
   const discounts = await DiscountModel.find({}).sort({ _id: -1 }).lean();

@@ -13,6 +13,11 @@ import SaleChart from "@/components/templates/p-admin/index/saleChart/SaleChart"
 import GrowthChart from "@/components/templates/p-admin/index/growthChart/GrowthChart";
 import Title from "@/components/modules/p-user/title/Title";
 
+export const metadata = {
+  title: "پنل مدیریت | پیشخوان",
+};
+
+
 async function page() {
 
   connectToDB()

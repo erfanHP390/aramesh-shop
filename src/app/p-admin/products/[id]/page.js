@@ -6,6 +6,12 @@ import ProductDetails from "@/components/templates/p-user/products/productDetail
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
 import Title from "@/components/modules/p-user/title/Title";
 
+
+export const metadata = {
+  title: "پنل مدیریت | جزئیات محصول",
+};
+
+
 async function page({ params }) {
   connectToDB();
   const id = params.id;

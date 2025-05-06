@@ -3,6 +3,11 @@ import Title from "@/components/modules/p-user/title/Title";
 import ProductCreate from "@/components/templates/p-admin/products/ProductCreate";
 import React from "react";
 
+export const metadata = {
+  title: "پنل مدیریت | ایجاد محصول جدید",
+};
+
+
 function page() {
   return (
     <AdminPanelLayout>

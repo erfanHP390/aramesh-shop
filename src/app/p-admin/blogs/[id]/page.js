@@ -5,6 +5,12 @@ import BlogModel from "@/models/Blog"
 import BlogDetails from '@/components/templates/p-admin/blogs/BlogDetails'
 import Title from '@/components/modules/p-user/title/Title'
 
+
+export const metadata = {
+  title: "پنل مدیریت | جزئیات مقاله(ویرایش)",
+};
+
+
 async function page({params}) {
 
     connectToDB()

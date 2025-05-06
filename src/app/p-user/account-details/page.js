@@ -6,6 +6,10 @@ import { authUser } from "@/utils/authUserLink";
 import BanModel from "@/models/Ban";
 import Title from "@/components/modules/p-user/title/Title";
 
+export const metadata = {
+  title: "پنل کاربری | جزئیات اکانت",
+};
+
 async function page() {
   connectToDB();
   const user = await authUser();

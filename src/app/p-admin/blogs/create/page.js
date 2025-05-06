@@ -2,6 +2,9 @@ import AdminPanelLayout from '@/components/layouts/AdminPanelLayout/AdminPanelLa
 import Title from '@/components/modules/p-user/title/Title'
 import BlogCreate from '@/components/templates/p-admin/blogs/BlogCreate'
 
+export const metadata = {
+  title: "پنل مدیریت | ایجاد مقاله جدید",
+};
 
 function page() {
 

@@ -11,6 +11,11 @@ import Title from "@/components/modules/p-user/title/Title";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import { FaRegComment } from "react-icons/fa";
 
+export const metadata = {
+  title: "پنل مدیریت | لیست کامنت ها",
+};
+
+
 const page = async () => {
   connectToDB();
   const comments = await CommentModel.find({})

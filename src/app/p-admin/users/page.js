@@ -8,6 +8,12 @@ import Title from "@/components/modules/p-user/title/Title";
 import { FaUsersLine } from "react-icons/fa6";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
+
+export const metadata = {
+  title: "پنل مدیریت | لیست کاربران ثبت نام شده",
+};
+
+
 async function page() {
   connectToDB();
   const users = await UserModel.find({}).lean();

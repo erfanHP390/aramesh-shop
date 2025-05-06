@@ -14,6 +14,10 @@ import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
 
+export const metadata = {
+  title: "پنل کاربری | پیشخوان",
+};
+
 async function Index() {
   connectToDB();
   const user = await authUser();

@@ -8,6 +8,10 @@ import Title from "@/components/modules/p-user/title/Title";
 import { MdOutlineArticle } from "react-icons/md";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
+export const metadata = {
+  title: "پنل مدیریت | لیست مقالات",
+};
+
 async function page() {
   connectToDB();
   const blogs = await BlogModel.find({})

@@ -8,6 +8,11 @@ import Title from "@/components/modules/p-user/title/Title";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
+export const metadata = {
+  title: "پنل مدیریت | لیست محصولات سایت",
+};
+
+
 async function page() {
   connectToDB();
   const products = await ProductModel.find({})

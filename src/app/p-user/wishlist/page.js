@@ -10,6 +10,9 @@ import { redirect } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import { MdProductionQuantityLimits } from "react-icons/md";
+  export const metadata = {
+    title: "پنل کاربری | علاقمندی ها",
+  };
 
 async function page() {
   connectToDB();
@@ -26,6 +29,7 @@ async function page() {
   if (banUserEmail || banUserPhone) {
     redirect("/p-user/account-details");
   }
+
 
   return (
     <UserPanelLayout>

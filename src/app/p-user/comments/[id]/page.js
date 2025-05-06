@@ -8,6 +8,10 @@ import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
 
+export const metadata = {
+  title: "پنل کاربری | جزئیات کامنت",
+};
+
 async function page({ params }) {
   connectToDB();
   const id = params.id;

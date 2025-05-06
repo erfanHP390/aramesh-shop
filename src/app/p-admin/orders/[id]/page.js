@@ -7,6 +7,11 @@ import OrdersADetails from "@/components/templates/p-admin/orders/OrdersADetails
 import ProductModel from "@/models/Product";
 import Title from "@/components/modules/p-user/title/Title";
 
+export const metadata = {
+  title: "پنل مدیریت | جزئیات سفارش",
+};
+
+
 async function page({ params }) {
   connectToDB();
   const id = params.id;

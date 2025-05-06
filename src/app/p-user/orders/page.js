@@ -13,6 +13,9 @@ import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import { FaJediOrder } from "react-icons/fa";
 import { TbShoppingCartX } from "react-icons/tb";
 
+export const metadata = {
+  title: "پنل کاربری | سفارشات",
+};
 
 async function page() {
   connectToDB();

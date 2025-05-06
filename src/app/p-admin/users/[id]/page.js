@@ -4,6 +4,12 @@ import UserDetails from "@/components/templates/p-admin/users/UserDetails";
 import connectToDB from "@/configs/db";
 import UserModel from "@/models/User";
 
+
+export const metadata = {
+  title: "پنل مدیریت | جزئیات حساب کاربر ثبت نام شده",
+};
+
+
 async function page({ params }) {
   connectToDB();
   const UserID = params.id;

@@ -10,6 +10,10 @@ import Title from "@/components/modules/p-user/title/Title";
 import { FaRegComment } from "react-icons/fa";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
+export const metadata = {
+  title: "پنل کاربری | کامنت ها",
+};
+
 async function page() {
   connectToDB();
   const user = await authUser();

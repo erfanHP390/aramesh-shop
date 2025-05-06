@@ -10,6 +10,10 @@ import Title from "@/components/modules/p-user/title/Title";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import { IoTicketOutline } from "react-icons/io5";
 
+export const metadata = {
+  title: "پنل کاربری | تیکت ها",
+};
+
 async function page() {
   connectToDB();
   const user = await authUser();
