@@ -200,7 +200,7 @@ function OrdersADetails({ order }) {
         undefined,
         "colored"
       );
-      router.refresh()
+      router.refresh();
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(
@@ -568,14 +568,16 @@ function OrdersADetails({ order }) {
                         handleBasketChange(item.id, Math.max(1, item.count - 1))
                       }
                       disabled={item.count <= 1}
+                      className={tableStyles.counter_btn}
                     >
                       -
                     </button>
-                    <span>{item.count}</span>
+                    <span className={tableStyles.counter_value}>{item.count}</span>
                     <button
                       onClick={() =>
                         handleBasketChange(item.id, item.count + 1)
                       }
+                      className={tableStyles.counter_btn}
                     >
                       +
                     </button>
@@ -587,7 +589,7 @@ function OrdersADetails({ order }) {
                 <td className={tableStyles.product}>
                   <Link href={`/product/${item.id}`}>{item.name}</Link>
                 </td>
-                <td>
+                <td className={tableStyles.delete_cell}>
                   <button
                     onClick={() => handleRemoveItem(item.id)}
                     className={tableStyles.delete_btn}
