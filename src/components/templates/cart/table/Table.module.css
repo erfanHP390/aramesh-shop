@@ -3,35 +3,47 @@
   overflow-x: auto;
   background-color: #6F4E37;
   color: #FFFFFF;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin: 30px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
   min-width: 650px;
+  border-collapse: separate;
   border-spacing: 0;
-  color: black;
-  background-color: #ffffff;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-.table th,
-.table td {
-  padding: 12px 8px;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: clamp(12px, 2vw, 14px);
+  background-color: #A68A64;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .table th {
-  background-color: #D2B48C;
-  color: #000000;
+  background-color: #5A3E36;
+  color: #FFD700;
+  padding: 15px 10px;
+  text-align: center;
   font-weight: 600;
-  position: sticky;
-  top: 0;
+  font-size: 0.95rem;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: #FFFFFF;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background-color: rgba(90, 62, 54, 0.5);
 }
 
 .product {
@@ -42,219 +54,141 @@
   gap: 8px;
 }
 
-.product img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
 .product a {
-  max-width: 150px;
+  color: #FFD700;
+  text-decoration: none;
+  transition: all 0.2s;
+  max-width: 200px;
   word-wrap: break-word;
   line-height: 1.4;
-  font-size: clamp(12px, 2vw, 14px);
-  text-align: center;
-  color: #000000;
-  text-decoration: none;
-  transition: color 0.2s;
 }
 
 .product a:hover {
-  color: #CC5500;
+  color: #FFFFFF;
+  text-decoration: underline;
 }
 
 .price {
-  color: #777 !important;
-  font-weight: 500;
+  color: #FFD700 !important;
+  font-weight: 600;
+}
+
+.counter {
+  min-width: 120px;
 }
 
 .counter div {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  max-width: 100px;
+  justify-content: center;
+  gap: 10px;
   margin: 0 auto;
 }
 
-.counter span {
+.counter_btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #5A3E36;
+  color: #FFD700;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  padding: 6px 10px;
-  color: #000000;
-  font-weight: bold;
   transition: all 0.2s;
-  user-select: none;
 }
 
-.counter span:hover {
-  color: white;
-  background: #CC5500;
+.counter_btn:hover {
+  background-color: #FFD700;
+  color: #5A3E36;
+  transform: scale(1.1);
 }
 
-.counter p {
-  padding: 6px 12px;
-  margin: 0;
-  min-width: 30px;
+.counter_btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #5A3E36;
+  color: #FFD700;
+}
+
+.counter_value {
+  min-width: 20px;
   text-align: center;
+  font-weight: 600;
+}
+
+.delete_cell {
+  width: 50px;
+}
+
+.delete_btn {
+  background-color: transparent;
+  border: none;
+  color: #CC5500;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 auto;
+}
+
+.delete_btn:hover {
+  background-color: rgba(204, 85, 0, 0.2);
+  transform: scale(1.1);
 }
 
 .delete_icon {
-  cursor: pointer;
-  font-size: 20px;
-  color: #fff;
-  background-color: #CC5500;
-  padding: 5px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+  font-size: 1.4rem;
+  transition: all 0.3s;
 }
 
-.delete_icon:hover {
-  background-color: #FFD700;
+.delete_btn:hover .delete_icon {
   transform: rotate(90deg);
 }
 
-.update_btn,
-.set_off_btn,
-.remove_discount_btn {
-  padding: 10px 20px;
-  font-size: clamp(13px, 2vw, 15px);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  white-space: nowrap;
+@media (max-width: 768px) {
+  .tabel_container {
+    padding: 15px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+  
+  .counter_btn {
+    width: 26px;
+    height: 26px;
+    font-size: 0.9rem;
+  }
+  
+  .delete_icon {
+    font-size: 1.2rem;
+  }
 }
 
-.update_btn {
-  background-color: #f3f3f3;
-  color: #3e3e3e;
-}
-
-.update_btn:hover {
-  background: #CC5500;
-  color: white;
-}
-
-.set_off_btn {
-  background-color: #CC5500;
-  color: white;
-}
-
-.set_off_btn:hover {
-  background: #A68A64;
-}
-
-.remove_discount_btn {
-  background-color: #dc3545;
-  color: white;
-}
-
-.remove_discount_btn:hover {
-  background: #c82333;
-}
-
-.tabel_container section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.tabel_container section input {
-  padding: 10px 15px;
-  border-radius: 5px;
-  background-color: white;
-  color: black;
-  flex: 1;
-  min-width: 200px;
-  direction: rtl;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: clamp(13px, 2vw, 15px);
-  transition: border 0.3s;
-}
-
-.tabel_container section input:focus {
-  border-color: #CC5500;
-  outline: none;
-}
-
-.discount_container {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  direction: rtl;
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
+@media (max-width: 480px) {
   .table {
     min-width: 550px;
   }
   
-  .tabel_container section {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .discount_container {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .update_btn,
-  .set_off_btn,
-  .remove_discount_btn {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .product img {
-    width: 60px;
-    height: 60px;
+  .product a {
+    max-width: 150px;
   }
   
   .counter div {
-    max-width: 80px;
-  }
-}
-
-@media (max-width: 576px) {
-  .table th,
-  .table td {
-    padding: 8px 5px;
+    gap: 8px;
   }
   
-  .product img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .counter div {
-    max-width: 70px;
-  }
-  
-  .counter span {
-    padding: 4px 8px;
-  }
-  
-  .delete_icon {
-    font-size: 18px;
-    padding: 4px;
-  }
-}
-
-@media (max-width: 400px) {
-  .table {
-    min-width: 320px;
-  }
-  
-  .product img {
-    width: 40px;
-    height: 40px;
+  .counter_btn {
+    width: 24px;
+    height: 24px;
   }
 }
