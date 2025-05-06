@@ -33,7 +33,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
       const userData = await res.json();
       console.log("res refresh", userData);
 
-      if (res.status === 200 && userData.user?.refreshToken) {
+      if (res.status === 200 && userData?.user?.refreshToken) {
         const refreshT = userData.user.refreshToken;
 
         const signinUser = await fetch("/api/auth/signin", {

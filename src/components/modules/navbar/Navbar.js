@@ -20,7 +20,7 @@ export default async function Navbar() {
         isLogin={user ? true : false}
         isAdmin={admin ? true : false}
         whishList={wishlist.length}
-        isCookies={cookies ? true :false}
+        isCookies={isCookies ? true :false}
       />
     </>
   );
