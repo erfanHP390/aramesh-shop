@@ -61,9 +61,7 @@ function OrdersMain({ orders }) {
             </table>
           </div>
         </div>
-        {orders.length === 0 && <p className={styles.empty}>
-          سفارشی وجود ندارد
-        </p> }
+        {/* {orders.length === 0 && <EmptyCart title={"سفارشی وجود ندارد"} /> } */}
       </main>
       {showModal && (
         <>

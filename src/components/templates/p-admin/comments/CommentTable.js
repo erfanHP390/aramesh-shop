@@ -169,7 +169,7 @@ function CommentTable({ comments, title, phone }) {
 
   const removeComment = async (commentID) => {
     swal({
-      title: "آیا از حذف کاربر اطمینان دارین؟",
+      title: "آیا از حذف کامنت اطمینان دارین؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
@@ -327,7 +327,7 @@ function CommentTable({ comments, title, phone }) {
   return (
     <div>
       <div>
-        <Title   title={"محصولات"} />
+        <Title title={"محصولات"} />
       </div>
       <div className={styles.table_container}>
         <table className={styles.table}>
@@ -361,7 +361,9 @@ function CommentTable({ comments, title, phone }) {
                     <FaRegStar key={index} style={{ color: "#A68A64" }} />
                   ))}
                 </td>
-                <td>{comment.productID ? comment.productID.name : "محصول حذف شده"}</td>
+                <td>
+                  {comment.productID ? comment.productID.name : "محصول حذف شده"}
+                </td>
                 <td>{new Date(comment.date).toLocaleDateString("fa-IR")}</td>
                 <td>
                   <button
@@ -374,7 +376,7 @@ function CommentTable({ comments, title, phone }) {
                 </td>
                 <td>
                   <button type="button" className={styles.edit_btn}>
-                  <Link href={`/p-user/comments/${comment._id}`}>ویرایش</Link>
+                    <Link href={`/p-user/comments/${comment._id}`}>ویرایش</Link>
                   </button>
                 </td>
                 <td>

@@ -1,4 +1,3 @@
-import Card from "@/components/modules/blogs/card/Card";
 import BreadCrumb from "@/components/modules/breadcrumb/BreadCrumb";
 import Footer from "@/components/modules/Footer/Footer";
 import Navbar from "@/components/modules/navbar/Navbar";

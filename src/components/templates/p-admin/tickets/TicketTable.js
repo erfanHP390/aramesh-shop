@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./TicketTable.module.css";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -11,7 +11,6 @@ function TicketTable({ tickets, title, email, phone }) {
   const [directionFilter, setDirectionFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("updatedAt");
-
 
   const answerToTicket = async (ticket) => {
     swal({
@@ -158,14 +157,19 @@ function TicketTable({ tickets, title, email, phone }) {
     .filter((ticket) => {
       if (statusFilter === "all") return true;
       if (statusFilter === "open") return !ticket.hasAnswer && !ticket.isClosed;
-      if (statusFilter === "closed") return ticket.isClosed;
-      if (statusFilter === "answered") return ticket.hasAnswer && !ticket.isClosed;
+      if (statusFilter === "closed") return ticket.hasAnswer;
+      if (statusFilter === "answered")
+        return ticket.hasAnswer && !ticket.isClosed;
       if (statusFilter === "completed") return ticket.isClosed;
       return true;
     })
     .sort((a, b) => {
-      const dateA = new Date(dateFilter === "createdAt" ? a.createdAt : a.updatedAt);
-      const dateB = new Date(dateFilter === "createdAt" ? b.createdAt : b.updatedAt);
+      const dateA = new Date(
+        dateFilter === "createdAt" ? a.createdAt : a.updatedAt
+      );
+      const dateB = new Date(
+        dateFilter === "createdAt" ? b.createdAt : b.updatedAt
+      );
       return dateB - dateA;
     });
 
@@ -173,40 +177,39 @@ function TicketTable({ tickets, title, email, phone }) {
     <>
       <div>
         <form onSubmit={applyFilters} className={styles.filtering}>
-        <div className={styles.filter_group}>
-          <select 
-            value={directionFilter}
-            onChange={(e) => setDirectionFilter(e.target.value)}
-            className={styles.filter_select}
-          >
-            <option value="all">همه</option>
-            <option value="sent">فرستاده شده</option>
-            <option value="received">دریافتی</option>
-          </select>
-          
-          <select 
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className={styles.filter_select}
-          >
-            <option value="all">همه</option>
-            <option value="open">باز</option>
-            <option value="closed">بسته</option>
-            <option value="answered">پاسخ داده شده</option>
-            <option value="completed">پایان یافته</option>
-          </select>
-          
-          <select 
-            value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
-            className={styles.filter_select}
-          >
-            <option value="updatedAt">تاریخ پاسخ</option>
-            <option value="createdAt">تاریخ ایجاد</option>
-          </select>
-        </div>
+          <div className={styles.filter_group}>
+            <select
+              value={directionFilter}
+              onChange={(e) => setDirectionFilter(e.target.value)}
+              className={styles.filter_select}
+            >
+              <option value="all">همه</option>
+              <option value="sent">فرستاده شده</option>
+              <option value="received">دریافتی</option>
+            </select>
 
-      </form>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className={styles.filter_select}
+            >
+              <option value="all">همه</option>
+              <option value="open">باز</option>
+              <option value="closed">بسته</option>
+              <option value="answered">پاسخ داده شده</option>
+              <option value="completed">پایان یافته</option>
+            </select>
+
+            <select
+              value={dateFilter}
+              onChange={(e) => setDateFilter(e.target.value)}
+              className={styles.filter_select}
+            >
+              <option value="updatedAt">تاریخ پاسخ</option>
+              <option value="createdAt">تاریخ ایجاد</option>
+            </select>
+          </div>
+        </form>
         <div className={styles.table_container}>
           <table className={styles.table}>
             <thead>
@@ -231,18 +234,17 @@ function TicketTable({ tickets, title, email, phone }) {
                   <td>{ticket.department.title}</td>
                   <td>{ticket.subDepartment.title}</td>
                   <td>
-                    {ticket.isClosed 
-                      ? "پایان یافته" 
-                      : ticket.hasAnswer 
-                        ? "پاسخ داده شده" 
-                        : "باز"}
+                    {ticket.isClosed
+                      ? "پایان یافته"
+                      : ticket.hasAnswer
+                      ? "پاسخ داده شده"
+                      : "باز"}
                   </td>
                   <td>
-                    <button
-                      type="button"
-                      className={styles.edit_btn}
-                    >
-                      <Link href={`/p-admin/tickets/answer/${ticket._id}`}>مشاهده</Link>
+                    <button type="button" className={styles.edit_btn}>
+                      <Link href={`/p-admin/tickets/answer/${ticket._id}`}>
+                        مشاهده
+                      </Link>
                     </button>
                   </td>
                   <td>

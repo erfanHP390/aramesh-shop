@@ -197,7 +197,7 @@ const Register = ({ showLoginForm }) => {
         "colored"
       );
       setIsRegisterWithOtp(true);
-      router.replace("/p-user")
+      // router.replace("/p-user")
     } else if (res.status === 400) {
       setIsLoadingOtp(false);
       setName("");

@@ -33,7 +33,7 @@ function OrdersDetails() {
   const [orderCode, setOrderCode] = useState(
     Math.floor(Math.random() * 999999)
   );
-  const [password , setPassword] = useState("")
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
@@ -74,13 +74,13 @@ function OrdersDetails() {
 
     const isValidPhone = validatePhone(mobile);
     if (!isValidPhone) {
-      setIsLoading(false)
+      setIsLoading(false);
       return swalAlert("لطفا یک شماره تلفن معتبر وارد کنید", "error", "فهمیدم");
     }
 
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      setIsLoading(false)
+      setIsLoading(false);
       return swalAlert("لطفا یک ایمیل معتبر وارد کنید", "error", "فهمیم");
     }
 
@@ -100,10 +100,8 @@ function OrdersDetails() {
       basket,
       products,
       orderCode,
-      isPay: false
+      isPay: false,
     };
-
-    
 
     const res = await fetch("/api/orders", {
       method: "POST",
@@ -112,8 +110,6 @@ function OrdersDetails() {
       },
       body: JSON.stringify(newOrder),
     });
-
-    
 
     if (res.status === 201) {
       if (showZarinPallAlert) {
@@ -213,46 +209,47 @@ function OrdersDetails() {
   };
 
   const registerUser = async () => {
-
-    if(!firstname || !lastname || !mobile || !email || !password) {
-      setIsLoading(false)
-      return swalAlert("لطفا نام ، نام خانوادگی ، شماره تماس ، ایمیل یا رمزعبور خود را وراد نمایی" , "error" , "فهمیدم")
+    if (!firstname || !lastname || !mobile || !email || !password) {
+      setIsLoading(false);
+      return swalAlert(
+        "لطفا نام ، نام خانوادگی ، شماره تماس ، ایمیل یا رمزعبور خود را وراد نمایی",
+        "error",
+        "فهمیدم"
+      );
     }
 
     const isValidPhone = validatePhone(mobile);
     if (!isValidPhone) {
-      setIsLoading(false)
+      setIsLoading(false);
       return swalAlert("لطفا یک شماره تلفن معتبر وارد کنید", "error", "فهمیدم");
     }
 
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      setIsLoading(false)
+      setIsLoading(false);
       return swalAlert("لطفا یک ایمیل معتبر وارد کنید", "error", "فهمیم");
     }
 
-    const isValidPassword = validatePassword(password)
-    if(!isValidPassword) {
-      setIsLoading(false)
-      return swalAlert("لطفا یک رمز عبور معتبر وارد نمایید" , "error" , "فهمیدم")
-    } 
+    const isValidPassword = validatePassword(password);
+    if (!isValidPassword) {
+      setIsLoading(false);
+      return swalAlert("لطفا یک رمز عبور معتبر وارد نمایید", "error", "فهمیدم");
+    }
 
     const newUser = {
       name: `${firstname}-${lastname}`,
       phone: mobile,
       email,
-      password
-    }
+      password,
+    };
 
-    const res = await fetch("/api/auth/signup" , {
+    const res = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser)
-    })
-
-    
+      },
+      body: JSON.stringify(newUser),
+    });
 
     if (res.status === 201) {
       setIsLoading(false);
@@ -267,8 +264,7 @@ function OrdersDetails() {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 400) {
+    } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
         "لطفا موارد زیر را جهت تشکیل حساب تکمیل فرمایید ، نام ، نام خانوادگی ، شماره تماس ، ایمیل و رمزعبور",
@@ -281,8 +277,7 @@ function OrdersDetails() {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 403) {
+    } else if (res.status === 403) {
       setIsLoading(false);
       toastError(
         "ایمیل/شماره تلفن وارد شده مسدود می باشد.لطفا مورد جدیدی وارد نمایید",
@@ -295,8 +290,7 @@ function OrdersDetails() {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 422) {
+    } else if (res.status === 422) {
       setIsLoading(false);
       toastError(
         "نام/شماره تلفن / ایمیل شما قبلا ثبت شده است لطفا دوباره اقدام کنید",
@@ -309,8 +303,7 @@ function OrdersDetails() {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 419) {
+    } else if (res.status === 419) {
       setIsLoading(false);
       toastError(
         "شماره تماس / ایمیل باید فرمت معتبری داشته باشد ، پسورد باید حداقل از هشت کاراکتر حرف بزرگ ،نماد و عدد تشکیل شده باشد",
@@ -323,8 +316,7 @@ function OrdersDetails() {
         undefined,
         "colored"
       );
-    }
-    else if (res.status === 500) {
+    } else if (res.status === 500) {
       setIsLoading(false);
       toastError(
         "خطا در سرور ، لطفا بعدا تلاش کنید",
@@ -338,9 +330,7 @@ function OrdersDetails() {
         "colored"
       );
     }
-    
-    
-  }
+  };
 
   return (
     <>
@@ -601,21 +591,23 @@ function OrdersDetails() {
             {createAccount && (
               <section className={styles.account_section}>
                 <div className={styles.group}>
-                  <label className={styles.input_label}>
-                    رمزعبور
-                  </label>
+                  <label className={styles.input_label}>رمزعبور</label>
                   <input
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                     type="password"
                     placeholder="رمز عبور "
                     className={styles.form_input}
                   />
                 </div>
-                <button onClick={() => {
-                  setIsLoading(true)
-                  registerUser()
-                }} type="button" className={styles.verify_button}>
+                <button
+                  onClick={() => {
+                    setIsLoading(true);
+                    registerUser();
+                  }}
+                  type="button"
+                  className={styles.verify_button}
+                >
                   ایجاد حساب کاربری
                 </button>
               </section>

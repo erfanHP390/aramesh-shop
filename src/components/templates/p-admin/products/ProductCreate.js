@@ -1,13 +1,10 @@
 "use client";
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import {  toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
-
 import React, { useState } from "react";
 import Loading from "@/app/loading";
-import Link from "next/link";
 
 function ProductCreate() {
   const router = useRouter();
@@ -22,7 +19,7 @@ function ProductCreate() {
   const [smell, setSmell] = useState("");
   const [tags, setTags] = useState("");
   const [img, setImg] = useState("");
-  const [stock , setStock] = useState("")
+  const [stock, setStock] = useState("");
 
   const createProduct = async () => {
     const formData = new FormData();
@@ -35,13 +32,12 @@ function ProductCreate() {
     formData.append("smell", smell);
     formData.append("tags", tags);
     formData.append("img", img);
-    formData.append("stock" , stock)
+    formData.append("stock", stock);
     const res = await fetch(`/api/product`, {
       method: "POST",
       body: formData,
     });
 
-    
     const data = await res.json();
 
     if (res.status === 201) {
@@ -61,7 +57,7 @@ function ProductCreate() {
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(
-         "فقط ادمین/مدیر سایت اجازه ایجاد محصول را دارد",
+        "فقط ادمین/مدیر سایت اجازه ایجاد محصول را دارد",
         "top-center",
         5000,
         false,
@@ -119,7 +115,7 @@ function ProductCreate() {
                       accept="image/*"
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
-                          setImg(e.target.files[0]); // ذخیره فایل در state
+                          setImg(e.target.files[0]);
                         }
                       }}
                     />

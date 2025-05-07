@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { IoMdStar } from "react-icons/io";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 
@@ -145,7 +144,7 @@ function ProductDetails({ product }) {
                       accept="image/*"
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
-                          setImg(e.target.files[0]); 
+                          setImg(e.target.files[0]);
                         }
                       }}
                     />

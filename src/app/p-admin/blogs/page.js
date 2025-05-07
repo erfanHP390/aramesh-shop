@@ -3,7 +3,6 @@ import React from "react";
 import BlogModel from "@/models/Blog";
 import BlogTable from "@/components/templates/p-admin/blogs/BlogTable";
 import connectToDB from "@/configs/db";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import Title from "@/components/modules/p-user/title/Title";
 import { MdOutlineArticle } from "react-icons/md";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";

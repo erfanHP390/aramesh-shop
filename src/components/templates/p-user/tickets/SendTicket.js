@@ -1,7 +1,6 @@
 "use client";
 import styles from "@/styles/p-user/sendTicket.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
@@ -15,7 +14,7 @@ function SendTicket() {
   const [departmentID, setDepartmentID] = useState(-1);
   const [subDepartmentID, setSubDepartmentID] = useState(-1);
   const [priority, setPriority] = useState(1);
-  const [isLoading , setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getDepartments = async () => {
@@ -61,7 +60,7 @@ function SendTicket() {
     });
 
     if (res.status === 201) {
-      setIsLoading(false)
+      setIsLoading(false);
       toastSuccess(
         "تیکت شما  با موفقیت انجام شد",
         "top-center",

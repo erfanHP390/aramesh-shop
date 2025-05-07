@@ -1,7 +1,6 @@
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
 import connectToDB from "@/configs/db";
 import React from "react";
-import styles from "@/components/templates/p-admin/tickets/TicketTable.module.css";
 import ProductModel from "@/models/Product";
 import ProductTable from "@/components/templates/p-admin/products/ProductTable";
 import Title from "@/components/modules/p-user/title/Title";
@@ -11,7 +10,6 @@ import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 export const metadata = {
   title: "پنل مدیریت | لیست محصولات سایت",
 };
-
 
 async function page() {
   connectToDB();

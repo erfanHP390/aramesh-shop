@@ -15,7 +15,7 @@ export default function Loading() {
 
       <div className="loader-text">
         <h2>فروشگاه آرامش</h2>
-        <p>در حال آماده‌سازی  ...</p>
+        <p>در حال آماده‌سازی،لطفا منتظر باشید</p>
       </div>
 
       <div className="progress-container">

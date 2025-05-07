@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import {
-    FaEnvelopeOpenText,
-    FaInternetExplorer,
-    FaPhone,
-    FaTelegramPlane,
-  } from "react-icons/fa";
-  import { PiCoffeeFill } from "react-icons/pi";
-  import { BiSolidContact } from "react-icons/bi";
-  import styles from "./Information.module.css"
+  FaEnvelopeOpenText,
+  FaInternetExplorer,
+  FaPhone,
+  FaTelegramPlane,
+} from "react-icons/fa";
+import { PiCoffeeFill } from "react-icons/pi";
+import { BiSolidContact } from "react-icons/bi";
+import styles from "./Information.module.css";
 
 export default function Information() {
   return (
@@ -24,11 +24,7 @@ export default function Information() {
       </div>
       <div>
         <BiSolidContact />
-        <p>
-          {" "}
-          مشهد ، شهرک صنعتی فاز دو ، میدان تلاش ، خیابان کوشش ، کوشش 2
-          {" "}
-        </p>
+        <p> مشهد ، شهرک صنعتی فاز دو ، میدان تلاش ، خیابان کوشش ، کوشش 2 </p>
       </div>
       <div>
         <FaPhone />
@@ -47,5 +43,5 @@ export default function Information() {
         <p>تماس با مدیریت از طریق واتساپ و یا تلگرام : 09366726563</p>
       </div>
     </section>
-  )
+  );
 }

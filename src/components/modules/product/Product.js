@@ -20,10 +20,8 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
   useEffect(() => {
     const authUser = async () => {
       const res = await fetch("/api/auth/me");
-      console.log(res);
       if (res.status === 200) {
         const data = await res.json();
-        console.log(data);
         setUser({ ...data });
       }
     };
@@ -54,7 +52,6 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
       body: JSON.stringify(wish),
     });
 
-    console.log("Response ->", res);
 
     if (res.status === 201) {
       setIsLoading(false);

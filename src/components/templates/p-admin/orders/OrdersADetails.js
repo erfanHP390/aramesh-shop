@@ -1,18 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { IoCloudUploadOutline, IoMdStar } from "react-icons/io5";
 import styles from "@/components/templates/checkout/ordersDetails/OrdersDetails.module.css";
 import tableStyles from "@/components/templates/cart/table/Table.module.css";
 import subStyles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
+import { validateEmail,  validatePhone } from "@/utils/auth";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
 import stateData from "@/utils/stateData";
 import Select from "react-select";
-import totalStyles from "@/components/templates/cart/table/totals.module.css";
 
 function OrdersADetails({ order }) {
   const router = useRouter();
@@ -396,7 +394,7 @@ function OrdersADetails({ order }) {
               value={formData.company}
               onChange={handleInputChange}
               type="text"
-              placeholder="نام شرکت (در صورت وجود)"
+              placeholder="نام شرکت/شغل (در صورت وجود)"
               className={styles.form_input}
             />
           </div>

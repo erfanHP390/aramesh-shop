@@ -1,6 +1,5 @@
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
 import React from "react";
-import styles from "@/components/templates/p-admin/tickets/TicketTable.module.css";
 import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
 import TicketTable from "@/components/templates/p-admin/tickets/TicketTable";
@@ -9,11 +8,9 @@ import Title from "@/components/modules/p-user/title/Title";
 import { IoTicketOutline } from "react-icons/io5";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
-
 export const metadata = {
   title: "پنل مدیریت | لیست تیکت ها",
 };
-
 
 const page = async () => {
   connectToDB();
@@ -32,18 +29,15 @@ const page = async () => {
         <Title title={" تیکت ها"} />
         {tickets.length === 0 ? (
           <>
-            <EmptyCart
-              icon={<IoTicketOutline />}
-              title={"تیکتی وجود ندارد"}
-            />
+            <EmptyCart icon={<IoTicketOutline />} title={"تیکتی وجود ندارد"} />
           </>
         ) : (
           <>
-          <TicketTable
-            tickets={JSON.parse(JSON.stringify(tickets))}
-            email={user.email}
-            phone={user.phone}
-          />
+            <TicketTable
+              tickets={JSON.parse(JSON.stringify(tickets))}
+              email={user.email}
+              phone={user.phone}
+            />
           </>
         )}
       </main>

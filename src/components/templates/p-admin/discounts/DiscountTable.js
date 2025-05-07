@@ -1,6 +1,6 @@
 "use client";
 import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 function DiscountTable({ discounts }) {
@@ -32,7 +32,7 @@ function DiscountTable({ discounts }) {
           router.refresh();
         } else if (res.status === 401) {
           toastError(
-             "فقط ادمین/مدیر سایت اجازه حذف کد تخفیف را دارد",
+            "فقط ادمین/مدیر سایت اجازه حذف کد تخفیف را دارد",
             "top-center",
             5000,
             false,

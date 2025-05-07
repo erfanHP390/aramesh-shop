@@ -1,6 +1,5 @@
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
 import React from "react";
-import styles from "@/components/templates/p-admin/index/userTable/UserTable.module.css";
 import UserTable from "@/components/templates/p-admin/index/userTable/UserTable";
 import connectToDB from "@/configs/db";
 import UserModel from "@/models/User";
@@ -8,11 +7,9 @@ import Title from "@/components/modules/p-user/title/Title";
 import { FaUsersLine } from "react-icons/fa6";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 
-
 export const metadata = {
   title: "پنل مدیریت | لیست کاربران ثبت نام شده",
 };
-
 
 async function page() {
   connectToDB();

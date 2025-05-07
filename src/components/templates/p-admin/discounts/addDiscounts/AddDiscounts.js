@@ -29,7 +29,6 @@ function AddDiscounts() {
       body: JSON.stringify(newDiscount),
     });
 
-    console.log(res);
 
     if (res.status === 201) {
       setCode("");

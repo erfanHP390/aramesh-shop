@@ -34,7 +34,6 @@ function OrderTable({ orders, title }) {
               method: "DELETE",
             });
 
-            console.log(res);
             
     
             if (res.status === 200) {

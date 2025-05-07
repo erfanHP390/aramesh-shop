@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import styles from "./Topbar.module.css";
-import { IoIosSearch, IoIosNotifications } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import Modal from "../modal/Model";
 import { FaBars, FaHome } from "react-icons/fa";
 import Link from "next/link";
 
-const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
+const Topbar = ({ name, role, toggleSidebar, profileUser }) => {
   const [showModal, setShowModal] = useState(false);
 
   const hideModal = () => setShowModal(false);
@@ -18,9 +18,13 @@ const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
         <div className={styles.profile}>
           <div>
             <p>{name}</p>
-            <span>{role === "ADMIN" ? "ادمین" :  "کاربر عادی"}</span>
+            <span>{role === "ADMIN" ? "ادمین" : "کاربر عادی"}</span>
           </div>
-          <img src={profileUser ? profileUser.img : "/images/user2.avif"} alt=""  className={styles.img_profile} />
+          <img
+            src={profileUser ? profileUser.img : "/images/user2.avif"}
+            alt=""
+            className={styles.img_profile}
+          />
         </div>
         <section>
           <div className={styles.searchBox}>
@@ -29,9 +33,7 @@ const Topbar = ({name ,role , toggleSidebar , profileUser }) => {
               <IoIosSearch />
             </div>
           </div>
-          <Link href={"/"}
-            className={styles.notification}
-          >
+          <Link href={"/"} className={styles.notification}>
             <FaHome />
           </Link>
           <div className={styles.menuIcon} onClick={toggleSidebar}>

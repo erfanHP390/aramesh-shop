@@ -79,7 +79,6 @@ export async function generateMetadata({ params }) {
 async function page({ params }) {
   connectToDB();
   const id = params.id;
-  const user = await authUser();
   const blog = await BlogModel.findOne({ _id: id }).populate("comments").lean();
 
   const jsonLd = {
@@ -120,7 +119,7 @@ async function page({ params }) {
 
   return (
     <>
-      <Navbar  />
+      <Navbar />
       <BreadCrumb route={"قهوه"} />
       <div className={styles.container}>
         <script

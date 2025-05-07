@@ -3,7 +3,6 @@ import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import Title from "@/components/modules/p-user/title/Title";
 import AddDiscounts from "@/components/templates/p-admin/discounts/addDiscounts/AddDiscounts";
 import DiscountTable from "@/components/templates/p-admin/discounts/DiscountTable";
-import styles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import connectToDB from "@/configs/db";
 import DiscountModel from "@/models/Discount";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
@@ -11,7 +10,6 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 export const metadata = {
   title: "پنل مدیریت | لیست تحفیفات/افزودن تخفیف",
 };
-
 
 async function page() {
   connectToDB();
@@ -24,10 +22,10 @@ async function page() {
         <AddDiscounts />
         {discounts.length === 0 ? (
           <>
-          <EmptyCart
-            icon={<FaCircleDollarToSlot />}
-            title={"کدتخفیفی وجود ندارد"}
-          />
+            <EmptyCart
+              icon={<FaCircleDollarToSlot />}
+              title={"کدتخفیفی وجود ندارد"}
+            />
           </>
         ) : (
           <DiscountTable discounts={JSON.parse(JSON.stringify(discounts))} />

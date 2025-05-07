@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail } from "@/utils/auth";

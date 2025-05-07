@@ -14,10 +14,8 @@ export default function AddToWishList({productID}) {
   useEffect(() => {
     const authUser = async () => {
       const res = await fetch("/api/auth/me");
-      console.log(res);
       if (res.status === 200) {
         const data = await res.json();
-        console.log(data);
         setUser({ ...data });
       }
     };

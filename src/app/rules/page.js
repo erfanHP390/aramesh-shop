@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from "@/styles/rules.module.css"
-import { authUser } from '@/utils/authUserLink'
 import Navbar from '@/components/modules/navbar/Navbar'
 import BreadCrumb from '@/components/modules/breadcrumb/BreadCrumb'
 import Footer from '@/components/modules/Footer/Footer'

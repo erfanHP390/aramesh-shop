@@ -1,5 +1,4 @@
 import connectToDB from "@/configs/db";
-import { authUser } from "@/utils/authUserLink";
 import OrderModel from "@/models/Orders";
 import React from "react";
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
@@ -11,7 +10,6 @@ export const metadata = {
   title: "پنل مدیریت | جزئیات سفارش",
 };
 
-
 async function page({ params }) {
   connectToDB();
   const id = params.id;
@@ -20,7 +18,11 @@ async function page({ params }) {
 
   return (
     <AdminPanelLayout>
-      <Title route={"/p-admin/orders"} text={"همه سفارشات"} title={"جزئیات سفارش"} />
+      <Title
+        route={"/p-admin/orders"}
+        text={"همه سفارشات"}
+        title={"جزئیات سفارش"}
+      />
       <OrdersADetails order={JSON.parse(JSON.stringify(order))} />
     </AdminPanelLayout>
   );

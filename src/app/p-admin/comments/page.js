@@ -1,6 +1,5 @@
 import AdminPanelLayout from "@/components/layouts/AdminPanelLayout/AdminPanelLayout";
 import React from "react";
-import styles from "@/components/templates/p-admin/comments/CommentTable.module.css";
 import connectToDB from "@/configs/db";
 import CommentModel from "@/models/Comment";
 import CommentBlogModel from "@/models/CommentBlog";

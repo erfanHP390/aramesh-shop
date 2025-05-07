@@ -3,32 +3,183 @@ import React from "react";
 import styles from "./CommentTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import swal from "sweetalert";
-import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Title from "@/components/modules/p-user/title/Title";
 
-function CommentBTable({comments , title , phone}) {
-    console.log(comments);
-    
+function CommentBTable({ comments, title, phone }) {
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const showCommentBody = (text) => {
-      swalAlert(text, undefined, "بستن");
-    };
+  const showCommentBody = (text) => {
+    swalAlert(text, undefined, "بستن");
+  };
 
-    const acceptComment = async (commentID) => {
-        const res = await fetch("/api/blog/comment/accept", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: commentID }),
+  const acceptComment = async (commentID) => {
+    const res = await fetch("/api/blog/comment/accept", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: commentID }),
+    });
+
+    if (res.status === 200) {
+      toastSuccess(
+        "کامنت تایید شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      router.refresh();
+    } else if (res.status === 401) {
+      toastError(
+        "فقط ادمین/مدیر سایت اجازه تایید کامنت را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت ارسال نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت نامعتبر است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
+  const rejectComment = async (commentID) => {
+    const res = await fetch("/api/blog/comment/reject", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: commentID }),
+    });
+
+    if (res.status === 200) {
+      toastSuccess(
+        "کامنت رد شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      router.refresh();
+    } else if (res.status === 401) {
+      toastError(
+        "فقط ادمین/مدیر سایت اجازه رد کامنت را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 400) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت ارسال نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 422) {
+      setIsLoading(false);
+      toastError(
+        "شناسه کامنت نامعتبر است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 500) {
+      setIsLoading(false);
+      toastError(
+        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    }
+  };
+
+  const removeComment = async (commentID) => {
+    swal({
+      title: "آیا از حذف کامنت اطمینان دارین؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+        const res = await fetch(`/api/blog/comment/${commentID}`, {
+          method: "DELETE",
         });
-    
+
         if (res.status === 200) {
           toastSuccess(
-            "کامنت تایید شد",
+            "کامنت با موفقیت حذف شد",
             "top-center",
             5000,
             false,
@@ -41,7 +192,7 @@ function CommentBTable({comments , title , phone}) {
           router.refresh();
         } else if (res.status === 401) {
           toastError(
-            "فقط ادمین/مدیر سایت اجازه تایید کامنت را دارد",
+            "فقط ادمین/مدیر سایت اجازه حذف کامنت را دارد",
             "top-center",
             5000,
             false,
@@ -52,7 +203,6 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         } else if (res.status === 400) {
-          setIsLoading(false);
           toastError(
             "شناسه کامنت ارسال نشده است",
             "top-center",
@@ -65,7 +215,6 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         } else if (res.status === 422) {
-          setIsLoading(false);
           toastError(
             "شناسه کامنت نامعتبر است",
             "top-center",
@@ -77,8 +226,19 @@ function CommentBTable({comments , title , phone}) {
             undefined,
             "colored"
           );
+        } else if (res.status === 404) {
+          toastError(
+            "کامنت یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 500) {
-          setIsLoading(false);
           toastError(
             "خطا در سرور ، لطفا بعدا تلاش کنید",
             "top-center",
@@ -91,20 +251,27 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         }
-      };
-    
-      const rejectComment = async (commentID) => {
-        const res = await fetch("/api/blog/comment/reject", {
-          method: "PUT",
+      }
+    });
+  };
+  const banUser = async (commentEmail) => {
+    swal({
+      title: "آیا از مسدود کردن کاربر اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+        const res = await fetch("/api/user/ban", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id: commentID }),
+          body: JSON.stringify({ email: commentEmail, phone }),
         });
-    
+
         if (res.status === 200) {
           toastSuccess(
-            "کامنت رد شد",
+            "کاربر با موفقیت مسدود شد",
             "top-center",
             5000,
             false,
@@ -117,20 +284,7 @@ function CommentBTable({comments , title , phone}) {
           router.refresh();
         } else if (res.status === 401) {
           toastError(
-            "فقط ادمین/مدیر سایت اجازه رد کامنت را دارد",
-            "top-center",
-            5000,
-            false,
-            true,
-            true,
-            true,
-            undefined,
-            "colored"
-          );
-        } else if (res.status === 400) {
-          setIsLoading(false);
-          toastError(
-            "شناسه کامنت ارسال نشده است",
+            "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
             "top-center",
             5000,
             false,
@@ -141,9 +295,8 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         } else if (res.status === 422) {
-          setIsLoading(false);
           toastError(
-            "شناسه کامنت نامعتبر است",
+            "ایمیل/تلفن کاربر نامعتبر است",
             "top-center",
             5000,
             false,
@@ -154,7 +307,6 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         } else if (res.status === 500) {
-          setIsLoading(false);
           toastError(
             "خطا در سرور ، لطفا بعدا تلاش کنید",
             "top-center",
@@ -167,169 +319,14 @@ function CommentBTable({comments , title , phone}) {
             "colored"
           );
         }
-      };
-    
-      const removeComment = async (commentID) => {
-        swal({
-          title: "آیا از حذف کاربر اطمینان دارین؟",
-          icon: "warning",
-          buttons: ["نه", "آره"],
-        }).then(async (result) => {
-          if (result) {
-            const res = await fetch(`/api/blog/comment/${commentID}`, {
-              method: "DELETE",
-            });
-    
-            if (res.status === 200) {
-              toastSuccess(
-                "کامنت با موفقیت حذف شد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-              router.refresh();
-            } else if (res.status === 401) {
-              toastError(
-                "فقط ادمین/مدیر سایت اجازه حذف کامنت را دارد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 400) {
-              toastError(
-                "شناسه کامنت ارسال نشده است",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 422) {
-              toastError(
-                "شناسه کامنت نامعتبر است",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 404) {
-              toastError(
-                "کامنت یافت نشد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 500) {
-              toastError(
-                "خطا در سرور ، لطفا بعدا تلاش کنید",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            }
-          }
-        });
-      };
-      const banUser = async (commentEmail) => {
-        swal({
-          title: "آیا از مسدود کردن کاربر اطمینان دارید؟",
-          icon: "warning",
-          buttons: ["نه", "آره"],
-        }).then(async (result) => {
-          if (result) {
-            const res = await fetch("/api/user/ban", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email: commentEmail, phone }),
-            });
-    
-            if (res.status === 200) {
-              toastSuccess(
-                "کاربر با موفقیت مسدود شد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-              router.refresh();
-            } else if (res.status === 401) {
-              toastError(
-                "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 422) {
-              toastError(
-                "ایمیل/تلفن کاربر نامعتبر است",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 500) {
-              toastError(
-                "خطا در سرور ، لطفا بعدا تلاش کنید",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            }
-          }
-        });
-      };
+      }
+    });
+  };
 
   return (
     <div>
       <div>
-      <Title   title={"مقالات"} />
+        <Title title={"مقالات"} />
       </div>
       <div className={styles.table_container}>
         <table className={styles.table}>
@@ -354,11 +351,13 @@ function CommentBTable({comments , title , phone}) {
                 <td>{index + 1}</td>
                 <td>{comment.name}</td>
                 <td>{comment.email}</td>
+                <td>{comment.education}</td>
                 <td>
-                    {comment.education}
+                  {comment.blogID ? comment.blogID.titr : "مقاله حذف شده"}
                 </td>
-                <td>{comment.blogID ? comment.blogID.titr : "مقاله حذف شده"}</td>
-                <td>{new Date(comment.createdAt).toLocaleDateString("fa-IR")}</td>
+                <td>
+                  {new Date(comment.createdAt).toLocaleDateString("fa-IR")}
+                </td>
                 <td>
                   <button
                     type="button"
@@ -416,7 +415,7 @@ function CommentBTable({comments , title , phone}) {
         </table>
       </div>
     </div>
-  )
+  );
 }
 
-export default CommentBTable
+export default CommentBTable;

@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/p-user/orders.module.css";
 import OrdersMain from "@/components/templates/p-user/orders/OrdersMain";
 import UserPanelLayout from "@/components/layouts/UserPanelLayout/UserPanelLayout";
 import connectToDB from "@/configs/db";
@@ -7,10 +6,8 @@ import { authUser } from "@/utils/authUserLink";
 import OrderModel from "@/models/Orders";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css"
 import Title from "@/components/modules/p-user/title/Title";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
-import { FaJediOrder } from "react-icons/fa";
 import { TbShoppingCartX } from "react-icons/tb";
 
 export const metadata = {
@@ -37,7 +34,13 @@ async function page() {
     <UserPanelLayout>
       <Title title={" سفارشات"} route={"/category"} text={"ایجاد سفارش جدید"} />
       {orders.length === 0 ? (
-        <EmptyCart  icon={<TbShoppingCartX />}  body={"میتوانید در بخش فروشگاه نسبت به سفارش جدید اقدام نمایید"}  title={"سفارشی وجود ندارد"}  href={"/category"} textLink={"رفتن به فروشگاه"}  />
+        <EmptyCart
+          icon={<TbShoppingCartX />}
+          body={"میتوانید در بخش فروشگاه نسبت به سفارش جدید اقدام نمایید"}
+          title={"سفارشی وجود ندارد"}
+          href={"/category"}
+          textLink={"رفتن به فروشگاه"}
+        />
       ) : (
         <OrdersMain orders={JSON.parse(JSON.stringify(orders))} />
       )}

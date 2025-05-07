@@ -7,11 +7,14 @@ export const metadata = {
   title: "پنل مدیریت | ایجاد محصول جدید",
 };
 
-
 function page() {
   return (
     <AdminPanelLayout>
-      <Title route={"/p-admin/products"} text={"همه محصولات"} title={"ایجاد محصول"} />
+      <Title
+        route={"/p-admin/products"}
+        text={"همه محصولات"}
+        title={"ایجاد محصول"}
+      />
       <ProductCreate />
     </AdminPanelLayout>
   );

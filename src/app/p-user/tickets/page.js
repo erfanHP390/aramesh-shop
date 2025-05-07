@@ -5,7 +5,6 @@ import { authUser } from "@/utils/authUserLink";
 import TicketModel from "@/models/Ticket";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import Title from "@/components/modules/p-user/title/Title";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
 import { IoTicketOutline } from "react-icons/io5";
@@ -36,11 +35,11 @@ async function page() {
       />
       {tickets.length === 0 ? (
         <EmptyCart
-        icon={<IoTicketOutline />}
-        title={"تیکتی وجود ندارد"}
-        body={"برای ایجاد تیکت جدید  کلیک کنید"}
-        href={"/p-user/tickets/sendTicket"}
-        textLink={"ارسال تیکت"}
+          icon={<IoTicketOutline />}
+          title={"تیکتی وجود ندارد"}
+          body={"برای ایجاد تیکت جدید  کلیک کنید"}
+          href={"/p-user/tickets/sendTicket"}
+          textLink={"ارسال تیکت"}
         />
       ) : (
         <AllTickets tickets={JSON.parse(JSON.stringify(tickets))} />

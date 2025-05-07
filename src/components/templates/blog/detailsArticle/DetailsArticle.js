@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styles from "./DetailsArticle.module.css";
 import {
-  FaAngleLeft,
-  FaAngleRight,
   FaFacebookF,
   FaLinkedinIn,
   FaPinterest,
@@ -25,20 +23,14 @@ function DetailsArticle({ blog }) {
       </div>
 
       <div className={styles.main_img}>
-        <div class={styles.date}>
+        <div className={styles.date}>
           {new Date(blog.createdAt).toLocaleDateString("fa-IR")}
         </div>
-        <img
-          src={blog.img}
-          alt=""
-        />
+        <img src={blog.img} alt="" />
       </div>
       <section>
-        <p>
-            {blog.description}
-        </p>
+        <p>{blog.description}</p>
       </section>
-
 
       <div className={styles.contents}>
         <div className={styles.icons}>

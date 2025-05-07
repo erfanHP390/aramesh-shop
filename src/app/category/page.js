@@ -4,7 +4,6 @@ import BreadCrumb from "@/components/modules/breadcrumb/BreadCrumb";
 import Navbar from "@/components/modules/navbar/Navbar";
 import Footer from "@/components/modules/Footer/Footer";
 import Products from "@/components/templates/category/products/Products";
-import Filtering from "@/components/templates/category/filtering/Filtering";
 import connectToDB from "@/configs/db";
 import ProductModel from "@/models/Product";
 import Head from "next/head";

@@ -182,7 +182,6 @@ function UserTable({ users, title }) {
   };
 
   const banUser = (email, phone) => {
-    console.log(email, phone);
 
     swal({
       title: "آیا از حذف کاربر اطمینان دارین؟",

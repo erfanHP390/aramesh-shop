@@ -7,7 +7,6 @@ import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePassword, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
-import Title from "@/components/modules/p-user/title/Title";
 
 function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
   const router = useRouter();
@@ -146,11 +145,11 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
 
       const formData = new FormData();
       formData.append("user", user);
-      formData.append("img", img); 
+      formData.append("img", img);
 
       const res = await fetch("/api/auth/changeProfile", {
         method: "PUT",
-        body: formData, 
+        body: formData,
       });
 
       const data = await res.json();
@@ -419,7 +418,7 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
 
   return (
     <main>
-      <div className={styles.details}   >
+      <div className={styles.details}>
         <div className={styles.details_main}>
           {bannedEmail ||
             (bannedMobile && (
@@ -478,7 +477,7 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
                     accept="image/*"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
-                        setImg(e.target.files[0]); 
+                        setImg(e.target.files[0]);
                       }
                     }}
                   />

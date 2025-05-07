@@ -1,30 +1,34 @@
-"use client"
-import React, { useState } from 'react'
-import styles from "@/styles/checkout.module.css"
-
+"use client";
+import React, { useState } from "react";
+import styles from "@/styles/checkout.module.css";
 
 function Discount() {
-
-    const [showDiscountForm, setShowDiscountForm] = useState(false)
-    const getPriceCart = JSON.parse(localStorage.getItem("priceCart"))
+  const [showDiscountForm, setShowDiscountForm] = useState(false);
+  const getPriceCart = JSON.parse(localStorage.getItem("priceCart"));
 
   return (
     <section className={styles.discount}>
-    <div>
+      <div>
         <p>کد تخفیف دارید؟</p>
-        <span onClick={() => setShowDiscountForm(true)}>برای نوشتن کد اینجا کلیک کنید</span>
-    </div>
-    {showDiscountForm && (
+        <span onClick={() => setShowDiscountForm(true)}>
+          برای نوشتن کد اینجا کلیک کنید
+        </span>
+      </div>
+      {showDiscountForm && (
         <div className={styles.discount_container}>
-                <p>اگر کد تخفیف دارید لطفا در باکس زیر بنویسید</p>
-                <div>
-                    <input type="text" placeholder="کد تخفیف" value={getPriceCart?.appliedDiscount?.code}  />
-                    <button>اعمال کوپن</button>
-                </div>
+          <p>اگر کد تخفیف دارید لطفا در باکس زیر بنویسید</p>
+          <div>
+            <input
+              type="text"
+              placeholder="کد تخفیف"
+              value={getPriceCart?.appliedDiscount?.code}
+            />
+            <button>اعمال کوپن</button>
+          </div>
         </div>
-    )}
-</section>
-  )
+      )}
+    </section>
+  );
 }
 
-export default Discount
+export default Discount;

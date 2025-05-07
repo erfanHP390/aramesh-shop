@@ -2,7 +2,7 @@
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
 import styles from "./UserDetails.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";

@@ -1,7 +1,5 @@
 import UserPanelLayout from "@/components/layouts/UserPanelLayout/UserPanelLayout";
-import Link from "next/link";
 import styles from "@/styles/p-user/answerTicket.module.css";
-import TitleStyles from "@/components/templates/p-user/tickets/allTickets/AllTickets.module.css";
 import Answer from "@/components/templates/p-user/tickets/answer/Answer";
 import connectToDB from "@/configs/db";
 import TicketModel from "@/models/Ticket";
@@ -10,12 +8,12 @@ import UserProfileModel from "@/models/UserProfile";
 import { redirect } from "next/navigation";
 import { authUser } from "@/utils/authUserLink";
 import Title from "@/components/modules/p-user/title/Title";
-
+import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";
+import { FaTicket } from "react-icons/fa6";
 
 export const metadata = {
   title: "پنل مدیریت | صفحه گفتگو",
 };
-
 
 async function page({ params }) {
   connectToDB();
@@ -55,9 +53,10 @@ async function page({ params }) {
           )}
 
           {!answerTicket && (
-            <div className={styles.empty}>
-              <p>هنوز پاسخی برای این تیکت ارسال نکردید</p>
-            </div>
+            <EmptyCart
+              title={"هنوز پاسخی ارسال نشده است"}
+              icon={<FaTicket />}
+            />
           )}
         </div>
       </main>

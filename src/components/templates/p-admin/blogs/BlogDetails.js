@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 

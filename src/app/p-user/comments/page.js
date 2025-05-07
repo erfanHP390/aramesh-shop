@@ -5,7 +5,6 @@ import CommentModel from "@/models/Comment";
 import { authUser } from "@/utils/authUserLink";
 import BanModel from "@/models/Ban";
 import { redirect } from "next/navigation";
-import emptyStyles from "@/components/templates/p-admin/discounts/DiscountTable.module.css";
 import Title from "@/components/modules/p-user/title/Title";
 import { FaRegComment } from "react-icons/fa";
 import EmptyCart from "@/components/modules/EmptyCart/EmptyCart";

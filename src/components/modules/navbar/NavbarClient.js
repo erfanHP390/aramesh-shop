@@ -4,7 +4,6 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
-import { hashPassword, verifyPassword } from "@/utils/auth";
 import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
@@ -31,7 +30,6 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
       });
 
       const userData = await res.json();
-      console.log("res refresh", userData);
 
       if (res.status === 200 && userData?.user?.refreshToken) {
         const refreshT = userData.user.refreshToken;
@@ -56,7 +54,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
             undefined,
             "colored"
           );
-          router.refresh()
+          router.refresh();
         } else if (signinUser.status === 419) {
           toastError(
             "ایمیل / رمز عبور نامعنبر است",
@@ -121,7 +119,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
       }
     };
 
-    if(!isCookies) {
+    if (!isCookies) {
       refreshUser();
     }
   }, []);
