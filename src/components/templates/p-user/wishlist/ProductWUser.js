@@ -1,5 +1,5 @@
 "use client";
-import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
+import {  toastError, toastSuccess } from "@/utils/helpers";
 import styles from "./ProductWUser.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
