@@ -2,6 +2,7 @@ import connectToDB from "@/configs/db";
 import { authAdmin } from "@/utils/authUserLink";
 import OrderModel from "@/models/Orders";
 import { isValidObjectId } from "mongoose";
+import ProductModel from "@/models/Product";
 
 export async function PUT(req, { params }) {
   try {
@@ -66,7 +67,7 @@ export async function PUT(req, { params }) {
           lastName: lastName || existingOrder.lastName,
           company: company || existingOrder.company,
           province: province || existingOrder.province,
-          city: city ||  existingOrder.city,
+          city: city || existingOrder.city,
           address: address || existingOrder.address,
           postCode: postCode || existingOrder.postCode,
           mobile: mobile || existingOrder.mobile,
@@ -80,8 +81,38 @@ export async function PUT(req, { params }) {
           isPay: isPay || existingOrder.isPay,
         },
       },
-      { new: true } 
+      { new: true }
     );
+
+    if (existingOrder.basket && Array.isArray(existingOrder.basket)) {
+      for (const item of existingOrder.basket) {
+        const productId = item.id;
+        const count = item.count;
+
+        if (mongoose.Types.ObjectId.isValid(productId)) {
+          await ProductModel.findByIdAndUpdate(
+            productId,
+            { $inc: { uses: -count } },
+            { new: true }
+          );
+        }
+      }
+    }
+
+    if (basket && Array.isArray(basket)) {
+      for (const item of basket) {
+        const productId = item.id;
+        const count = item.count;
+
+        if (mongoose.Types.ObjectId.isValid(productId)) {
+          await ProductModel.findByIdAndUpdate(
+            productId,
+            { $inc: { uses: count } },
+            { new: true }
+          );
+        }
+      }
+    }
 
     return Response.json(
       { message: "Order updated successfully" },

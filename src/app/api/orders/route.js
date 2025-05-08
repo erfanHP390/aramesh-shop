@@ -1,6 +1,7 @@
 import connectToDB from "@/configs/db";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import OrdersModel from "@/models/Orders";
+import ProductModel from "@/models/Product";
 
 export async function POST(req) {
   try {
@@ -22,7 +23,7 @@ export async function POST(req) {
       basket,
       products,
       orderCode,
-      isPay
+      isPay,
     } = body;
 
     if (
@@ -82,8 +83,21 @@ export async function POST(req) {
       basket,
       products,
       orderCode,
-      isPay
+      isPay,
     });
+
+    for (const item of basket) {
+      const productId = item.id;
+      const count = item.count;
+
+      if (mongoose.Types.ObjectId.isValid(productId)) {
+        await ProductModel.findByIdAndUpdate(
+          productId,
+          { $inc: { uses: count } },
+          { new: true }
+        );
+      }
+    }
 
     return Response.json(
       { message: "order is created successfully" },
