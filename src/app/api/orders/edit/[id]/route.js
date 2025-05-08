@@ -3,6 +3,7 @@ import { authAdmin } from "@/utils/authUserLink";
 import OrderModel from "@/models/Orders";
 import { isValidObjectId } from "mongoose";
 import ProductModel from "@/models/Product";
+const mongoose = require("mongoose")
 
 export async function PUT(req, { params }) {
   try {

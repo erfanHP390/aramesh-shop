@@ -2,6 +2,7 @@ import connectToDB from "@/configs/db";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import OrdersModel from "@/models/Orders";
 import ProductModel from "@/models/Product";
+const mongoose = require("mongoose")
 
 export async function POST(req) {
   try {
