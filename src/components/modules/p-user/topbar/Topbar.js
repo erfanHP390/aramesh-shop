@@ -9,6 +9,11 @@ import Link from "next/link";
 
 const Topbar = ({ name, role, toggleSidebar, profileUser }) => {
   const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   const hideModal = () => setShowModal(false);
 
@@ -28,7 +33,12 @@ const Topbar = ({ name, role, toggleSidebar, profileUser }) => {
         </div>
         <section>
           <div className={styles.searchBox}>
-            <input type="text" placeholder="جستجو کنید" />
+            <input
+              type="text"
+              value={searchQuery} // همیشه مقدار کنترل شده
+              onChange={handleSearchChange} // تغییرات را از state بگیرید
+              placeholder="جستجو کنید"
+            />
             <div>
               <IoIosSearch />
             </div>

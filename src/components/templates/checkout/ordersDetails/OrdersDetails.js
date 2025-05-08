@@ -163,9 +163,8 @@ function OrdersDetails() {
       setDescription("");
       setTotalPrice("");
       setPostPrice("");
-      setBasket("");
-      setProducts("");
-      setOrderCode("");
+      setBasket([]);
+      setProducts([]);
 
       toastSuccess(
         "سفارش شما با موفقیت ثبت شده و در انتظار پرداخت است",

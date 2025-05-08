@@ -54,27 +54,27 @@ const Sidebar = ({name}) => {
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (
           <>
-            <Link href={"/p-user"} className={path.includes === ("/p-user") && styles.sidebar_link_active}>
+            <Link href={"/p-user"} className={path.includes === ("/p-user") ? styles.sidebar_link_active : undefined}>
               <ImReply />
               پیشخوان
             </Link>
-            <Link href={"/p-user/orders"}  className={path.includes("/p-user/orders") && styles.sidebar_link_active} >
+            <Link href={"/p-user/orders"}  className={path.includes("/p-user/orders") ? styles.sidebar_link_active : undefined} >
               <FaShoppingBag />
               سفارش ها
             </Link>
-            <Link href={"/p-user/tickets"}  className={path.includes("/p-user/tickets") && styles.sidebar_link_active}>
+            <Link href={"/p-user/tickets"}  className={path.includes("/p-user/tickets") ? styles.sidebar_link_active : undefined}>
               <MdSms />
               تیکت های پشتیبانی
             </Link>
-            <Link href={"/p-user/comments"}  className={path.includes("/p-user/comments") && styles.sidebar_link_active}>
+            <Link href={"/p-user/comments"}  className={path.includes("/p-user/comments") ? styles.sidebar_link_active : undefined}>
               <FaComments />
               کامنت ها
             </Link>
-            <Link href={"/p-user/wishlist"}  className={path.includes("/p-user/wishlist") && styles.sidebar_link_active}>
+            <Link href={"/p-user/wishlist"}  className={path.includes("/p-user/wishlist") ? styles.sidebar_link_active : undefined}>
               <FaHeart />
               علاقه مندی
             </Link>
-            <Link href={"/p-user/account-details"} className={path.includes("/p-user/account-details") && styles.sidebar_link_active}>
+            <Link href={"/p-user/account-details"} className={path.includes("/p-user/account-details") ? styles.sidebar_link_active : undefined}>
               <TbListDetails />
               جزئیات اکانت
             </Link>
@@ -85,37 +85,37 @@ const Sidebar = ({name}) => {
           </>
         ) : (
           <>
-            <Link href={"/p-admin"} className={path.includes === ("/p-admin") && styles.sidebar_link_active}>
+            <Link href={"/p-admin"} className={path.includes === ("/p-admin") ? styles.sidebar_link_active : undefined}>
               <ImReply />
               پیشخوان
             </Link>
 
-            <Link href={"/p-admin/products"}  className={path.includes("/p-admin/products") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/products"}  className={path.includes("/p-admin/products") ? styles.sidebar_link_active : undefined}>
               <FaShoppingBag />
               محصولات
             </Link>
-            <Link href={"/p-admin/blogs"}  className={path.includes("/p-admin/blogs") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/blogs"}  className={path.includes("/p-admin/blogs") ? styles.sidebar_link_active : undefined}>
               <MdOutlineArticle /> 
               مقالات
             </Link>
-            <Link href={"/p-admin/orders"}  className={path.includes("/p-admin/orders") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/orders"}  className={path.includes("/p-admin/orders") ? styles.sidebar_link_active : undefined}>
               <FaShoppingBag/> 
               سفارش ها
             </Link>
-            <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") && styles.sidebar_link_active} >
+            <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") ? styles.sidebar_link_active : undefined} >
               <FaUsers />
               کاربران
             </Link>
-            <Link href={"/p-admin/comments"}   className={path.includes("/p-admin/comments") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/comments"}   className={path.includes("/p-admin/comments") ? styles.sidebar_link_active : undefined}>
               <FaComments />
               کامنت ها
             </Link>
 
-            <Link href={"/p-admin/tickets"}   className={path.includes("/p-admin/tickets") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/tickets"}   className={path.includes("/p-admin/tickets") ? styles.sidebar_link_active : undefined}>
               <MdSms />
               تیکت ها
             </Link>
-            <Link href={"/p-admin/discount"}   className={path.includes("/p-admin/discount") && styles.sidebar_link_active}>
+            <Link href={"/p-admin/discount"}   className={path.includes("/p-admin/discount") ? styles.sidebar_link_active : undefined}>
               <MdOutlineAttachMoney />
               تخفیفات
             </Link>
