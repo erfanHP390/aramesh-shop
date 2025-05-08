@@ -340,10 +340,8 @@ const Login = ({ showRegisterForm }) => {
             <div className={styles.checkbox}>
               <input
                 type="checkbox"
-                name=""
-                id=""
-                value={isSaveUserLoginInfo}
-                onChange={(event) =>
+                checked={isSaveUserLoginInfo} 
+                onChange={() =>
                   setIsSaveUserLoginInfo((prevValue) => !prevValue)
                 }
               />

@@ -1,17 +1,21 @@
 import Link from "next/link";
 import styles from "./Stepper.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
+
 const Stepper = ({ step }) => {
   return (
     <div className={styles.stepper_bg}>
       <div className={styles.stepper}>
-        <Link className={step == "cart" && styles.active_step} href={"/cart"}>
+        <Link
+          className={step == "cart" ? styles.active_step : undefined}
+          href={"/cart"}
+        >
           سبد خرید
         </Link>
         <FaArrowLeftLong />
         {step === "checkout" || step === "complate" ? (
           <Link
-            className={step == "checkout" && styles.active_step}
+            className={step == "checkout" ? styles.active_step : undefined}
             href={"/checkout"}
           >
             پرداخت
@@ -22,7 +26,7 @@ const Stepper = ({ step }) => {
         <FaArrowLeftLong />
         {step == "complate" ? (
           <Link
-            className={step == "complate" && styles.active_step}
+            className={step == "complate" ? styles.active_step : undefined}
             href={"/complate"}
           >
             تکمیل سفارش

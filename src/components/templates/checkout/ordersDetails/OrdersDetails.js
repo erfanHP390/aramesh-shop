@@ -396,7 +396,7 @@ function OrdersDetails() {
               }}
               type="radio"
               name="payment_method"
-              value={showMellatBank}
+              checked={showMellatBank}
             />
             <label> بانک ملی</label>
             <img
@@ -414,7 +414,7 @@ function OrdersDetails() {
               }}
               type="radio"
               name="payment_method"
-              value="zarinpal"
+              checked={showZarinPallAlert}
             />
             <label>پرداخت امن زرین پال </label>
             <img
@@ -442,11 +442,9 @@ function OrdersDetails() {
           </div>
           <div className={styles.accept_rules}>
             <input
-              value={isReadRoles}
+              checked={isReadRoles}
               onChange={() => setIsReadRoles((prevValue) => !prevValue)}
               type="checkbox"
-              name=""
-              id=""
             />
             <p>
               {" "}

@@ -2,7 +2,14 @@
 
 import styles from "./Sidebar.module.css";
 import { ImReply } from "react-icons/im";
-import { FaBlog, FaComments, FaHeart, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
+import {
+  FaBlog,
+  FaComments,
+  FaHeart,
+  FaHome,
+  FaShoppingBag,
+  FaUsers,
+} from "react-icons/fa";
 import { MdOutlineArticle, MdOutlineAttachMoney } from "react-icons/md";
 import { MdSms, MdLogout } from "react-icons/md";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,11 +17,9 @@ import { TbListDetails } from "react-icons/tb";
 import Link from "next/link";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 
-
-const Sidebar = ({name}) => {
-  const router = useRouter()
+const Sidebar = ({ name }) => {
+  const router = useRouter();
   const path = usePathname();
-  
 
   const logoutHandler = () => {
     swal({
@@ -22,13 +27,12 @@ const Sidebar = ({name}) => {
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
-      if(result) {
+      if (result) {
+        const res = await fetch("/api/auth/signout", {
+          method: "POST",
+        });
 
-        const res = await fetch("/api/auth/signout" , {
-          method: "POST"
-        })
-
-        if(res.status === 200) {
+        if (res.status === 200) {
           toastSuccess(
             "با موفقیت خارج شدید",
             "top-center",
@@ -40,9 +44,8 @@ const Sidebar = ({name}) => {
             undefined,
             "colored"
           );
-            router.replace("/")
+          router.replace("/");
         }
-
       }
     });
   };
@@ -54,27 +57,69 @@ const Sidebar = ({name}) => {
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (
           <>
-            <Link href={"/p-user"} className={path.includes === ("/p-user") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-user"}
+              className={
+                path.includes("/p-user")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <ImReply />
               پیشخوان
             </Link>
-            <Link href={"/p-user/orders"}  className={path.includes("/p-user/orders") ? styles.sidebar_link_active : undefined} >
+            <Link
+              href={"/p-user/orders"}
+              className={
+                path.includes("/p-user/orders")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaShoppingBag />
               سفارش ها
             </Link>
-            <Link href={"/p-user/tickets"}  className={path.includes("/p-user/tickets") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-user/tickets"}
+              className={
+                path.includes("/p-user/tickets")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <MdSms />
               تیکت های پشتیبانی
             </Link>
-            <Link href={"/p-user/comments"}  className={path.includes("/p-user/comments") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-user/comments"}
+              className={
+                path.includes("/p-user/comments")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaComments />
               کامنت ها
             </Link>
-            <Link href={"/p-user/wishlist"}  className={path.includes("/p-user/wishlist") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-user/wishlist"}
+              className={
+                path.includes("/p-user/wishlist")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaHeart />
               علاقه مندی
             </Link>
-            <Link href={"/p-user/account-details"} className={path.includes("/p-user/account-details") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-user/account-details"}
+              className={
+                path.includes("/p-user/account-details")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <TbListDetails />
               جزئیات اکانت
             </Link>
@@ -85,37 +130,93 @@ const Sidebar = ({name}) => {
           </>
         ) : (
           <>
-            <Link href={"/p-admin"} className={path.includes === ("/p-admin") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-admin"}
+              className={
+                path.includes("/p-admin")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <ImReply />
               پیشخوان
             </Link>
 
-            <Link href={"/p-admin/products"}  className={path.includes("/p-admin/products") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-admin/products"}
+              className={
+                path.includes("/p-admin/products")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaShoppingBag />
               محصولات
             </Link>
-            <Link href={"/p-admin/blogs"}  className={path.includes("/p-admin/blogs") ? styles.sidebar_link_active : undefined}>
-              <MdOutlineArticle /> 
+            <Link
+              href={"/p-admin/blogs"}
+              className={
+                path.includes("/p-admin/blogs")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
+              <MdOutlineArticle />
               مقالات
             </Link>
-            <Link href={"/p-admin/orders"}  className={path.includes("/p-admin/orders") ? styles.sidebar_link_active : undefined}>
-              <FaShoppingBag/> 
+            <Link
+              href={"/p-admin/orders"}
+              className={
+                path.includes("/p-admin/orders")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
+              <FaShoppingBag />
               سفارش ها
             </Link>
-            <Link href={"/p-admin/users"} className={path.includes("/p-admin/users") ? styles.sidebar_link_active : undefined} >
+            <Link
+              href={"/p-admin/users"}
+              className={
+                path.includes("/p-admin/users")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaUsers />
               کاربران
             </Link>
-            <Link href={"/p-admin/comments"}   className={path.includes("/p-admin/comments") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-admin/comments"}
+              className={
+                path.includes("/p-admin/comments")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <FaComments />
               کامنت ها
             </Link>
 
-            <Link href={"/p-admin/tickets"}   className={path.includes("/p-admin/tickets") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-admin/tickets"}
+              className={
+                path.includes("/p-admin/tickets")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <MdSms />
               تیکت ها
             </Link>
-            <Link href={"/p-admin/discount"}   className={path.includes("/p-admin/discount") ? styles.sidebar_link_active : undefined}>
+            <Link
+              href={"/p-admin/discount"}
+              className={
+                path.includes("/p-admin/discount")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
               <MdOutlineAttachMoney />
               تخفیفات
             </Link>

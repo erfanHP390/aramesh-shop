@@ -49,7 +49,6 @@ export default function Form() {
       body: JSON.stringify(newMessage),
     });
 
-
     if (res.status === 201) {
       setCompany("");
       setEmail("");
@@ -105,10 +104,9 @@ export default function Form() {
         "colored"
       );
     } else if (res.status === 500) {
-      setUserName("");
+      setName("");
       setEmail("");
-      setBody("");
-      setScore("");
+      setMessage("");
       setIsLoading(false);
       toastError(
         "خطا در سرور ، لطفا چند دقیقه بعد دوباره تلاش کنید",

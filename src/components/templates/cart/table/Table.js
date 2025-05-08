@@ -28,7 +28,7 @@ function Table() {
   const [postalCode, setPostalCode] = useState("");
 
   const getSafeLocalStorage = (key, defaultValue) => {
-    if (typeof window === "undefined") return defaultValue; // فقط در مرورگر اجرا شود
+    if (typeof window === "undefined") return defaultValue;
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
@@ -482,10 +482,7 @@ function Table() {
                       isSearchable={true}
                       styles={customStyles}
                       noOptionsMessage={() => "استانی یافت نشد"}
-                      className="react-select-container"
                       classNamePrefix="react-select"
-                      getOptionLabel={(option) => option.label}
-                      getOptionValue={(option) => option.value}
                     />
                   </div>
 
@@ -504,7 +501,6 @@ function Table() {
                       isSearchable={true}
                       styles={customStyles}
                       noOptionsMessage={() => "شهری یافت نشد"}
-                      className="react-select-container"
                       classNamePrefix="react-select"
                     />
                   </div>

@@ -15,13 +15,13 @@ function Products({ productsDB }) {
   const [products, setProducts] = useState([...productsDB]);
   const [filteredProducts, setFilteredProducts] = useState([...productsDB]);
   const [visibleProducts, setVisibleProducts] = useState(6);
-  
+
   const [bestsellers, setBestsellers] = useState([...productsDB]);
   const [minValue, setMinValue] = useState(140000);
   const [maxValue, setMaxValue] = useState(6790000);
   const [priceFilter, setPriceFilter] = useState({
     min: 140000,
-    max: 6790000
+    max: 6790000,
   });
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
@@ -29,7 +29,7 @@ function Products({ productsDB }) {
   const [isMounted, setIsMounted] = useState(false);
   const sidebarRef = useRef(null);
 
-  const categories = ['اسپرسو', 'ارگانیک', 'دستگاه', 'لوازم جانبی', 'گواتمالا'];
+  const categories = ["اسپرسو", "ارگانیک", "دستگاه", "لوازم جانبی", "گواتمالا"];
   const ratings = [5, 4, 3];
 
   useEffect(() => {
@@ -38,23 +38,26 @@ function Products({ productsDB }) {
 
   useEffect(() => {
     let filtered = [...products];
-    
+
     filtered = filtered.filter(
-      product => product.price >= priceFilter.min && product.price <= priceFilter.max
+      (product) =>
+        product.price >= priceFilter.min && product.price <= priceFilter.max
     );
-    
+
     if (selectedCategories.length > 0) {
-      filtered = filtered.filter(product => {
-        return selectedCategories.some(category => 
+      filtered = filtered.filter((product) => {
+        return selectedCategories.some((category) =>
           product.tags[0].includes(category)
         );
       });
     }
-    
+
     if (selectedRating) {
-      filtered = filtered.filter(product => Math.floor(product.score) === selectedRating);
+      filtered = filtered.filter(
+        (product) => Math.floor(product.score) === selectedRating
+      );
     }
-    
+
     setFilteredProducts(filtered);
     setVisibleProducts(6);
   }, [priceFilter, selectedCategories, selectedRating, products]);
@@ -67,21 +70,24 @@ function Products({ productsDB }) {
 
   useEffect(() => {
     let newProducts = [...productsDB];
-    
+
     newProducts = newProducts.filter(
-      product => product.price >= priceFilter.min && product.price <= priceFilter.max
+      (product) =>
+        product.price >= priceFilter.min && product.price <= priceFilter.max
     );
-    
+
     if (selectedCategories.length > 0) {
-      newProducts = newProducts.filter(product => {
-        return selectedCategories.some(category => 
+      newProducts = newProducts.filter((product) => {
+        return selectedCategories.some((category) =>
           product.tags[0].includes(category)
         );
       });
     }
 
     if (selectedRating) {
-      newProducts = newProducts.filter(product => Math.floor(product.score) === selectedRating);
+      newProducts = newProducts.filter(
+        (product) => Math.floor(product.score) === selectedRating
+      );
     }
 
     switch (sort) {
@@ -92,7 +98,9 @@ function Products({ productsDB }) {
         newProducts.sort((a, b) => a.score - b.score);
         break;
       case "last_products":
-        newProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        newProducts.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
         break;
       case "Inexpensive":
         newProducts.sort((a, b) => a.price - b.price);
@@ -103,22 +111,22 @@ function Products({ productsDB }) {
       default:
         break;
     }
-    
+
     setProducts(newProducts);
   }, [sort, productsDB, priceFilter, selectedCategories, selectedRating]);
 
   const priceFilterHandler = () => {
     setPriceFilter({
       min: minValue,
-      max: maxValue
+      max: maxValue,
     });
     setShowFilter(false);
   };
 
   const handleCategoryChange = (category) => {
-    setSelectedCategories(prev => {
+    setSelectedCategories((prev) => {
       if (prev.includes(category)) {
-        return prev.filter(c => c !== category);
+        return prev.filter((c) => c !== category);
       } else {
         return [...prev, category];
       }
@@ -126,11 +134,12 @@ function Products({ productsDB }) {
   };
 
   const handleRatingClick = (rating) => {
-    setSelectedRating(prev => prev === rating ? null : rating);
+    setSelectedRating((prev) => (prev === rating ? null : rating));
   };
 
   const countProductsByRating = (rating) => {
-    return productsDB.filter(product => Math.floor(product.score) === rating).length;
+    return productsDB.filter((product) => Math.floor(product.score) === rating)
+      .length;
   };
 
   useEffect(() => {
@@ -142,7 +151,9 @@ function Products({ productsDB }) {
       }
     };
 
-    const filteredBestSell = productsDB.filter(product => product.uses >= product.stock);
+    const filteredBestSell = productsDB.filter(
+      (product) => product.uses >= product.stock
+    );
     setBestsellers(filteredBestSell);
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -173,7 +184,9 @@ function Products({ productsDB }) {
 
         <div
           ref={sidebarRef}
-          className={`${filterStyles.filter_sidebar} ${showFilter ? filterStyles.visible : ""}`}
+          className={`${filterStyles.filter_sidebar} ${
+            showFilter ? filterStyles.visible : ""
+          }`}
         >
           <div className={filterStyles.sidebar_content}>
             <div className={filterStyles.filter_section}>
@@ -188,7 +201,7 @@ function Products({ productsDB }) {
                   setMaxValue(max);
                 }}
               />
-              <button 
+              <button
                 className={filterStyles.apply_btn}
                 onClick={priceFilterHandler}
               >
@@ -202,15 +215,20 @@ function Products({ productsDB }) {
                 {categories.map((cat, i) => (
                   <li key={i} className={filterStyles.category_item}>
                     <label>
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         checked={selectedCategories.includes(cat)}
                         onChange={() => handleCategoryChange(cat)}
                       />
                       <span className={filterStyles.checkmark}></span>
                       {cat}
                       <span className={filterStyles.count}>
-                        ({productsDB.filter(p => p.tags[0].includes(cat)).length})
+                        (
+                        {
+                          productsDB.filter((p) => p.tags[0].includes(cat))
+                            .length
+                        }
+                        )
                       </span>
                     </label>
                   </li>
@@ -222,17 +240,29 @@ function Products({ productsDB }) {
               <h3 className={filterStyles.section_title}>امتیاز</h3>
               <ul className={filterStyles.rating_list}>
                 {ratings.map((stars) => (
-                  <li 
-                    key={stars} 
-                    className={`${filterStyles.rating_item} ${selectedRating === stars ? filterStyles.selected : ''}`}
+                  <li
+                    key={stars}
+                    className={`${filterStyles.rating_item} ${
+                      selectedRating === stars
+                        ? filterStyles.selected
+                        : undefined
+                    }`}
                     onClick={() => handleRatingClick(stars)}
                   >
                     <div className={filterStyles.stars}>
-                      {[...Array(5)].map((_, i) => (
-                        i < stars ? 
-                          <FaStar key={i} className={filterStyles.filled_star} /> : 
-                          <FaRegStar key={i} className={filterStyles.empty_star} />
-                      ))}
+                      {[...Array(5)].map((_, i) =>
+                        i < stars ? (
+                          <FaStar
+                            key={i}
+                            className={filterStyles.filled_star}
+                          />
+                        ) : (
+                          <FaRegStar
+                            key={i}
+                            className={filterStyles.empty_star}
+                          />
+                        )
+                      )}
                     </div>
                     <span>({countProductsByRating(stars)})</span>
                   </li>
@@ -252,7 +282,7 @@ function Products({ productsDB }) {
         </div>
 
         {showFilter && (
-          <div 
+          <div
             className={filterStyles.overlay}
             onClick={() => setShowFilter(false)}
           />
@@ -263,7 +293,7 @@ function Products({ productsDB }) {
         <div className={styles.filtering}>
           <select
             name="orderby"
-            defaultValue={sort} 
+            defaultValue={sort}
             onChange={(e) => setSort(e.target.value)}
           >
             <option value="-1">مرتب‌سازی پیش‌فرض</option>
@@ -282,14 +312,16 @@ function Products({ productsDB }) {
             ))
           ) : (
             <div className={styles.cart_empty} data-aos="fade-up">
-            <TbShoppingCartX />
-            <p>محصولی مطابق با فیلتر انتخاب شده شما یافت نشد</p>
-            <span>
-              لطفا برای پیدا کردن محصول خود از فیلتر های دیگر کمک بگیرید
-            </span>
-            <span>در صورت راهنمایی یا بروز مشکل میتوانید به پشتیبانی تیکت دهید</span>
-            <Link href={"/p-user/tickets/sendTicket"}>ارسال تیکت</Link>
-          </div>
+              <TbShoppingCartX />
+              <p>محصولی مطابق با فیلتر انتخاب شده شما یافت نشد</p>
+              <span>
+                لطفا برای پیدا کردن محصول خود از فیلتر های دیگر کمک بگیرید
+              </span>
+              <span>
+                در صورت راهنمایی یا بروز مشکل میتوانید به پشتیبانی تیکت دهید
+              </span>
+              <Link href={"/p-user/tickets/sendTicket"}>ارسال تیکت</Link>
+            </div>
           )}
         </main>
 

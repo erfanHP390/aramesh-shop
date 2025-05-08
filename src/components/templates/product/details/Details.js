@@ -11,7 +11,7 @@ import { swalAlert } from "@/utils/helpers";
 const Details = ({ product }) => {
   const [count, setCount] = useState(1);
 
-  // بررسی محیط مرورگر
+  
   const isBrowser = typeof window !== "undefined";
 
   const addProductHandler = (cart) => {

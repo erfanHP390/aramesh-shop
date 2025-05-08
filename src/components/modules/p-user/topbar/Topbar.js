@@ -35,8 +35,8 @@ const Topbar = ({ name, role, toggleSidebar, profileUser }) => {
           <div className={styles.searchBox}>
             <input
               type="text"
-              value={searchQuery} // همیشه مقدار کنترل شده
-              onChange={handleSearchChange} // تغییرات را از state بگیرید
+              value={searchQuery} 
+              onChange={handleSearchChange} 
               placeholder="جستجو کنید"
             />
             <div>
