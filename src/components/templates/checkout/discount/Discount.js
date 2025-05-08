@@ -1,10 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/checkout.module.css";
 
 function Discount() {
   const [showDiscountForm, setShowDiscountForm] = useState(false);
-  const getPriceCart = JSON.parse(localStorage.getItem("priceCart"));
+  const [priceCart, setPriceCart] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const storedData = localStorage.getItem("priceCart");
+        if (storedData) {
+          setPriceCart(JSON.parse(storedData));
+        }
+      } catch (error) {
+        console.error("Error reading priceCart from localStorage:", error);
+      }
+    }
+  }, []);
 
   return (
     <section className={styles.discount}>
@@ -21,7 +34,7 @@ function Discount() {
             <input
               type="text"
               placeholder="کد تخفیف"
-              value={getPriceCart?.appliedDiscount?.code}
+              value={priceCart?.appliedDiscount?.code || ""}
             />
             <button>اعمال کوپن</button>
           </div>

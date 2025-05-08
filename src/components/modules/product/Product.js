@@ -52,7 +52,6 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
       body: JSON.stringify(wish),
     });
 
-
     if (res.status === 201) {
       setIsLoading(false);
       toastSuccess(
@@ -131,11 +130,16 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
 
     cart.push(cartItem);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
     swalAlert("محصول با موفقیت به سبد خرید اضافه شد", "success", "فهمیدم");
   };
 
   const addToCart = () => {
+    if (typeof window === "undefined") return;
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     if (cart.length) {
@@ -161,7 +165,7 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
   return (
     <div className={styles.card}>
       <div className={styles.details_container}>
-        <img src={img} alt="" />
+        <img src={img} alt={name} />
         <div className={styles.icons}>
           <Link href={`/product/${_id}`}>
             <CiSearch />
@@ -185,11 +189,10 @@ export default function Product({ _id, name, price, img, score, uses, stock }) {
       <div className={styles.details}>
         <Link href={`/product/${_id}`}>{name}</Link>
         <div>
-          {" "}
-          {new Array(score).fill(0).map((item, index) => (
+          {new Array(score).fill(0).map((_, index) => (
             <FaStar key={index} style={{ color: "#FFD700" }} />
           ))}
-          {new Array(5 - score).fill(0).map((item, index) => (
+          {new Array(5 - score).fill(0).map((_, index) => (
             <FaRegStar key={index} style={{ color: "#A68A64" }} />
           ))}
         </div>

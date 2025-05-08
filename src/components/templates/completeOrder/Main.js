@@ -7,40 +7,52 @@ import Loading from "@/app/loading";
 
 function Main() {
   const [isLoading, setIsLoading] = useState(false);
-  const [order, setOrder] = useState("");
-  const localOrder = JSON.parse(localStorage.getItem("order"));
+  const [order, setOrder] = useState(null);
+  const [localOrder, setLocalOrder] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedOrder = JSON.parse(localStorage.getItem("order"));
+      setLocalOrder(storedOrder);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchOrder = async () => {
-      try {
-        if (!localOrder?.code) {
-          return swalAlert(
-            "سفارشی برای شما ثبت نشده است لطفا سفارش خود را ثبت کنید",
-            "error",
-            "فهمیدم"
-          );
-        }
+      if (!localOrder?.code) {
+        return swalAlert(
+          "سفارشی برای شما ثبت نشده است لطفا سفارش خود را ثبت کنید",
+          "error",
+          "فهمیدم"
+        );
+      }
 
+      try {
+        setIsLoading(true);
         const res = await fetch(`/api/orders/${localOrder.code}`);
+        if (!res.ok) throw new Error("خطا در دریافت اطلاعات سفارش");
         const data = await res.json();
         setOrder(data);
-      } catch {
-        console.log(err);
+      } catch (err) {
+        console.error(err);
+        swalAlert("خطا در دریافت اطلاعات سفارش", "error", "باشه");
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchOrder();
-  }, []);
-
+    if (localOrder) fetchOrder();
+  }, [localOrder]);
 
   return (
     <>
-      {!isLoading ? (
-        <>
-          {" "}
-          <main className={styles.container} data-aos="fade-left">
-            <div className={styles.box}>
-              <h2 className={styles.title}>تکمیل سفارش</h2>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <main className={styles.container} data-aos="fade-left">
+          <div className={styles.box}>
+            <h2 className={styles.title}>تکمیل سفارش</h2>
+            {order ? (
               <ul className={styles.orderDetails}>
                 <li>
                   شماره سفارش: <span>{order.orderCode}</span>
@@ -52,31 +64,25 @@ function Main() {
                   </span>
                 </li>
                 <li>
-                  {" "}
                   قیمت نهایی:{" "}
-                  <strong>
-                    {" "}
-                    {order.totalPrice?.toLocaleString()} تومان
-                  </strong>{" "}
+                  <strong>{order.totalPrice?.toLocaleString()} تومان</strong>
                 </li>
                 <li>
                   روش پرداخت:{" "}
-                  <span>{localOrder.mellat ? "بانک ملت" : "زرین پال"}</span>
+                  <span>{localOrder?.mellat ? "بانک ملت" : "زرین پال"}</span>
                 </li>
               </ul>
-              <div className={styles.buttons}>
-                <button className={styles.payButton}>پرداخت</button>
-                <Link href={"/checkout"}>
-                  <button className={styles.backButton}> بازگشت</button>
-                </Link>
-              </div>
+            ) : (
+              <p>اطلاعات سفارش یافت نشد.</p>
+            )}
+            <div className={styles.buttons}>
+              <button className={styles.payButton}>پرداخت</button>
+              <Link href={"/checkout"}>
+                <button className={styles.backButton}> بازگشت</button>
+              </Link>
             </div>
-          </main>
-        </>
-      ) : (
-        <>
-          <Loading />
-        </>
+          </div>
+        </main>
       )}
     </>
   );

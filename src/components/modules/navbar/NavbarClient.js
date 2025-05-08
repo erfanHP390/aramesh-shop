@@ -14,6 +14,8 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   const getSafeLocalStorage = (key, defaultValue) => {
+    if (typeof window === "undefined") return defaultValue;
+  
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
@@ -22,6 +24,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
       return defaultValue;
     }
   };
+  
 
   useEffect(() => {
     const refreshUser = async () => {

@@ -19,11 +19,13 @@ const CommentForm = ({ productID }) => {
   };
 
   useEffect(() => {
-    const getUserInfoComment = JSON.parse(localStorage.getItem("user"));
+    if (typeof window !== "undefined") {
+      const getUserInfoComment = JSON.parse(localStorage.getItem("user"));
 
-    if (getUserInfoComment) {
-      setUserName(getUserInfoComment.username);
-      setEmail(getUserInfoComment.email);
+      if (getUserInfoComment) {
+        setUserName(getUserInfoComment.username);
+        setEmail(getUserInfoComment.email);
+      }
     }
   }, []);
 
@@ -49,7 +51,9 @@ const CommentForm = ({ productID }) => {
         email,
       };
 
-      localStorage.setItem("user", JSON.stringify(userInfoComment));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(userInfoComment));
+      }
     }
 
     const newComment = {

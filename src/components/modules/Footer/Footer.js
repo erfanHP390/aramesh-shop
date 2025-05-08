@@ -44,7 +44,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <main className="container">
         <section className={styles.descriptions}>
-          <img src="/images/logo_light.png" alt="" />
+          {/* <img src="/images/logo_light.png" alt="" /> */}
           <p className={styles.descriptions_title}>
             فروشگاه آرامش ؛ سالها تجربه در خرید و فروش قهوه های تازه از سرتاسر جهان
           </p>

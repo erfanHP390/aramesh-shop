@@ -28,6 +28,7 @@ function Table() {
   const [postalCode, setPostalCode] = useState("");
 
   const getSafeLocalStorage = (key, defaultValue) => {
+    if (typeof window === "undefined") return defaultValue; // فقط در مرورگر اجرا شود
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
@@ -43,7 +44,7 @@ function Table() {
       const cities = stateSelectedOption.value.map((cityName) => ({
         value: cityName,
         label: cityName,
-        price: stateSelectedOption.price
+        price: stateSelectedOption.price,
       }));
       setCityOptions(cities);
       setCitySelectorDisabled(false);
@@ -143,7 +144,7 @@ function Table() {
       const selectedCity = {
         value: getPriceCart.city,
         label: getPriceCart.city,
-        price: getPriceCart.postPrice
+        price: getPriceCart.postPrice,
       };
       setCitySelectedOption(selectedCity);
     }
@@ -280,6 +281,8 @@ function Table() {
   };
 
   const addPriceToLS = () => {
+    if (typeof window === "undefined") return;
+
     const prices = {
       postPrice: citySelectedOption?.price || stateSelectedOption?.price || 0,
       totalPrice,
@@ -287,7 +290,7 @@ function Table() {
       province: stateSelectedOption?.label || "",
       city: citySelectedOption?.label || "",
       appliedDiscount,
-      postalCode
+      postalCode,
     };
 
     localStorage.setItem("priceCart", JSON.stringify(prices));
@@ -330,11 +333,11 @@ function Table() {
 
   const updateProductCount = (productId, newCount) => {
     if (newCount < 1) return;
-    
-    const updatedCart = cart.map(item => 
-      item.id === productId ? {...item, count: newCount} : item
+
+    const updatedCart = cart.map((item) =>
+      item.id === productId ? { ...item, count: newCount } : item
     );
-    
+
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
@@ -360,9 +363,21 @@ function Table() {
                     <td>{(item.price * item.count).toLocaleString()} تومان</td>
                     <td className={styles.counter}>
                       <div>
-                        <span onClick={() => updateProductCount(item.id, item.count - 1)}>-</span>
+                        <span
+                          onClick={() =>
+                            updateProductCount(item.id, item.count - 1)
+                          }
+                        >
+                          -
+                        </span>
                         <p>{item.count}</p>
-                        <span onClick={() => updateProductCount(item.id, item.count + 1)}>+</span>
+                        <span
+                          onClick={() =>
+                            updateProductCount(item.id, item.count + 1)
+                          }
+                        >
+                          +
+                        </span>
                       </div>
                     </td>
                     <td className={styles.price}>
@@ -422,24 +437,27 @@ function Table() {
               <div className={totalStyles.shipping_cost}>
                 <p>هزینه ارسال: </p>
                 <p>
-                  {citySelectedOption?.price 
-                    ? citySelectedOption.price.toLocaleString() 
-                    : stateSelectedOption?.price 
-                      ? stateSelectedOption.price.toLocaleString() 
-                      : "0"} تومان
+                  {citySelectedOption?.price
+                    ? citySelectedOption.price.toLocaleString()
+                    : stateSelectedOption?.price
+                    ? stateSelectedOption.price.toLocaleString()
+                    : "0"}{" "}
+                  تومان
                 </p>
               </div>
 
               <div className={totalStyles.address}>
                 <p>حمل و نقل </p>
                 <span>
-                  {stateSelectedOption?.label 
-                    ? `حمل و نقل به ${stateSelectedOption.label}` 
+                  {stateSelectedOption?.label
+                    ? `حمل و نقل به ${stateSelectedOption.label}`
                     : "لطفا استان را انتخاب کنید"}
-                  {citySelectedOption?.label ? ` (${citySelectedOption.label})` : ""}
+                  {citySelectedOption?.label
+                    ? ` (${citySelectedOption.label})`
+                    : ""}
                 </span>
               </div>
-              
+
               <div className={totalStyles.change_address_container}>
                 <button
                   onClick={() => setChangeAddress((prev) => !prev)}
@@ -470,7 +488,7 @@ function Table() {
                       getOptionValue={(option) => option.value}
                     />
                   </div>
-                  
+
                   <div className={totalStyles.select_wrapper}>
                     <Select
                       value={citySelectedOption}
@@ -490,16 +508,16 @@ function Table() {
                       classNamePrefix="react-select"
                     />
                   </div>
-                  
-                  <input 
-                    type="number" 
-                    placeholder="کد پستی" 
+
+                  <input
+                    type="number"
+                    placeholder="کد پستی"
                     value={postalCode}
                     onChange={(e) => setPostalCode(e.target.value)}
                     className={totalStyles.postal_code_input}
                   />
-                  
-                  <button 
+
+                  <button
                     onClick={() => {
                       addPriceToLS();
                       setChangeAddress(false);
@@ -515,10 +533,10 @@ function Table() {
                 <p>مجموع</p>
                 <p>{totalPrice.toLocaleString()} تومان</p>
               </div>
-              
+
               <div className={totalStyles.checkout_btn_wrapper}>
                 <Link href={"/checkout"}>
-                  <button 
+                  <button
                     className={totalStyles.checkout_btn}
                     onClick={addPriceToLS}
                     disabled={!stateSelectedOption}

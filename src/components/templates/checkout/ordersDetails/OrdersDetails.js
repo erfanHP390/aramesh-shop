@@ -36,27 +36,40 @@ function OrdersDetails() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
-    const getCart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (typeof window !== "undefined") {
+      const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
+      const getCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const productsID = getCart.map((item) => item.id);
+      const productsID = getCart.map((item) => item.id);
 
-    setPriceCart(getPricesCart);
-    setProvince(getPricesCart.province);
-    setCity(getPricesCart.city);
-    setTotalPrice(getPricesCart.totalPrice);
-    setPostPrice(getPricesCart.postPrice);
-    setBasket(getCart);
-    setProducts(productsID);
+      setPriceCart(getPricesCart);
+      setProvince(getPricesCart.province);
+      setCity(getPricesCart.city);
+      setTotalPrice(getPricesCart.totalPrice);
+      setPostPrice(getPricesCart.postPrice);
+      setBasket(getCart);
+      setProducts(productsID);
+    }
   }, []);
 
   useEffect(() => {
-    const getCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
+    if (typeof window !== "undefined") {
+      const getCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
 
-    setPriceCart(getPricesCart);
+      setPriceCart(getPricesCart);
+      setCart(getCart);
+    }
+  }, []);
 
-    setCart(getCart);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const getCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const getPricesCart = JSON.parse(localStorage.getItem("priceCart")) || [];
+
+      setPriceCart(getPricesCart);
+      setCart(getCart);
+    }
   }, []);
 
   const addOrder = async () => {

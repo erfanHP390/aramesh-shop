@@ -7,33 +7,33 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 
 function CommentArticle({ comments, blogId }) {
-
-  const router = useRouter()
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [education, setEducation] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isSaveUserInfo , setIsSaveUserInfo] = useState(false)
+  const [isSaveUserInfo, setIsSaveUserInfo] = useState(false);
 
-    useEffect(() => {
-  
-      const getUserInfoComment = JSON.parse(localStorage.getItem("UserReaderBlogs"))
-  
-      if(getUserInfoComment) {
-        setName(getUserInfoComment.name)
-        setEmail(getUserInfoComment.email)
-        setEducation(getUserInfoComment.education)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const getUserInfoComment = JSON.parse(
+        localStorage.getItem("UserReaderBlogs")
+      );
+      if (getUserInfoComment) {
+        setName(getUserInfoComment.name);
+        setEmail(getUserInfoComment.email);
+        setEducation(getUserInfoComment.education);
       }
-  
-    } , [])
+    }
+  }, []);
 
   const AddComment = async (event) => {
     event.preventDefault();
 
     if (!name || !email || !description || !blogId || !education) {
       setIsLoading(false);
-      return swalAlert("لطفا تمامی موارد   را پر کنید", "error", "فهمیدم");
+      return swalAlert("لطفا تمامی موارد را پر کنید", "error", "فهمیدم");
     }
 
     const isValidEmail = validateEmail(email);
@@ -42,14 +42,12 @@ function CommentArticle({ comments, blogId }) {
       return swalAlert("لطفا ایمیل خود را صحیح وارد کنید", "error", "فهمیدم");
     }
 
-    if(isSaveUserInfo) {
-      const userReaderBlogInfo = {
-        name,
-        email,
-        education
-      }
-
-      localStorage.setItem("UserReaderBlogs" , JSON.stringify(userReaderBlogInfo))
+    if (isSaveUserInfo && typeof window !== "undefined") {
+      const userReaderBlogInfo = { name, email, education };
+      localStorage.setItem(
+        "UserReaderBlogs",
+        JSON.stringify(userReaderBlogInfo)
+      );
     }
 
     const newCommentBlog = {
@@ -62,20 +60,19 @@ function CommentArticle({ comments, blogId }) {
 
     const res = await fetch("/api/blog/comment", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCommentBlog),
     });
 
+    setIsLoading(false);
+    setName("");
+    setEmail("");
+    setEducation("");
+    setDescription("");
+
     if (res.status === 201) {
-      setIsLoading(false);
-      setName("");
-      setEmail("");
-      setEducation("");
-      setDescription("");
       toastSuccess(
-        "نظر شما با موفقیت انجام شد",
+        "نظر شما با موفقیت ثبت شد",
         "top-center",
         5000,
         false,
@@ -85,13 +82,8 @@ function CommentArticle({ comments, blogId }) {
         undefined,
         "colored"
       );
-      router.refresh()
+      router.refresh();
     } else if (res.status === 400) {
-      setIsLoading(false);
-      setName("");
-      setEmail("");
-      setEducation("");
-      setDescription("");
       toastError(
         "لطفا تمامی موارد را پرکنید",
         "top-center",
@@ -104,11 +96,6 @@ function CommentArticle({ comments, blogId }) {
         "colored"
       );
     } else if (res.status === 422) {
-      setIsLoading(false);
-      setName("");
-      setEmail("");
-      setEducation("");
-      setDescription("");
       toastError(
         "لطفا یک ایمیل معتبر وارد کنید",
         "top-center",
@@ -121,13 +108,8 @@ function CommentArticle({ comments, blogId }) {
         "colored"
       );
     } else if (res.status === 500) {
-      setIsLoading(false);
-      setName("");
-      setEmail("");
-      setEducation("");
-      setDescription("");
       toastError(
-        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "خطا در سرور، لطفا بعدا تلاش کنید",
         "top-center",
         5000,
         false,
@@ -234,13 +216,13 @@ function CommentArticle({ comments, blogId }) {
           </div>
 
           <div className={styles.formField}>
-            <label className={styles.formLabel} htmlFor="website">
+            <label className={styles.formLabel} htmlFor="education">
               میزان تحصیلات
             </label>
             <input
               className={styles.formInput}
               type="text"
-              id="website"
+              id="education"
               value={education}
               onChange={(event) => setEducation(event.target.value)}
             />
@@ -252,7 +234,8 @@ function CommentArticle({ comments, blogId }) {
             className={styles.checkboxInput}
             type="checkbox"
             id="saveInfo"
-            value={isSaveUserInfo}   onChange={(event) => setIsSaveUserInfo((prevValue) => !prevValue)}
+            checked={isSaveUserInfo}
+            onChange={() => setIsSaveUserInfo((prevValue) => !prevValue)}
           />
           <label className={styles.checkboxLabel} htmlFor="saveInfo">
             ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که دوباره دیدگاهی
@@ -267,7 +250,7 @@ function CommentArticle({ comments, blogId }) {
             AddComment(event);
           }}
         >
-          {isLoading ?  <Loading /> : "ارسال دیدگاه"}
+          {isLoading ? <Loading /> : "ارسال دیدگاه"}
         </button>
       </form>
     </div>

@@ -11,6 +11,9 @@ import { swalAlert } from "@/utils/helpers";
 const Details = ({ product }) => {
   const [count, setCount] = useState(1);
 
+  // بررسی محیط مرورگر
+  const isBrowser = typeof window !== "undefined";
+
   const addProductHandler = (cart) => {
     const cartItem = {
       id: product._id,
@@ -22,30 +25,38 @@ const Details = ({ product }) => {
 
     cart.push(cartItem);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (isBrowser) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
     swalAlert("محصول با موفقیت به سبد خرید اضافه شد", "success", "فهمیدم");
   };
 
   const addToCart = () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (isBrowser) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (cart.length) {
-      const isInCart = cart.some((item) => item.id === product._id);
+      if (cart.length) {
+        const isInCart = cart.some((item) => item.id === product._id);
 
-      if (isInCart) {
-        cart.forEach((item) => {
-          if (item.id === product._id) {
-            item.count = item.count + count;
-          }
-        });
+        if (isInCart) {
+          cart.forEach((item) => {
+            if (item.id === product._id) {
+              item.count = item.count + count;
+            }
+          });
 
-        localStorage.setItem("cart", JSON.stringify(cart));
-        swalAlert("تعداد محصول با موفقیت به روزرسانی شد", "success", "فهمیدم");
+          localStorage.setItem("cart", JSON.stringify(cart));
+          swalAlert(
+            "تعداد محصول با موفقیت به روزرسانی شد",
+            "success",
+            "فهمیدم"
+          );
+        } else {
+          addProductHandler(cart);
+        }
       } else {
         addProductHandler(cart);
       }
-    } else {
-      addProductHandler(cart);
     }
   };
 

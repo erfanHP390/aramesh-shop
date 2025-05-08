@@ -20,11 +20,12 @@ const Login = ({ showRegisterForm }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const getUserInfoLogin = JSON.parse(localStorage.getItem("userLogin"));
-
-    if (getUserInfoLogin) {
-      setEmail(getUserInfoLogin.email);
-      setPassword(getUserInfoLogin.password);
+    if (typeof window !== "undefined") {
+      const getUserInfoLogin = JSON.parse(localStorage.getItem("userLogin"));
+      if (getUserInfoLogin) {
+        setEmail(getUserInfoLogin.email);
+        setPassword(getUserInfoLogin.password);
+      }
     }
   }, []);
 
@@ -57,36 +58,38 @@ const Login = ({ showRegisterForm }) => {
       localStorage.setItem("userLogin", JSON.stringify(user));
     }
 
-    const res = await fetch("/api/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+    try {
+      setIsLoading(true); // در هنگام ارسال درخواست بارگذاری نشان داده می‌شود
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
 
-    if (res.status === 200) {
-      setEmail("");
-      setPassword("");
-      setIsLoading("");
-      router.replace("/p-user");
-      toastSuccess(
-        "خوش آمدید 😊",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 419) {
-      setEmail("");
-      setPassword("");
-      setIsLoading("");
+      if (res.status === 200) {
+        setEmail("");
+        setPassword("");
+        router.replace("/p-user");
+        toastSuccess(
+          "خوش آمدید 😊",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+      } else {
+        handleErrorResponse(res.status); // تابع مدیریت خطا
+      }
+    } catch (err) {
+      console.error(err);
       toastError(
-        "ایمیل / رمز عبور نامعنبر است",
+        "خطا در ارتباط با سرور",
         "top-center",
         5000,
         false,
@@ -96,65 +99,93 @@ const Login = ({ showRegisterForm }) => {
         undefined,
         "colored"
       );
-    } else if (res.status === 404) {
-      setEmail("");
-      setPassword("");
-      setIsLoading("");
-      toastError(
-        "کاربر یافت نشد",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 401) {
-      setEmail("");
-      setPassword("");
-      setIsLoading("");
-      toastError(
-        "ایمیل/رمزعبور صحیح نیست",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 403) {
-      setEmail("");
-      setPassword("");
-      setIsLoading("");
-      toastError(
-        "ایمیل مسدود است",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 500) {
-      setIsLoading(false);
-      toastError(
-        "خطا در سرور ، لطفا بعدا تلاش کنید",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
+    } finally {
+      setIsLoading(false); // بارگذاری به پایان می‌رسد
     }
+  };
+
+  const handleErrorResponse = (status) => {
+    switch (status) {
+      case 419:
+        toastError(
+          "ایمیل / رمز عبور نامعتبر است",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 404:
+        toastError(
+          "کاربر یافت نشد",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 401:
+        toastError(
+          "ایمیل/رمزعبور صحیح نیست",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 403:
+        toastError(
+          "ایمیل مسدود است",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 500:
+        toastError(
+          "خطا در سرور ، لطفا بعدا تلاش کنید",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      default:
+        toastError(
+          "خطای غیرمنتظره",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+    }
+    setEmail("");
+    setPassword("");
   };
 
   const hideOtpForm = () => setIsLoginWithOtp(false);
@@ -175,61 +206,37 @@ const Login = ({ showRegisterForm }) => {
       );
     }
 
-    const res = await fetch("/api/auth/sms/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ phone }),
-    });
+    try {
+      setIsLoadingOtp(true);
+      const res = await fetch("/api/auth/sms/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone }),
+      });
 
-    if (res.status === 201) {
-      setIsLoadingOtp(false);
-      toastSuccess(
-        "کد یکبارمصرف با موفقیت ارسال شد",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-      setIsLoginWithOtp(true);
-    } else if (res.status === 400) {
-      setIsLoadingOtp(false);
-      setEmail("");
-      toastError(
-        "شماره تلفن و نام خود را وارد نمایید سپس برای دریافت کد کلیک کنید",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 422) {
-      setIsLoadingOtp(false);
-      setEmail("");
-      toastError(
-        "شماره تلفن نامعتبر است یا از قبل ثبت شده است",
-        "top-center",
-        5000,
-        false,
-        true,
-        true,
-        true,
-        undefined,
-        "colored"
-      );
-    } else if (res.status === 500) {
-      setEmail("");
+      if (res.status === 201) {
+        toastSuccess(
+          "کد یکبارمصرف با موفقیت ارسال شد",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        setIsLoginWithOtp(true);
+      } else {
+        handleOtpErrorResponse(res.status);
+      }
+    } catch (err) {
+      console.error(err);
       setIsLoadingOtp(false);
       toastError(
-        "خطا در سرور ، لطفا بعدا تلاش کنید",
+        "خطا در ارسال کد",
         "top-center",
         5000,
         false,
@@ -240,6 +247,64 @@ const Login = ({ showRegisterForm }) => {
         "colored"
       );
     }
+  };
+
+  const handleOtpErrorResponse = (status) => {
+    switch (status) {
+      case 400:
+        toastError(
+          "شماره تلفن و نام خود را وارد نمایید سپس برای دریافت کد کلیک کنید",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 422:
+        toastError(
+          "شماره تلفن نامعتبر است یا از قبل ثبت شده است",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      case 500:
+        toastError(
+          "خطا در سرور ، لطفا بعدا تلاش کنید",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+        break;
+      default:
+        toastError(
+          "خطای غیرمنتظره در ارسال کد",
+          "top-center",
+          5000,
+          false,
+          true,
+          true,
+          true,
+          undefined,
+          "colored"
+        );
+    }
+    setEmail(""); // اگر خطا در ارسال کد پیش بیاید، ایمیل پاک می‌شود
+    setIsLoadingOtp(false);
   };
 
   return (
