@@ -1,62 +1,66 @@
-.Information p {
-  font-size: 22px;
+.Information {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-bottom: 2rem;
-  margin-top: 1rem;
-  color: #6F4E37; 
 }
 
 .Information span {
-  color: #A68A64; 
+  color: #a68a64;
   font-size: 14px;
 }
 
-.Information div p {
-  font-size: 16px !important;
-  color: #6F4E37; 
+.Information p {
+  font-size: 22px;
+  margin-top: 0.5rem;
+  color: #6f4e37;
 }
 
-.Information div:nth-child(5) svg {
-  margin-top: 0.7rem;
-}
-
-.Information div {
+.item {
   display: flex;
-  justify-content: right;
-  gap: 14px;
-  flex-direction: row-reverse;
   align-items: start;
-  color: #A68A64; 
+  flex-direction: row-reverse;
+  gap: 14px;
+  color: #a68a64;
 }
 
-.Information div svg {
+.item p {
+  font-size: 16px;
+  margin: 0;
+  color: #6f4e37;
+  line-height: 1.8;
+}
+
+.item svg {
   font-size: 2.2rem;
-  color: #6F4E37; 
+  color: #6f4e37;
+  margin-top: 0.2rem;
 }
 
 @media (max-width: 768px) {
   .Information p {
-      font-size: 18px; 
+    font-size: 18px;
   }
 
-  .Information div p {
-      font-size: 14px !important;
+  .item p {
+    font-size: 14px;
   }
 
-  .Information div svg {
-      font-size: 1.8rem; 
+  .item svg {
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .Information p {
-      font-size: 16px;
+    font-size: 16px;
   }
 
-  .Information div p {
-      font-size: 12px !important;
+  .item p {
+    font-size: 12px;
   }
 
-  .Information div svg {
-      font-size: 1.5rem;
+  .item svg {
+    font-size: 1.5rem;
   }
 }

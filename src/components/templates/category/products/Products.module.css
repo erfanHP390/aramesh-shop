@@ -71,7 +71,6 @@
     }
     
     .main {
-        grid-template-columns: 0.5fr;
         gap: 15px;
     }
     

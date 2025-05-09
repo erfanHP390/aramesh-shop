@@ -72,10 +72,10 @@
   }
   
   @media (max-width: 480px) {
-    .products {
+    /* .products {
       grid-template-columns: 1fr; 
       gap: 15px;
-    }
+    } */
   
     .title {
       flex-direction: column; 

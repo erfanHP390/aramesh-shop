@@ -2,7 +2,6 @@
 import React from "react";
 import Select from "react-select";
 import styles from "./Table.module.css";
-import totalStyles from "./totals.module.css";
 import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import stateData from "@/utils/stateData";
@@ -343,10 +342,14 @@ function Table() {
   };
 
   return (
-    <>
+    <div className={styles.main_container}>
       {cart.length > 0 ? (
         <>
-          <div className={styles.tabel_container}>
+          <div className={styles.title}>
+            <span>سبد خرید شما</span>
+          </div>
+
+          <div className={styles.table_container}>
             <table className={styles.table}>
               <thead>
                 <tr>
@@ -387,54 +390,62 @@ function Table() {
                       <Link href={`/product/${item.id}`}>{item.name}</Link>
                     </td>
                     <td>
-                      <IoMdClose
-                        className={styles.delete_icon}
+                      <button
+                        className={styles.delete_btn}
                         onClick={() => removeProduct(item.id)}
-                      />
+                      >
+                        <IoMdClose />
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <section>
-              <button className={styles.update_btn} onClick={handleUpdateCart}>
-                بروزرسانی سبد خرید
-              </button>
-              <div className={styles.discount_container}>
-                <input
-                  type="text"
-                  placeholder="کد تخفیف"
-                  value={discountInput}
-                  onChange={(event) => setDiscountInput(event.target.value)}
-                />
-                {appliedDiscount ? (
-                  <button
-                    className={styles.remove_discount_btn}
-                    onClick={removeDiscount}
-                  >
-                    حذف تخفیف
-                  </button>
-                ) : (
-                  <button
-                    className={styles.set_off_btn}
-                    onClick={discountHandler}
-                  >
-                    اعمال کوپن
-                  </button>
-                )}
-              </div>
-            </section>
           </div>
-          <div className={totalStyles.totals}>
-            <div className={totalStyles.totals_wrapper}>
-              <p className={totalStyles.totals_title}>جمع کل سبد خرید</p>
 
-              <div className={totalStyles.subtotal}>
+          <div className={styles.actions_section}>
+            <div className={styles.discount_container}>
+              <input
+                type="text"
+                placeholder="کد تخفیف"
+                value={discountInput}
+                onChange={(event) => setDiscountInput(event.target.value)}
+                className={styles.discount_input}
+              />
+              {appliedDiscount ? (
+                <button
+                  className={styles.remove_discount_btn}
+                  onClick={removeDiscount}
+                >
+                  حذف تخفیف
+                </button>
+              ) : (
+                <button
+                  className={styles.apply_discount_btn}
+                  onClick={discountHandler}
+                >
+                  اعمال کوپن
+                </button>
+              )}
+            </div>
+            <button
+              className={styles.update_btn}
+              onClick={handleUpdateCart}
+            >
+              بروزرسانی سبد خرید
+            </button>
+          </div>
+
+          <div className={styles.totals}>
+            <div className={styles.totals_wrapper}>
+              <p className={styles.totals_title}>جمع کل سبد خرید</p>
+
+              <div className={styles.subtotal}>
                 <p>جمع جزء </p>
                 <p>{productPrice.toLocaleString()} تومان</p>
               </div>
 
-              <div className={totalStyles.shipping_cost}>
+              <div className={styles.shipping_cost}>
                 <p>هزینه ارسال: </p>
                 <p>
                   {citySelectedOption?.price
@@ -446,7 +457,7 @@ function Table() {
                 </p>
               </div>
 
-              <div className={totalStyles.address}>
+              <div className={styles.address}>
                 <p>حمل و نقل </p>
                 <span>
                   {stateSelectedOption?.label
@@ -458,18 +469,18 @@ function Table() {
                 </span>
               </div>
 
-              <div className={totalStyles.change_address_container}>
+              <div className={styles.change_address_container}>
                 <button
                   onClick={() => setChangeAddress((prev) => !prev)}
-                  className={totalStyles.change_address}
+                  className={styles.change_address}
                 >
                   {changeAddress ? "بستن" : "تغییر آدرس"}
                 </button>
               </div>
 
               {changeAddress && (
-                <div className={totalStyles.address_details}>
-                  <div className={totalStyles.select_wrapper}>
+                <div className={styles.address_details}>
+                  <div className={styles.select_wrapper}>
                     <Select
                       value={stateSelectedOption}
                       onChange={(selectedOption) => {
@@ -486,7 +497,7 @@ function Table() {
                     />
                   </div>
 
-                  <div className={totalStyles.select_wrapper}>
+                  <div className={styles.select_wrapper}>
                     <Select
                       value={citySelectedOption}
                       onChange={setCitySelectedOption}
@@ -510,7 +521,7 @@ function Table() {
                     placeholder="کد پستی"
                     value={postalCode}
                     onChange={(e) => setPostalCode(e.target.value)}
-                    className={totalStyles.postal_code_input}
+                    className={styles.postal_code_input}
                   />
 
                   <button
@@ -518,22 +529,22 @@ function Table() {
                       addPriceToLS();
                       setChangeAddress(false);
                     }}
-                    className={totalStyles.update_address_btn}
+                    className={styles.update_address_btn}
                   >
                     بروزرسانی آدرس
                   </button>
                 </div>
               )}
 
-              <div className={totalStyles.total}>
+              <div className={styles.total}>
                 <p>مجموع</p>
                 <p>{totalPrice.toLocaleString()} تومان</p>
               </div>
 
-              <div className={totalStyles.checkout_btn_wrapper}>
+              <div className={styles.checkout_btn_wrapper}>
                 <Link href={"/checkout"}>
                   <button
-                    className={totalStyles.checkout_btn}
+                    className={styles.checkout_btn}
                     onClick={addPriceToLS}
                     disabled={!stateSelectedOption}
                   >
@@ -545,7 +556,7 @@ function Table() {
           </div>
         </>
       ) : (
-        <div className={styles.cart_empty} data-aos="fade-up">
+        <div className={styles.cart_empty}>
           <TbShoppingCartX />
           <p>سبد خرید شما در حال حاضر خالی است. </p>
           <span>
@@ -557,7 +568,7 @@ function Table() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

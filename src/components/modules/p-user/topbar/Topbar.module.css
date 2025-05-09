@@ -1,12 +1,12 @@
 .topbar {
   width: 100%;
-  background-color: #5A3E36;
+  background-color: #5a3e36;
   height: 70px;
   padding: 5px 20px;
   display: flex;
   color: white;
   justify-content: space-between;
-  border-bottom: 4px solid #CC5500; 
+  border-bottom: 4px solid #cc5500;
 }
 
 .topbar section {
@@ -20,7 +20,6 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  flex-direction: row-reverse;
 }
 
 .profile img {
@@ -45,7 +44,7 @@
 }
 
 .searchBox div {
-  background-color: #CC5500; 
+  background-color: #cc5500;
   color: white;
   position: absolute;
   left: 5px;
@@ -66,7 +65,7 @@
 }
 
 .notification {
-  background-color: #CC5500; 
+  background-color: #cc5500;
   color: white;
   display: flex;
   align-items: center;
@@ -83,7 +82,7 @@
   top: -6px;
   right: -6px;
   background-color: white;
-  color: #CC5500;
+  color: #cc5500;
   font-size: 9px;
   padding: 1px 3px 0 3.5px;
   text-align: center;
@@ -99,16 +98,14 @@
 
 @media (max-width: 1120px) {
   .menuIcon {
-      display: block;
+    display: block;
   }
 }
 
-
 @media (max-width: 650px) {
-  .searchBox >  input {
+  .searchBox > input {
     width: 150px !important;
   }
-
 }
 
 @media (max-width: 950px) {
@@ -121,27 +118,25 @@
   .profile {
     display: none !important;
   }
-  .searchBox >  input {
+  .searchBox > input {
     width: 285px !important;
   }
 }
 
 @media (max-width: 425px) {
-  .searchBox >  input {
+  .searchBox > input {
     width: 250px !important;
   }
 }
 
 @media (max-width: 385px) {
-  .searchBox >  input {
+  .searchBox > input {
     width: 210px !important;
   }
 }
 
 @media (max-width: 348px) {
-  .searchBox >  input {
+  .searchBox > input {
     width: 180px !important;
   }
 }
-
-

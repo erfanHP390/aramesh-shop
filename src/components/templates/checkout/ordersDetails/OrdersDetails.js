@@ -346,126 +346,6 @@ function OrdersDetails() {
 
   return (
     <>
-      <div className={styles.order}>
-        <p className={styles.title}>سفارش شما</p>
-        <main className={styles.main}>
-          <div>
-            <p>جمع جزء</p>
-            <p>محصول</p>
-          </div>
-          {cart.map((item) => (
-            <div className={styles.cart_item} key={item.id}>
-              <div className={styles.price_row}>
-                <span className={styles.item_price}>
-                  {item.price.toLocaleString()}
-                </span>
-                <span className={styles.currency}>تومان</span>
-              </div>
-              <p className={styles.product_name}>
-                {item.name} × {item.count}
-              </p>
-            </div>
-          ))}
-          <div>
-            <p> {priceCart?.productPrice?.toLocaleString()} تومان</p>
-            <p>جمع کل محصولات</p>
-          </div>
-          <div>
-            <p>
-              پیک موتوری:{" "}
-              <strong> {priceCart?.postPrice?.toLocaleString()} تومان</strong>
-            </p>
-            <p>حمل و نقل</p>
-          </div>
-          <div>
-            <div>
-              <h2>{priceCart?.totalPrice?.toLocaleString()} تومان</h2>
-              <p>
-                (شامل <strong>16,927</strong> تومان ارزش افزوده)
-              </p>
-            </div>
-            <h3>مجموع</h3>
-          </div>
-        </main>
-        <div className={styles.transaction}>
-          <div>
-            <input
-              onClick={() => {
-                setShowZarinPallAlert(false);
-                setShowMellatBank(true);
-              }}
-              type="radio"
-              name="payment_method"
-              checked={showMellatBank}
-            />
-            <label> بانک ملی</label>
-            <img
-              width={24}
-              height={40}
-              src="https://set-coffee.com/wp-content/plugins/WooCommerce-melli/images/logo.png"
-              alt="بانک ملی"
-            ></img>
-          </div>
-          <div>
-            <input
-              onClick={() => {
-                setShowMellatBank(false);
-                setShowZarinPallAlert(true);
-              }}
-              type="radio"
-              name="payment_method"
-              checked={showZarinPallAlert}
-            />
-            <label>پرداخت امن زرین پال </label>
-            <img
-              width={40}
-              height={40}
-              src="https://set-coffee.com/wp-content/plugins/zarinpal-woocommerce-payment-gateway/assets/images/logo.png"
-              alt="زرین پال"
-            ></img>
-          </div>
-          {showZarinPallAlert && (
-            <div className={styles.paymentBox}>
-              <p>
-                پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه زرین
-                پال
-              </p>
-            </div>
-          )}
-          <div className={styles.warning}>
-            <p>
-              اطلاعات شخصی شما برای پردازش سفارش و پشتیبانی از تجربه شما در این
-              وبسایت و برای اهداف دیگری که در{" "}
-              <strong>سیاست حفظ حریم خصوصی</strong> توضیح داده شده است استفاده
-              می‌شود.
-            </p>
-          </div>
-          <div className={styles.accept_rules}>
-            <input
-              checked={isReadRoles}
-              onChange={() => setIsReadRoles((prevValue) => !prevValue)}
-              type="checkbox"
-            />
-            <p>
-              {" "}
-              من<strong> شرایط و مقررات</strong> سایت را خوانده ام و آن را می
-              پذیرم. <span>*</span>
-            </p>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setIsLoading(true);
-                addOrder();
-              }}
-              className={styles.submit}
-            >
-              {isLoading ? <Loading /> : "ثبت سفارش"}
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* ================================================ */}
       <div className={styles.details}>
         <p className={styles.details_title}>جزئیات صورتحساب</p>
         <form className={styles.form}>
@@ -638,6 +518,127 @@ function OrdersDetails() {
             ></textarea>
           </div>
         </form>
+      </div>
+
+      {/* ================================================ */}
+      <div className={styles.order}>
+        <p className={styles.title}>سفارش شما</p>
+        <main className={styles.main}>
+          <div>
+            <p>جمع جزء</p>
+            <p>محصول</p>
+          </div>
+          {cart.map((item) => (
+            <div className={styles.cart_item} key={item.id}>
+              <div className={styles.price_row}>
+                <span className={styles.item_price}>
+                  {item.price.toLocaleString()}
+                </span>
+                <span className={styles.currency}>تومان</span>
+              </div>
+              <p className={styles.product_name}>
+                {item.name} × {item.count}
+              </p>
+            </div>
+          ))}
+          <div className={styles.totalCartShop}>
+            <p> {priceCart?.productPrice?.toLocaleString()} تومان</p>
+            <p>جمع کل محصولات</p>
+          </div>
+          <div className={styles.totalCartShop} >
+            <p>
+              پیک موتوری:{" "}
+              <strong> {priceCart?.postPrice?.toLocaleString()} تومان</strong>
+            </p>
+            <p>حمل و نقل</p>
+          </div>
+          <div className={styles.totalCartShop} >
+            <div>
+              <h2>{priceCart?.totalPrice?.toLocaleString()} تومان</h2>
+              <p className={styles.price_goverment}>
+                (شامل <strong>16,927</strong> تومان ارزش افزوده)
+              </p>
+            </div>
+            <h3>مجموع</h3>
+          </div>
+        </main>
+        <div className={styles.transaction}>
+          <div>
+            <input
+              onClick={() => {
+                setShowZarinPallAlert(false);
+                setShowMellatBank(true);
+              }}
+              type="radio"
+              name="payment_method"
+              checked={showMellatBank}
+            />
+            <label> بانک ملی</label>
+            <img
+              width={24}
+              height={40}
+              src="https://set-coffee.com/wp-content/plugins/WooCommerce-melli/images/logo.png"
+              alt="بانک ملی"
+            ></img>
+          </div>
+          <div>
+            <input
+              onClick={() => {
+                setShowMellatBank(false);
+                setShowZarinPallAlert(true);
+              }}
+              type="radio"
+              name="payment_method"
+              checked={showZarinPallAlert}
+            />
+            <label>پرداخت امن زرین پال </label>
+            <img
+              width={40}
+              height={40}
+              src="https://set-coffee.com/wp-content/plugins/zarinpal-woocommerce-payment-gateway/assets/images/logo.png"
+              alt="زرین پال"
+            ></img>
+          </div>
+          {showZarinPallAlert && (
+            <div className={styles.paymentBox}>
+              <p>
+                پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه زرین
+                پال
+              </p>
+            </div>
+          )}
+          <div className={styles.warning}>
+            <p>
+              اطلاعات شخصی شما برای پردازش سفارش و پشتیبانی از تجربه شما در این
+              وبسایت و برای اهداف دیگری که در{" "}
+              <strong>سیاست حفظ حریم خصوصی</strong> توضیح داده شده است استفاده
+              می‌شود.
+            </p>
+          </div>
+          <div className={styles.accept_rules}>
+            <input
+              checked={isReadRoles}
+              onChange={() => setIsReadRoles((prevValue) => !prevValue)}
+              type="checkbox"
+            />
+            <p>
+              {" "}
+              من<strong> شرایط و مقررات</strong> سایت را خوانده ام و آن را می
+              پذیرم. <span>*</span>
+            </p>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                setIsLoading(true);
+                addOrder();
+              }}
+              className={styles.submit}
+            >
+              {isLoading ? <Loading /> : "ثبت سفارش"}
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

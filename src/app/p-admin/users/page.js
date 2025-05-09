@@ -20,8 +20,6 @@ async function page() {
       <main>
         <Title
           title={" کاربران"}
-          text={"ایجاد کاربر جدید"}
-          route={"/p-admin/users/create"}
         />
         {users.length === 0 ? (
           <EmptyCart

@@ -10,8 +10,6 @@ import { swalAlert } from "@/utils/helpers";
 
 const Details = ({ product }) => {
   const [count, setCount] = useState(1);
-
-  
   const isBrowser = typeof window !== "undefined";
 
   const addProductHandler = (cart) => {
@@ -98,24 +96,26 @@ const Details = ({ product }) => {
       ) : (
         <>
           <div className={styles.cart}>
-            <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
-            <div>
-              <span onClick={() => setCount(count - 1)}>-</span>
-              {count === 0 ? setCount(1) : count}
+            <div className={styles.quantity_control}>
+              <span onClick={() => setCount(count > 1 ? count - 1 : 1)}>-</span>
+              <span>{count}</span>
               <span onClick={() => setCount(count + 1)}>+</span>
             </div>
+            <button onClick={() => addToCart()}>افزودن به سبد خرید</button>
           </div>
         </>
       )}
       <section className={styles.wishlist}>
-        <AddToWishList productID={product._id} />
-        <div>
+        <div className={styles.wishlist_item}>
+          <AddToWishList productID={product._id} />
+        </div>
+        <div className={styles.compare_item}>
           <TbSwitch3 />
           <a href="/">مقایسه</a>
         </div>
       </section>
       <hr />
-      <div className={styles.details}>
+      <div className={styles.product_info}>
         <strong>شناسه محصول: GOLD Nespresso Compatible capsule</strong>
         <p>
           <strong>دسته:</strong> Coffee Capsule, کپسول قهوه, همه موارد

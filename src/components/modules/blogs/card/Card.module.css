@@ -72,3 +72,12 @@
 .to_blog:hover {
     color: #CC5500;
 }
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 15.5px;
+    }
+    .description{
+        font-size: 13px;
+    }
+}

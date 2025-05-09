@@ -13,34 +13,41 @@ export default function Information() {
   return (
     <section className={styles.Information}>
       <span>تماس با ما</span>
-      <p>اطلاعات تماس</p>
-      <div>
+      <p>راه‌های ارتباط با هلدینگ آرامش</p>
+
+      <div className={styles.item}>
         <PiCoffeeFill />
-        <p>هلدینگ آرامش، بزرگترین و تخصصی ترین فروشگاه قهوه ایران</p>
+        <p>هلدینگ آرامش، بزرگترین و تخصصی‌ترین فروشگاه قهوه ایران</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <FaInternetExplorer />
         <p>aramesh-coffee.com</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <BiSolidContact />
-        <p> مشهد ، شهرک صنعتی فاز دو ، میدان تلاش ، خیابان کوشش ، کوشش 2 </p>
+        <p>مشهد، شهرک صنعتی فاز دو، میدان تلاش، خیابان کوشش، کوشش ۲</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <FaPhone />
-        <p>051-36479228</p>
+        <p>۰۵۱-۳۶۴۷۹۲۲۸</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <FaEnvelopeOpenText />
         <p>aramesh-holding-coffee.com</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <FaEnvelopeOpenText />
         <p>arameshCoffeeBeans@yahoo.com</p>
       </div>
-      <div>
+
+      <div className={styles.item}>
         <FaTelegramPlane />
-        <p>تماس با مدیریت از طریق واتساپ و یا تلگرام : 09366726563</p>
+        <p>تماس با مدیریت در واتساپ یا تلگرام: ۰۹۳۶۶۷۲۶۵۶۳</p>
       </div>
     </section>
   );

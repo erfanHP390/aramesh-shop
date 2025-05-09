@@ -2,7 +2,7 @@ import Comment from "@/components/modules/comment/Comment";
 import styles from "./Comments.module.css";
 import CommentForm from "../commentForm/CommentForm";
 
-const Comments = ({comments , productID}) => {
+const Comments = ({comments , productID , product}) => {
     
 
     return (
@@ -12,7 +12,7 @@ const Comments = ({comments , productID}) => {
             <main className={styles.comments}>
                 <div className={styles.user_comments}>
                     <p className={styles.title}>
-                    {comments.filter(comment => comment.isAccept).length} دیدگاه برای کپسول قهوه SETPRESSO سازگار با دستگاه نسپرسو ( GOLD ) ده -10- عددی
+                    {comments.filter(comment => comment.isAccept).length} دیدگاه برای {product.name}
                     </p>
                     <div>
                         {

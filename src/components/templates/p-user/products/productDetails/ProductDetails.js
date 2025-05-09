@@ -22,6 +22,8 @@ function ProductDetails({ product }) {
   const [score, setScore] = useState(product.score);
   const [tags, setTags] = useState(product.tags);
   const [img, setImg] = useState("");
+  const [stock, setStock] = useState(product.stock);
+  const [uses, setUses] = useState(product.uses);
 
   const updateProduct = async () => {
     const formData = new FormData();
@@ -35,6 +37,8 @@ function ProductDetails({ product }) {
     formData.append("score", String(score || product.score));
     formData.append("tags", tags || product.tags);
     formData.append("img", img || product.img);
+    formData.append("stock", stock || product.stock);
+    formData.append("uses", uses || product.uses);
 
     const res = await fetch(`/api/product/edit/${ID}`, {
       method: "PUT",
@@ -167,6 +171,24 @@ function ProductDetails({ product }) {
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
                 placeholder="لطفا قیمت محصول خود را وارد کنید"
+                type="number"
+              />
+            </div>
+            <div>
+              <label>موجودی محصول</label>
+              <input
+                value={stock}
+                onChange={(event) => setStock(event.target.value)}
+                placeholder="لطفا موجودی محصول خود را وارد کنید"
+                type="number"
+              />
+            </div>
+            <div>
+              <label>مقدار فروخته شده محصول</label>
+              <input
+                value={uses}
+                onChange={(event) => setUses(event.target.value)}
+                placeholder="لطفا مقدار فروخته شده محصول خود را وارد کنید"
                 type="number"
               />
             </div>

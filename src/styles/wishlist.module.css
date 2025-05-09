@@ -28,6 +28,7 @@
 
 .wishes_product {
   display: grid;
+  direction: rtl;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;

@@ -425,3 +425,16 @@
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
     border-color: #FFFFFF;
 }
+
+@media (max-width: 576px) {
+    .totalCartShop{
+       flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 380px) {
+    .price_goverment {
+        font-size: 10px !important;
+    }
+}
+

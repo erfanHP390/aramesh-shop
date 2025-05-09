@@ -1,94 +1,114 @@
+.userTicket,
+.adminticket {
+  width: 50%;
+  border-radius: 5px;
+  padding: 0 10px 10px;
+  margin-bottom: 15px;
+}
+
 .userTicket {
-    width: 50%;
-    background-color: #A68A64; 
-    border-radius: 5px;
-    padding: 0px 10px 10px;
-    color: white; 
-    margin-bottom: 15px;
-    border: 2px solid #D2B48C; 
+  background-color: #a68a64;
+  color: white;
+  border: 2px solid #d2b48c;
+  margin-right: auto;
 }
 
 .adminticket {
-    width: 50%;
-    background-color: #F5F5F5; 
-    border-radius: 5px;
-    padding: 0px 10px 10px;
-    border: 2px solid #CC5500; 
-    margin-bottom: 15px;
-    margin-right: auto;
-    color: #6F4E37; 
+  background-color: #f5f5f5;
+  color: #6f4e37;
+  border: 2px solid #cc5500;
+  margin-left: auto;
 }
 
 .userTicket img,
 .adminticket img {
-    width: 80px;
-    border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 100px;
 }
 
 .ticket_main {
-    display: flex;
-    padding: 10px;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row-reverse;
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.ticket_main div {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+/* ✅ بخش: قرارگیری نام، نقش و تصویر کنار هم */
+.ticket_main > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 
-.adminticket .ticket_text {
-    background-color: #CC5500; 
-    color: white; 
+.ticket_main > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.ticket_main > div > div span {
+  font-size: 14px;
+  color: #000;
+}
+
+.ticket_main img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .ticket_text {
-    background-color: white;
-    color: black;
-    margin: 0.5rem 1rem;
-    border-radius: 5px;
-    padding: 0.5rem;
+  background-color: white;
+  color: black;
+  margin: 0.5rem 1rem;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
-.empty {
-    width: 100%;
-    border-radius: 5px;
-    background-color: #A68A64; 
-    text-align: center;
-    margin-top: 60px;
-    padding: 20px 0;
-    color: white; 
+.adminticket .ticket_text {
+  background-color: #cc5500;
+  color: white;
 }
 
-.ticket_main div div span {
-    font-size: 14px;
-    width: 100%;
-    color: #000;
-}
-
-.ticket_main div div {
-    justify-content: right;
-    gap: 5px;
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .userTicket,
+  .adminticket {
+    width: 70%;
+  }
 }
 
 @media (max-width: 768px) {
-    .userTicket,
-    .adminticket {
-        width: 100%; 
-    }
+  .userTicket,
+  .adminticket {
+    width: 100%;
+  }
 
-    .ticket_main {
-        flex-direction: column; 
-        align-items: flex-start; 
-    }
+  .ticket_main {
+    justify-content: space-evenly;
+  }
 
-    .ticket_main div {
-        flex-direction: column; 
-        align-items: flex-start; 
-    }
+  /* .ticket_main {
+    flex-direction: column;
+    align-items: flex-start;
+  } */
+/* 
+  .ticket_main > div {
+    flex-direction: column;
+    align-items: flex-start;
+  } */
+
+  .ticket_main img {
+    margin-top: 10px;
+  }
 }

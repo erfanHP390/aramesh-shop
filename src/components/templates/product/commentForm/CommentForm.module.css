@@ -4,50 +4,52 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1); 
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .title {
-  font-size: 14px;
+  font-size: 16px;
   font-family: shabnam-Bold;
-  height: 30px;
+  margin-bottom: 10px;
   color: #5A3E36; 
 }
 
 .rate {
   display: flex;
   gap: 14px;
-  align-items: baseline;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 .rate p {
-  position: relative;
-  bottom: 3px;
+  font-size: 14px;
 }
 .rate div {
   display: flex;
-  gap: 2px;
-  padding-top: 0.2rem;
+  gap: 5px;
   direction: ltr;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: gray;
 }
 .rate div svg:hover,
 .rate div svg:hover ~ svg {
   color: #FFD700; 
 }
-
 .rate div svg.active,
 .rate div svg.active ~ svg {
   color: #FFD700;
 }
 
 .group {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: grid;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
-.group input, .group textarea {
+.group input,
+.group textarea {
   background: #FFFFFF; 
   color: #5A3E36; 
   border: 1px solid #A68A64; 
@@ -55,23 +57,30 @@
   font-family: shabnam;
   border-radius: 5px;
   padding: 0.8rem;
+  font-size: 14px;
 }
 
 .group textarea {
   resize: none;
+  min-height: 150px;
 }
 
 .groups {
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .checkbox {
   display: flex;
   margin: 20px 0 10px;
-  justify-content: right;
-  align-items: baseline;
-  gap: 14px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #5A3E36;
 }
 
 .checkbox input {
@@ -80,9 +89,9 @@
   height: 1rem;
   border: 1px solid #A68A64; 
   border-radius: 1px;
-  vertical-align: sub;
-  transform: translateY(25%);
   outline: none;
+  cursor: pointer;
+  position: relative;
 }
 
 .checkbox input:checked {
@@ -99,15 +108,39 @@
   transition: all 0.2s;
   font-family: shabnam;
   color: #FFFFFF; 
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 .form button:hover {
   background-color: #FFD700; 
+  color: #5A3E36;
 }
 
+/* 📱 ریسپانسیو موبایل و تبلت */
 @media (max-width: 768px) {
   .groups {
-      flex-direction: column;
-      gap: 10px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rate {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .form {
+    padding: 16px;
+  }
+
+  .group input,
+  .group textarea {
+    font-size: 13px;
+    padding: 0.6rem;
+  }
+
+  .form button {
+    width: 100%;
   }
 }

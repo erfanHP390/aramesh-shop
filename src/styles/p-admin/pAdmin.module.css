@@ -1,5 +1,5 @@
 .dashboard_contents {
-  gap: 35px;
+  gap: 36px;
   margin-top: 3rem;
   padding: -1px 40px;
   display: flex;
@@ -37,7 +37,6 @@
 
 @media (max-width: 992px) {
   .dashboard_contents {
-    flex-direction: column;
     align-items: center;
   }
 

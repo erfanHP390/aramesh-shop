@@ -21,22 +21,23 @@ const Topbar = ({ name, role, toggleSidebar, profileUser }) => {
     <>
       <div className={styles.topbar}>
         <div className={styles.profile}>
-          <div>
-            <p>{name}</p>
-            <span>{role === "ADMIN" ? "ادمین" : "کاربر عادی"}</span>
-          </div>
+          {" "}
           <img
             src={profileUser ? profileUser.img : "/images/user2.avif"}
             alt=""
             className={styles.img_profile}
           />
+          <div>
+            <p>{name}</p>
+            <span>{role === "ADMIN" ? "ادمین" : "کاربر عادی"}</span>
+          </div>
         </div>
         <section>
           <div className={styles.searchBox}>
             <input
               type="text"
-              value={searchQuery} 
-              onChange={handleSearchChange} 
+              value={searchQuery}
+              onChange={handleSearchChange}
               placeholder="جستجو کنید"
             />
             <div>
