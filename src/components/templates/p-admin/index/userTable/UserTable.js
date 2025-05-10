@@ -4,6 +4,7 @@ import styles from "./UserTable.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { validateEmail, validatePhone } from "@/utils/auth";
 
 function UserTable({ users, title }) {
   const router = useRouter();
