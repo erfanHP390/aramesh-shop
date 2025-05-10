@@ -67,7 +67,7 @@ const Register = ({ showLoginForm }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({newUser}),
+      body: JSON.stringify(newUser),
     });
 
     if (res.status === 201) {
