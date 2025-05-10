@@ -36,7 +36,7 @@ async function page({ params }) {
 
   return (
     <UserPanelLayout>
-      <main className={styles.container}>
+      <main className={styles.container}  style={{direction: "rtl"}}>
         <Title
           route={"/p-user/tickets/sendTicket"}
           text={"ارسال تیکت جدید"}
