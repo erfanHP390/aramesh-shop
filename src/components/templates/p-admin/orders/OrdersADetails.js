@@ -4,7 +4,7 @@ import styles from "@/components/templates/checkout/ordersDetails/OrdersDetails.
 import tableStyles from "@/components/templates/cart/table/Table.module.css";
 import subStyles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
-import { validateEmail,  validatePhone } from "@/utils/auth";
+import { validateEmail, validatePhone } from "@/utils/auth";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
@@ -185,6 +185,8 @@ function OrdersADetails({ order }) {
       body: JSON.stringify(formData),
     });
 
+    const data = await res.json()
+
     if (res.status === 200) {
       setIsLoading(false);
       toastSuccess(
@@ -199,6 +201,19 @@ function OrdersADetails({ order }) {
         "colored"
       );
       router.refresh();
+    } else if (res.status === 419) {
+      setIsLoading(false);
+      toastError(
+        `${data} ،، متاسفانه تعداد سفارش محصول شما از موجودی در انبار بیشتر شده است.درصورت نیاز به سفارش تعداد زیاد به پشتیبانی پیام بدهید`,
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(
@@ -570,7 +585,9 @@ function OrdersADetails({ order }) {
                     >
                       -
                     </button>
-                    <span className={tableStyles.counter_value}>{item.count}</span>
+                    <span className={tableStyles.counter_value}>
+                      {item.count}
+                    </span>
                     <button
                       onClick={() =>
                         handleBasketChange(item.id, item.count + 1)

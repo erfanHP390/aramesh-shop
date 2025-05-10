@@ -124,6 +124,8 @@ function OrdersDetails() {
       body: JSON.stringify(newOrder),
     });
 
+    const data = await res.json()
+
     if (res.status === 201) {
       if (showZarinPallAlert) {
         userOrder = {
@@ -182,6 +184,19 @@ function OrdersDetails() {
       setIsLoading(false);
       toastError(
         "لطفا همه موارد * را پر نمایید . در صورت بروز مشکل به پشتیبانی پیام دهید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 419) {
+      setIsLoading(false);
+      toastError(
+        `${data} ،، متاسفانه تعداد سفارش محصول شما از موجودی در انبار بیشتر شده است.درصورت نیاز به سفارش تعداد زیاد به پشتیبانی پیام بدهید`,
         "top-center",
         5000,
         false,
@@ -545,14 +560,14 @@ function OrdersDetails() {
             <p> {priceCart?.productPrice?.toLocaleString()} تومان</p>
             <p>جمع کل محصولات</p>
           </div>
-          <div className={styles.totalCartShop} >
+          <div className={styles.totalCartShop}>
             <p>
               پیک موتوری:{" "}
               <strong> {priceCart?.postPrice?.toLocaleString()} تومان</strong>
             </p>
             <p>حمل و نقل</p>
           </div>
-          <div className={styles.totalCartShop} >
+          <div className={styles.totalCartShop}>
             <div>
               <h2>{priceCart?.totalPrice?.toLocaleString()} تومان</h2>
               <p className={styles.price_goverment}>

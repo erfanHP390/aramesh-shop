@@ -2,7 +2,7 @@ import connectToDB from "@/configs/db";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import OrdersModel from "@/models/Orders";
 import ProductModel from "@/models/Product";
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 export async function POST(req) {
   try {
@@ -96,6 +96,26 @@ export async function POST(req) {
           productId,
           { $inc: { uses: count } },
           { new: true }
+        );
+      }
+    }
+
+    for (const item of basket) {
+      const productId = item.id;
+      const count = item.count;
+
+      if (!mongoose.Types.ObjectId.isValid(productId)) continue;
+
+      const product = await ProductModel.findById(productId);
+      if (!product) continue;
+
+      const newUses = product.uses + count;
+      if (newUses > product.stock) {
+        return Response.json(
+          {
+            message: `محصول ${product.title} بیش از موجودی انبار انتخاب شده است.`,
+          },
+          { status: 419 }
         );
       }
     }
