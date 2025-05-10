@@ -46,7 +46,7 @@ function BlogCreate() {
         undefined,
         "colored"
       );
-      router.replace("/p-admin/blogs");
+      router.refresh()
     } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
