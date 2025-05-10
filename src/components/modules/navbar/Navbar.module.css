@@ -58,7 +58,7 @@
 
 .desktop_links li a:hover,
 .dropdown_header:hover {
-  color: #CC5500;
+  color: #FFD700 ;
 }
 
 .dropdown {
@@ -75,7 +75,7 @@
 }
 
 .dropdown_header:hover > * {
-  color: #CC5500;
+  color: #FFD700 ;
 }
 
 .dropdown_content {
@@ -101,7 +101,7 @@
 }
 
 .dropdown_content a:hover {
-  color: red !important;
+  color: #FFD700  !important;
 }
 
 .dropdown:hover .dropdown_content {

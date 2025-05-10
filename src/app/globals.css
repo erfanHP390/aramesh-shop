@@ -43,7 +43,7 @@ a {
 }
 
 a:hover {
-  color: #CC5500;
+  color: #FFD700 ;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,185 +1,187 @@
 .card {
-    width: 100%;
-    direction: rtl;
-    position: relative;
-    padding-top: 19px;
-    color: #5A3E36;
-    background-color: #FFFFFF;
-    border: 1px solid #A68A64;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .details {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-    padding-top: 5px;
-    justify-content: center;
+  width: 100%;
+  direction: rtl;
+  position: relative;
+  padding-top: 19px;
+  color: #5a3e36;
+  background-color: #ffffff;
+  border: 1px solid #a68a64;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  padding-top: 5px;
+  justify-content: center;
+}
+
+.details a {
+  color: #000 !important;
+}
+
+.details svg {
+  color: #ffd700;
+}
+
+.details div {
+  direction: ltr;
+}
+
+.details_container:hover img {
+  transform: scale(1.1);
+}
+
+.details_container img {
+  transition: 0.4s all ease-in;
+  width: 100%;
+  height: 312px;
+}
+
+.card span {
+  color: #cc5500;
+  font-weight: bold;
+}
+
+.details_container {
+  position: relative;
+  margin-top: 5px;
+}
+
+.details_container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(90, 62, 54, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.details_container:hover::before {
+  opacity: 1;
+}
+
+.details_container:hover button {
+  visibility: visible;
+  left: 50%;
+  bottom: 50%;
+  height: max-content;
+  transform: translate(-50%, 50%);
+  background-color: #ffd700;
+  color: #000;
+}
+
+.details_container:hover .icons {
+  visibility: visible;
+  left: 10px;
+}
+
+.icons svg {
+  cursor: pointer;
+  color: #ffd700;
+  transition: color 0.3s ease;
+}
+
+.icons svg:hover {
+  color: #cc5500;
+}
+
+.icons {
+  top: 10px;
+  left: 0;
+  transition: all 0.25s ease;
+  font-size: 2rem;
+  display: grid;
+  gap: 10px;
+  z-index: 3;
+  position: absolute;
+  visibility: hidden;
+  background-color: transparent;
+}
+
+.details_container button {
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  bottom: 0;
+  transition: all 0.25s ease;
+  z-index: 3;
+  background-color: #cc5500;
+  left: 120px;
+  position: absolute;
+  visibility: hidden;
+  color: #000;
+  width: max-content;
+  border: 1px solid #cc5500;
+  border-radius: 4px;
+}
+
+.details_container button:hover {
+  background-color: #ffd700;
+  border-color: #ffd700;
+}
+
+.icons a,
+.icons div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 4px;
+}
+
+.tooltip {
+  font-size: 10px !important;
+  align-items: center;
+  opacity: 0;
+  background-color: #5a3e36;
+  color: #ffffff;
+  text-align: center;
+  padding: 0 12px;
+  white-space: nowrap;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 34px;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.icons a:hover .tooltip,
+.icons div:hover .tooltip {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .details_container img {
+    height: 250px;
   }
 
-  .details  a {
-    color:  #000 !important;
-  }
-  
-  .details svg {
-    color: #FFD700;
-  }
-  
-  .details div {
-    direction: ltr;
-  }
-  
-  .details_container:hover img {
-    transform: scale(1.1);
-  }
-  
-  .details_container img {
-    transition: 0.4s all ease-in;
-    width: 100%;
-    height: 312px;
-  }
-  
-  .card span {
-    color: #CC5500;
-    font-weight: bold;
-  }
-  
-  .details_container {
-    position: relative;
-    margin-top: 5px;
-  }
-  
-  .details_container:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    background-color: rgba(90, 62, 54, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .details_container:hover::before {
-    opacity: 1;
-  }
-  
-  .details_container:hover button {
-    visibility: visible;
-    left: 50%;
-    bottom: 50%;
-    height: max-content;
-    transform: translate(-50%, 50%);
-  }
-  
-  .details_container:hover .icons {
-    visibility: visible;
-    left: 10px;
-  }
-  
-  .icons svg {
-    cursor: pointer;
-    color: #FFD700;
-    transition: color 0.3s ease;
-  }
-  
-  .icons svg:hover {
-    color: #CC5500;
-  }
-  
-  .icons {
-    top: 10px;
-    left: 0;
-    transition: all 0.25s ease;
-    font-size: 2rem;
-    display: grid;
-    gap: 10px;
-    z-index: 3;
-    position: absolute;
-    visibility: hidden;
-    background-color: transparent;
-  }
-  
   .details_container button {
-    cursor: pointer;
-    padding: 0.4rem 0.7rem;
-    bottom: 0;
-    transition: all 0.25s ease;
-    z-index: 3;
-    background-color: #CC5500;
-    left: 120px;
-    position: absolute;
-    visibility: hidden;
-    color: #000;
-    width: max-content;
-    border: 1px solid #CC5500;
-    border-radius: 4px;
+    font-size: 14px;
+    padding: 0.3rem 0.5rem;
   }
-  
-  .details_container button:hover {
-    background-color: #FFD700;
-    border-color: #FFD700;
+
+  .icons {
+    font-size: 1.5rem;
   }
-  
-  .icons a,
-  .icons div {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 4px;
+}
+
+@media (max-width: 480px) {
+  .details_container img {
+    height: 200px;
   }
-  
-  .tooltip {
-    font-size: 10px !important;
-    align-items: center;
-    opacity: 0;
-    background-color: #5A3E36;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 0 12px;
-    white-space: nowrap;
-    border-radius: 4px;
-    font-size: 13px;
-    line-height: 34px;
-    position: relative;
-    transition: opacity 0.3s ease;
+
+  .details_container button {
+    font-size: 12px;
+    padding: 0.2rem 0.4rem;
   }
-  
-  .icons a:hover .tooltip,
-  .icons div:hover .tooltip {
-    opacity: 1;
+
+  .icons {
+    font-size: 1.2rem;
   }
-  
-  @media (max-width: 768px) {
-    .details_container img {
-      height: 250px; 
-    }
-  
-    .details_container button {
-      font-size: 14px; 
-      padding: 0.3rem 0.5rem;
-    }
-  
-    .icons {
-      font-size: 1.5rem; 
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .details_container img {
-      height: 200px; 
-    }
-  
-    .details_container button {
-      font-size: 12px; 
-      padding: 0.2rem 0.4rem;
-    }
-  
-    .icons {
-      font-size: 1.2rem; 
-    }
-  }
+}

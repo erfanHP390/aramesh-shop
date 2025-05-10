@@ -65,17 +65,17 @@
 
 @media (max-width: 1136px) {
     .title {
-        font-size: 24px; 
+        font-size: 28px; 
     }
 
     .title a {
-        font-size: 0.9rem; 
+        font-size: 1rem; 
     }
 }
 
 @media (max-width: 768px) {
     .title {
-        font-size: 20px; 
+        font-size: 26px; 
     }
 
     .title a {
@@ -85,7 +85,7 @@
 
 @media (max-width: 480px) {
     .title {
-        font-size: 18px; 
+        font-size: 22px; 
     }
 
     .title a {
@@ -95,10 +95,10 @@
 
 @media (max-width: 348px) {
     .title {
-        font-size: 15px; 
+        font-size: 18px; 
     }
 
     .title a {
-        font-size: 0.5rem; 
+        font-size: 0.6rem; 
     }
 }
