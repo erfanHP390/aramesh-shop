@@ -1,45 +1,52 @@
 import connectToDB from "@/configs/db";
-import DiscountModel from "@/models/Discount"
+import DiscountModel from "@/models/Discount";
+import UserModel from "@/models/User";
 
 export async function PUT(req) {
+  try {
+    connectToDB();
 
-    try {
-        connectToDB()
+    const body = await req.json();
+    const { code, userId } = body;
 
-        const body =await req.json()
-        const {code} = body
-
-        if(!code) {
-            return Response.json({message: "code must be sent"} , {
-                status: 400
-            })
-        }
-
-        const discount = await DiscountModel.findOne({code})
-
-        if(!discount) {
-            return Response.json({message: "code not found"} , {
-                status: 404
-            })
-        } else if (discount.uses === discount.maxUse) {
-            return Response.json({message: "code is expired"} , {
-                status: 422
-            })
-        } else {
-            await DiscountModel.findOneAndUpdate({code} , {
-                $inc: {
-                    uses: 1
-                }
-            })
-            return Response.json(discount)
-        }
-
-
-    } catch (err) {
-        return Response.json({message: `interval error ${err}`} , {
-            status: 500
-        })
+    if (!code || !userId) {
+      return Response.json({ message: "code and userId must be sent" }, {
+        status: 400,
+      });
     }
 
+    const discount = await DiscountModel.findOne({ code });
 
+    if (!discount) {
+      return Response.json({ message: "code not found" }, {
+        status: 404,
+      });
+    }
+
+    if (discount.uses >= discount.maxUse) {
+      return Response.json({ message: "code is expired" }, {
+        status: 422,
+      });
+    }
+
+    if (discount.usedBy && discount.usedBy.includes(userId)) {
+      return Response.json({ message: "you have already used this code" }, {
+        status: 419,
+      });
+    }
+
+    await DiscountModel.findOneAndUpdate(
+      { code },
+      {
+        $inc: { uses: 1 },  
+        $push: { usedBy: userId },  
+      }
+    );
+
+    return Response.json(discount);
+  } catch (err) {
+    return Response.json({ message: `interval error ${err}` }, {
+      status: 500,
+    });
+  }
 }
