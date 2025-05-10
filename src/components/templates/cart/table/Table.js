@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 const stateOptions = stateData();
 
-function Table() {
+function Table({ userID }) {
   const router = useRouter();
   const [cart, setCart] = useState([]);
   const [discountInput, setDiscountInput] = useState("");
@@ -128,9 +128,14 @@ function Table() {
     setCart(getCart);
     setPostalCode(getPriceCart.postalCode || "");
 
+    // Load discount from localStorage if exists
     if (getPriceCart.appliedDiscount) {
-      setAppliedDiscount(getPriceCart.appliedDiscount);
+      setAppliedDiscount({
+        code: getPriceCart.appliedDiscount.code,
+        percent: getPriceCart.appliedDiscount.percent,
+      });
     }
+
     if (getPriceCart.province) {
       const selectedState = stateOptions.find(
         (state) => state.label === getPriceCart.province
@@ -165,14 +170,14 @@ function Table() {
   const calcTotalPrice = () => {
     let price = productPrice;
 
-    if (citySelectedOption?.price) {
-      price = price + citySelectedOption.price;
-    } else if (stateSelectedOption?.price) {
-      price = price + stateSelectedOption.price;
-    }
+    const shippingPrice =
+      citySelectedOption?.price || stateSelectedOption?.price || 0;
+    price += shippingPrice;
 
-    if (appliedDiscount) {
-      price = price - (productPrice * appliedDiscount.percent) / 100;
+    // Apply discount if exists
+    if (appliedDiscount?.percent) {
+      const discountAmount = (price * appliedDiscount.percent) / 100;
+      price -= discountAmount;
     }
 
     setTotalPrice(price);
@@ -196,7 +201,7 @@ function Table() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ code: discountInput }),
+      body: JSON.stringify({ code: discountInput, userId: userID }),
     });
 
     if (res.status === 200) {
@@ -231,6 +236,18 @@ function Table() {
     } else if (res.status === 400) {
       toastError(
         "کد تخفیف وارد نشده است",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 419) {
+      toastError(
+        "امکان استفاده مجدد از کد تخفیف برای شما امکان پذیر نیست",
         "top-center",
         5000,
         false,
@@ -288,7 +305,7 @@ function Table() {
       productPrice,
       province: stateSelectedOption?.label || "",
       city: citySelectedOption?.label || "",
-      appliedDiscount,
+      appliedDiscount, // Save complete discount info
       postalCode,
     };
 
@@ -308,7 +325,8 @@ function Table() {
     delete priceCart.appliedDiscount;
     localStorage.setItem("priceCart", JSON.stringify(priceCart));
 
-    swalAlert("کدتخفیف با موفقیت حذف شد", "success", "فهمیدم");
+    swalAlert("کد تخفیف با موفقیت حذف شد", "success", "فهمیدم");
+    router.refresh()
   };
 
   const removeProduct = (productId) => {
@@ -408,9 +426,10 @@ function Table() {
               <input
                 type="text"
                 placeholder="کد تخفیف"
-                value={discountInput}
+                value={appliedDiscount ? appliedDiscount.code : discountInput}
                 onChange={(event) => setDiscountInput(event.target.value)}
                 className={styles.discount_input}
+                disabled={!!appliedDiscount}
               />
               {appliedDiscount ? (
                 <button
@@ -428,10 +447,7 @@ function Table() {
                 </button>
               )}
             </div>
-            <button
-              className={styles.update_btn}
-              onClick={handleUpdateCart}
-            >
+            <button className={styles.update_btn} onClick={handleUpdateCart}>
               بروزرسانی سبد خرید
             </button>
           </div>
@@ -536,9 +552,26 @@ function Table() {
                 </div>
               )}
 
+              {appliedDiscount?.percent && (
+                <div className={styles.discount_applied}>
+                  <p>تخفیف ({appliedDiscount.percent}٪):</p>
+                  <p>
+                    {Math.floor(
+                      ((productPrice +
+                        (citySelectedOption?.price ||
+                          stateSelectedOption?.price ||
+                          0)) *
+                        appliedDiscount.percent) /
+                        100
+                    ).toLocaleString()}{" "}
+                    تومان
+                  </p>
+                </div>
+              )}
+
               <div className={styles.total}>
-                <p>مجموع</p>
-                <p>{totalPrice.toLocaleString()} تومان</p>
+                <p>مبلغ نهایی:</p>
+                <p>{Math.floor(totalPrice).toLocaleString()} تومان</p>
               </div>
 
               <div className={styles.checkout_btn_wrapper}>
