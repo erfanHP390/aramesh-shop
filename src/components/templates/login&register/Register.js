@@ -70,6 +70,10 @@ const Register = ({ showLoginForm }) => {
       body: JSON.stringify(newUser),
     });
 
+    const data = await res.json()
+    console.log("err in register",data.message);
+    console.log("err in register" , res);
+
     if (res.status === 201) {
       setName("");
       setPhone("");
@@ -139,7 +143,8 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    } else if (res.status === 500) {
+    } 
+    else if (res.status === 500) {
       setName("");
       setPhone("");
       setEmail("");
