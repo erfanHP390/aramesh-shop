@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import styles from "./products.module.css";
+import styles from "./Products.module.css";
 import btnStyles from "@/styles/articles.module.css";
 import Product from "@/components/modules/product/Product";
 import { FaRegStar, FaStar } from "react-icons/fa";

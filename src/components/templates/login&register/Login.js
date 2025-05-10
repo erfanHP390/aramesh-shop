@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./login.module.css";
+import styles from "./Login.module.css";
 import Sms from "./Sms";
 import Link from "next/link";
 import { swalAlert, toastSuccess, toastError } from "@/utils/helpers";
@@ -84,7 +84,7 @@ const Login = ({ showRegisterForm }) => {
           "colored"
         );
       } else {
-        handleErrorResponse(res.status); // تابع مدیریت خطا
+        handleErrorResponse(res.status); 
       }
     } catch (err) {
       console.error(err);
@@ -100,7 +100,7 @@ const Login = ({ showRegisterForm }) => {
         "colored"
       );
     } finally {
-      setIsLoading(false); // بارگذاری به پایان می‌رسد
+      setIsLoading(false); 
     }
   };
 

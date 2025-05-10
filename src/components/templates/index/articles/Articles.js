@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import Article from "@/components/modules/article/Article";
-import styles from "./articles.module.css";
+import styles from "./Articles.module.css";
 
 export default function Articles() {
   const [allArticles, setAllArticles] = useState([]);
