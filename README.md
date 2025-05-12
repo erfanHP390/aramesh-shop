@@ -1,8 +1,10 @@
+
 # ☕ آرامش | فروشگاه آنلاین قهوه – Aramesh Coffee Shop
 
 [English version below 🇬🇧]
 
-**آرامش‌شاپ** یک فروشگاه آنلاین برای خرید قهوه، تجهیزات مرتبط و مطالعه مقالات تخصصی درباره قهوه است. این پروژه با استفاده از تکنولوژی‌های مدرن مانند **Next.js (App Router)**، ، **MongoDB** پیاده‌سازی شده است. هدف، ایجاد تجربه‌ای آرام و کاربرپسند با طراحی متناسب با تم قهوه‌ای و بژ بوده است.
+**آرامش‌شاپ** یک فروشگاه آنلاین برای خرید قهوه، تجهیزات مرتبط و مطالعه مقالات تخصصی درباره قهوه است. این پروژه با استفاده از تکنولوژی‌های مدرن مانند **Next.js (App Router)**، **MongoDB** پیاده‌سازی شده است. هدف، ایجاد تجربه‌ای آرام و کاربرپسند با طراحی متناسب با تم قهوه‌ای و بژ بوده است.
+
 <!-- BADGES -->
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=nextdotjs&style=for-the-badge)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white&style=for-the-badge)
@@ -18,8 +20,38 @@
 ---
 
 ## 🖼️ پیش‌نمایش پروژه
-![Preview](images/HomePage.png)
 
+### 🏠 صفحه اصلی
+![Home](./arameh-gallery/HomePage.png)
+
+### 👤 پنل کاربری (User Panel)
+![User Dashboard](./arameh-gallery/UserPanel-dashboard.png)
+![Tickets](./arameh-gallery/UP-tickets.png)
+![Send Ticket](./arameh-gallery/UP-sendTicket.png)
+![Edit Account](./arameh-gallery/UP-editAccount.png)
+![User Comments](./arameh-gallery/UP-comments.png)
+
+### 🛠️ پنل ادمین (Admin Panel)
+![Admin Dashboard](./arameh-gallery/AdminPanel-dashboard.png)
+![Users](./arameh-gallery/AP-users.png)
+![Products](./arameh-gallery/AP-products.png)
+![Orders](./arameh-gallery/AP-orders.png)
+![Articles](./arameh-gallery/AP-articles.png)
+![Comments](./arameh-gallery/AP-comments.png)
+![Discounts](./arameh-gallery/AP-discounts.png)
+![Tickets](./arameh-gallery/AP-tickets.png)
+
+### 📚 بلاگ و مقالات
+![Blog List](./arameh-gallery/blogs.png)
+![Create Blog](./arameh-gallery/create-blog.png)
+
+### 🛒 سبد خرید و محصولات
+![Product](./arameh-gallery/product.png)
+![Filter](./arameh-gallery/filter-products.png)
+
+### 📄 صفحه قوانین و درباره ما
+![About Us](./arameh-gallery/AboutUs.png)
+![Rules](./arameh-gallery/Rules.png)
 
 ---
 
@@ -53,8 +85,8 @@
 - [React](https://reactjs.org/)
 - [MongoDB](https://www.mongodb.com/)
 - LocalStorage API
-- MongoDB
 - Node.js
+
 ---
 
 ## 📦 نحوه اجرا (لوکال)
@@ -64,15 +96,54 @@ git clone https://github.com/username/aramesh-shop.git
 cd aramesh-shop
 npm install
 npm run dev
-----------
+```
+
+---
+
 # ☕ Aramesh | Online Coffee Store
 
-**Aramesh Shop** is a modern, coffee-themed e-commerce platform designed for purchasing premium coffee, related equipment, and reading professional blog articles. Built using cutting-edge technologies such as **Next.js (App Router)**, **Tailwind CSS**, **MongoDB**, and deployed via **Vercel**, it offers a smooth and responsive user experience with a calm and elegant brown/beige UI theme.
+**Aramesh Shop** is a modern, coffee-themed e-commerce platform designed for purchasing premium coffee, related equipment, and reading professional blog articles. Built using cutting-edge technologies such as **Next.js (App Router)** and **MongoDB**, it offers a smooth and responsive user experience with a calm and elegant brown/beige UI theme.
 
 ---
 
 ## 🔗 Live Demo  
 👉 [https://aramesh-shop-o6fu.vercel.app/](https://aramesh-shop-o6fu.vercel.app/)
+
+---
+
+## 🖼️ Project Preview
+
+### 🏠 Home Page
+![Home](./arameh-gallery/HomePage.png)
+
+### 👤 User Panel
+![User Dashboard](./arameh-gallery/UserPanel-dashboard.png)
+![Tickets](./arameh-gallery/UP-tickets.png)
+![Send Ticket](./arameh-gallery/UP-sendTicket.png)
+![Edit Account](./arameh-gallery/UP-editAccount.png)
+![User Comments](./arameh-gallery/UP-comments.png)
+
+### 🛠️ Admin Panel
+![Admin Dashboard](./arameh-gallery/AdminPanel-dashboard.png)
+![Users](./arameh-gallery/AP-users.png)
+![Products](./arameh-gallery/AP-products.png)
+![Orders](./arameh-gallery/AP-orders.png)
+![Articles](./arameh-gallery/AP-articles.png)
+![Comments](./arameh-gallery/AP-comments.png)
+![Discounts](./arameh-gallery/AP-discounts.png)
+![Tickets](./arameh-gallery/AP-tickets.png)
+
+### 📚 Blog & Articles
+![Blog List](./arameh-gallery/blogs.png)
+![Create Blog](./arameh-gallery/create-blog.png)
+
+### 🛒 Products & Cart
+![Product](./arameh-gallery/product.png)
+![Filter](./arameh-gallery/filter-products.png)
+
+### 📄 About & Rules
+![About Us](./arameh-gallery/AboutUs.png)
+![Rules](./arameh-gallery/Rules.png)
 
 ---
 
@@ -97,7 +168,6 @@ npm run dev
 - Full integration with MongoDB database
 - Dynamic rendering of cart and checkout pages
 - Built with Next.js 14 (App Router)
-- Modular component-based architecture using TypeScript
 
 ---
 
@@ -107,7 +177,6 @@ npm run dev
 - [React](https://reactjs.org/)
 - [MongoDB](https://www.mongodb.com/)
 - LocalStorage API
-- MongoDB
 - Node.js
 
 ---
@@ -119,3 +188,4 @@ git clone https://github.com/username/aramesh-shop.git
 cd aramesh-shop
 npm install
 npm run dev
+```
