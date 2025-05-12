@@ -1,34 +1,121 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ☕ آرامش | فروشگاه آنلاین قهوه – Aramesh Coffee Shop
 
-## Getting Started
+[English version below 🇬🇧]
 
-First, run the development server:
+**آرامش‌شاپ** یک فروشگاه آنلاین برای خرید قهوه، تجهیزات مرتبط و مطالعه مقالات تخصصی درباره قهوه است. این پروژه با استفاده از تکنولوژی‌های مدرن مانند **Next.js (App Router)**، ، **MongoDB** پیاده‌سازی شده است. هدف، ایجاد تجربه‌ای آرام و کاربرپسند با طراحی متناسب با تم قهوه‌ای و بژ بوده است.
+<!-- BADGES -->
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=nextdotjs&style=for-the-badge)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.0-47A248?logo=mongodb&logoColor=white&style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-20.0-green?logo=node.js&logoColor=white&style=for-the-badge)
+![LocalStorage](https://img.shields.io/badge/LocalStorage-Browser-yellow?style=for-the-badge)
+
+---
+
+## 🔗 لینک پروژه
+👉 [مشاهده سایت](https://aramesh-shop-o6fu.vercel.app/)
+
+---
+
+## 🖼️ پیش‌نمایش پروژه
+![Preview](images/HomePage.png)
+
+
+---
+
+## 🚀 ویژگی‌ها | Features
+
+### 🎯 امکانات کلاینت (مشتری):
+- طراحی کاملاً ریسپانسیو و تجربه کاربری حرفه‌ای
+- سبد خرید داینامیک با ذخیره‌سازی محلی (localStorage)
+- فرم ثبت سفارش همراه با امکان ثبت‌نام هم‌زمان
+- پنل کاربری برای مشاهده سفارشات، کامنت‌ها و تیکت‌ها
+- امکان ارسال تیکت و ویرایش اطلاعات حساب
+- صفحه مقالات با بارگذاری داینامیک محتوا
+
+### 🛠️ امکانات پنل مدیریت (ادمین):
+- مدیریت محصولات (افزودن، ویرایش، حذف)
+- مدیریت مقالات وبلاگ
+- ایجاد و حذف کد تخفیف
+- مدیریت کاربران، کامنت‌ها، و تیکت‌ها
+- پاسخ به تیکت‌های کاربران از طریق پنل ادمین
+
+### 💾 ویژگی‌های فنی:
+- اتصال کامل به پایگاه داده MongoDB
+- رندر داینامیک صفحات سبد خرید و سفارش
+- پیاده‌سازی شده با Next.js 14 (App Router)
+
+---
+
+## 🛠️ تکنولوژی‌های استفاده‌شده
+
+- [Next.js 14 (App Router)](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- LocalStorage API
+- MongoDB
+- Node.js
+---
+
+## 📦 نحوه اجرا (لوکال)
 
 ```bash
+git clone https://github.com/username/aramesh-shop.git
+cd aramesh-shop
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+----------
+# ☕ Aramesh | Online Coffee Store
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Aramesh Shop** is a modern, coffee-themed e-commerce platform designed for purchasing premium coffee, related equipment, and reading professional blog articles. Built using cutting-edge technologies such as **Next.js (App Router)**, **Tailwind CSS**, **MongoDB**, and deployed via **Vercel**, it offers a smooth and responsive user experience with a calm and elegant brown/beige UI theme.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🔗 Live Demo  
+👉 [https://aramesh-shop-o6fu.vercel.app/](https://aramesh-shop-o6fu.vercel.app/)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🎯 Client Features:
+- Fully responsive design for desktop and mobile
+- Dynamic shopping cart powered by localStorage
+- Order form with optional user registration
+- User dashboard with order history, comments, and ticket submission
+- Profile editing functionality
+- Blog section with dynamically rendered content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 🛠️ Admin Panel:
+- Product management (create, update, delete)
+- Blog post/article management
+- Discount code creation and deletion
+- User, comment, and support ticket management
+- Respond to tickets via admin interface
 
-## Deploy on Vercel
+### 💾 Technical Highlights:
+- Full integration with MongoDB database
+- Dynamic rendering of cart and checkout pages
+- Built with Next.js 14 (App Router)
+- Modular component-based architecture using TypeScript
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🛠️ Tech Stack
+
+- [Next.js 14 (App Router)](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- LocalStorage API
+- MongoDB
+- Node.js
+
+---
+
+## 📦 How to Run Locally
+
+```bash
+git clone https://github.com/username/aramesh-shop.git
+cd aramesh-shop
+npm install
+npm run dev
