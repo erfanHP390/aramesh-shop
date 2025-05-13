@@ -63,8 +63,8 @@
 ![Filter](./arameh-gallery/filter-products.png)
 
 ### 🛒 سبد خرید و مراحل خرید از فروشگاه (Shopping cart and shopping steps from the store)
-![Cart](./arameh-gallery/cart.png)
-![Cart Table](./arameh-gallery/cartT.png)
+![Cart](./arameh-gallery/Cart.png)
+![Cart Table](./arameh-gallery/CartT.png)
 ![Checkout](./arameh-gallery/chackout.png)
 ![Checkout Table](./arameh-gallery/checkoutT.png)
 ![complete](./arameh-gallery/complete.png)
@@ -76,7 +76,7 @@
 ![Rules](./arameh-gallery/Rules.png)
 ![Rules Text](./arameh-gallery/RulesText.png)
 ![Contact Us](./arameh-gallery/contactUs.png)
-![Contact Us Form](./arameh-gallery/contactUsF.png)
+![Contact Us Form](./arameh-gallery/ContactUsF.png)
 
 
 
