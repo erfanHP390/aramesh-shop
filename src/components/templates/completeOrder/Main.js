@@ -4,8 +4,10 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "@/styles/completeOrder.module.css";
 import Loading from "@/app/loading";
+import { useRouter } from "next/navigation";
 
 function Main() {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
   const [order, setOrder] = useState(null);
   const [localOrder, setLocalOrder] = useState(null);
@@ -44,6 +46,15 @@ function Main() {
     if (localOrder) fetchOrder();
   }, [localOrder]);
 
+  const clearHandler = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("order");
+      localStorage.removeItem("priceCart");
+      localStorage.removeItem("cart");
+    }
+    router.replace("/cart")
+  };
+
   return (
     <>
       {isLoading ? (
@@ -76,7 +87,9 @@ function Main() {
               <p>اطلاعات سفارش یافت نشد.</p>
             )}
             <div className={styles.buttons}>
-              <button className={styles.payButton}>پرداخت</button>
+              <button className={styles.payButton} onClick={clearHandler}>
+                پرداخت
+              </button>
               <Link href={"/checkout"}>
                 <button className={styles.backButton}> بازگشت</button>
               </Link>
