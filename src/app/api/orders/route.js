@@ -113,7 +113,7 @@ export async function POST(req) {
       if (newUses > product.stock) {
         return Response.json(
           {
-            message: `محصول ${product.title} بیش از موجودی انبار انتخاب شده است.`,
+            message: `محصول ${product.name} بیش از موجودی انبار انتخاب شده است.`,
           },
           { status: 419 }
         );
