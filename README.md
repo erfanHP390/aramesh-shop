@@ -23,6 +23,9 @@
 
 ### 🏠 صفحه اصلی
 ![Home](./arameh-gallery/HomePage.png)
+![HomeL](./arameh-gallery/HomePageLatest.png)
+![HomeA](./arameh-gallery/HomePageAbout.png)
+![HomeF](./arameh-gallery/HomePageFooter.png)
 
 ### 👤 پنل کاربری (User Panel)
 ![User Dashboard](./arameh-gallery/UserPanel-dashboard.png)
@@ -30,6 +33,8 @@
 ![Send Ticket](./arameh-gallery/UP-sendTicket.png)
 ![Edit Account](./arameh-gallery/UP-editAccount.png)
 ![User Comments](./arameh-gallery/UP-comments.png)
+![Ticket Chat](./arameh-gallery/ticket-chat.png)
+
 
 ### 🛠️ پنل ادمین (Admin Panel)
 ![Admin Dashboard](./arameh-gallery/AdminPanel-dashboard.png)
@@ -41,17 +46,39 @@
 ![Discounts](./arameh-gallery/AP-discounts.png)
 ![Tickets](./arameh-gallery/AP-tickets.png)
 
-### 📚 بلاگ و مقالات
+### 📚 بلاگ و مقالات (articles)
 ![Blog List](./arameh-gallery/blogs.png)
+![Blog One](./arameh-gallery/blog.png)
+![Blog Text](./arameh-gallery/blogText.png)
+![Blog Comment](./arameh-gallery/blogComment.png)
 ![Create Blog](./arameh-gallery/create-blog.png)
 
-### 🛒 سبد خرید و محصولات
+### 🛒 سبد خرید و محصولات  (products)
+![Category](./arameh-gallery/category.png)
 ![Product](./arameh-gallery/product.png)
+![Product Desc](./arameh-gallery/productD.png)
+![Product Info](./arameh-gallery/productIn.png)
+![Product Comment](./arameh-gallery/productComment.png)
+![Product Create](./arameh-gallery/create-product.png)
 ![Filter](./arameh-gallery/filter-products.png)
 
-### 📄 صفحه قوانین و درباره ما
+### 🛒 سبد خرید و مراحل خرید از فروشگاه (Shopping cart and shopping steps from the store)
+![Cart](./arameh-gallery/cart.png)
+![Cart Table](./arameh-gallery/cartT.png)
+![Checkout](./arameh-gallery/chackout.png)
+![Checkout Table](./arameh-gallery/checkoutT.png)
+![complete](./arameh-gallery/complete.png)
+
+
+### 📄 صفحه قوانین و درباره ما  (rules , about-us , contact-us)
 ![About Us](./arameh-gallery/AboutUs.png)
+![About UsT](./arameh-gallery/AboutUsText.png)
 ![Rules](./arameh-gallery/Rules.png)
+![Rules Text](./arameh-gallery/RulesText.png)
+![Contact Us](./arameh-gallery/contactUs.png)
+![Contact Us Form](./arameh-gallery/contactUsF.png)
+
+
 
 ---
 
@@ -116,36 +143,7 @@ npm run dev
 ### 🏠 Home Page
 ![Home](./arameh-gallery/HomePage.png)
 
-### 👤 User Panel
-![User Dashboard](./arameh-gallery/UserPanel-dashboard.png)
-![Tickets](./arameh-gallery/UP-tickets.png)
-![Send Ticket](./arameh-gallery/UP-sendTicket.png)
-![Edit Account](./arameh-gallery/UP-editAccount.png)
-![User Comments](./arameh-gallery/UP-comments.png)
 
-### 🛠️ Admin Panel
-![Admin Dashboard](./arameh-gallery/AdminPanel-dashboard.png)
-![Users](./arameh-gallery/AP-users.png)
-![Products](./arameh-gallery/AP-products.png)
-![Orders](./arameh-gallery/AP-orders.png)
-![Articles](./arameh-gallery/AP-articles.png)
-![Comments](./arameh-gallery/AP-comments.png)
-![Discounts](./arameh-gallery/AP-discounts.png)
-![Tickets](./arameh-gallery/AP-tickets.png)
-
-### 📚 Blog & Articles
-![Blog List](./arameh-gallery/blogs.png)
-![Create Blog](./arameh-gallery/create-blog.png)
-
-### 🛒 Products & Cart
-![Product](./arameh-gallery/product.png)
-![Filter](./arameh-gallery/filter-products.png)
-
-### 📄 About & Rules
-![About Us](./arameh-gallery/AboutUs.png)
-![Rules](./arameh-gallery/Rules.png)
-
----
 
 ## 🚀 Features
 
