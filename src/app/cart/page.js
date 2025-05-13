@@ -15,7 +15,7 @@ async function page() {
       <Stepper step="cart" />
 
       <main className={styles.cart} data-aos="fade-up">
-        <Table userID={JSON.parse(JSON.stringify(user._id))} />
+        <Table userID={user ? JSON.parse(JSON.stringify(user._id)) : null} />
       </main>
       <Footer />
     </>

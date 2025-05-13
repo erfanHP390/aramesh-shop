@@ -196,6 +196,14 @@ function Table({ userID }) {
       return swalAlert("لطفا کد تخفیف وارد کنید", "error", "فهمیدم");
     }
 
+    if (!userID) {
+      return swalAlert(
+        "برای استفاده از کد تخفیف ابتدا وارد حساب خود شوید",
+        "error",
+        "فهمیدم"
+      );
+    }
+
     const res = await fetch("/api/discount/use", {
       method: "PUT",
       headers: {
@@ -248,6 +256,18 @@ function Table({ userID }) {
     } else if (res.status === 419) {
       toastError(
         "امکان استفاده مجدد از کد تخفیف برای شما امکان پذیر نیست",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 401) {
+      toastError(
+        "برای استفاده از کد تخفیف ابتدا وارد حساب خود شوید",
         "top-center",
         5000,
         false,
@@ -326,7 +346,7 @@ function Table({ userID }) {
     localStorage.setItem("priceCart", JSON.stringify(priceCart));
 
     swalAlert("کد تخفیف با موفقیت حذف شد", "success", "فهمیدم");
-    router.refresh()
+    router.refresh();
   };
 
   const removeProduct = (productId) => {
