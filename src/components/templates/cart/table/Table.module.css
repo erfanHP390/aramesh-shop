@@ -18,6 +18,7 @@
   font-weight: 500;
   color: #D2B48C;
   font-family: shabnam-Bold;
+  direction: rtl;
 }
 
 .title:after {
