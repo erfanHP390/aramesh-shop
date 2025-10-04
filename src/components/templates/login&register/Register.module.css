@@ -105,3 +105,156 @@
     width: 316px !important;
   }
 }
+
+.form {
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px 25px;
+  width: 380px;
+  font-family: shabnam;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(90, 62, 54, 0.1);
+  text-align: center;
+  color: #5a3e36;
+}
+
+.input {
+  font-family: shabnam;
+  padding: 13px;
+  background-color: #ffffff;
+  color: #5a3e36;
+  border-radius: 3px;
+  border: 1px solid #a68a64;
+  direction: rtl;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* استایل‌های جدید برای فیلد پسورد */
+.password_container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.password_input {
+  font-family: shabnam;
+  padding: 13px;
+  background-color: #ffffff;
+  color: #5a3e36;
+  border-radius: 3px;
+  border: 1px solid #a68a64;
+  direction: rtl;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 45px; /* فضا برای آیکون */
+}
+
+.password_toggle {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5a3e36;
+  font-size: 18px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password_toggle:hover {
+  color: #cc5500;
+}
+
+.password_toggle:focus {
+  outline: none;
+}
+
+.btn_light {
+  color: #5a3e36; 
+  border: 1px solid #a68a64; 
+  margin-bottom: 3rem;
+  cursor: pointer;
+  padding: 1rem;
+  font-family: shabnam;
+  background: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.btn_light:hover {
+  background-color: #ffd700;
+}
+
+.btn {
+  padding: 0.8rem;
+  cursor: pointer;
+  font-family: shabnam;
+  background-color: #cc5500;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ffd700; 
+}
+
+.forgot_pass {
+  font-size: 13px;
+  margin: 15px 0;
+  color: #5a3e36;
+}
+
+.form span {
+  text-align: right;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #5a3e36;
+}
+
+.back_to_login {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  color: #5a3e36;
+}
+
+.redirect_to_home {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  cursor: pointer;
+  font-family: shabnam;
+  font-size: 13px;
+  margin-top: 0.75rem;
+  padding: 10px 25px;
+  border-radius: 10%;
+  color: #fff;
+  background-color: #cc5500;
+  transition: all 0.3s ease;
+}
+
+.redirect_to_home:hover {
+  background-color: #ffd700;
+}
+
+@media (max-width: 400px) {
+  .form_bg {
+    width: 390px !important;
+  }
+}
+
+@media (max-width: 378px) {
+  .form {
+    width: 316px !important;
+  }
+}

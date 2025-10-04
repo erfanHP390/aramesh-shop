@@ -1,6 +1,7 @@
 "use client";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./UserDetails.module.css";
 import { useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
@@ -12,6 +13,11 @@ function UserDetails({ user }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.phone);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const updateUser = async () => {
     const newInfo = {
@@ -172,7 +178,19 @@ function UserDetails({ user }) {
             <div>
               <label>رمز عبور</label>
               <div className={styles.password_group}>
-                <input type="password" />
+                <div className={styles.password_input_wrapper}>
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    placeholder="رمز عبور جدید"
+                    className={styles.password_input}
+                  />
+                  <span 
+                    className={styles.password_toggle_icon}
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
                 <button>تغییر رمز عبور</button>
               </div>
             </div>

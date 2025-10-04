@@ -7,6 +7,7 @@ import { toastSuccess, toastError, swalAlert } from "@/utils/helpers";
 import { validatePhone, validateEmail, validatePassword } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = ({ showLoginForm }) => {
   const [registerWithPass, setRegisterWithPass] = useState(false);
@@ -17,7 +18,12 @@ const Register = ({ showLoginForm }) => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingOtp, setIsLoadingOtp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const hideOtpForm = () => setIsRegisterWithOtp(false);
 
@@ -70,9 +76,9 @@ const Register = ({ showLoginForm }) => {
       body: JSON.stringify(newUser),
     });
 
-    const data = await res.json()
-    console.log("err in register",data.message);
-    console.log("err in register" , res);
+    const data = await res.json();
+    console.log("err in register", data.message);
+    console.log("err in register", res);
 
     if (res.status === 201) {
       setName("");
@@ -143,8 +149,7 @@ const Register = ({ showLoginForm }) => {
         undefined,
         "colored"
       );
-    } 
-    else if (res.status === 500) {
+    } else if (res.status === 500) {
       setName("");
       setPhone("");
       setEmail("");
@@ -295,13 +300,22 @@ const Register = ({ showLoginForm }) => {
               placeholder="ایمیل (دلخواه)"
             />
             {registerWithPass && (
-              <input
-                className={styles.input}
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                type="password"
-                placeholder="رمز عبور"
-              />
+              <div className={styles.password_container}>
+                <input
+                  className={styles.password_input}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="رمز عبور"
+                />
+                <button
+                  type="button"
+                  className={styles.password_toggle}
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             )}
             <p
               onClick={() => {

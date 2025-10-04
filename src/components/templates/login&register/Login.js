@@ -7,6 +7,7 @@ import { swalAlert, toastSuccess, toastError } from "@/utils/helpers";
 import { validateEmail, validatePhone } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = ({ showRegisterForm }) => {
   const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
@@ -17,6 +18,7 @@ const Login = ({ showRegisterForm }) => {
   const [isSaveUserLoginInfo, setIsSaveUserLoginInfo] = useState(false);
   const [isLoadingOtp, setIsLoadingOtp] = useState(false);
   const [isShowInputPhone, setIsShowInputPhone] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -28,6 +30,10 @@ const Login = ({ showRegisterForm }) => {
       }
     }
   }, []);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const loginWithPassword = async () => {
     if (!email) {
@@ -59,7 +65,7 @@ const Login = ({ showRegisterForm }) => {
     }
 
     try {
-      setIsLoading(true); // در هنگام ارسال درخواست بارگذاری نشان داده می‌شود
+      setIsLoading(true);
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -84,7 +90,7 @@ const Login = ({ showRegisterForm }) => {
           "colored"
         );
       } else {
-        handleErrorResponse(res.status); 
+        handleErrorResponse(res.status);
       }
     } catch (err) {
       console.error(err);
@@ -100,7 +106,7 @@ const Login = ({ showRegisterForm }) => {
         "colored"
       );
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
@@ -303,7 +309,7 @@ const Login = ({ showRegisterForm }) => {
           "colored"
         );
     }
-    setEmail(""); // اگر خطا در ارسال کد پیش بیاید، ایمیل پاک می‌شود
+    setEmail("");
     setIsLoadingOtp(false);
   };
 
@@ -330,17 +336,28 @@ const Login = ({ showRegisterForm }) => {
               onChange={(event) => setEmail(event.target.value)}
               placeholder="ایمیل"
             />
-            <input
-              className={styles.input}
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="رمز عبور"
-            />
+
+            <div className={styles.password_container}>
+              <input
+                className={styles.password_input}
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="رمز عبور"
+              />
+              <button
+                type="button"
+                className={styles.password_toggle}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+
             <div className={styles.checkbox}>
               <input
                 type="checkbox"
-                checked={isSaveUserLoginInfo} 
+                checked={isSaveUserLoginInfo}
                 onChange={() =>
                   setIsSaveUserLoginInfo((prevValue) => !prevValue)
                 }

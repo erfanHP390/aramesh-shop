@@ -1,6 +1,7 @@
 "use client";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./AccountDetail.module.css";
 import { useEffect, useState } from "react";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
@@ -17,6 +18,7 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
   const [img, setImg] = useState(null);
   const [changePassword, setChangePassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -31,6 +33,10 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
 
     getUser();
   }, []);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const updateUser = async () => {
     const newInfo = {
@@ -507,11 +513,21 @@ function AccountDetail({ profileUser, bannedMobile, bannedEmail }) {
             <div>
               <label>رمز عبور</label>
               <div className={styles.password_group}>
-                <input
-                  type="password"
-                  value={changePassword}
-                  onChange={(event) => setChangePassword(event.target.value)}
-                />
+                <div className={styles.password_input_wrapper}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={changePassword}
+                    onChange={(event) => setChangePassword(event.target.value)}
+                    className={styles.password_input}
+                    placeholder="رمز عبور جدید خود را وارد کنید"
+                  />
+                  <span 
+                    className={styles.password_toggle_icon}
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
                 <button
                   onClick={() => {
                     setIsLoading(true);
