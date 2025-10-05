@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/components/templates/p-user/accountDetail/AccountDetail.module.css";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import {  toastError, toastSuccess } from "@/utils/helpers";
+import { toastError, toastSuccess } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Loading from "@/app/loading";
@@ -44,6 +44,20 @@ function ProductCreate() {
       setIsLoading(false);
       toastSuccess(
         "محصول با موفقیت ایجاد شد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+      router.refresh();
+    } if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "شما مجاز به این کار نیستید",
         "top-center",
         5000,
         false,

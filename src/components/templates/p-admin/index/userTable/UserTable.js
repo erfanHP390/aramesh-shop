@@ -41,9 +41,21 @@ function UserTable({ users, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 401) {
           toastError(
-             "فقط ادمین/مدیر سایت اجازه تغییر نقش کاربر را دارد",
+            "فقط ادمین/مدیر سایت اجازه تغییر نقش کاربر را دارد",
             "top-center",
             5000,
             false,
@@ -117,6 +129,18 @@ function UserTable({ users, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 401) {
           toastError(
             "فقط ادمین/مدیر سایت اجازه حذف کاربر را دارد",
@@ -183,9 +207,8 @@ function UserTable({ users, title }) {
   };
 
   const banUser = (email, phone) => {
-
     swal({
-      title: "آیا از حذف کاربر اطمینان دارین؟",
+      title: "آیا از مسدود کردن کاربر اطمینان دارین؟",
       icon: "warning",
       buttons: ["نه", "آره"],
     }).then(async (result) => {
@@ -225,9 +248,21 @@ function UserTable({ users, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 401) {
           toastError(
-             "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
+            "فقط ادمین/مدیر سایت اجازه مسدود کردن را دارد",
             "top-center",
             5000,
             false,

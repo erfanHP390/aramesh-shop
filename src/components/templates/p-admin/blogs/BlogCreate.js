@@ -46,11 +46,24 @@ function BlogCreate() {
         undefined,
         "colored"
       );
-      router.refresh()
+      router.refresh();
     } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
         "لطفا تمامی موارد را وارد نمایید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "شما مجاز به این کار نیستید",
         "top-center",
         5000,
         false,

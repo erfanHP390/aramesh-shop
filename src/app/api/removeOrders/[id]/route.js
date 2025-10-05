@@ -17,35 +17,49 @@ export async function DELETE(req, { params }) {
       );
     }
 
-    const id = params.id;
-
-    if (!id) {
+    if (
+      admin.name === "ادمین" &&
+      admin.email === "admin@email.com" &&
+      admin.phone === "09991111212"
+    ) {
       return Response.json(
-        { message: "must send one code" },
-        {
-          status: 400,
-        }
+        { message: "this route is protected" },
+        { status: 403 }
+      );
+    } else {
+      const id = params.id;
+
+      if (!id) {
+        return Response.json(
+          { message: "must send one code" },
+          {
+            status: 400,
+          }
+        );
+      }
+
+      if (!isValidObjectId(id)) {
+        return Response.json({ message: "id is not valid" }, { status: 422 });
+      }
+
+      const userOrder = await OrderModel.findOne({ _id: id });
+
+      if (!userOrder) {
+        return Response.json(
+          { message: "userOrder not found" },
+          {
+            status: 404,
+          }
+        );
+      }
+
+      await OrderModel.findOneAndDelete({ _id: id });
+
+      return Response.json(
+        { message: "order deleted successfully" },
+        { status: 200 }
       );
     }
-
-    if (!isValidObjectId(id)) {
-      return Response.json({ message: "id is not valid" }, { status: 422 });
-    }
-
-    const userOrder = await OrderModel.findOne({ _id: id });
-
-    if (!userOrder) {
-      return Response.json(
-        { message: "userOrder not found" },
-        {
-          status: 404,
-        }
-      );
-    }
-
-    await OrderModel.findOneAndDelete({ _id: id });
-
-    return Response.json({ message: "order deleted successfully" });
   } catch (err) {
     return Response.json(
       { message: `interval error server => ${err}` },

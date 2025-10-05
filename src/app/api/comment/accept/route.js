@@ -17,37 +17,51 @@ export async function PUT(req) {
       );
     }
 
-    const body = await req.json();
-    const { id } = body;
-
-    if (!id) {
+    if (
+      admin.name === "ادمین" &&
+      admin.email === "admin@email.com" &&
+      admin.phone === "09991111212"
+    ) {
       return Response.json(
-        { message: "id have send" },
-        {
-          status: 400,
-        }
+        { message: "this route is protected" },
+        { status: 403 }
       );
-    }
+    } else {
+      const body = await req.json();
+      const { id } = body;
 
-    if (!isValidObjectId(id)) {
-      return Response.json(
-        { message: "id is not valid" },
-        {
-          status: 422,
-        }
-      );
-    }
-
-    await CommentModel.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: {
-          isAccept: true,
-        },
+      if (!id) {
+        return Response.json(
+          { message: "id have send" },
+          {
+            status: 400,
+          }
+        );
       }
-    );
 
-    return Response.json({ message: "is accepted by admin successfully" });
+      if (!isValidObjectId(id)) {
+        return Response.json(
+          { message: "id is not valid" },
+          {
+            status: 422,
+          }
+        );
+      }
+
+      await CommentModel.findOneAndUpdate(
+        { _id: id },
+        {
+          $set: {
+            isAccept: true,
+          },
+        }
+      );
+
+      return Response.json(
+        { message: "is accepted by admin successfully" },
+        { status: 200 }
+      );
+    }
   } catch (err) {
     return Response.json(
       { message: `interval error server => ${err.message}` },

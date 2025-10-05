@@ -48,7 +48,19 @@ function ProductTable({ products, title }) {
           router.refresh();
         } else if (res.status === 401) {
           toastError(
-             "فقط ادمین/مدیر سایت اجازه حذف محصول را دارد",
+            "فقط ادمین/مدیر سایت اجازه حذف محصول را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
             "top-center",
             5000,
             false,
@@ -187,9 +199,9 @@ function ProductTable({ products, title }) {
                   alt={selectedProduct.name}
                   className={styles.modal_product_image}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain'
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
                   }}
                 />
               </div>
@@ -215,13 +227,17 @@ function ProductTable({ products, title }) {
                     </span>
                   </div>
                   <div className={styles.modal_product_meta_item}>
-                    <span className={styles.modal_product_meta_label}>وضعیت موجودی</span>
+                    <span className={styles.modal_product_meta_label}>
+                      وضعیت موجودی
+                    </span>
                     <span className={styles.modal_product_meta_value}>
                       {selectedProduct.stock}
                     </span>
                   </div>
                   <div className={styles.modal_product_meta_item}>
-                    <span className={styles.modal_product_meta_label}>تعداد فروخته شده</span>
+                    <span className={styles.modal_product_meta_label}>
+                      تعداد فروخته شده
+                    </span>
                     <span className={styles.modal_product_meta_value}>
                       {selectedProduct.uses}
                     </span>
@@ -250,14 +266,12 @@ function ProductTable({ products, title }) {
                       آخرین بروزرسانی
                     </span>
                     <span className={styles.modal_product_meta_value}>
-                      {new Date(selectedProduct.updatedAt).toLocaleDateString("fa-IR")}
+                      {new Date(selectedProduct.updatedAt).toLocaleDateString(
+                        "fa-IR"
+                      )}
                     </span>
                   </div>
-
-
-
                 </div>
-                
 
                 {selectedProduct.tags && selectedProduct.tags.length > 0 && (
                   <div className={styles.modal_product_tags}>

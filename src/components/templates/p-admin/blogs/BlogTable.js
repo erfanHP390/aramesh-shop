@@ -46,6 +46,18 @@ function BlogTable({ blogs, title }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 401) {
           toastError(
             "فقط ادمین/مدیر سایت اجازه حذف مقاله را دارد",
@@ -133,7 +145,9 @@ function BlogTable({ blogs, title }) {
                   <td>{index + 1}</td>
                   <td>{blog.title}</td>
                   <td>{blog.author}</td>
-                  <td>{new Date(blog.createdAt).toLocaleDateString("fa-IR")}</td>
+                  <td>
+                    {new Date(blog.createdAt).toLocaleDateString("fa-IR")}
+                  </td>
 
                   <td>
                     <button

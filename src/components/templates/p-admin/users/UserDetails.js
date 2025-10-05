@@ -74,6 +74,18 @@ function UserDetails({ user }) {
         undefined,
         "colored"
       );
+    } else if (res.status === 403) {
+      toastError(
+        "شما مجاز به این کار نیستید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 401) {
       toastError(
         "فقط ادمین/مدیر سایت اجازه ویرایش اطلاعات کاربر را دارد",
@@ -179,12 +191,12 @@ function UserDetails({ user }) {
               <label>رمز عبور</label>
               <div className={styles.password_group}>
                 <div className={styles.password_input_wrapper}>
-                  <input 
-                    type={showPassword ? "text" : "password"} 
+                  <input
+                    type={showPassword ? "text" : "password"}
                     placeholder="رمز عبور جدید"
                     className={styles.password_input}
                   />
-                  <span 
+                  <span
                     className={styles.password_toggle_icon}
                     onClick={togglePasswordVisibility}
                   >

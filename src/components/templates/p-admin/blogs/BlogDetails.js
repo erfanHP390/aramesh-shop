@@ -61,6 +61,19 @@ function BlogDetails({ blog }) {
         undefined,
         "colored"
       );
+    } else if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "شما مجاز به این کار نیستید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 400) {
       setIsLoading(false);
       toastError(
@@ -135,7 +148,7 @@ function BlogDetails({ blog }) {
                       accept="image/*"
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
-                          setImg(e.target.files[0]); 
+                          setImg(e.target.files[0]);
                         }
                       }}
                     />

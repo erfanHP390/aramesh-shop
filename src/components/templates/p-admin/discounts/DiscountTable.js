@@ -30,6 +30,18 @@ function DiscountTable({ discounts }) {
             "colored"
           );
           router.refresh();
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
         } else if (res.status === 401) {
           toastError(
             "فقط ادمین/مدیر سایت اجازه حذف کد تخفیف را دارد",

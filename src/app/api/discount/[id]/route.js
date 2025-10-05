@@ -17,41 +17,54 @@ export async function DELETE(req, { params }) {
       );
     }
 
-
-    const id = params.id;
-
-    if (!id) {
+    if (
+      admin.name === "ادمین" &&
+      admin.email === "admin@email.com" &&
+      admin.phone === "09991111212"
+    ) {
       return Response.json(
-        { message: "must send one id" },
-        {
-          status: 400,
-        }
+        { message: "this route is protected" },
+        { status: 403 }
+      );
+    } else {
+      const id = params.id;
+
+      if (!id) {
+        return Response.json(
+          { message: "must send one id" },
+          {
+            status: 400,
+          }
+        );
+      }
+
+      if (!isValidObjectId(id)) {
+        return Response.json(
+          { message: "id is not valid" },
+          {
+            status: 422,
+          }
+        );
+      }
+
+      const discount = await DiscountModel.findOne({ _id: id });
+
+      if (!discount) {
+        return Response.json(
+          { message: "discount not found" },
+          {
+            status: 404,
+          }
+        );
+      }
+
+      await DiscountModel.findOneAndDelete({ _id: id });
+
+      return Response.json(
+        { message: "discount removed successfully" },
+        { status: 200 }
       );
     }
-
-    if (!isValidObjectId(id)) {
-      return Response.json(
-        { message: "id is not valid" },
-        {
-          status: 422,
-        }
-      );
-    }
-
-    const discount = await DiscountModel.findOne({ _id: id });
-
-    if (!discount) {
-      return Response.json(
-        { message: "discount not found" },
-        {
-          status: 404,
-        }
-      );
-    }
-
-    await DiscountModel.findOneAndDelete({ _id: id });
-
-    return Response.json({ message: "discount removed successfully" });
   } catch (err) {
     return Response.json(
       { message: `interval error server => ${err}` },

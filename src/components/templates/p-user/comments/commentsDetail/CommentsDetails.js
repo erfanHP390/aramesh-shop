@@ -53,6 +53,19 @@ function CommentsDetails({ comment }) {
         "colored"
       );
       router.refresh();
+    } else if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "شما مجاز به این کار نیستید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 401) {
       setIsLoading(false);
       toastError(

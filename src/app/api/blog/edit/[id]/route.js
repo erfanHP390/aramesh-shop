@@ -7,85 +7,95 @@ import { authAdmin, authUser } from "@/utils/authUserLink";
 
 export async function PUT(req, { params }) {
   try {
-
-    const admin = await authAdmin()
-    if(!admin) {
-      return Response.json({message: "this route is protected"} , {
-        status: 401
-      })
+    const admin = await authAdmin();
+    if (!admin) {
+      return Response.json(
+        { message: "this route is protected" },
+        {
+          status: 401,
+        }
+      );
     }
 
     connectToDB();
 
-    const id = params.id;
-
-    if (!id) {
+    if (
+      admin.name === "ادمین" &&
+      admin.email === "admin@email.com" &&
+      admin.phone === "09991111212"
+    ) {
       return Response.json(
-        { message: "id is required" },
-        { status: 400 }
+        { message: "this route is protected" },
+        { status: 403 }
       );
-    }
+    } else {
+      const id = params.id;
 
-    if (!isValidObjectId(id)) {
-      return Response.json(
-        { message: "id is not valid" },
-        { status: 422 }
-      );
-    }
-
-    const formData = await req.formData();
-    const titr = formData.get("titr");
-    const title = formData.get("title");
-    const shortDesc = formData.get("shortDesc");
-    const author = formData.get("author");
-    const description = formData.get("description");
-    const img = formData.get("img");
-    const updatedAt = formData.get(new Date())
-
-    const existingBlog = await BlogModel.findOne({_id: id});
-    if (!existingBlog) {
-      return Response.json(
-        { message: "Product not found" },
-        { status: 404 }
-      );
-    }
-
-    const updateData = {
-      titr: titr || existingBlog.titr,
-      title: title || existingBlog.title,
-      shortDesc: shortDesc || existingBlog.shortDesc,
-      description: description || existingBlog.description,
-      author: author || existingBlog.author,
-      img: img || existingBlog.img,
-      updatedAt: updatedAt || existingBlog.updatedAt,
-    };
-
-    if (img && img.size > 0) {
-      if (existingBlog.img) {
-        try {
-          const imgUrl = new URL(existingBlog.img);
-          const filePath = path.join(process.cwd(), "public", imgUrl.pathname);
-          await unlink(filePath);
-          console.log(`img is deleted successfully: ${filePath}`);
-        } catch (err) {
-          console.error(`err in delete: ${err.message}`);
-        }
+      if (!id) {
+        return Response.json({ message: "id is required" }, { status: 400 });
       }
 
-      const buffer = Buffer.from(await img.arrayBuffer());
-      const filename = Date.now() + img.name;
-      const imgPath = path.join(process.cwd(), "public/uploads/" + filename);
-      await writeFile(imgPath, buffer);
+      if (!isValidObjectId(id)) {
+        return Response.json({ message: "id is not valid" }, { status: 422 });
+      }
 
-      updateData.img = `http://localhost:3000/uploads/${filename}`;
+      const formData = await req.formData();
+      const titr = formData.get("titr");
+      const title = formData.get("title");
+      const shortDesc = formData.get("shortDesc");
+      const author = formData.get("author");
+      const description = formData.get("description");
+      const img = formData.get("img");
+      const updatedAt = formData.get(new Date());
+
+      const existingBlog = await BlogModel.findOne({ _id: id });
+      if (!existingBlog) {
+        return Response.json({ message: "Product not found" }, { status: 404 });
+      }
+
+      const updateData = {
+        titr: titr || existingBlog.titr,
+        title: title || existingBlog.title,
+        shortDesc: shortDesc || existingBlog.shortDesc,
+        description: description || existingBlog.description,
+        author: author || existingBlog.author,
+        img: img || existingBlog.img,
+        updatedAt: updatedAt || existingBlog.updatedAt,
+      };
+
+      if (img && img.size > 0) {
+        if (existingBlog.img) {
+          try {
+            const imgUrl = new URL(existingBlog.img);
+            const filePath = path.join(
+              process.cwd(),
+              "public",
+              imgUrl.pathname
+            );
+            await unlink(filePath);
+            console.log(`img is deleted successfully: ${filePath}`);
+          } catch (err) {
+            console.error(`err in delete: ${err.message}`);
+          }
+        }
+
+        const buffer = Buffer.from(await img.arrayBuffer());
+        const filename = Date.now() + img.name;
+        const imgPath = path.join(process.cwd(), "public/uploads/" + filename);
+        await writeFile(imgPath, buffer);
+
+        updateData.img = `http://localhost:3000/uploads/${filename}`;
+      }
+
+      await BlogModel.findByIdAndUpdate(id, updateData, { new: true });
+
+      return Response.json(
+        {
+          message: "blog is updated successfully",
+        },
+        { status: 200 }
+      );
     }
-
-    await BlogModel.findByIdAndUpdate(id, updateData, { new: true });
-
-    return Response.json({ 
-      message: "blog is updated successfully",
-    });
-
   } catch (err) {
     return Response.json(
       { message: `interval err server: ${err.message}` },

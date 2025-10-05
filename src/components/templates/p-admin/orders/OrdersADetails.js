@@ -185,7 +185,7 @@ function OrdersADetails({ order }) {
       body: JSON.stringify(formData),
     });
 
-    const data = await res.json()
+    const data = await res.json();
 
     if (res.status === 200) {
       setIsLoading(false);
@@ -218,6 +218,19 @@ function OrdersADetails({ order }) {
       setIsLoading(false);
       toastError(
         "فقط ادمین/مدیر سایت اجازه ویرایش سفارش را دارد",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
+    } else if (res.status === 403) {
+      setIsLoading(false);
+      toastError(
+        "شما مجاز به این کار نیستید",
         "top-center",
         5000,
         false,

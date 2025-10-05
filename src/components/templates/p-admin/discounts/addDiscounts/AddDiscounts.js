@@ -29,7 +29,6 @@ function AddDiscounts() {
       body: JSON.stringify(newDiscount),
     });
 
-
     if (res.status === 201) {
       setCode("");
       setMaxUse("");
@@ -46,6 +45,18 @@ function AddDiscounts() {
         "colored"
       );
       router.refresh();
+    } else if (res.status === 403) {
+      toastError(
+        "شما مجاز به این کار نیستید",
+        "top-center",
+        5000,
+        false,
+        true,
+        true,
+        true,
+        undefined,
+        "colored"
+      );
     } else if (res.status === 401) {
       toastError(
         "فقط ادمین/مدیر سایت اجازه ساخت کد تخفیف را دارد",

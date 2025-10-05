@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 function OrderTable({ orders, title }) {
-
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -20,99 +19,109 @@ function OrderTable({ orders, title }) {
   };
 
   const removeOrder = async (orderID) => {
-        swal({
-          title: "آیا از حذف سفارش اطمینان دارید؟",
-          icon: "warning",
-          buttons: ["نه", "آره"],
-        }).then(async (result) => {
-          if (result) {
-            if (!orderID) {
-              return swalAlert("شناسه سفارش ارسال نشده است", "error", "فهمیدم");
-            }
-    
-            const res = await fetch(`/api/removeOrders/${orderID}`, {
-              method: "DELETE",
-            });
+    swal({
+      title: "آیا از حذف سفارش اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then(async (result) => {
+      if (result) {
+        if (!orderID) {
+          return swalAlert("شناسه سفارش ارسال نشده است", "error", "فهمیدم");
+        }
 
-            
-    
-            if (res.status === 200) {
-              toastSuccess(
-                "سفارش با موفقیت حذف شد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-              router.refresh();
-            } else if (res.status === 401) {
-              toastError(
-                 "فقط ادمین/مدیر سایت اجازه حذف سفارش را دارد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 400) {
-              toastError(
-                "اطلاعات لازم ارسال نشده است",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 422) {
-              toastError(
-                "اطلاعات ارسالی نامعتبر است",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 404) {
-              toastError(
-                "سفارش یافت نشد",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            } else if (res.status === 500) {
-              toastError(
-                "خطا در سرور ، لطفا بعدا تلاش کنید",
-                "top-center",
-                5000,
-                false,
-                true,
-                true,
-                true,
-                undefined,
-                "colored"
-              );
-            }
-          }
+        const res = await fetch(`/api/removeOrders/${orderID}`, {
+          method: "DELETE",
         });
-  }
+
+        if (res.status === 200) {
+          toastSuccess(
+            "سفارش با موفقیت حذف شد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+          router.refresh();
+        } else if (res.status === 401) {
+          toastError(
+            "فقط ادمین/مدیر سایت اجازه حذف سفارش را دارد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 403) {
+          toastError(
+            "شما مجاز به این کار نیستید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 400) {
+          toastError(
+            "اطلاعات لازم ارسال نشده است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 422) {
+          toastError(
+            "اطلاعات ارسالی نامعتبر است",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 404) {
+          toastError(
+            "سفارش یافت نشد",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        } else if (res.status === 500) {
+          toastError(
+            "خطا در سرور ، لطفا بعدا تلاش کنید",
+            "top-center",
+            5000,
+            false,
+            true,
+            true,
+            true,
+            undefined,
+            "colored"
+          );
+        }
+      }
+    });
+  };
 
   return (
     <>
@@ -161,7 +170,7 @@ function OrderTable({ orders, title }) {
                   </td>
                   <td>
                     <button
-                        onClick={() => removeOrder(order._id)}
+                      onClick={() => removeOrder(order._id)}
                       type="button"
                       className={styles.delete_btn}
                     >
@@ -356,7 +365,10 @@ function OrderTable({ orders, title }) {
                       </div>
 
                       <div className={styles.modal_product_price}>
-                        {product.price  ? product.price.toLocaleString() : "حذف شده"} تومان
+                        {product.price
+                          ? product.price.toLocaleString()
+                          : "حذف شده"}{" "}
+                        تومان
                       </div>
 
                       <div className={styles.modal_product_meta}>
@@ -374,7 +386,7 @@ function OrderTable({ orders, title }) {
                             رایحه
                           </span>
                           <span className={styles.modal_product_meta_value}>
-                            {product.smell  ? product.smell : "حذف شده"}
+                            {product.smell ? product.smell : "حذف شده"}
                           </span>
                         </div>
 
@@ -383,7 +395,9 @@ function OrderTable({ orders, title }) {
                             مناسب برای
                           </span>
                           <span className={styles.modal_product_meta_value}>
-                            {product.suitableFor ? product.suitableFor : "حذف شده"}
+                            {product.suitableFor
+                              ? product.suitableFor
+                              : "حذف شده"}
                           </span>
                         </div>
 
