@@ -9,6 +9,9 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+const DEFAULT_EMAIL = "admin@email.com";
+const DEFAULT_PASSWORD = "@Admin1212";
+
 const Login = ({ showRegisterForm }) => {
   const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
   const [email, setEmail] = useState("");
@@ -27,6 +30,9 @@ const Login = ({ showRegisterForm }) => {
       if (getUserInfoLogin) {
         setEmail(getUserInfoLogin.email);
         setPassword(getUserInfoLogin.password);
+      } else {
+        setEmail(DEFAULT_EMAIL);
+        setPassword(DEFAULT_PASSWORD);
       }
     }
   }, []);
@@ -36,7 +42,10 @@ const Login = ({ showRegisterForm }) => {
   };
 
   const loginWithPassword = async () => {
-    if (!email) {
+    const finalEmail = email.trim() || DEFAULT_EMAIL;
+    const finalPassword = password.trim() || DEFAULT_PASSWORD;
+
+    if (!finalEmail) {
       return swalAlert(
         "لطفا شماره تماس یا ایمیل خود را وراد نمایید",
         "error",
@@ -44,21 +53,21 @@ const Login = ({ showRegisterForm }) => {
       );
     }
 
-    const isValidEmail = validateEmail(email);
+    const isValidEmail = validateEmail(finalEmail);
 
     if (!isValidEmail) {
       return swalAlert("ایمیل وارد شده معتبر نیست", "error", "تلاش مجدد");
     }
 
-    if (!password) {
+    if (!finalPassword) {
       return swalAlert(
-        "لطفا کلمه عبور خود را وراد نمایید",
+        "لطفا کلمه عبور خود را وارد نمایید",
         "error",
         "تلاش مجدد"
       );
     }
 
-    const user = { email, password };
+    const user = { email: finalEmail, password: finalPassword };
 
     if (isSaveUserLoginInfo) {
       localStorage.setItem("userLogin", JSON.stringify(user));
