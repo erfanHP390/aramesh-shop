@@ -15,7 +15,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
 
   const getSafeLocalStorage = (key, defaultValue) => {
     if (typeof window === "undefined") return defaultValue;
-  
+
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
@@ -24,7 +24,6 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
       return defaultValue;
     }
   };
-  
 
   useEffect(() => {
     const refreshUser = async () => {
@@ -198,6 +197,7 @@ function NavbarClient({ isLogin, whishList, isAdmin, isCookies }) {
                     <hr />
                   </>
                 )}
+                <Link href="/p-user">پیشخوان</Link>
                 <Link href="/p-user/orders">سفارشات</Link>
                 <Link href="/p-user/tickets">تیکت های پشتیبانی</Link>
                 <Link href="/p-user/comments">کامنت‌ها</Link>
