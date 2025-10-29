@@ -17,7 +17,7 @@ import { TbListDetails } from "react-icons/tb";
 import Link from "next/link";
 import { swalAlert, toastError, toastSuccess } from "@/utils/helpers";
 
-const Sidebar = ({ name }) => {
+const Sidebar = ({ name, role }) => {
   const router = useRouter();
   const path = usePathname();
 
@@ -57,6 +57,20 @@ const Sidebar = ({ name }) => {
       <ul className={styles.sidebar_main}>
         {path.includes("/p-user") ? (
           <>
+            {role === "ADMIN" && (
+              <Link
+                href={"/p-admin"}
+                className={
+                  path.includes("/p-admin")
+                    ? styles.sidebar_link_active
+                    : undefined
+                }
+              >
+                <ImReply />
+                پنل مدیریت
+              </Link>
+            )}
+
             <Link
               href={"/p-user"}
               className={
@@ -130,6 +144,17 @@ const Sidebar = ({ name }) => {
           </>
         ) : (
           <>
+            <Link
+              href={"/p-user"}
+              className={
+                path.includes("/p-user")
+                  ? styles.sidebar_link_active
+                  : undefined
+              }
+            >
+              <ImReply />
+              پنل کاربری
+            </Link>
             <Link
               href={"/p-admin"}
               className={
