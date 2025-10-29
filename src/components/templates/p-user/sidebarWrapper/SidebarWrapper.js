@@ -41,7 +41,7 @@ function SidebarWrapper({ name, role, profileUser, children }) {
         ref={sidebarRef}
         className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ""}`}
       >
-        <Sidebar name={name} />
+        <Sidebar name={name}  role={role} />
         <button className={styles.closeSidebar} onClick={toggleSidebar}>
           <FaTimes />
         </button>
